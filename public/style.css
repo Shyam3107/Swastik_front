@@ -1,0 +1,104 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+input{
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 7%;
+}
+
+/********HEADER ************/
+header h1{
+    text-align: center;
+    margin-top: 10px;
+}
+
+ul{
+    display: flex;
+    list-style: none;
+    justify-content: flex-end;
+    margin-right: 1%;
+    font-size: 1.5rem;
+}
+
+li{
+    margin: 5px 10px;
+}
+
+/*******HOME PAGE *******/
+.home-page{
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+.home-page h3{
+    display: inline-block;
+    margin: 0 2%;
+}
+
+.data-toggle label{
+    font-size: 1.3rem;
+    padding: 0 3% 0 1%;
+}
+
+/********** COMPOSE PAGE ******/
+
+.compose-page{
+    margin-top: 20px;
+    text-align: center;
+    line-height: 2rem;
+}
+
+.compose-page button{
+    font-size: 1.3rem;
+    margin: 10px 20%;
+}
+
+.compose-page form label{
+    font-size: 1.5rem;
+    display: inline-block;
+    width: 12rem;
+    margin: 5px;
+    text-align: left;
+}
+
+.form-toggle label{
+    font-size: 1.3rem;
+    padding: 0 3% 0 1%;
+}
+
+/****** DETAILS PAGE ******/
+.details-page{
+    padding-left:3% ;
+    text-align: center;
+}
+
+
+.details-page th{
+    font-size: 1.2rem;
+    padding: 3px 12px;
+}
+
+.details-page td{
+    font-size: 1.1rem;
+    padding: 3px 12px;
+}
+
+.details-page button{
+    margin: 0 10px;
+    padding: 3px;
+    font-size: 1rem;
+}
+
+.details-page form{
+    margin: 15px 0 0 0;
+    display: none;
+}
+
+/*******FOOTER*******/
+footer{
+    margin-top: 2rem;
+    text-align: center;
+}
