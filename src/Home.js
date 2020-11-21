@@ -59,7 +59,7 @@ function Home(){
     }
     return <div className='home-page'>
         <div className='data-toggle'>
-            <input type='radio' name='data' id='vehicle' onClick={changeData} checked={detail.dataOf==='vehicle' && true}/>
+            <input type='radio' name='data' id='vehicle' onClick={changeData} defaultChecked/>
             <label htmlFor='vehicle'>Vehicle</label>
             <input type='radio' name='data' id='place' onClick={changeData} />
             <label htmlFor='place'>Place</label>

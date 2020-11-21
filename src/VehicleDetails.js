@@ -4,7 +4,8 @@ import {useParams} from 'react-router-dom';
 import {useState} from 'react';
 
 function printData(data,index){
-    return <tr key={index}>
+    return <tbody key={index}>
+    <tr>
         <td>{data.Date}-{data.Month}-{data.Year}</td>
         <td>{data.DIno}</td>
         <td>{data.Place}</td>
@@ -18,24 +19,27 @@ function printData(data,index){
         <td>{data.Remarks}</td>
         <td>{data.Balance}</td>
     </tr>
+    </tbody>
 }
 
 function VehicleDetails(){
     const num=useParams().num; // get dynamic parameter
     var [data,setData]=useState([]);
 
-    useEffect(function(){  
-        fetchData();
-    })
-
+    useEffect(function(){
+        
     async function fetchData(){ // fetch data from backend
         var detail = await fetch(`http://localhost:5000/Vehicle/${num}`).then(resp=>resp.json());
         setData(detail);
     }
+        fetchData();
+    },[num])
+
     
 return <div className='details-page'>
 <h2>{num}</h2><br />
 <table>
+    <thead>
 <tr>
     <th>Date</th>
     <th>DI no.</th>
@@ -50,6 +54,7 @@ return <div className='details-page'>
     <th>Remarks</th>
     <th>Balance</th>
 </tr>
+</thead>
 {data.map(printData)}
 </table>
 </div>

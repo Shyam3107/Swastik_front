@@ -14,7 +14,7 @@ function Compose(){
 
     return <div className='compose-page'>
         <div className='form-toggle'>
-            <input type='radio' name='compose' id='vehicle' onClick={changeCompose} checked={isVehicle && true}/>
+            <input type='radio' name='compose' id='vehicle' onClick={changeCompose} defaultChecked/>
             <label htmlFor='vehicle'>Vehicle</label>
             <input type='radio' name='compose' id='place' onClick={changeCompose} />
             <label htmlFor='place'>Place</label>
