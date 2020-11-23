@@ -12,6 +12,23 @@ function Compose(){
         } else setIsVehicle(false);
     }
 
+    async function formSubmit(details,url){
+        const mssg=await fetch(`https://cryptic-journey-86272.herokuapp.com/${url}`,{  // send vehicleDetails to backend
+            method:'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(details)
+        }).then(response => response.json());
+
+        if(mssg) alert('successfully added');
+        else alert('Failed,try Again');
+    }
+
+    var yesterday=new Date();
+    yesterday.setDate(yesterday.getDate()-1);
+    var day=yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+yesterday.getDate();
+
     return <div className='compose-page'>
         <div className='form-toggle'>
             <input type='radio' name='compose' id='vehicle' onClick={changeCompose} defaultChecked/>
@@ -20,7 +37,7 @@ function Compose(){
             <label htmlFor='place'>Place</label>
             <br />
         </div>
-        {isVehicle? <ComposeVehicle /> : <ComposePlaces />}
+        {isVehicle? <ComposeVehicle day={day} submit={formSubmit} /> : <ComposePlaces day={day} submit={formSubmit} />}
     </div>
 }
 

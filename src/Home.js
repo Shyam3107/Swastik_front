@@ -12,19 +12,20 @@ function Home(){
     }); 
 
     useEffect(function(){ // to run it once in lifecycle
+        
+    async function fetchData(){  // accesing vehicle data from backend
+        var Vdata= await fetch('https://cryptic-journey-86272.herokuapp.com/Vehicle').then(response=>response.json());
+        var Pdata= await fetch('https://cryptic-journey-86272.herokuapp.com/Place').then(response=>response.json());
+        setDetails(detail=> ({
+           ...detail,
+           vehicleData: Vdata,
+           filtered: Vdata,
+           placeData: Pdata
+       }));
+       }
         fetchData();
     },[])
 
-    async function fetchData(){  // accesing vehicle data from backend
-     var Vdata= await fetch('http://localhost:5000/Vehicle').then(response=>response.json());
-     var Pdata= await fetch('http://localhost:5000/Place').then(response=>response.json());
-     setDetails({
-        ...detail,
-        vehicleData: Vdata,
-        filtered: Vdata,
-        placeData: Pdata
-    });
-    }
     
     function filterData(event){
         if(detail.dataOf==='vehicle'){

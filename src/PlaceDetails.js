@@ -11,7 +11,7 @@ function PlaceDetails() {
     useEffect(function () {
         
     async function fetchData() { // fetch data from backend
-        var detail = await fetch(`http://localhost:5000/Place/${place}`).then(resp => resp.json());
+        var detail = await fetch(`https://cryptic-journey-86272.herokuapp.com/${place}`).then(resp => resp.json());
         setData(detail);
     }
         fetchData();

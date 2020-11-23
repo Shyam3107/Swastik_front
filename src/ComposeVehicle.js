@@ -1,8 +1,11 @@
 // FOR ADDING VEHICLE DETAILS
-function ComposeVehicle(){
-    async function formSubmit(event)
+function ComposeVehicle(props){
+    function formSubmit(event)
     {
         const vehicleDetails={  // Object for vehicle details
+            'Date':document.getElementById('date').value.slice(8,10),
+            'Month':document.getElementById('date').value.slice(5,7),
+            'Year':document.getElementById('date').value.slice(0,4),
             'Vehicle':document.getElementById('vehiclenum').value.toUpperCase(),
             'DIno':Number(document.getElementById('dino').value),
             'Place':document.getElementById('location').value.toUpperCase(),
@@ -19,20 +22,14 @@ function ComposeVehicle(){
         vehicleDetails.DieselCost=(vehicleDetails.Diesel*vehicleDetails.DieselPrice).toFixed(2);  // calculate diesel cost
         vehicleDetails.RateCost=vehicleDetails.Rate*vehicleDetails.Qty; // calculate rate cost
         vehicleDetails.Balance=(vehicleDetails.RateCost-vehicleDetails.DieselCost-vehicleDetails.Expenses).toFixed(2); // net profit on that day
-
-        const mssg=await fetch('http://localhost:5000/ComposeVehicle',{  // send vehicleDetails to backend
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(vehicleDetails)
-        }).then(response => response.json());
-
-        if(mssg) alert('successfully added');
-        else alert('Failed,try Again');
+        props.submit(vehicleDetails,'ComposeVehicle');
     }
 
+    
+
     return <form onSubmit={formSubmit}>
+            <label htmlFor='date'>Date :</label>
+            <input type='date' name='date' id='date' defaultValue={props.day} required /><br />
             <label htmlFor='vehicle'>Vehicle No. :</label>
             <input type='text' name='VehicleNum' id='vehiclenum' required/><br />
             <label htmlFor='dino'>DIno :</label>
