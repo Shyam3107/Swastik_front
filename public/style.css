@@ -9,6 +9,16 @@ input{
     border-radius: 7%;
 }
 
+.date-section{
+    margin: 10px;
+}
+
+.date-section label{
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+
 /********HEADER ************/
 header h1{
     text-align: center;
@@ -30,7 +40,7 @@ li{
 /*******HOME PAGE *******/
 .home-page{
     text-align: center;
-    line-height: 2.5rem;
+    line-height: 2rem;
 }
 
 .home-page h3{
@@ -56,7 +66,7 @@ li{
     margin: 10px 20%;
 }
 
-.compose-page form label{
+.compose-page label{
     font-size: 1.5rem;
     display: inline-block;
     width: 12rem;
@@ -64,26 +74,22 @@ li{
     text-align: left;
 }
 
-.form-toggle label{
-    font-size: 1.3rem;
-    padding: 0 3% 0 1%;
-}
-
 /****** DETAILS PAGE ******/
 .details-page{
     padding-left:3% ;
     text-align: center;
+    overflow-x: auto;
 }
 
 
 .details-page th{
     font-size: 1.2rem;
-    padding: 3px 12px;
+    padding: 3px 10px;
 }
 
 .details-page td{
     font-size: 1.1rem;
-    padding: 3px 12px;
+    padding: 3px 10px;
 }
 
 .details-page button{
@@ -95,6 +101,10 @@ li{
 .details-page form{
     margin: 15px 0 0 0;
     display: none;
+}
+
+.net-expenses{
+    border-top:1px solid black;
 }
 
 /*******FOOTER*******/

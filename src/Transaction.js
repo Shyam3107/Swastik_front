@@ -1,11 +1,9 @@
-// READING EACH VEHICLE DEATILS
-import { useEffect } from 'react';
-import {useParams} from 'react-router-dom';
-import {useState} from 'react';
+import {useState,useEffect} from 'react'; 
 import DateFilter,{DateSection} from './DateFilter';
 import EditData from './EditData';
 
 function printData(data,index){
+
     return <tbody key={index}>
     <tr>
         <td>{data.Date}-{data.Month}-{data.Year}</td>
@@ -26,32 +24,27 @@ function printData(data,index){
     </tbody>
 }
 
-function VehicleDetails(props){
-    const num=useParams().num; // get dynamic parameter
-
+function Transaction(props){
     var day=new Date();
     var today=day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate();
 
     var [detail,setDetails]=useState([]);
-    var [dateInterval,setDateInterval]=useState({
+    var [dateInterval,setDateInterval]=useState({ // for filter data as per date
         From: today,
         To: today,
         details:detail
     });
 
     useEffect(()=>{
-        // async function fetchData(){
-        //     var data= await fetch(`${props.url}/vehicle/${num}`).then(resp=>resp.json());
-        //     setDetails(data);
-        // }
-        //fetchData();
-        fetch(`${props.url}/vehicle/${num}`).then(resp=>resp.json())
-        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data});});
+        fetch(`${props.url}/Transactions`).then(resp => resp.json())
+        .then(data=> {
+            setDetails(data); 
+            setDateInterval({...dateInterval,details:data});
+        });
     },[]);
 
-    
-return <div className='details-page'>
-<h2>{num}</h2><br />
+    return <div className='details-page'>
+        {/* this function return filtered data as per date */}
 <DateSection setDateInterval={setDateInterval} />
 <table>
     <thead>
@@ -78,4 +71,4 @@ return <div className='details-page'>
 </div>
 }
 
-export default VehicleDetails;
+export default Transaction;

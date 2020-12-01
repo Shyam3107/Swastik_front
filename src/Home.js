@@ -1,43 +1,38 @@
 // READING ALL VEHICLE NUMBER
 import {useState , useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import Transaction from './Transaction';
 
-function Home(){
+function Home(props){
     var filData=[];
+
     var [detail,setDetails]=useState({
         dataOf:'vehicle',
         vehicleData:[],
         placeData:[],
         filtered:[]
-    }); 
+    });
 
-    useEffect(function(){ // to run it once in lifecycle
-        
-    async function fetchData(){  // accesing vehicle data from backend
-        var Vdata= await fetch('https://cryptic-journey-86272.herokuapp.com/Vehicle').then(response=>response.json());
-        var Pdata= await fetch('https://cryptic-journey-86272.herokuapp.com/Place').then(response=>response.json());
-        setDetails(detail=> ({
-           ...detail,
-           vehicleData: Vdata,
-           filtered: Vdata,
-           placeData: Pdata
-       }));
-       }
-        fetchData();
-    },[])
+    useEffect(()=>{
+            fetch(`${props.url}/Place`).then(res => res.json()).then(data=>{
+                setDetails(detail=>({
+                    ...detail,
+                    placeData:data
+                }))
+            });
+            fetch(`${props.url}/Vehicle`).then(res => res.json()).then(data=>{
+                setDetails(detail=>({
+                    ...detail,
+                    vehicleData:data,
+                    filtered:data
+                }))
+            });
+    },[]);
 
-    
-    function filterData(event){
-        if(detail.dataOf==='vehicle'){
-            filData=detail.vehicleData.filter(function(d){
-                return d.includes(event.target.value.toUpperCase());
-            })
-        }
-        else {
-            filData=detail.placeData.filter(function(d){
-                return d.includes(event.target.value.toUpperCase());
-            })
-        }
+    function filterData(event){ // search specific data
+        filData=detail[detail.dataOf+'Data'].filter(function(d){
+            return d.includes(event.target.value.toUpperCase());
+        })
         
         setDetails({
             ...detail,
@@ -45,32 +40,34 @@ function Home(){
         })
     }
 
-    function changeData(event){
-        var d=event.target.id;
-        if(d==='vehicle') setDetails({
+    function changeData(event){ // change data vehicle or place
+        var value=event.target.id;
+        setDetails({
             ...detail,
-            dataOf: 'vehicle',
-            filtered:detail.vehicleData
-        })
-        else setDetails({
-            ...detail,
-            dataOf:'place',
-            filtered: detail.placeData
-        })
+            dataOf:value,
+            filtered:detail[value+'Data']
+        });
     }
-    return <div className='home-page'>
+
+    return <div><div className='home-page'>
         <div className='data-toggle'>
             <input type='radio' name='data' id='vehicle' onClick={changeData} defaultChecked/>
             <label htmlFor='vehicle'>Vehicle</label>
             <input type='radio' name='data' id='place' onClick={changeData} />
-            <label htmlFor='place'>Place</label>
+            <label htmlFor='place'>Petty CashBook</label>
+            <input type='radio' name='data' id='date' onClick={changeData} />
+            <label htmlFor='date'>Date</label>
         </div>
+        {detail.dataOf!=='date'&&<div>
         <input type='search' onChange={filterData} name={detail.dataOf} /><br />
         {detail.filtered.map(function(info,index){  // use ` , not ' for link
            return (
            <Link key={index} to={`/${detail.dataOf}/${info}`}><h3>{info}</h3></Link> 
            )
         })}
+        </div>}
+    </div>
+    {detail.dataOf==='date'&&<Transaction url={props.url} />}
     </div>
 }
 
