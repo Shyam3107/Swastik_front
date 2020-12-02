@@ -40,7 +40,9 @@ function Transaction(props){
         .then(data=> {
             setDetails(data); 
             setDateInterval({...dateInterval,details:data});
-        });
+        }).catch((err)=>{
+            alert('Failed to update, Try again')}
+            );
     },[]);
 
     return <div className='details-page'>

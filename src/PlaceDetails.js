@@ -25,7 +25,10 @@ function PlaceDetails(props) {
         // }
         // fetchData();
         fetch(`${props.url}/Place/${place}`).then(resp => resp.json())
-        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data.detail});});
+        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data.detail});})
+        .catch((err)=>{
+            alert('Failed to update, Try again')}
+            );
     },[]);
 
     function showInput() { // hide and show input box

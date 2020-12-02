@@ -1,10 +1,11 @@
 // FOR ADDING EACH PLACE DETAILS
-import {useState} from 'react';
-
 function Compose(props){
 
-    function formSubmit()
+    function formSubmit(event)
     {
+        var submitbutton=document.querySelector('button');
+        submitbutton.innerText='Please Wait ...';
+        submitbutton.disabled=true;
         const vehicleDetails={  // Object for vehicle details
             'Date':document.getElementById('date').value.slice(8,10),
             'Month':document.getElementById('date').value.slice(5,7),
@@ -29,17 +30,30 @@ function Compose(props){
             },
             body: JSON.stringify(vehicleDetails)
         }).then(response => response.json())
-        .then(mssg=>{ 
-        if(mssg) alert('successfully added');
-        else alert('Failed,try Again');
+        .then(mssg=>{
+            if(mssg) alert('successfully added');
+            else alert('Failed,try Again');
+            submitbutton.innerText='Submit';
+            submitbutton.disabled=false;
+        })
+        .catch((err)=>{
+            alert('Failed to update, Try again');
+            submitbutton.innerText='Submit';
+            submitbutton.disabled=false;
+            event.preventDefault();
         });
+        
 
     }
 
     var day=new Date();
-    var today=day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate();
+    var today=day.getFullYear()+'-'+(day.getMonth()+1)+'-';
+    if(day.getDate()<10) today+='0'+day.getDate();
+    else today+=day.getDate();
     day.setDate(day.getDate()-1);
-    var yesterday=day.getFullYear()+'-'+(day.getMonth()+1)+'-'+day.getDate();
+    var yesterday=day.getFullYear()+'-'+(day.getMonth()+1)+'-';
+    if(day.getDate()<10) yesterday+='0'+day.getDate();
+    else yesterday+=day.getDate();
 
     return <form className='compose-page' onSubmit={formSubmit}>
 
@@ -71,7 +85,7 @@ function Compose(props){
             <input type='number' id='expenses' /><br />
             
             <label htmlFor='place'>Place :</label>
-            <input type='text' id='place' required /><br />
+            <input type='text' id='place' /><br />
 
             <label htmlFor='remarks'>Remarks :</label>
             <input type='text' id='remarks' /><br />
