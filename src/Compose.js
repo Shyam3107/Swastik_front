@@ -26,6 +26,7 @@ function Compose(props){
         fetch(`${props.url}/Compose`,{  // send vehicleDetails to backend
             method:'POST',
             headers:{
+                'Access-Control-Allow-Origin':'*',
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(vehicleDetails)
@@ -35,15 +36,10 @@ function Compose(props){
             else alert('Failed,try Again');
             submitbutton.innerText='Submit';
             submitbutton.disabled=false;
-        })
-        .catch((err)=>{
-            alert('Failed to update, Try again');
-            submitbutton.innerText='Submit';
-            submitbutton.disabled=false;
-            event.preventDefault();
+        }).catch(err=>{
+            console.log(err);
+            alert(err);
         });
-        
-
     }
 
     var day=new Date();

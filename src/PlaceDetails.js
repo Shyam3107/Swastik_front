@@ -25,10 +25,7 @@ function PlaceDetails(props) {
         // }
         // fetchData();
         fetch(`${props.url}/Place/${place}`).then(resp => resp.json())
-        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data.detail});})
-        .catch((err)=>{
-            alert('Failed to update, Try again')}
-            );
+        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data.detail});});
     },[]);
 
     function showInput() { // hide and show input box
@@ -41,6 +38,9 @@ function PlaceDetails(props) {
     }
 
     function AddIt() {  // add the current balance
+        var submitbutton=document.querySelectorAll('button')[1];
+        submitbutton.innerText='Please Wait ...';
+        submitbutton.disabled=true;
         var bal = Number(document.getElementById('balance').value);
         var obj = {
             Place: place,
@@ -49,15 +49,23 @@ function PlaceDetails(props) {
         };
         if (bal === 0) alert('Enter The Amount');
         else {
-            var Balance = fetch(`${props.url}/addBalance`, {
+            fetch(`${props.url}/addBalance`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
-            }).then(resp => resp.json());
-            if(Balance) alert('Added Successfully');
-            else alert('Failed,Try Again');
+            })
+            .then(resp => resp.json())
+            .then(res =>{
+                if(res) alert('Added Successfully');
+                else alert('Failed,Try Again');
+                submitbutton.innerText='Submit';
+                submitbutton.disabled=false;
+            }).catch((err)=>{
+                console.log(err);
+                alert(err);
+            });
         }
     }
 

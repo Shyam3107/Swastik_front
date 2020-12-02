@@ -19,19 +19,15 @@ function Home(props){
                     ...detail,
                     placeData:data
                 }))
-            }).catch((err)=>{
-                alert('Failed to Fetch data, Try again')}
-                );
+            });
             fetch(`${props.url}/Vehicle`).then(res => res.json()).then(data=>{
                 setDetails(detail=>({
                     ...detail,
                     vehicleData:data,
                     filtered:data
                 }))
-            }).catch((err)=>{
-                alert('Failed to Fetch data, Try again')}
-                );
-    },[]);
+            });
+    },[props.url]);
 
     function filterData(event){ // search specific data
         filData=detail[detail.dataOf+'Data'].filter(function(d){

@@ -4,7 +4,6 @@ function EditData(url){
         x.forEach(item=>{
             editData[item.id]=Number(item.innerHTML);
         })
-        console.log(editData);
         fetch(`${url}/editData`,{  // send edited table details to backend
             method:'PUT',
             headers:{
@@ -15,7 +14,7 @@ function EditData(url){
         .then(data=>{
             if(data) alert('added successfully');
             else alert('Failed, Try again');
-        })
+        });
 }
 
 export default EditData;
