@@ -19,14 +19,14 @@ function Home(props){
                     ...detail,
                     placeData:data
                 }))
-            });
+            }).catch(err=>alert(err));
             fetch(`${props.url}/Vehicle`).then(res => res.json()).then(data=>{
                 setDetails(detail=>({
                     ...detail,
                     vehicleData:data,
                     filtered:data
                 }))
-            });
+            }).catch(err=>alert(err));
     },[props.url]);
 
     function filterData(event){ // search specific data

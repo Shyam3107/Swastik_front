@@ -47,12 +47,11 @@ function PlaceDetails(props) {
             fetch(`${props.url}/addBalance`, {
                 method: 'POST',
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
             })
-            .then(resp => resp.json())
+            .then(res => res.json())
             .then(res =>{
                 if(res) alert('Added Successfully');
                 else alert('Failed,Try Again');
