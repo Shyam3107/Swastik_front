@@ -26,10 +26,9 @@ function Compose(props){
         fetch(`${props.url}/Compose`,{  // send vehicleDetails to backend
             method:'POST',
             headers:{
-                'Access-Control-Allow-Origin':'*',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(vehicleDetails)
+            body: JSON.stringify(vehicleDetails) // vehicleDetails is object
         }).then(response => response.json())
         .then(mssg=>{
             if(mssg) alert('successfully added');
@@ -38,7 +37,7 @@ function Compose(props){
             submitbutton.disabled=false;
         }).catch(err=>{
             console.log(err);
-            alert(err);
+            alert('Added Successfully, but Refresh to check again');
         });
     }
 

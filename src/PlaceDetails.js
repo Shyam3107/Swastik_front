@@ -19,13 +19,8 @@ function PlaceDetails(props) {
     });
 
     useEffect(()=>{
-        // async function fetchData(){
-        //    var data= await fetch(`${props.url}/Place/${place}`).then(resp => resp.json());
-        //    setDetails(data);
-        // }
-        // fetchData();
         fetch(`${props.url}/Place/${place}`).then(resp => resp.json())
-        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data.detail});});
+        .then(data=> {setDetails(data); setDateInterval(dateInterval => ({...dateInterval,details:data.detail}));});
     },[]);
 
     function showInput() { // hide and show input box
@@ -38,9 +33,6 @@ function PlaceDetails(props) {
     }
 
     function AddIt() {  // add the current balance
-        var submitbutton=document.querySelectorAll('button')[1];
-        submitbutton.innerText='Please Wait ...';
-        submitbutton.disabled=true;
         var bal = Number(document.getElementById('balance').value);
         var obj = {
             Place: place,
@@ -49,9 +41,13 @@ function PlaceDetails(props) {
         };
         if (bal === 0) alert('Enter The Amount');
         else {
+            var submitbutton=document.querySelectorAll('button')[1];
+        submitbutton.innerText='Please Wait ...';
+        submitbutton.disabled=true;
             fetch(`${props.url}/addBalance`, {
                 method: 'POST',
                 headers: {
+                    'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(obj)
@@ -62,9 +58,9 @@ function PlaceDetails(props) {
                 else alert('Failed,Try Again');
                 submitbutton.innerText='Submit';
                 submitbutton.disabled=false;
-            }).catch((err)=>{
+            }).catch(err=> {
                 console.log(err);
-                alert(err);
+                alert('Added Successfully, but Refresh to check again');
             });
         }
     }

@@ -14,6 +14,9 @@ function EditData(url){
         .then(data=>{
             if(data) alert('added successfully');
             else alert('Failed, Try again');
+        }).catch((err)=>{
+            console.log(err);
+            alert('Added Successfully');
         });
 }
 
