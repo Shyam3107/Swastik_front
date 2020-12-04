@@ -17,11 +17,14 @@ function Compose(props){
             'Qty':Number(document.getElementById('qty').value),
             'Rate':Number(document.getElementById('rate').value),
             'Diesel':Number(document.getElementById('diesel').value),
+            'DieselPrice':Number(document.getElementById('dieselP').value).toFixed(2),
             'Expenses':Number(document.getElementById('expenses').value),
             'Place':document.getElementById('place').value.toUpperCase(),
             'Remarks':document.getElementById('remarks').value
         }
         vehicleDetails.RateCost=vehicleDetails.Rate*vehicleDetails.Qty; // calculate rate cost
+        vehicleDetails.DieselCost=(vehicleDetails.Diesel*vehicleDetails.DieselPrice).toFixed(2); // calculate diesel cost
+        vehicleDetails.Balance=(vehicleDetails.RateCost-vehicleDetails.DieselCost-vehicleDetails.Expenses).toFixed(2);
 
         fetch(`${props.url}/Compose`,{  // send vehicleDetails to backend
             method:'POST',
@@ -31,13 +34,11 @@ function Compose(props){
             body: JSON.stringify(vehicleDetails) // vehicleDetails is object
         }).then(response => response.json())
         .then(mssg=>{
-            if(mssg) alert('successfully added');
-            else alert('Failed,try Again');
+            alert(mssg);
             submitbutton.innerText='Submit';
             submitbutton.disabled=false;
         }).catch(err=>{
-            console.log(err);
-            alert('Added Successfully, but Refresh to check again');
+            alert(err);
         });
     }
 
@@ -75,6 +76,9 @@ function Compose(props){
 
             <label htmlFor='diesel'>Diesel :</label>
             <input type='number' id='diesel' /><br />
+
+            <label htmlFor='dieselP'>Diesel Price :</label>
+            <input type='number' step='0.01' id='dieselP' /><br />
 
             <label htmlFor='expenses'>Other Expenses :</label>
             <input type='number' id='expenses' /><br />

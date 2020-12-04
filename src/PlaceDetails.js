@@ -53,13 +53,11 @@ function PlaceDetails(props) {
             })
             .then(res => res.json())
             .then(res =>{
-                if(res) alert('Added Successfully');
-                else alert('Failed,Try Again');
+                alert(res);
                 submitbutton.innerText='Submit';
                 submitbutton.disabled=false;
             }).catch(err=> {
-                console.log(err);
-                alert('Added Successfully, but Refresh to check again');
+                alert(err);
             });
         }
     }

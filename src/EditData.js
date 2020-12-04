@@ -12,11 +12,9 @@ function EditData(url){
             body: JSON.stringify(editData)
         }).then(resp => resp.json())
         .then(data=>{
-            if(data) alert('Added successfully');
-            else alert('Failed, Try again');
+            alert(data);
         }).catch((err)=>{
-            console.log(err);
-            alert('Added Successfully but refersh to check it ');
+            alert(err);
         });
 }
 
