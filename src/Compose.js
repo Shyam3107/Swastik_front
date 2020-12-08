@@ -1,12 +1,10 @@
-// FOR ADDING EACH PLACE DETAILS
+import postfetch from './postFetch';
+
 function Compose(props){
 
     function formSubmit(event)
     {
-        var submitbutton=document.querySelector('button');
-        submitbutton.innerText='Please Wait ...';
-        submitbutton.disabled=true;
-        const vehicleDetails={  // Object for vehicle details
+        var vehicleDetails={  // Object for vehicle details
             'Date':document.getElementById('date').value.slice(8,10),
             'Month':document.getElementById('date').value.slice(5,7),
             'Year':document.getElementById('date').value.slice(0,4),
@@ -22,24 +20,10 @@ function Compose(props){
             'Place':document.getElementById('place').value.toUpperCase(),
             'Remarks':document.getElementById('remarks').value
         }
-        vehicleDetails.RateCost=vehicleDetails.Rate*vehicleDetails.Qty; // calculate rate cost
+        vehicleDetails.RateCost=(vehicleDetails.Rate*vehicleDetails.Qty).toFixed(2); // calculate rate cost
         vehicleDetails.DieselCost=(vehicleDetails.Diesel*vehicleDetails.DieselPrice).toFixed(2); // calculate diesel cost
         vehicleDetails.Balance=(vehicleDetails.RateCost-vehicleDetails.DieselCost-vehicleDetails.Expenses).toFixed(2);
-
-        fetch(`${props.url}/Compose`,{  // send vehicleDetails to backend
-            method:'POST',
-            headers:{
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(vehicleDetails) // vehicleDetails is object
-        }).then(response => response.json())
-        .then(mssg=>{
-            alert(mssg);
-            submitbutton.innerText='Submit';
-            submitbutton.disabled=false;
-        }).catch(err=>{
-            alert(err);
-        });
+        postfetch(vehicleDetails,"Compose");
     }
 
     var day=new Date();

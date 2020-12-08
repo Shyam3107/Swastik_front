@@ -7,6 +7,7 @@ function printData(data,index){
     return <tbody key={index}>
     <tr>
         <td>{data.Date}-{data.Month}-{data.Year}</td>
+        <td>{data.Vehicle}</td>
         <td>{data.From}</td>
         <td>{data.To}</td>
         <td>{data.DIno}</td>
@@ -14,11 +15,12 @@ function printData(data,index){
         <td>{data.Rate}</td>
         <td>{data.RateCost}</td>
         <td>{data.Diesel}</td>
-        <td className='dieselPrice' id={data._id} contentEditable>{data.DieselPrice}</td>
+        <td className='dieselPrice' suppressContentEditableWarning={true} id={data._id} contentEditable>{data.DieselPrice}</td>
         <td>{data.DieselCost}</td>
         <td>{data.Expenses}</td>
         <td>{data.Place}</td>
         <td>{data.Remarks}</td>
+        <td>{data.Debit}</td>
         <td>{data.Balance}</td>
     </tr>
     </tbody>
@@ -45,13 +47,14 @@ function Transaction(props){
             );
     },[]);
 
-    return <div className='details-page'>
+    return <div className='details-page' style={{overflow:"auto"}}>
         {/* this function return filtered data as per date */}
 <DateSection setDateInterval={setDateInterval} />
 <table>
     <thead>
 <tr>
     <th>Date</th>
+    <th>Vehicle No.</th>
     <th>From</th>
     <th>To</th>
     <th>DI no.</th>
@@ -64,12 +67,13 @@ function Transaction(props){
     <th>Other Expenses</th>
     <th>Place</th>
     <th>Remarks</th>
+    <th>Debit (Cash to place)</th>
     <th>Balance</th>
 </tr>
 </thead>
 {DateFilter(dateInterval).map(printData)}
 </table>
-<button onClick={() => EditData(props.url)}>Submit</button>
+<button type="submit" onClick={() => EditData(props.url)}>Submit</button>
 </div>
 }
 

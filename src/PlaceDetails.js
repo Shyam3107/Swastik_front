@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 import DateFilter,{DateSection} from './DateFilter';
+import postFetch from './postFetch';
 
 
 function PlaceDetails(props) {
@@ -35,31 +36,15 @@ function PlaceDetails(props) {
     function AddIt() {  // add the current balance
         var bal = Number(document.getElementById('balance').value);
         var obj = {
+            Date: new Date().getDate(),
+            Month: new Date().getMonth()+1,
+            Year : new Date().getFullYear(),
             Place: place,
             Debit: bal,
             Remarks:'Cash Received'
         };
         if (bal === 0) alert('Enter The Amount');
-        else {
-            var submitbutton=document.querySelectorAll('button')[1];
-        submitbutton.innerText='Please Wait ...';
-        submitbutton.disabled=true;
-            fetch(`${props.url}/addBalance`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(obj)
-            })
-            .then(res => res.json())
-            .then(res =>{
-                alert(res);
-                submitbutton.innerText='Submit';
-                submitbutton.disabled=false;
-            }).catch(err=> {
-                alert(err);
-            });
-        }
+        else postFetch(obj,"addBalance");
     }
 
     var netCredit=0;

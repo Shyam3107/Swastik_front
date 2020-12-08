@@ -16,7 +16,7 @@ function printData(data,index){
         <td>{data.Rate}</td>
         <td>{data.RateCost}</td>
         <td>{data.Diesel}</td>
-        <td className='dieselPrice' id={data._id} contentEditable>{data.DieselPrice}</td>
+        <td className='dieselPrice' id={data._id} suppressContentEditableWarning={true} contentEditable>{data.DieselPrice}</td>
         <td>{data.DieselCost}</td>
         <td>{data.Expenses}</td>
         <td>{data.Place}</td>
@@ -46,8 +46,8 @@ function VehicleDetails(props){
         // }
         //fetchData();
         fetch(`${props.url}/vehicle/${num}`).then(resp=>resp.json())
-        .then(data=> {setDetails(data); setDateInterval({...dateInterval,details:data});});
-    },[]);
+        .then(data=> {setDetails(data); setDateInterval(dateInterval=>({...dateInterval,details:data}))});
+    },[num,props.url]);
 
     
 return <div className='details-page'>
@@ -74,7 +74,7 @@ return <div className='details-page'>
 </thead>
 {DateFilter(dateInterval).map(printData)}
 </table>
-<button onClick={() => EditData(props.url)}>Submit</button>
+<button type="submit" onClick={() => EditData()}>Submit</button>
 </div>
 }
 

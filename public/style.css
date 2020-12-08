@@ -76,7 +76,7 @@ li{
 
 /****** DETAILS PAGE ******/
 .details-page{
-    padding-left:3% ;
+    padding-left:1% ;
     text-align: center;
     overflow-x: auto;
 }
@@ -84,12 +84,12 @@ li{
 
 .details-page th{
     font-size: 1.2rem;
-    padding: 3px 10px;
+    padding: 3px 8px;
 }
 
 .details-page td{
     font-size: 1.1rem;
-    padding: 3px 10px;
+    padding: 3px 8px;
 }
 
 .details-page button{
