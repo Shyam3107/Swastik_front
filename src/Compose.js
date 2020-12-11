@@ -35,7 +35,7 @@ function Compose(props){
     if(day.getDate()<10) yesterday+='0'+day.getDate();
     else yesterday+=day.getDate();
 
-    return <form className='compose-page' onSubmit={formSubmit}>
+    return <div className='compose-page'>
 
             <label htmlFor='date'>Date :</label>
             <input type='date' id='date' defaultValue={yesterday} max={today} required /><br />
@@ -73,8 +73,8 @@ function Compose(props){
             <label htmlFor='remarks'>Remarks :</label>
             <input type='text' id='remarks' /><br />
 
-            <button type='submit'>Submit</button>
-        </form>
+            <button type='submit' onClick={formSubmit}>Submit</button>
+        </div>
 }
 
 export default Compose;

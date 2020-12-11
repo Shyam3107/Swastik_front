@@ -6,8 +6,7 @@ function EditData(){
         x.forEach(item=>{
             editData[item.id]=Number(item.innerHTML);
         });
-        postFetch(editData,"editData");
-        window.location.reload();
+        postFetch(editData,"editData")
 }
 
 export default EditData;

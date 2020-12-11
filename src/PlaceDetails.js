@@ -53,9 +53,9 @@ function PlaceDetails(props) {
     return <div className='details-page'>
     <h2>{place}</h2><br />
     <h4 style={{ textAlign: 'center' }}>Current Balance : {Balance}<button onClick={showInput}>Add Balance</button></h4>
-    <form onSubmit={AddIt} id='addBalance'>
-        <input type='number' name='balance' id='balance' placeholder='Enter The Amount' /><button type='submit'>Add It</button>
-    </form>
+    <div id='addBalance'>
+        <input type='number' name='balance' id='balance' placeholder='Enter The Amount' /><button onClick={AddIt} type='submit'>Add It</button>
+    </div>
     <br />
     <DateSection setDateInterval={setDateInterval} />
     <table>
