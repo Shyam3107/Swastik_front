@@ -5,6 +5,7 @@ import Transaction from './Transaction';
 
 function Home(props){
     var filData=[];
+    var err_mssg="Failed To fetch. Either reload the page or try after some Time";
 
     var [detail,setDetails]=useState({
         dataOf:'vehicle',
@@ -13,21 +14,25 @@ function Home(props){
         filtered:[]
     });
 
+    var [status,setStatus]=useState("Loading...");
+
     useEffect(()=>{
             fetch(`${props.url}/Place`).then(res => res.json()).then(data=>{
                 setDetails(detail=>({
                     ...detail,
                     placeData:data
-                }))
-            }).catch(err=>alert(err));
+                }));
+                setStatus("Loaded")
+            }).catch(err=> setStatus(err_mssg));
             fetch(`${props.url}/Vehicle`).then(res => res.json()).then(data=>{
                 setDetails(detail=>({
                     ...detail,
                     vehicleData:data,
                     filtered:data
                 }))
-            }).catch(err=>alert(err));
-    },[props.url]);
+                setStatus("Loaded");
+            }).catch(err=> setStatus(err_mssg));
+    },[props.url],err_mssg);
 
     function filterData(event){ // search specific data
         filData=detail[detail.dataOf+'Data'].filter(function(d){
@@ -60,11 +65,12 @@ function Home(props){
         </div>
         {detail.dataOf!=='date'&&<div>
         <input type='search' onChange={filterData} name={detail.dataOf} /><br />
-        {detail.filtered.map(function(info,index){  // use ` , not ' for link
+        {status!=="Loaded"?<h3>{status}</h3>:(detail.filtered.length===0 ? <h3>NO DATA TILL NOW</h3>:
+        detail.filtered.map(function(info,index){  // use ` , not ' for link
            return (
            <Link key={index} to={`/${detail.dataOf}/${info}`}><h3>{info}</h3></Link> 
            )
-        })}
+        }))}
         </div>}
     </div>
     {detail.dataOf==='date'&&<Transaction url={props.url} />}
