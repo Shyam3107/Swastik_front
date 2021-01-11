@@ -1,28 +1,43 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+body{
+    margin: 1rem;
+    color: #6B378A;
+    text-align: center;
+}
+
+header::before {
+    content: "";
+    background: url("./blue4.jpg");
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: fixed;
+    z-index: -1;   
+  }
 
 input{
     text-align: center;
     font-size: 1.3rem;
-    border-radius: 7%;
 }
 
-.date-section{
-    margin: 10px;
-}
-
-.date-section label{
+label{
     font-size: 1.2rem;
-    margin: 0 10px;
 }
 
 
 /********HEADER ************/
 header h1{
-    text-align: center;
-    margin-top: 10px;
+    color: darkblue;
+    text-shadow:2px 2px 8px #CA9AE7;
+    font-size: 3rem;
 }
 
 ul{
@@ -31,10 +46,18 @@ ul{
     justify-content: flex-end;
     margin-right: 1%;
     font-size: 1.5rem;
+    font-weight: 600;
 }
 
 li{
     margin: 5px 10px;
+    color: darkslateblue;
+}
+
+li:hover,li:active{
+    color: #2D0741;
+    text-decoration: underline;
+    text-decoration-color: #2D0741;
 }
 
 /*******HOME PAGE *******/
@@ -43,14 +66,36 @@ li{
     line-height: 2rem;
 }
 
+.home-page div div{
+    display: inline-block;
+}
+
+.home-page div{
+    margin-top: 10px;
+}
+
 .home-page h3{
     display: inline-block;
     margin: 0 2%;
+    color: #06274A;
+}
+
+.home-page img{
+    height: 50px;
+}
+
+.home-page div div:hover{
+    transform: scale(1.1);
 }
 
 .data-toggle label{
     font-size: 1.3rem;
     padding: 0 3% 0 1%;
+    font-weight: 600;
+}
+
+.data-toggle label:hover{
+    color: #06274A;
 }
 
 /********** COMPOSE PAGE ******/
@@ -72,43 +117,65 @@ li{
     width: 12rem;
     margin: 5px;
     text-align: left;
+    color: black;
 }
 
 /****** DETAILS PAGE ******/
 .details-page{
-    padding-left:1% ;
     text-align: center;
+    color: black;
+}
+
+.details-page div:last-child{
+    margin-top: 10px;
+}
+
+.tablediv{
     overflow-x: auto;
 }
 
-
-.details-page th{
-    font-size: 1.2rem;
-    padding: 3px 8px;
+table{
+    border-collapse: collapse;
 }
 
-.details-page td{
-    font-size: 1.1rem;
-    padding: 3px 8px;
+td,th{
+    border: 1px darkslateblue solid; 
+    padding: 4px;
+    font-size: 2.5vh;
+    /* add stickiness for header */
 }
 
-.details-page button{
-    margin: 0 10px;
-    padding: 3px;
+tbody:nth-child(even){
+    background-color:#CFE9F2;
+}
+tbody:nth-child(odd){
+    background-color: white;
+}
+
+tbody:hover{
+    background-color: #A0CFDF ;
+}
+
+thead,tbody:last-child{
+    background-color: darkcyan;
+}
+
+button{
+    margin: 5px 10px;
+    padding: 5px;
     font-size: 1rem;
+    color:  #121D2A;
+    background-color: #9EDBFA ;
+    border-color: #A7BDE7;
 }
-
-.details-page form{
-    margin: 15px 0 0 0;
-    display: none;
-}
-
-.net-expenses{
-    border-top:1px solid black;
+button:hover{
+    background-color: #45A7D8;
 }
 
 /*******FOOTER*******/
 footer{
     margin-top: 2rem;
     text-align: center;
+    text-shadow:2px 2px 5px #121D2A;
+    color: whitesmoke;
 }

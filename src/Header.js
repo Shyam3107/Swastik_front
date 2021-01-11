@@ -6,8 +6,8 @@ import PlaceDetails from './PlaceDetails';
 import VehicleDetails from './VehicleDetails';
 
 function Header(){
-    const url='https://cryptic-journey-86272.herokuapp.com'; //while deployment 
-    //const url='http://localhost:5000'; // while running local
+    //const url='https://cryptic-journey-86272.herokuapp.com'; //while deployment 
+    const url='http://localhost:5000'; // while running local
     return <HashRouter>
         <header>
         <h1>SWASTIK MINERALS</h1>

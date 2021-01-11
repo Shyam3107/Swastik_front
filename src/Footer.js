@@ -2,7 +2,7 @@
 function Footer(){
     const year=new Date().getFullYear();
     return <footer>
-        <h6>Copyright &#169; {year} SWASTIK MINERALS</h6>
+        <h5>Copyright &#169; {year} SWASTIK MINERALS</h5>
     </footer>
 }
 

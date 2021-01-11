@@ -1,38 +1,48 @@
+var day = new Date();
+var today = day.getFullYear() + '-'; // get today date
+var month = day.getMonth() + 1;
+if (month < 10) today += '0' + month;
+else today += month;
+today += '-'
+if (day.getDate() < 10) today += '0' + day.getDate();
+else today += day.getDate();
 
-function DateFilter({From,To,details}){ // filter the data as per date interval
-    var year=[Number(From.slice(0,4)) , Number(To.slice(0,4))];
-    var month=[Number(From.slice(5,7)) , Number(To.slice(5,7))];
-    var day=[Number(From.slice(8,10)) , Number(To.slice(8,10))];
-    var from=new Date(year[0],month[0]-1,day[0]);
-    var to=new Date(year[1],month[1]-1,day[1]);
-    
-    var filteredData = details.filter(function(data){
-        day=new Date(data.Year,data.Month-1,data.Date);
-        return day>=from && day<=to
-    })
-    return filteredData;
+day.setDate(day.getDate() - 1); // to get yesterday date
+var yesterday = day.getFullYear() + '-';
+month = day.getMonth() + 1;
+if (month < 10) yesterday += '0' + month;
+else yesterday += month;
+yesterday += '-';
+if (day.getDate() < 10) yesterday += '0' + day.getDate();
+else yesterday += day.getDate();
+
+function DateFilter({ From, To, details }) { // filter the data as per date interval
+    var from=new Date(From);
+    var to=new Date(To);
+    to.setHours(23,59,59,999);
+    return details.filter(function (data) {
+        var date=new Date(data.Date);
+        return date>=from && date<=to;
+    });
 }
 
-function DateSection({setDateInterval}){ // get Date interval to be filtered
-    var day=new Date();
-    var today=day.getFullYear()+'-'+(day.getMonth()+1)+'-';
-    if(day.getDate()<10) today+='0'+day.getDate();
-    else today+=day.getDate();
-
-    function changeData(event){
-        setDateInterval(data =>({
+function DateSection({ setDateInterval }) { // get Date interval to be filtered
+    
+    function changeData(event) {
+        setDateInterval(data => ({
             ...data,
-            [event.target.id]:event.target.value
+            [event.target.id]: event.target.value
         }))
     }
 
     return <div className="date-section">
-    <label htmlFor="From">From : </label>
-    <input id="From" type="Date" defaultValue={today} max={today} onChange={changeData} ></input>
-    <label htmlFor="To">To : </label>
-    <input id="To" type="Date" defaultValue={today} max={today} onChange={changeData} ></input>
-</div>
+        <label htmlFor="From">From : </label>
+        <input id="From" type="Date" defaultValue={today} max={today} onChange={changeData} ></input>
+        <label htmlFor="To">To : </label>
+        <input id="To" type="Date" defaultValue={today} max={today} onChange={changeData} ></input>
+    </div>
 }
 
+
 export default DateFilter;
-export {DateSection};
+export { DateSection, today, yesterday };

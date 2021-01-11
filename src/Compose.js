@@ -1,13 +1,12 @@
 import postfetch from './postFetch';
+import {today,yesterday} from'./DateFilter';
 
 function Compose(props){
 
     function formSubmit(event)
     {
         var vehicleDetails={  // Object for vehicle details
-            'Date':document.getElementById('date').value.slice(8,10),
-            'Month':document.getElementById('date').value.slice(5,7),
-            'Year':document.getElementById('date').value.slice(0,4),
+            'Date':document.getElementById('date').value,
             'Vehicle':document.getElementById('vehicle').value.toUpperCase(),
             'From':document.getElementById('from').value.toUpperCase(),
             'To':document.getElementById('to').value.toUpperCase(),
@@ -25,15 +24,6 @@ function Compose(props){
         vehicleDetails.Balance=(vehicleDetails.RateCost-vehicleDetails.DieselCost-vehicleDetails.Expenses).toFixed(2);
         postfetch(vehicleDetails,"Compose");
     }
-
-    var day=new Date();
-    var today=day.getFullYear()+'-'+(day.getMonth()+1)+'-';
-    if(day.getDate()<10) today+='0'+day.getDate();
-    else today+=day.getDate();
-    day.setDate(day.getDate()-1);
-    var yesterday=day.getFullYear()+'-'+(day.getMonth()+1)+'-';
-    if(day.getDate()<10) yesterday+='0'+day.getDate();
-    else yesterday+=day.getDate();
 
     return <div className='compose-page'>
 
