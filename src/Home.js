@@ -62,7 +62,7 @@ function Home(props) {
             if (place) {
                 place = place.toUpperCase();
                 if (amount === 0 || place === "") alert("Enter correct information");
-                else postFetch({ "Date": new Date(), "Balance": amount, "Place": place, "Debit": amount, "Remarks": "Opening Balance" }, "addPlace");
+                else postFetch({ "Date": new Date(), "Place": place, "Debit": amount, "Remarks": "Opening Balance" }, "addPlace");
             }
         }
     }
