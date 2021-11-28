@@ -2,17 +2,25 @@ import React from "react";
 import { CSVLink } from "react-csv";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
-export default function CustomDrop({ downloadData, filename, styleButton }) {
+export default function CustomDrop({
+  downloadData,
+  filename,
+  styleButton,
+  loading,
+}) {
   return (
-    <IconButton style={styleButton}>
-      <CSVLink
-        data={downloadData}
-        filename={filename + ".csv"}
-        style={{ textDecoration: "none", color: "black" }}
-      >
-        <FileDownloadOutlinedIcon />
-      </CSVLink>
-    </IconButton>
+    <Tooltip title="Download">
+      <IconButton style={styleButton} disabled={loading}>
+        <CSVLink
+          data={downloadData}
+          filename={filename + ".csv"}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <FileDownloadOutlinedIcon />
+        </CSVLink>
+      </IconButton>
+    </Tooltip>
   );
 }

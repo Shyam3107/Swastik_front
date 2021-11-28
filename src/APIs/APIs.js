@@ -1,31 +1,25 @@
+import axios from "axios";
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage";
 import { error, warn } from "../utils/constants";
 
 export const backendURL = "http://localhost:5000";
 
 const modules = {
-  attendance: "/attendance",
   login: "/login",
   leave: "/leave",
   student: "/student",
+  trips: "/trips",
 };
 
 export const API = {
   //LOGIN
   LOGIN: `${modules.login}`,
 
-  // ATTENDANCE
-  GET_ATTENDANCE: `${modules.attendance}/getAttendance`,
-  ADD_ATTENDANCE: `${modules.attendance}/addAttendance`,
-
-  // LEAVE
-  GET_LEAVE: `${modules.leave}/getLeave`,
-  ADD_LEAVE: `${modules.leave}/addLeave`,
-  EDIT_LEAVE: `${modules.leave}/editLeave`,
-
-  //STUDENTS
-  ADD_STUDENTS: `${modules.student}/addStudents`,
-  GET_STUDENTS: `${modules.student}/getStudents`,
+  // Trips
+  GET_TRIPS: `${modules.trips}/getTrips`,
+  ADD_TRIPS: `${modules.trips}/addTrips`,
+  EDIT_TRIPS: `${modules.trips}/editTrips`,
+  DELETE_TRIPS: `${modules.trips}/deleteTrips`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {
@@ -34,4 +28,92 @@ export const handleError = (dispatch = () => {}, action = {}, err) => {
   dispatch(action);
   if (!navigator.onLine) return toastMessage("You Are Offline", warn);
   return toastMessage(errMssg, error);
+};
+
+export const makeRequest = (options = {}) => {
+  const { url, params, method, callback, errorActionType, payload } = options;
+
+  switch (method) {
+    case "get":
+      axios
+        .get(url, { params: params ? params : {} })
+        .then(({ status, data }) => {
+          if (status === 200) callback(data);
+          return;
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          );
+        });
+      return;
+
+    case "post":
+      axios
+        .post(url, payload)
+        .then(({ status, data }) => {
+          if (status === 200) {
+            callback(data);
+            return toastMessage(data.message, success);
+          }
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          );
+        });
+      return;
+
+    case "put":
+      axios
+        .put(url, payload)
+        .then(({ status, data }) => {
+          if (status === 200) {
+            callback(data);
+            return toastMessage(data.message, success);
+          }
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          );
+        });
+      return;
+
+    case "delete":
+      axios
+        .delete(url, { data: payload })
+        .then(({ status, data }) => {
+          if (status === 200) {
+            callback(data);
+            return toastMessage(data.message, success);
+          }
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          );
+        });
+      return;
+  }
 };

@@ -34,12 +34,12 @@ const CustomTableOutput = ({
   };
 
   const isItemSelected = (id) => {
-    return numSelected.includes(id.name);
+    return numSelected.includes(id._id);
   };
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = data.map((n) => n.name);
+      const newSelecteds = data.map((n) => n._id);
       setNumSelected(newSelecteds);
       return;
     }
@@ -47,18 +47,16 @@ const CustomTableOutput = ({
   };
 
   const handleSelectClick = (event, row) => {
-    const selectedIndex = numSelected.indexOf(row.name);
+    const selectedIndex = numSelected.indexOf(row._id);
     let newSelected = [];
     if (selectedIndex < 0) {
-      newSelected = [...numSelected, row.name];
+      newSelected = [...numSelected, row._id];
     } else {
       newSelected = [...numSelected];
       newSelected.splice(selectedIndex, 1);
     }
     setNumSelected(newSelected);
   };
-
-  console.log("selected ", numSelected);
 
   if (loading) return <CustomLoader />;
   else if (!loading && data.length === 0)
@@ -76,8 +74,11 @@ const CustomTableOutput = ({
     );
   else if (!loading && data.length > 0)
     return (
-      <React.Fragment>
-        <TableContainer component={Paper} style={{ marginTop: "10px" }}>
+      <Box overflow="auto">
+        <TableContainer
+          component={Paper}
+          style={{ marginTop: "10px", overflowX: "auto" }}
+        >
           <Table sx={{ maxWidth: "100%" }}>
             <TableHead>
               <TableRow>
@@ -137,7 +138,7 @@ const CustomTableOutput = ({
           onPageChange={(e, p) => setPage(p)}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
-      </React.Fragment>
+      </Box>
     );
 };
 

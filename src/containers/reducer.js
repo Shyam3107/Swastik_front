@@ -1,12 +1,10 @@
 import { combineReducers } from "redux";
 import loginReducer from "./Login/reducer";
-import studentReducer from "./Students/reducer";
-import leaveReducer from "./Leave/reducer";
 import taxReducer from "./Tax/reducer";
+import tripsReducer from "./Trips/reducer";
 
 export default combineReducers({
   user: loginReducer,
-  students: studentReducer,
-  leave: leaveReducer,
   tax: taxReducer,
+  trips: tripsReducer,
 });

@@ -1,47 +1,40 @@
 import "date-fns";
 import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
 import moment from "moment";
 
 const CustomDatePicker = ({
   selectedDate,
   setSelectedDate,
-  defaultValue,
+  id,
   maxDate,
+  label,
+  style = {},
 }) => {
   const handleDateChange = (date) => {
-    console.log("Date : ", date);
-    if (defaultValue === "To") {
+    if (id === "To") {
       date = moment().endOf("day");
     }
     setSelectedDate(new Date(date).toISOString());
   };
 
   return (
-    <div
-      style={{
-        width: "190px",
-      }}
-    >
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <KeyboardDatePicker
-          disableToolbar
-          id="date-picker-dialog"
-          label={defaultValue}
-          autoOk={true}
-          variant="inline"
-          value={selectedDate}
-          onChange={handleDateChange}
-          format="dd/MM/yyyy"
-          style={{ width: "90%" }}
-          maxDate={maxDate}
-        />
-      </MuiPickersUtilsProvider>
-    </div>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <DatePicker
+        disableToolbar
+        id={id}
+        autoOk={true}
+        variant="inline"
+        value={selectedDate}
+        onChange={handleDateChange}
+        format="dd/MM/yyyy"
+        style={{ width: "100%", margin: "0 5px", ...style }}
+        maxDate={maxDate}
+        name={id}
+        label={label}
+      />
+    </MuiPickersUtilsProvider>
   );
 };
 

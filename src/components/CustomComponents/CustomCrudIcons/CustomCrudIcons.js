@@ -9,6 +9,7 @@ import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
+import Tooltip from "@mui/material/Tooltip";
 
 const styleButton = {
   color: "black",
@@ -26,75 +27,85 @@ const CustomCrudIcons = ({
   downloadData = [],
   handleDeleteAgree,
   handleFileSubmit,
-  tempData = [],
   search,
   setSearch,
   handleAddButton,
+  numSelected = [],
+  downloadLoading,
 }) => {
   return (
-    <Box display="flex">
-      {setSelectedFrom && setSelectedTo && (
-        <React.Fragment>
-          <CustomDatePicker
-            selectedDate={selectedFrom}
-            setSelectedDate={setSelectedFrom}
-            maxDate={new Date()}
-            defaultValue="From"
+    <Box display="flex" flexWrap="wrap" paddingLeft="10px">
+      {setSelectedFrom && (
+        <CustomDatePicker
+          selectedDate={selectedFrom}
+          setSelectedDate={setSelectedFrom}
+          maxDate={new Date()}
+          id="From"
+          label="From"
+          style={{ width: "100px", marginTop: "-5px" }}
+        />
+      )}
+      {setSelectedTo && (
+        <CustomDatePicker
+          selectedDate={selectedTo}
+          setSelectedDate={setSelectedTo}
+          maxDate={new Date()}
+          id="To"
+          label="To"
+          style={{ width: "100px", marginTop: "-5px" }}
+        />
+      )}
+      <Box display="flex" flexWrap="wrap">
+        {numSelected.length > 0 && handleDeleteAgree && (
+          <CustomDeleteIcon
+            handleDeleteAgree={handleDeleteAgree}
+            styleButton={styleButton}
           />
-          <CustomDatePicker
-            selectedDate={selectedTo}
-            setSelectedDate={setSelectedTo}
-            maxDate={new Date()}
-            defaultValue="To"
+        )}
+
+        {handleAddButton && (
+          <Tooltip title="Add">
+            <IconButton style={styleButton} onClick={handleAddButton}>
+              <AddOutlinedIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+
+        {handleFileSubmit && (
+          <UploadFile
+            onFileUpload={handleFileSubmit}
+            sampleData={sampleData}
+            styleButton={styleButton}
           />
-        </React.Fragment>
-      )}
+        )}
 
-      {handleDeleteAgree && (
-        <CustomDeleteIcon
-          handleDeleteAgree={handleDeleteAgree}
-          styleButton={styleButton}
-        />
-      )}
+        {fileName && (
+          <DownloadFile
+            filename={fileName}
+            downloadData={downloadData}
+            styleButton={styleButton}
+            loading={downloadLoading}
+          />
+        )}
 
-      {handleAddButton && (
-        <IconButton style={styleButton} onClick={handleAddButton}>
-          <AddOutlinedIcon />
-        </IconButton>
-      )}
-
-      {handleFileSubmit && (
-        <UploadFile
-          onFileUpload={handleFileSubmit}
-          sampleData={sampleData}
-          styleButton={styleButton}
-        />
-      )}
-
-      {fileName && (
-        <DownloadFile
-          filename={fileName}
-          downloadData={downloadData}
-          styleButton={styleButton}
-        />
-      )}
-
-      {setSearch && (
-        <TextField
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
-          }}
-          id="input-with-sx"
-          placeholder="Search"
-          variant="standard"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-      )}
+        {setSearch && (
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
+            }}
+            id="input-with-sx"
+            placeholder="Search"
+            variant="standard"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{ width: "150px", marginRight: "10px" }}
+          />
+        )}
+      </Box>
     </Box>
   );
 };

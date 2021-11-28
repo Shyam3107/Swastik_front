@@ -2,7 +2,7 @@ import { Box, CircularProgress } from "@material-ui/core";
 import { Skeleton } from "@material-ui/lab";
 import React from "react";
 
-export default function Loader({ skeleton, style = {} }) {
+export default function Loader({ skeleton, style = {}, circleStyle = {} }) {
   return skeleton ? (
     <Box
       display="flex"
@@ -21,10 +21,9 @@ export default function Loader({ skeleton, style = {} }) {
       alignContent="center"
       alignItems="center"
       margin="20px auto"
-      paddingBottom="30px"
       style={style}
     >
-      <CircularProgress color="primary" />
+      <CircularProgress style={circleStyle} color="primary" />
     </Box>
   );
 }

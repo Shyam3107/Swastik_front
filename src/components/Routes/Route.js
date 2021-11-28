@@ -5,6 +5,8 @@ import Logout from "../Logout/Logout";
 import { ROUTES } from "../../utils/constants";
 import Tax from "../Tax/Tax";
 import Home from "../Home/Home";
+import Trips from "../Trips/Trips";
+import AddTrips from "../Trips/AddTrips";
 
 const Routes = (props) => {
   const loggedIn = true || props.user.loggedIn;
@@ -30,6 +32,14 @@ const Routes = (props) => {
       path: ROUTES.LOGOUT,
       component: <Logout />,
     },
+    {
+      path: ROUTES.TRIPS,
+      component: <Trips />,
+    },
+    {
+      path: ROUTES.ADD_TRIP,
+      component: <AddTrips />,
+    },
   ];
 
   return (
@@ -51,6 +61,9 @@ const Routes = (props) => {
           </PrivateRoute>
         );
       })}
+      <Route>
+        <Redirect to={ROUTES.HOME} />
+      </Route>
     </Switch>
   );
 };

@@ -16,6 +16,9 @@ import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { BiTrip } from "react-icons/bi";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
@@ -42,6 +45,11 @@ const Navigation = () => {
       title: "Vehicles",
       link: ROUTES.VEHICLES,
       subMenu: [
+        {
+          title: "Trips",
+          link: ROUTES.TRIPS,
+          icon: <BiTrip style={{ fontSize: "28px" }} />,
+        },
         {
           title: "Advance",
           link: ROUTES.ADVANCE,
@@ -115,10 +123,9 @@ const Navigation = () => {
             </MenuItem>
             <Footer />
           </Menu>
-         
         </SidebarFooter>
       </ProSidebar>
-      <div style={{ width: "100%" }}>
+      <div style={{ width: "100%", overflowX: "auto" }}>
         <Header
           MenuIcon={
             <IconButton
@@ -132,7 +139,18 @@ const Navigation = () => {
             </IconButton>
           }
         />
-        <Route />
+        <Box
+          sx={{
+            width: "100%",
+            justifyContent: "center",
+            display: "flex",
+            paddingTop: "20px",
+          }}
+        >
+          <Paper sx={{ width: "96%", mb: 2, paddingTop: "10px" }}>
+            <Route />
+          </Paper>
+        </Box>
       </div>
     </div>
   );

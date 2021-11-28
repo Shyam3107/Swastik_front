@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CustomDialog from "../CustomDialog/CustomDialog";
 import DeleteIcon from "@mui/icons-material/Delete";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 const CustomDeleteIcon = ({ handleDeleteAgree, styleButton }) => {
   const [open, setOpen] = useState(false);
@@ -13,9 +14,11 @@ const CustomDeleteIcon = ({ handleDeleteAgree, styleButton }) => {
         setOpen={setOpen}
         handleAgree={handleDeleteAgree}
       />
-      <IconButton style={styleButton} onClick={() => setOpen(true)}>
-        <DeleteIcon />
-      </IconButton>
+      <Tooltip title="Delete">
+        <IconButton style={styleButton} onClick={() => setOpen(true)}>
+          <DeleteIcon />
+        </IconButton>
+      </Tooltip>
     </React.Fragment>
   );
 };

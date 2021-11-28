@@ -11,6 +11,7 @@ import {
 import { CSVLink } from "react-csv";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
 export default function UploadFile({
   onFileUpload,
@@ -38,9 +39,11 @@ export default function UploadFile({
 
   return (
     <div>
-      <IconButton style={styleButton} onClick={handleClick}>
-        <FileUploadOutlinedIcon />
-      </IconButton>
+      <Tooltip title="Upload">
+        <IconButton style={styleButton} onClick={handleClick}>
+          <FileUploadOutlinedIcon />
+        </IconButton>
+      </Tooltip>
       <Popper open={open} anchorEl={anchorEl}>
         <Paper style={{ padding: "10px" }}>
           <Typography style={{ fontWeight: 600, textAlign: "center" }}>
@@ -65,7 +68,7 @@ export default function UploadFile({
             <MenuItem style={{ justifyContent: "center" }}>
               <Typography>
                 <input
-                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                  accept=".csv"
                   style={{ display: "none" }}
                   id="contained-button-file"
                   type="file"

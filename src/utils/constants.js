@@ -6,6 +6,7 @@ export const warn = "warn";
 
 export const monthStart = moment().startOf("month");
 export const monthEnd = moment().endOf("month");
+export const currentDate = moment();
 
 export const ROUTES = {
   LOGIN: "/login",
@@ -15,12 +16,20 @@ export const ROUTES = {
   PLACES: "/places",
   HOME: "/home",
   ADVANCE: "/advance",
+  TRIPS: "/vehicles/trips",
+  ADD_TRIP: "/vehicles/trips/add",
 };
 
-export const formatDate = (date) => {
+export const formatDate = (date, time = false) => {
   try {
-    return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+    if (time) return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+    else return moment(date).format("Do MMMM YYYY");
   } catch (error) {
     return "InValid Date";
   }
+};
+
+export const includesInArray = (stringArray, search) => {
+  let exist = stringArray.every((val) => !val.includes(search));
+  return !exist;
 };
