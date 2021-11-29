@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import {
   Paper,
   Typography,
@@ -33,12 +33,13 @@ export default function UploadFile({
     setFile(null);
     setFileName(null);
     inputRef.current.value = null;
+    setAnchorEl(null);
   };
 
   const open = Boolean(anchorEl);
 
   return (
-    <div>
+    <React.Fragment>
       <Tooltip title="Upload">
         <IconButton style={styleButton} onClick={handleClick}>
           <FileUploadOutlinedIcon />
@@ -104,6 +105,6 @@ export default function UploadFile({
           </MenuList>
         </Paper>
       </Popper>
-    </div>
+    </React.Fragment>
   );
 }

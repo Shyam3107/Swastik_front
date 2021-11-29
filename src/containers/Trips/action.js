@@ -19,6 +19,7 @@ export const getTrips =
         });
       },
       errorActionType: actionTypes.GET_TRIPS_FAILURE,
+      dispatch,
     };
 
     makeRequest(options);
@@ -42,6 +43,31 @@ export const addTrips =
         cb();
       },
       errorActionType: actionTypes.ADD_TRIPS_FAILURE,
+      dispatch,
+    };
+
+    makeRequest(options);
+  };
+
+export const uploadTrips =
+  (payload, cb = () => {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.UPLOAD_TRIPS_PENDING,
+    });
+
+    const options = {
+      method: "post",
+      url: API.UPLOAD_TRIPS,
+      payload: payload,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.UPLOAD_TRIPS_SUCCESS,
+        });
+        cb();
+      },
+      errorActionType: actionTypes.UPLOAD_TRIPS_FAILURE,
+      dispatch,
     };
 
     makeRequest(options);
@@ -65,6 +91,7 @@ export const deleteTrips =
         cb();
       },
       errorActionType: actionTypes.DELETE_TRIPS_FAILURE,
+      dispatch,
     };
 
     makeRequest(options);

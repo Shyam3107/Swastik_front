@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
-import { getTrips, addTrips, deleteTrips } from "../../containers/Trips/action";
+import {
+  getTrips,
+  addTrips,
+  deleteTrips,
+  uploadTrips,
+} from "../../containers/Trips/action";
 import uploadFileForm from "../../utils/uploadFileForm";
 import Layout from "../Layout/Layout";
 import {
@@ -21,46 +27,41 @@ const Trips = (props) => {
   const [selected, setSelected] = useState([]);
   const [from, setFrom] = useState(monthStart);
   const [to, setTo] = useState(currentDate);
-  let { loading, trips, addLoading, editLoading, deleteLoading } = props.trips;
+  let {
+    loading,
+    trips,
+    addLoading,
+    editLoading,
+    deleteLoading,
+    uploadLoading,
+  } = props.trips;
   const history = useHistory();
 
+  useEffect(() => {
+    getTrips();
+  }, [getTrips]);
+
   const handleFileSubmit = (file) => {
-    props.addTrips(uploadFileForm(file), getTrips);
+    props.uploadTrips(uploadFileForm(file), getTrips);
   };
 
   if (!trips) trips = [];
 
-  trips = [
-    {
-      _id: "1",
-      diNo: "728282772",
-      lrNo: "2827810",
-      date: formatDate(new Date()),
-      partyName: "Baloda",
-      location: "Hirmi",
-      vehicleNo: "CG04JB1050",
-      quantity: 65,
-      driverName: "Ashok",
-      driverPhone: "292772",
-      diesel: 29,
-      dieselIn: "LTR",
-      pumpName: "Saudimini",
-      cash: 17171,
-      remarks: "advance",
-    },
-  ];
-
   trips = trips.filter((val) => {
-    return includesInArray(
-      [
-        val.diNo,
-        val.lrNo,
-        val.partyName,
-        val.location,
-        val.vehicleNo,
-        val.driverName,
-      ],
-      search
+    return (
+      moment(from).isSameOrBefore(val.date) &&
+      moment(to).isSameOrAfter(val.date) &&
+      includesInArray(
+        [
+          val.diNo,
+          val.lrNo,
+          val.partyName,
+          val.location,
+          val.vehicleNo,
+          val.driverName,
+        ],
+        search
+      )
     );
   });
 
@@ -80,12 +81,20 @@ const Trips = (props) => {
 
   const tableBodyFunc = (row) => {
     return headerKey.map((headVal, index) => {
-      return <TableCell key={index}>{row[headVal]}</TableCell>;
+      return (
+        <TableCell key={index}>
+          {headVal === "date" ? formatDate(row[headVal]) : row[headVal]}
+        </TableCell>
+      );
     });
   };
 
   const handleDeleteAgree = () => {
-    props.deleteTrips(selected, props.getTrips);
+    const cb = () => {
+      props.getTrips();
+      setSelected([]);
+    };
+    props.deleteTrips(selected, cb);
   };
 
   const handleAddButton = () => {
@@ -94,7 +103,7 @@ const Trips = (props) => {
 
   return (
     <Layout
-      addLoading={addLoading}
+      addLoading={addLoading || uploadLoading}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
       title="Trips"
@@ -129,6 +138,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getTrips, addTrips, deleteTrips })(
-  Trips
-);
+export default connect(mapStateToProps, {
+  getTrips,
+  addTrips,
+  deleteTrips,
+  uploadTrips,
+})(Trips);

@@ -2,9 +2,9 @@ import * as actionTypes from "./actionTypes";
 
 const initialState = {
   loading: false,
-  token: sessionStorage.getItem("token"),
-  user: JSON.parse(sessionStorage.getItem("user")),
-  loggedIn: Boolean(sessionStorage.getItem("token")),
+  token: localStorage.getItem("token"),
+  user: JSON.parse(localStorage.getItem("user")),
+  loggedIn: Boolean(localStorage.getItem("token")),
   error: null,
 };
 

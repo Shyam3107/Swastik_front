@@ -6,7 +6,6 @@ import { ROUTES } from "../../utils/constants";
 import { addTrips } from "../../containers/Trips/action";
 
 const initialTrip = {
-  _id: "1",
   diNo: "",
   lrNo: "",
   date: new Date().toISOString(),
@@ -19,7 +18,7 @@ const initialTrip = {
   diesel: "",
   dieselIn: "Litre",
   pumpName: "",
-  cash: 0,
+  cash: null,
   remarks: "",
 };
 
@@ -58,12 +57,27 @@ const AddTrips = (props) => {
         { label: "Amount", value: "Amount" },
       ],
     },
-    { id: "pumpName", label: "Pump Name" },
+    {
+      id: "pumpName",
+      label: "Pump Name",
+      type: "customSelect",
+      handleChange: (val) => setTrip({ ...trip, pumpName: val }),
+      options: [
+        "Saurabh Fuels",
+        "Saudimini Fuels",
+        "Lal Fuels",
+        "HPCL",
+        "BPCL",
+        "IOCL",
+      ],
+    },
     { id: "cash", type: "number", label: "Cash" },
     { id: "remarks", label: "Remarks" },
   ];
 
   const handleValueChange = (e) => {
+    if (e.target.name === "vehicleNo")
+      e.target.value = e.target.value.toUpperCase();
     setTrip({ ...trip, [e.target.name]: e.target.value });
   };
 

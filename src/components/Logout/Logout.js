@@ -7,7 +7,7 @@ const Logout = (props) => {
   const history = useHistory();
 
   history.push(ROUTES.LOGIN);
-  sessionStorage.clear();
+  localStorage.clear();
   props.userLogout();
 
   return <div>This is logout function</div>;

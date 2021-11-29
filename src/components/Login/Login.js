@@ -122,22 +122,18 @@ const Login = (props) => {
                 autoComplete="current-password"
                 InputProps={{
                   endAdornment: (
-                    <InputAdornment>
+                    <InputAdornment position="end">
                       <IconButton
                         aria-label="toggle password visibility"
                         onClick={handleShowPassword}
                         edge="end"
                       >
-                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
                       </IconButton>
                     </InputAdornment>
                   ),
                 }}
               />
-              {/* <FormControlLabel />// Uncomment if want to add remember me feature
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
               <Button
                 type="submit"
                 fullWidth
@@ -147,20 +143,6 @@ const Login = (props) => {
               >
                 Sign In
               </Button>
-
-              {/* <Grid container> // uncomment if want to add forgot password feature
-                <Grid item xs>
-                  <Link href="#" variant="body2">
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
-                  </Link>
-                </Grid>
-              </Grid> */}
-
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>

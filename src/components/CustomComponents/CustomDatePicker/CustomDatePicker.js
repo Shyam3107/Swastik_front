@@ -14,7 +14,7 @@ const CustomDatePicker = ({
 }) => {
   const handleDateChange = (date) => {
     if (id === "To") {
-      date = moment().endOf("day");
+      date = moment(date).endOf("day");
     }
     setSelectedDate(new Date(date).toISOString());
   };

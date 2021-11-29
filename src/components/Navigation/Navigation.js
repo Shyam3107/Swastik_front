@@ -1,4 +1,5 @@
 import React, { useState, lazy } from "react";
+import { connect } from "react-redux";
 import "./styles.scss";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import {
@@ -27,7 +28,7 @@ import Footer from "../Footer/Footer";
 const Header = lazy(() => import("../Header/Header"));
 const Route = lazy(() => import("../Routes/Route"));
 
-const Navigation = () => {
+const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
 
   const handleToggleSidebar = (value) => {
@@ -125,6 +126,7 @@ const Navigation = () => {
           </Menu>
         </SidebarFooter>
       </ProSidebar>
+
       <div style={{ width: "100%", overflowX: "auto" }}>
         <Header
           MenuIcon={
@@ -139,6 +141,7 @@ const Navigation = () => {
             </IconButton>
           }
         />
+
         <Box
           sx={{
             width: "100%",
@@ -156,4 +159,10 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, null)(Navigation);

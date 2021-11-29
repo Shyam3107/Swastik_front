@@ -30,6 +30,9 @@ export const formatDate = (date, time = false) => {
 };
 
 export const includesInArray = (stringArray, search) => {
-  let exist = stringArray.every((val) => !val.includes(search));
+  let exist = stringArray.every((val) => {
+    if (typeof val === "number") val = val.toString();
+    return !val.toLowerCase().includes(search.toLowerCase());
+  });
   return !exist;
 };

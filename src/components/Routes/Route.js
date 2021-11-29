@@ -9,7 +9,7 @@ import Trips from "../Trips/Trips";
 import AddTrips from "../Trips/AddTrips";
 
 const Routes = (props) => {
-  const loggedIn = true || props.user.loggedIn;
+  const loggedIn = props.user.loggedIn;
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (

@@ -19,7 +19,7 @@ const CustomTableOutput = ({
   tableRow,
   tableBody = null,
   tableBodyFunc,
-  numSelected,
+  numSelected = [],
   setNumSelected,
 }) => {
   const [page, setPage] = useState(0);
@@ -82,18 +82,21 @@ const CustomTableOutput = ({
           <Table sx={{ maxWidth: "100%" }}>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    color="primary"
-                    indeterminate={
-                      numSelected.length > 0 && numSelected.length < data.length
-                    }
-                    checked={
-                      data.length > 0 && numSelected.length === data.length
-                    }
-                    onChange={handleSelectAllClick}
-                  />
-                </TableCell>
+                {setNumSelected && (
+                  <TableCell padding="checkbox">
+                    <Checkbox
+                      color="primary"
+                      indeterminate={
+                        numSelected.length > 0 &&
+                        numSelected.length < data.length
+                      }
+                      checked={
+                        data.length > 0 && numSelected.length === data.length
+                      }
+                      onChange={handleSelectAllClick}
+                    />
+                  </TableCell>
+                )}
                 {tableRow}
               </TableRow>
             </TableHead>
@@ -110,9 +113,11 @@ const CustomTableOutput = ({
                         selected={isSelected}
                         onClick={(event) => handleSelectClick(event, row)}
                       >
-                        <TableCell padding="checkbox">
-                          <Checkbox color="primary" checked={isSelected} />
-                        </TableCell>
+                        {setNumSelected && (
+                          <TableCell padding="checkbox">
+                            <Checkbox color="primary" checked={isSelected} />
+                          </TableCell>
+                        )}
                         {tableBodyFunc(row)}
                       </TableRow>
                     );

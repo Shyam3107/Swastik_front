@@ -1,6 +1,6 @@
 import axios from "axios";
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage";
-import { error, warn } from "../utils/constants";
+import { error, warn, success } from "../utils/constants";
 
 export const backendURL = "http://localhost:5000";
 
@@ -8,7 +8,7 @@ const modules = {
   login: "/login",
   leave: "/leave",
   student: "/student",
-  trips: "/trips",
+  trips: "/vehicles/trips",
 };
 
 export const API = {
@@ -18,6 +18,7 @@ export const API = {
   // Trips
   GET_TRIPS: `${modules.trips}/getTrips`,
   ADD_TRIPS: `${modules.trips}/addTrips`,
+  UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
 };
@@ -31,7 +32,8 @@ export const handleError = (dispatch = () => {}, action = {}, err) => {
 };
 
 export const makeRequest = (options = {}) => {
-  const { url, params, method, callback, errorActionType, payload } = options;
+  const { url, params, method, callback, errorActionType, payload, dispatch } =
+    options;
 
   switch (method) {
     case "get":
@@ -114,6 +116,9 @@ export const makeRequest = (options = {}) => {
             err
           );
         });
+      return;
+
+    default:
       return;
   }
 };

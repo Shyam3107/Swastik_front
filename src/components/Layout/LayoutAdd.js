@@ -10,6 +10,7 @@ import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePicker";
 import CustomSelectInput from "../CustomComponents/CustomSelectInput/CustomSelectInput";
 import useValidate from "../CustomComponents/CustomHooks/useValidate";
+import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete";
 
 const LayoutAdd = ({
   addLoading,
@@ -40,11 +41,18 @@ const LayoutAdd = ({
       >
         {edit ? "Edit " : "Add "} {title}
       </Typography>
-      <Typography
-        style={{ fontSize: "12px", color: "red", paddingLeft: "10px" }}
+      <span
+        style={{
+          fontSize: "13px",
+          color: "red",
+          marginRight: "15px",
+          display: "flex",
+          justifyContent: "end",
+          fontWeight: "600",
+        }}
       >
-        Fields marked by * are mandatory
-      </Typography>
+        * Mandatory Fields
+      </span>
       <Grid container style={{ padding: "20px", width: "100%" }} spacing={4}>
         {inputFields.map((item, index) => {
           const isTypeTextNumber = item.type ? item.type === "number" : true;
@@ -92,6 +100,14 @@ const LayoutAdd = ({
                   value={item.value ? item.value : data[item.id]}
                   handleChange={handleInputChange}
                   menuItems={item.menuItems}
+                />
+              )}
+              {item.type === "customSelect" && (
+                <CustomAutoComplete
+                  options={item.options}
+                  id={item.id}
+                  handleChange={handleInputChange}
+                  value={item.value ? item.value : data[item.id]}
                 />
               )}
               <FormHelperText error={Boolean(error[item.id])}>

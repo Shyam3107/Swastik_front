@@ -1,9 +1,7 @@
 import toastMessage from "../../components/CustomComponents/ToastMessage/toastMessage";
 import * as actionTypes from "./actionTypes";
 import { success } from "../../utils/constants";
-
-import axios from "axios";
-import { API, handleError } from "../../APIs/APIs";
+import { API, makeRequest } from "../../APIs/APIs";
 
 export const userLogin =
   (params = {}, cb = () => {}) =>
@@ -12,31 +10,25 @@ export const userLogin =
       type: actionTypes.LOGIN_PENDING,
     });
 
-    axios
-      .get(API.LOGIN, { params })
-      .then(({ status, data }) => {
-        if (status === 200) {
-          dispatch({
-            type: actionTypes.LOGIN_SUCCESS,
-            payload: data,
-          });
-          sessionStorage.setItem("user", JSON.stringify(data.user));
-          sessionStorage.setItem("token", data.token);
-          cb();
-          return toastMessage("Login SuccessFull", success);
-        }
-        return;
-      })
-      .catch((err) => {
-        return handleError(
-          dispatch,
-          {
-            type: actionTypes.LOGIN_FAILURE,
-            err: err,
-          },
-          err
-        );
-      });
+    const options = {
+      method: "get",
+      url: API.LOGIN,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.LOGIN_SUCCESS,
+          payload: data,
+        });
+        localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("token", data.token);
+        toastMessage(data.message, success);
+        cb();
+      },
+      errorActionType: actionTypes.LOGIN_FAILURE,
+      dispatch,
+    };
+
+    makeRequest(options);
   };
 
 export const userLogout = () => (dispatch) => {

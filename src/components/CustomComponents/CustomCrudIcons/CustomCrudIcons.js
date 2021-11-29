@@ -10,6 +10,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Tooltip from "@mui/material/Tooltip";
+import Grid from "@mui/material/Grid";
 
 const styleButton = {
   color: "black",
@@ -34,78 +35,83 @@ const CustomCrudIcons = ({
   downloadLoading,
 }) => {
   return (
-    <Box display="flex" flexWrap="wrap" paddingLeft="10px">
-      {setSelectedFrom && (
-        <CustomDatePicker
-          selectedDate={selectedFrom}
-          setSelectedDate={setSelectedFrom}
-          maxDate={new Date()}
-          id="From"
-          label="From"
-          style={{ width: "100px", marginTop: "-5px" }}
-        />
-      )}
-      {setSelectedTo && (
-        <CustomDatePicker
-          selectedDate={selectedTo}
-          setSelectedDate={setSelectedTo}
-          maxDate={new Date()}
-          id="To"
-          label="To"
-          style={{ width: "100px", marginTop: "-5px" }}
-        />
-      )}
-      <Box display="flex" flexWrap="wrap">
-        {numSelected.length > 0 && handleDeleteAgree && (
-          <CustomDeleteIcon
-            handleDeleteAgree={handleDeleteAgree}
-            styleButton={styleButton}
-          />
-        )}
+    <Box>
+      <Grid container justifyContent="flex-end">
+        <Grid item lg={5} md={5} sm={5} xs={10} display="flex">
+          {setSelectedFrom && (
+            <CustomDatePicker
+              selectedDate={selectedFrom}
+              setSelectedDate={setSelectedFrom}
+              maxDate={new Date()}
+              id="From"
+              label="From"
+              style={{ width: "100px", marginTop: "-5px" }}
+            />
+          )}
+          {setSelectedTo && (
+            <CustomDatePicker
+              selectedDate={selectedTo}
+              setSelectedDate={setSelectedTo}
+              maxDate={new Date()}
+              id="To"
+              label="To"
+              style={{ width: "100px", marginTop: "-5px" }}
+            />
+          )}
+        </Grid>
 
-        {handleAddButton && (
-          <Tooltip title="Add">
-            <IconButton style={styleButton} onClick={handleAddButton}>
-              <AddOutlinedIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Grid item lg={7} md={7} sm={7} xs={12} paddingTop="5px">
+          {numSelected.length > 0 && handleDeleteAgree && (
+            <CustomDeleteIcon
+              handleDeleteAgree={handleDeleteAgree}
+              styleButton={styleButton}
+            />
+          )}
 
-        {handleFileSubmit && (
-          <UploadFile
-            onFileUpload={handleFileSubmit}
-            sampleData={sampleData}
-            styleButton={styleButton}
-          />
-        )}
+          {handleAddButton && (
+            <Tooltip title="Add">
+              <IconButton style={styleButton} onClick={handleAddButton}>
+                <AddOutlinedIcon />
+              </IconButton>
+            </Tooltip>
+          )}
 
-        {fileName && (
-          <DownloadFile
-            filename={fileName}
-            downloadData={downloadData}
-            styleButton={styleButton}
-            loading={downloadLoading}
-          />
-        )}
+          {handleFileSubmit && (
+            <UploadFile
+              onFileUpload={handleFileSubmit}
+              sampleData={sampleData}
+              styleButton={styleButton}
+            />
+          )}
 
-        {setSearch && (
-          <TextField
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            id="input-with-sx"
-            placeholder="Search"
-            variant="standard"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            style={{ width: "150px", marginRight: "10px" }}
-          />
-        )}
-      </Box>
+          {fileName && (
+            <DownloadFile
+              filename={fileName}
+              downloadData={downloadData}
+              styleButton={styleButton}
+              loading={downloadLoading}
+            />
+          )}
+
+          {setSearch && (
+            <TextField
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+              id="input-with-sx"
+              placeholder="Search"
+              variant="standard"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              style={{ width: "150px", marginRight: "10px" }}
+            />
+          )}
+        </Grid>
+      </Grid>
     </Box>
   );
 };

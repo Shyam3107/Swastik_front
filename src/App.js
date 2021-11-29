@@ -36,8 +36,8 @@ function App(props) {
     <div className="App" style={{ position: "relative", minHeight: "100vh" }}>
       <Suspense fallback={<BackDropLoader />}>
         <Router history={hist}>
-          {!loggedIn && <Navigation />}
-          {loggedIn && <Login />}
+          {loggedIn && <Navigation />}
+          {!loggedIn && <Login />}
           <ToastContainer />
         </Router>
       </Suspense>
