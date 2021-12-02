@@ -13,23 +13,25 @@ import {
 } from "react-pro-sidebar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import PlaceIcon from "@mui/icons-material/Place";
+//import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
+//import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import { BiTrip } from "react-icons/bi";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
-import Footer from "../Footer/Footer";
+import Footer, { OfflineFooter } from "../Footer/Footer";
 
 const Header = lazy(() => import("../Header/Header"));
 const Route = lazy(() => import("../Routes/Route"));
 
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
+  const [isOnline, setOnline] = useState(navigator.onLine);
 
   const handleToggleSidebar = (value) => {
     setToggled(value);
@@ -47,27 +49,27 @@ const Navigation = (props) => {
       link: ROUTES.VEHICLES,
       subMenu: [
         {
+          title: "Documents",
+          link: ROUTES.DOCUMENTS,
+          icon: <ReceiptIcon />,
+        },
+        {
           title: "Trips",
           link: ROUTES.TRIPS,
           icon: <BiTrip style={{ fontSize: "28px" }} />,
         },
-        {
-          title: "Advance",
-          link: ROUTES.ADVANCE,
-          icon: <DirectionsBusIcon />,
-        },
+        // {
+        //   title: "Advance",
+        //   link: ROUTES.ADVANCE,
+        //   icon: <AccountBalanceWalletIcon />,
+        // },
       ],
     },
-    {
-      icon: <PlaceIcon />,
-      title: "Places",
-      link: ROUTES.PLACES,
-    },
-    {
-      icon: <ReceiptIcon />,
-      title: "Tax",
-      link: ROUTES.TAX,
-    },
+    // {
+    //   icon: <PlaceIcon />,
+    //   title: "Places",
+    //   link: ROUTES.PLACES,
+    // },
   ];
 
   return (
@@ -153,6 +155,7 @@ const Navigation = (props) => {
           <Paper sx={{ width: "96%", mb: 2, paddingTop: "10px" }}>
             <Route />
           </Paper>
+          {!isOnline && <OfflineFooter />}
         </Box>
       </div>
     </div>

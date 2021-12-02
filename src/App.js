@@ -14,10 +14,8 @@ const Login = lazy(() => import("./components/Login/Login"));
 
 axios.interceptors.request.use(
   (config) => {
-    if (sessionStorage.getItem("token")) {
-      config.headers.Authorization = `Bearer ${sessionStorage.getItem(
-        "token"
-      )}`;
+    if (localStorage.getItem("token")) {
+      config.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
     }
     config.url = backendURL + config.url;
     return config;

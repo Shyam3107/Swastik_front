@@ -69,7 +69,7 @@ const Login = (props) => {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://www.nitpy.ac.in/wp-content/uploads/2016/04/Entrance.jpg)",
+              "url(https://okcredit-blog-images-prod.storage.googleapis.com/2020/12/cement3-1.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"

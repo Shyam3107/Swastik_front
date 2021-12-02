@@ -13,6 +13,7 @@ import useValidate from "../CustomComponents/CustomHooks/useValidate";
 import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete";
 
 const LayoutAdd = ({
+  loading,
   addLoading,
   editLoading,
   title,
@@ -29,7 +30,7 @@ const LayoutAdd = ({
 
   let submitButtonDisable = false;
 
-  if (addLoading || editLoading)
+  if (addLoading || editLoading || loading)
     return <CustomLoader style={{ height: "80%" }} />;
 
   return (

@@ -9,6 +9,7 @@ const modules = {
   leave: "/leave",
   student: "/student",
   trips: "/vehicles/trips",
+  documents: "/vehicles/documents",
 };
 
 export const API = {
@@ -21,10 +22,16 @@ export const API = {
   UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
+
+  //DOCUMENTS
+  GET_DOCUMENTS: `${modules.documents}/getDocuments`,
+  ADD_DOCUMENTS: `${modules.documents}/addDocuments`,
+  UPLOAD_DOCUMENTS: `${modules.documents}/uploadDocuments`,
+  EDIT_DOCUMENTS: `${modules.documents}/editDocuments`,
+  DELETE_DOCUMENTS: `${modules.documents}/deleteDocuments`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {
-  console.log("err ", err);
   let errMssg = err.response ? err.response.data.error : "Some Error Occured";
   dispatch(action);
   if (!navigator.onLine) return toastMessage("You Are Offline", warn);

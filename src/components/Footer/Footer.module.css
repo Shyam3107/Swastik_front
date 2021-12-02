@@ -1,3 +1,14 @@
-.footer{
+.footer {
   font-size: 11px;
+}
+
+.offlineFooter {
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #FCE205;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
 }

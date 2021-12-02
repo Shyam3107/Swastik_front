@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
 import { ROUTES } from "../../utils/constants";
-import Tax from "../Tax/Tax";
 import Home from "../Home/Home";
 import Trips from "../Trips/Trips";
 import AddTrips from "../Trips/AddTrips";
+import Documents from "../Documents/Documents";
+import AddDocument from "../Documents/AddDocument";
+import ViewDocument from "../Documents/ViewDocument";
+import EditDocument from "../Documents/EditDocument";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
@@ -25,10 +28,6 @@ const Routes = (props) => {
       component: <Home />,
     },
     {
-      path: ROUTES.TAX,
-      component: <Tax />,
-    },
-    {
       path: ROUTES.LOGOUT,
       component: <Logout />,
     },
@@ -39,6 +38,22 @@ const Routes = (props) => {
     {
       path: ROUTES.ADD_TRIP,
       component: <AddTrips />,
+    },
+    {
+      path: ROUTES.DOCUMENTS,
+      component: <Documents />,
+    },
+    {
+      path: ROUTES.ADD_DOCUMENT,
+      component: <AddDocument />,
+    },
+    {
+      path: ROUTES.VIEW_DOCUMENT,
+      component: <ViewDocument />,
+    },
+    {
+      path: ROUTES.EDIT_DOCUMENT,
+      component: <EditDocument />,
     },
   ];
 

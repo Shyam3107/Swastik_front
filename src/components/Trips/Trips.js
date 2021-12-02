@@ -18,6 +18,7 @@ import {
   ROUTES,
   monthStart,
   currentDate,
+  formatDateInDDMMYYY,
 } from "../../utils/constants";
 import { header, headerKey, sampleData } from "./constants";
 
@@ -67,6 +68,7 @@ const Trips = (props) => {
 
   let downloadData = trips.map((item) => {
     return headerKey.map((val) => {
+      if (val === "date") return formatDateInDDMMYYY(item[val]);
       return item[val];
     });
   });
@@ -119,6 +121,7 @@ const Trips = (props) => {
       numSelected={selected}
       setNumSelected={setSelected}
       fileName="trips"
+      sampleName="tripSample"
       handleAddButton={handleAddButton}
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}

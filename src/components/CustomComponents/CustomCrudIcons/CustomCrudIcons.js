@@ -7,6 +7,7 @@ import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
+import EditIcon from "@mui/icons-material/Edit";
 import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Tooltip from "@mui/material/Tooltip";
@@ -24,6 +25,7 @@ const CustomCrudIcons = ({
   selectedFrom,
   selectedTo,
   fileName,
+  sampleName,
   sampleData = [],
   downloadData = [],
   handleDeleteAgree,
@@ -31,13 +33,22 @@ const CustomCrudIcons = ({
   search,
   setSearch,
   handleAddButton,
+  handleEditButton,
   numSelected = [],
   downloadLoading,
 }) => {
   return (
-    <Box>
+    <Box width="100%">
       <Grid container justifyContent="flex-end">
-        <Grid item lg={5} md={5} sm={5} xs={10} display="flex">
+        <Grid
+          item
+          lg={5}
+          md={5}
+          sm={5}
+          xs={10}
+          display="flex"
+          justifyContent="flex-end"
+        >
           {setSelectedFrom && (
             <CustomDatePicker
               selectedDate={selectedFrom}
@@ -60,7 +71,16 @@ const CustomCrudIcons = ({
           )}
         </Grid>
 
-        <Grid item lg={7} md={7} sm={7} xs={12} paddingTop="5px">
+        <Grid
+          item
+          lg={7}
+          md={7}
+          sm={7}
+          xs={12}
+          paddingTop="5px"
+          display="flex"
+          justifyContent="flex-end"
+        >
           {numSelected.length > 0 && handleDeleteAgree && (
             <CustomDeleteIcon
               handleDeleteAgree={handleDeleteAgree}
@@ -76,11 +96,20 @@ const CustomCrudIcons = ({
             </Tooltip>
           )}
 
+          {handleEditButton && numSelected.length === 1 && (
+            <Tooltip title="Edit">
+              <IconButton style={styleButton} onClick={handleEditButton}>
+                <EditIcon />
+              </IconButton>
+            </Tooltip>
+          )}
+
           {handleFileSubmit && (
             <UploadFile
               onFileUpload={handleFileSubmit}
               sampleData={sampleData}
               styleButton={styleButton}
+              sampleName={sampleName}
             />
           )}
 

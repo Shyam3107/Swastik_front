@@ -15,6 +15,7 @@ const Layout = ({
   title,
   handleDeleteAgree,
   handleFileSubmit,
+  handleEditButton,
   search,
   setSearch,
   data,
@@ -29,6 +30,7 @@ const Layout = ({
   handleAddButton,
   downloadData,
   sampleData,
+  sampleName,
   setSelectedFrom,
   setSelectedTo,
   selectedFrom,
@@ -59,9 +61,11 @@ const Layout = ({
             <CustomCrudIcons
               handleDeleteAgree={handleDeleteAgree}
               handleFileSubmit={handleFileSubmit}
+              handleEditButton={handleEditButton}
               search={search}
               setSearch={setSearch}
               fileName={fileName}
+              sampleName={sampleName}
               handleAddButton={handleAddButton}
               downloadData={downloadData}
               sampleData={sampleData}
