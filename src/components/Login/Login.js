@@ -4,6 +4,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
@@ -36,25 +38,38 @@ function Copyright(props) {
 
 const theme = createTheme();
 
+let initialForm = JSON.parse(localStorage.getItem("auth"));
+if (!initialForm)
+  initialForm = {
+    userName: "",
+    password: "",
+    remember: true,
+  };
+
 const Login = (props) => {
   const loading = props.user.loading;
   const [showPassword, setShowPassword] = useState(false);
+  const [form, setForm] = useState(initialForm);
 
-  const cb = () => history.push(ROUTES.PROFILE);
+  const cb = () => {
+    if (form.remember) localStorage.setItem("auth", JSON.stringify(form));
+    else localStorage.removeItem("auth");
+    history.push(ROUTES.PROFILE);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const auth = {
-      userName: data.get("email"),
-      password: data.get("password"),
-    };
-    props.userLogin(auth, cb);
+    props.userLogin(form, cb);
   };
 
   const history = useHistory();
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show);
+  };
+
+  const handleFormChange = (e) => {
+    setForm((form) => ({ ...form, [e.target.id]: e.target.value }));
   };
 
   return (
@@ -69,7 +84,7 @@ const Login = (props) => {
           md={7}
           sx={{
             backgroundImage:
-              "url(https://okcredit-blog-images-prod.storage.googleapis.com/2020/12/cement3-1.jpg)",
+              "url(https://cdn.imgbin.com/12/19/9/imgbin-cargo-freight-forwarding-agency-freight-transport-logistics-shipping-assorted-transportation-miniature-5ErH6wjuZ68PLXjccpAtGLj0M.jpg)",
             backgroundRepeat: "no-repeat",
             backgroundColor: (t) =>
               t.palette.mode === "light"
@@ -105,10 +120,12 @@ const Login = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
+                id="userName"
+                value={form.userName}
+                label="User Name"
+                name="userName"
                 autoComplete="email"
+                onChange={handleFormChange}
                 autoFocus
               />
               <TextField
@@ -117,9 +134,11 @@ const Login = (props) => {
                 fullWidth
                 name="password"
                 label="Password"
+                value={form.password}
                 type={showPassword ? "text" : "password"}
                 id="password"
                 autoComplete="current-password"
+                onChange={handleFormChange}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -133,6 +152,20 @@ const Login = (props) => {
                     </InputAdornment>
                   ),
                 }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    id="remember"
+                    value="remember"
+                    color="primary"
+                    checked={form.remember}
+                    onChange={() =>
+                      setForm((form) => ({ ...form, remember: !form.remember }))
+                    }
+                  />
+                }
+                label="Remember me"
               />
               <Button
                 type="submit"

@@ -32,9 +32,9 @@ export const API = {
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {
-  let errMssg = err.response ? err.response.data.error : "Some Error Occured";
   dispatch(action);
   if (!navigator.onLine) return toastMessage("You Are Offline", warn);
+  let errMssg = err.response ? err.response.data.error : "Some Error Occured";
   return toastMessage(errMssg, error);
 };
 

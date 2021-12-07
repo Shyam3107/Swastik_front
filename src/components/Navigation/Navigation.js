@@ -1,4 +1,5 @@
 import React, { useState, lazy } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles.scss";
 import ReceiptIcon from "@mui/icons-material/Receipt";
@@ -22,16 +23,16 @@ import { BiTrip } from "react-icons/bi";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 
-import { Link } from "react-router-dom";
 import { ROUTES } from "../../utils/constants";
 import Footer, { OfflineFooter } from "../Footer/Footer";
+import useNetworkStatus from "../CustomComponents/CustomHooks/useNetworkStatus";
 
 const Header = lazy(() => import("../Header/Header"));
 const Route = lazy(() => import("../Routes/Route"));
 
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
-  const [isOnline, setOnline] = useState(navigator.onLine);
+  const isOnline = useNetworkStatus();
 
   const handleToggleSidebar = (value) => {
     setToggled(value);
