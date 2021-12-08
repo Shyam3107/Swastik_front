@@ -19,8 +19,8 @@ export const userLogin =
           type: actionTypes.LOGIN_SUCCESS,
           payload: data,
         });
-        localStorage.setItem("user", JSON.stringify(data.user));
-        localStorage.setItem("token", data.token);
+        sessionStorage.setItem("user", JSON.stringify(data.user));
+        sessionStorage.setItem("token", data.token);
         toastMessage(data.message, success);
         cb();
       },

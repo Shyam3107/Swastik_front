@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import moment from "moment";
 import { useHistory } from "react-router";
-import LayoutAdd from "../Layout/LayoutAdd";
-import { ROUTES } from "../../utils/constants";
-import { addDocuments, editDocuments } from "../../containers/Documents/action";
+import LayoutAdd from "../../Layout/LayoutAdd";
+import { ROUTES, formatInDayEnd } from "../../../utils/constants";
+import { addDocuments, editDocuments } from "../../../containers/Documents/action";
 
 const initialDocument = {
   vehicleNo: "",
-  taxPaidOn: new Date().toISOString(),
-  taxPaidUpto: new Date().toISOString(),
-  insurancePaidOn: new Date().toISOString(),
-  insurancePaidUpto: new Date().toISOString(),
-  fitnessPaidOn: new Date().toISOString(),
-  fitnessPaidUpto: new Date().toISOString(),
+  taxPaidOn: moment().toISOString(),
+  taxPaidUpto: formatInDayEnd(),
+  insurancePaidOn: moment().toISOString(),
+  insurancePaidUpto: formatInDayEnd(),
+  fitnessPaidOn: moment().toISOString(),
+  fitnessPaidUpto: formatInDayEnd(),
 };
 
 const AddDocument = (props) => {
@@ -32,11 +33,13 @@ const AddDocument = (props) => {
       type: "date",
       handleChange: (date) => setDocument({ ...document, taxPaidOn: date }),
       label: "Tax Paid On",
+      maxDate: moment().toISOString(),
     },
     {
       id: "taxPaidUpto",
       type: "date",
-      handleChange: (date) => setDocument({ ...document, taxPaidUpto: date }),
+      handleChange: (date) =>
+        setDocument({ ...document, taxPaidUpto: formatInDayEnd(date) }),
       label: "Tax Paid Upto",
     },
     {
@@ -45,12 +48,16 @@ const AddDocument = (props) => {
       handleChange: (date) =>
         setDocument({ ...document, insurancePaidOn: date }),
       label: "Insurance Paid On",
+      maxDate: moment().toISOString(),
     },
     {
       id: "insurancePaidUpto",
       type: "date",
       handleChange: (date) =>
-        setDocument({ ...document, insurancePaidUpto: date }),
+        setDocument({
+          ...document,
+          insurancePaidUpto: formatInDayEnd(date),
+        }),
       label: "Insurance Paid Upto",
     },
     {
@@ -58,12 +65,16 @@ const AddDocument = (props) => {
       type: "date",
       handleChange: (date) => setDocument({ ...document, fitnessPaidOn: date }),
       label: "Fitness Paid On",
+      maxDate: moment().toISOString(),
     },
     {
       id: "fitnessPaidUpto",
       type: "date",
       handleChange: (date) =>
-        setDocument({ ...document, fitnessPaidUpto: date }),
+        setDocument({
+          ...document,
+          fitnessPaidUpto: formatInDayEnd(date),
+        }),
       label: "Fitness Paid Upto",
     },
   ];

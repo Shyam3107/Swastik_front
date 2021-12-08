@@ -65,6 +65,9 @@ const LayoutAdd = ({
             if (item.handleChange) item.handleChange(event);
             else handleValueChange(event);
 
+            if (item.type === "customSelect")
+              event = { target: { name: item.id, value: event } };
+
             if (item.required)
               handleValidate(event.target.name, event.target.value);
           };
@@ -93,6 +96,7 @@ const LayoutAdd = ({
                   selectedDate={item.value ? item.value : data[item.id]}
                   id={item.id}
                   setSelectedDate={handleInputChange}
+                  maxDate={item.maxDate}
                 />
               )}
               {item.type === "select" && (

@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router";
 
-import { formatDate, ROUTES } from "../../utils/constants";
+import { formatDate, ROUTES } from "../../../utils/constants";
 import {
   getDocuments,
   deleteDocuments,
-} from "../../containers/Documents/action";
-import LayoutView from "../Layout/LayoutView";
+} from "../../../containers/Documents/action";
+import LayoutView from "../../Layout/LayoutView";
 import { header, headerKey, EDIT_URL } from "./constants";
 
 const ViewDocument = (props) => {

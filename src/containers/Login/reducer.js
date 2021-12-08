@@ -1,7 +1,7 @@
 import * as actionTypes from "./actionTypes";
 import jwt from "jsonwebtoken";
 
-let token = localStorage.getItem("token");
+let token = sessionStorage.getItem("token");
 if (token) {
   const decodedToken = jwt.decode(token, { complete: true });
   if (decodedToken.exp < new Date().getTime()) token = null;
@@ -10,7 +10,7 @@ if (token) {
 const initialState = {
   loading: false,
   token,
-  user: JSON.parse(localStorage.getItem("user")),
+  user: JSON.parse(sessionStorage.getItem("user")),
   loggedIn: Boolean(token),
   error: null,
 };

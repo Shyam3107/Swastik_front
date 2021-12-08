@@ -10,14 +10,14 @@ import {
   addDocuments,
   deleteDocuments,
   uploadDocuments,
-} from "../../containers/Documents/action";
-import uploadFileForm from "../../utils/uploadFileForm";
-import Layout from "../Layout/Layout";
+} from "../../../containers/Documents/action";
+import uploadFileForm from "../../../utils/uploadFileForm";
+import Layout from "../../Layout/Layout";
 import {
   formatDateInDDMMYYY,
   includesInArray,
   ROUTES,
-} from "../../utils/constants";
+} from "../../../utils/constants";
 import {
   header,
   headerKey,

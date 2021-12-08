@@ -22,7 +22,6 @@ const CustomDatePicker = ({
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <DatePicker
-        disableToolbar
         id={id}
         autoOk={true}
         variant="inline"

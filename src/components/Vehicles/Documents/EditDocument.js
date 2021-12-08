@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useParams } from "react-router";
-import { getDocuments } from "../../containers/Documents/action";
+import { getDocuments } from "../../../containers/Documents/action";
 import AddDocument from "./AddDocument";
 
 const EditDocument = (props) => {

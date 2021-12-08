@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@material-ui/pickers": "^3.3.10",
     "@mui/icons-material": "^5.0.4",
+    "@mui/lab": "^5.0.0-alpha.59",
     "@mui/material": "^5.0.4",
     "@mui/utils": "^5.0.1",
     "@testing-library/jest-dom": "^5.14.1",

@@ -57,3 +57,11 @@ export const includesInArray = (stringArray, search) => {
   });
   return !exist;
 };
+
+export const formatInDayEnd = (date=moment()) => {
+  try {
+    return moment(date).endOf("day").toISOString();
+  } catch (error) {
+    return "InValid Date";
+  }
+};

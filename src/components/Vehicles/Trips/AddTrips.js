@@ -1,14 +1,15 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
-import LayoutAdd from "../Layout/LayoutAdd";
-import { ROUTES } from "../../utils/constants";
-import { addTrips } from "../../containers/Trips/action";
+import LayoutAdd from "../../Layout/LayoutAdd";
+import { ROUTES } from "../../../utils/constants";
+import { addTrips } from "../../../containers/Trips/action";
 
 const initialTrip = {
   diNo: "",
   lrNo: "",
   date: new Date().toISOString(),
+  loadingPoint: "",
   partyName: "",
   location: "",
   vehicleNo: "",
@@ -35,6 +36,14 @@ const AddTrips = (props) => {
       type: "date",
       handleChange: (date) => setTrip({ ...trip, date }),
       label: "Date",
+    },
+    {
+      id: "loadingPoint",
+      label: "Loading Point",
+      type: "customSelect",
+      handleChange: (val) => setTrip({ ...trip, loadingPoint: val }),
+      options: ["Hirmi", "Tilda", "Grasim", "Shree Cement", "Ambuja"],
+      required: true,
     },
     { id: "partyName", label: "Party Name", required: true },
     { id: "location", label: "Location", required: true },

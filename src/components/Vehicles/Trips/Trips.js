@@ -9,9 +9,9 @@ import {
   addTrips,
   deleteTrips,
   uploadTrips,
-} from "../../containers/Trips/action";
-import uploadFileForm from "../../utils/uploadFileForm";
-import Layout from "../Layout/Layout";
+} from "../../../containers/Trips/action";
+import uploadFileForm from "../../../utils/uploadFileForm";
+import Layout from "../../Layout/Layout";
 import {
   formatDate,
   includesInArray,
@@ -19,7 +19,7 @@ import {
   monthStart,
   currentDate,
   formatDateInDDMMYYY,
-} from "../../utils/constants";
+} from "../../../utils/constants";
 import { header, headerKey, sampleData } from "./constants";
 
 const Trips = (props) => {
@@ -85,7 +85,7 @@ const Trips = (props) => {
     return headerKey.map((headVal, index) => {
       return (
         <TableCell key={index}>
-          {headVal === "date" ? formatDate(row[headVal]) : row[headVal]}
+          {headVal === "date" ? formatDateInDDMMYYY(row[headVal]) : row[headVal]}
         </TableCell>
       );
     });

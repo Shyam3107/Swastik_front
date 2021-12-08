@@ -38,15 +38,14 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-let initialForm = JSON.parse(localStorage.getItem("auth"));
-if (!initialForm)
-  initialForm = {
-    userName: "",
-    password: "",
-    remember: true,
-  };
-
 const Login = (props) => {
+  let initialForm = JSON.parse(localStorage.getItem("auth"));
+  if (!initialForm)
+    initialForm = {
+      userName: "",
+      password: "",
+      remember: true,
+    };
   const loading = props.user.loading;
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState(initialForm);

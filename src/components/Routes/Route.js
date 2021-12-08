@@ -4,12 +4,12 @@ import Login from "../Login/Login";
 import Logout from "../Logout/Logout";
 import { ROUTES } from "../../utils/constants";
 import Home from "../Home/Home";
-import Trips from "../Trips/Trips";
-import AddTrips from "../Trips/AddTrips";
-import Documents from "../Documents/Documents";
-import AddDocument from "../Documents/AddDocument";
-import ViewDocument from "../Documents/ViewDocument";
-import EditDocument from "../Documents/EditDocument";
+import Trips from "../Vehicles/Trips/Trips";
+import AddTrips from "../Vehicles/Trips/AddTrips";
+import Documents from "../Vehicles/Documents/Documents";
+import AddDocument from "../Vehicles/Documents/AddDocument";
+import ViewDocument from "../Vehicles/Documents/ViewDocument";
+import EditDocument from "../Vehicles/Documents/EditDocument";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
