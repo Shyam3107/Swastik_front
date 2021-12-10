@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 
 const initialState = {
   loading: false,
-  documents: null,
+  expenses: null,
   error: null,
   addLoading: false,
   editLoading: false,
@@ -12,39 +12,39 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case actionTypes.GET_DOCUMENTS_PENDING:
+    case actionTypes.GET_OFFICE_EXPENSE_PENDING:
       return { ...initialState, loading: true };
-    case actionTypes.GET_DOCUMENTS_SUCCESS:
-      return { ...initialState, documents: action.payload };
-    case actionTypes.GET_DOCUMENTS_FAILURE:
+    case actionTypes.GET_OFFICE_EXPENSE_SUCCESS:
+      return { ...initialState, expenses: action.payload };
+    case actionTypes.GET_OFFICE_EXPENSE_FAILURE:
       return { ...initialState, error: action.payload };
 
-    case actionTypes.ADD_DOCUMENTS_PENDING:
+    case actionTypes.ADD_OFFICE_EXPENSE_PENDING:
       return { ...state, addLoading: true };
-    case actionTypes.ADD_DOCUMENTS_SUCCESS:
+    case actionTypes.ADD_OFFICE_EXPENSE_SUCCESS:
       return { ...state, addLoading: false };
-    case actionTypes.ADD_DOCUMENTS_FAILURE:
+    case actionTypes.ADD_OFFICE_EXPENSE_FAILURE:
       return { ...state, addLoading: false };
 
-    case actionTypes.UPLOAD_DOCUMENTS_PENDING:
+    case actionTypes.UPLOAD_OFFICE_EXPENSE_PENDING:
       return { ...state, uploadLoading: true };
-    case actionTypes.UPLOAD_DOCUMENTS_SUCCESS:
+    case actionTypes.UPLOAD_OFFICE_EXPENSE_SUCCESS:
       return { ...state, uploadLoading: false };
-    case actionTypes.UPLOAD_DOCUMENTS_FAILURE:
+    case actionTypes.UPLOAD_OFFICE_EXPENSE_FAILURE:
       return { ...state, uploadLoading: false };
 
-    case actionTypes.EDIT_DOCUMENTS_PENDING:
+    case actionTypes.EDIT_OFFICE_EXPENSE_PENDING:
       return { ...state, editLoading: true };
-    case actionTypes.EDIT_DOCUMENTS_SUCCESS:
+    case actionTypes.EDIT_OFFICE_EXPENSE_SUCCESS:
       return { ...state, editLoading: false };
-    case actionTypes.EDIT_DOCUMENTS_FAILURE:
+    case actionTypes.EDIT_OFFICE_EXPENSE_FAILURE:
       return { ...state, editLoading: false };
 
-    case actionTypes.DELETE_DOCUMENTS_PENDING:
+    case actionTypes.DELETE_OFFICE_EXPENSE_PENDING:
       return { ...state, deleteLoading: true };
-    case actionTypes.DELETE_DOCUMENTS_SUCCESS:
+    case actionTypes.DELETE_OFFICE_EXPENSE_SUCCESS:
       return { ...state, deleteLoading: false };
-    case actionTypes.DELETE_DOCUMENTS_FAILURE:
+    case actionTypes.DELETE_OFFICE_EXPENSE_FAILURE:
       return { ...state, deleteLoading: false };
 
     default:

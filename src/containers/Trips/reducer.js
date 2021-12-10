@@ -27,11 +27,11 @@ export default function reducer(state = initialState, action = {}) {
       return { ...state, addLoading: false };
 
     case actionTypes.UPLOAD_TRIPS_PENDING:
-      return { ...state, uploadingLoading: true };
+      return { ...state, uploadLoading: true };
     case actionTypes.UPLOAD_TRIPS_SUCCESS:
-      return { ...state, uploadingLoading: false };
+      return { ...state, uploadLoading: false };
     case actionTypes.UPLOAD_TRIPS_FAILURE:
-      return { ...state, uploadingLoading: false };
+      return { ...state, uploadLoading: false };
 
     case actionTypes.EDIT_TRIPS_PENDING:
       return { ...state, editLoading: true };

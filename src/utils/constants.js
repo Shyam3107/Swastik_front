@@ -6,31 +6,53 @@ export const warn = "warn";
 
 export const monthStart = moment().startOf("month");
 export const monthEnd = moment().endOf("month");
-export const currentDate = moment();
+export const yearEnd = moment().endOf("year");
+export const currentDate = moment().endOf("day");
+
+export const pumpNames = [
+  "Saurabh Fuels",
+  "Saudimini Fuels",
+  "Lal Fuels",
+  "HPCL",
+  "BPCL",
+  "IOCL",
+];
 
 export const ROUTES = {
-  //LOGIN
+  // LOGIN
   LOGIN: "/login",
 
-  //LOGOUT
+  // LOGOUT
   LOGOUT: "/logout",
 
-  //HOME
+  // HOME
   HOME: "/home",
 
-  //TRIPS
+  // TRIPS
   TRIPS: "/vehicles/trips",
   ADD_TRIP: "/vehicles/trips/add",
+  EDIT_TRIP: "/vehicles/trips/:diNo/edit",
 
-  //DOCUMENTS
+  // DOCUMENTS
   DOCUMENTS: "/vehicles/documents",
   VIEW_DOCUMENT: "/vehicles/document/:vehicleNo",
   EDIT_DOCUMENT: "/vehicles/document/:vehicleNo/edit",
   ADD_DOCUMENT: "/vehicles/document/add",
 
-  VEHICLES: "/vehicles",
-  PLACES: "/places",
-  ADVANCE: "/advance",
+  // OFFICE EXPENSE
+  OFFICE_EXPENSE: "/expenses/office",
+  EDIT_OFFICE_EXPENSE: "/expenses/office/:expenseId/edit",
+  ADD_OFFICE_EXPENSE: "/expenses/office/add",
+
+  // DRIVER EXPENSE
+  DRIVER_EXPENSE: "/expenses/driver",
+  EDIT_DRIVER_EXPENSE: "/expenses/driver/:expenseId/edit",
+  ADD_DRIVER_EXPENSE: "/expenses/driver/add",
+
+  // VEHICLE EXPENSE
+  VEHICLES_EXPENSE: "/expenses/vehicles",
+  EDIT_VEHICLES_EXPENSE: "/expenses/vehicles/:expenseId/edit",
+  ADD_VEHICLES_EXPENSE: "/expenses/vehicles/add",
 };
 
 export const formatDate = (date, time = false) => {
@@ -42,7 +64,7 @@ export const formatDate = (date, time = false) => {
   }
 };
 
-export const formatDateInDDMMYYY = (date) => {
+export const formatDateInDDMMYYY = (date = new Date()) => {
   try {
     return moment(date).format("DD-MM-YYYY");
   } catch (error) {
@@ -58,7 +80,7 @@ export const includesInArray = (stringArray, search) => {
   return !exist;
 };
 
-export const formatInDayEnd = (date=moment()) => {
+export const formatInDayEnd = (date = moment()) => {
   try {
     return moment(date).endOf("day").toISOString();
   } catch (error) {

@@ -4,11 +4,6 @@ import { connect } from "react-redux";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
-import {
-  getTrips,
-  deleteTrips,
-  uploadTrips,
-} from "../../../containers/Trips/action";
 import uploadFileForm from "../../../utils/uploadFileForm";
 import Layout from "../../Layout/Layout";
 import {
@@ -19,53 +14,47 @@ import {
   formatDateInDDMMYYY,
 } from "../../../utils/constants";
 import { header, headerKey, sampleData, EDIT_URL } from "./constants";
+import {
+  getExpense,
+  deleteExpense,
+  uploadExpense,
+} from "../../../containers/OfficeExpense/action";
 
-const Trips = (props) => {
-  let { getTrips } = props;
+const Office = (props) => {
+  let { getExpense } = props;
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
   const [from, setFrom] = useState(monthStart);
   const [to, setTo] = useState(currentDate);
   let {
     loading,
-    trips,
+    expenses,
     addLoading,
     editLoading,
     deleteLoading,
     uploadLoading,
-  } = props.trips;
+  } = props.officeExpense;
   const history = useHistory();
 
   useEffect(() => {
-    getTrips();
-  }, [getTrips]);
+    getExpense();
+  }, [getExpense]);
 
   const handleFileSubmit = (file) => {
-    props.uploadTrips(uploadFileForm(file), getTrips);
+    props.uploadExpense(uploadFileForm(file), getExpense);
   };
 
-  if (!trips || !Array.isArray(trips)) trips = [];
+  if (!expenses || !Array.isArray(expenses)) expenses = [];
 
-  trips = trips.filter((val) => {
+  expenses = expenses.filter((val) => {
     return (
       moment(from).isSameOrBefore(val.date) &&
       moment(to).isSameOrAfter(val.date) &&
-      includesInArray(
-        [
-          val.diNo,
-          val.lrNo,
-          val.partyName,
-          val.location,
-          val.vehicleNo,
-          val.driverName,
-          val.pumpName ? val.pumpName : "",
-        ],
-        search
-      )
+      includesInArray([val.remarks], search)
     );
   });
 
-  let downloadData = trips.map((item) => {
+  let downloadData = expenses.map((item) => {
     return headerKey.map((val) => {
       if (val === "date") return formatDateInDDMMYYY(item[val]);
       return item[val];
@@ -94,63 +83,62 @@ const Trips = (props) => {
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      props.getTrips();
+      props.getExpense();
       setSelected([]);
     };
-    props.deleteTrips(selected, cb);
+    props.deleteExpense(selected, cb);
   };
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_TRIP);
+    history.push(ROUTES.ADD_OFFICE_EXPENSE);
   };
 
   const handleEditButton = () => {
-    const tripId = selected[0];
-    const searchId = trips.filter((val) => val._id === tripId);
-    history.push(EDIT_URL(searchId[0].diNo));
+    const expenseId = selected[0];
+    history.push(EDIT_URL(expenseId));
   };
 
   return (
     <Layout
+      title="Office Expenses"
+      fileName="Office Expenses"
+      mssgTitle="Expenses"
+      sampleName="Office Expenses Sample"
+      loading={loading}
       addLoading={addLoading || uploadLoading}
+      downloadLoading={addLoading}
+      search={search}
+      selectedFrom={from}
+      selectedTo={to}
+      data={expenses}
+      downloadData={downloadData}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
-      title="Trips"
       handleDeleteAgree={handleDeleteAgree}
       handleFileSubmit={handleFileSubmit}
-      search={search}
       setSearch={setSearch}
-      data={trips}
-      mssgTitle="Trips"
-      loading={loading}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       numSelected={selected}
       setNumSelected={setSelected}
-      fileName="trips"
-      sampleName="tripSample"
       handleAddButton={handleAddButton}
       handleEditButton={handleEditButton}
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
-      selectedFrom={from}
-      selectedTo={to}
       sampleData={sampleData}
-      downloadData={downloadData}
-      downloadLoading={addLoading}
     />
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    trips: state.trips,
+    officeExpense: state.officeExpense,
     user: state.user,
   };
 };
 
 export default connect(mapStateToProps, {
-  getTrips,
-  deleteTrips,
-  uploadTrips,
-})(Trips);
+  getExpense,
+  deleteExpense,
+  uploadExpense,
+})(Office);

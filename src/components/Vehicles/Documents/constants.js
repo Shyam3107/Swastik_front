@@ -1,3 +1,5 @@
+import { formatDateInDDMMYYY, yearEnd } from "../../../utils/constants";
+
 export const header = [
   "Vehicle No.",
   "Tax Paid On",
@@ -22,21 +24,21 @@ export const sampleData = [
   header,
   [
     "CG04MH7896",
-    "10-09-2021",
-    "31-12-2021",
-    "05-09-2021",
-    "04-09-2022",
-    "06-09-2021",
-    "05-09-2022",
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
   ],
   [
     "CG04MH5676",
-    "10-09-2021",
-    "31-12-2021",
-    "23-09-2021",
-    "22-09-2022",
-    "06-09-2021",
-    "05-09-2022",
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
   ],
 ];
 

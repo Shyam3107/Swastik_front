@@ -1,120 +1,120 @@
 import * as actionTypes from "./actionTypes";
 import { API, makeRequest } from "../../APIs/APIs";
 
-export const getTrips =
+export const getExpense =
   (params = {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.GET_TRIPS_PENDING,
+      type: actionTypes.GET_OFFICE_EXPENSE_PENDING,
     });
 
     const options = {
       method: "get",
-      url: API.GET_TRIPS,
+      url: API.GET_OFFICE_EXPENSE,
       params: params,
       callback: (data) => {
         dispatch({
-          type: actionTypes.GET_TRIPS_SUCCESS,
+          type: actionTypes.GET_OFFICE_EXPENSE_SUCCESS,
           payload: data.data,
         });
       },
-      errorActionType: actionTypes.GET_TRIPS_FAILURE,
+      errorActionType: actionTypes.GET_OFFICE_EXPENSE_FAILURE,
       dispatch,
     };
 
     makeRequest(options);
   };
 
-export const addTrips =
+export const addExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.ADD_TRIPS_PENDING,
+      type: actionTypes.ADD_OFFICE_EXPENSE_PENDING,
     });
 
     const options = {
       method: "post",
-      url: API.ADD_TRIPS,
+      url: API.ADD_OFFICE_EXPENSE,
       payload: payload,
       callback: (data) => {
         dispatch({
-          type: actionTypes.ADD_TRIPS_SUCCESS,
+          type: actionTypes.ADD_OFFICE_EXPENSE_SUCCESS,
         });
         cb();
       },
-      errorActionType: actionTypes.ADD_TRIPS_FAILURE,
+      errorActionType: actionTypes.ADD_OFFICE_EXPENSE_FAILURE,
       dispatch,
     };
 
     makeRequest(options);
   };
 
-export const uploadTrips =
+export const uploadExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.UPLOAD_TRIPS_PENDING,
+      type: actionTypes.UPLOAD_OFFICE_EXPENSE_PENDING,
     });
 
     const options = {
       method: "post",
-      url: API.UPLOAD_TRIPS,
+      url: API.UPLOAD_OFFICE_EXPENSE,
       payload: payload,
       callback: (data) => {
         dispatch({
-          type: actionTypes.UPLOAD_TRIPS_SUCCESS,
+          type: actionTypes.UPLOAD_OFFICE_EXPENSE_SUCCESS,
         });
         cb();
       },
-      errorActionType: actionTypes.UPLOAD_TRIPS_FAILURE,
+      errorActionType: actionTypes.UPLOAD_OFFICE_EXPENSE_FAILURE,
       dispatch,
     };
 
     makeRequest(options);
   };
 
-export const editTrips =
+export const editExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.EDIT_TRIPS_PENDING,
+      type: actionTypes.EDIT_OFFICE_EXPENSE_PENDING,
     });
 
     const options = {
       method: "put",
-      url: API.EDIT_TRIPS,
+      url: API.EDIT_OFFICE_EXPENSE,
       payload: payload,
       callback: (data) => {
         dispatch({
-          type: actionTypes.EDIT_TRIPS_SUCCESS,
+          type: actionTypes.EDIT_OFFICE_EXPENSE_SUCCESS,
         });
         cb();
       },
-      errorActionType: actionTypes.EDIT_TRIPS_FAILURE,
+      errorActionType: actionTypes.EDIT_OFFICE_EXPENSE_FAILURE,
       dispatch,
     };
 
     makeRequest(options);
   };
 
-export const deleteTrips =
+export const deleteExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.DELETE_TRIPS_PENDING,
+      type: actionTypes.DELETE_OFFICE_EXPENSE_PENDING,
     });
 
     const options = {
       method: "delete",
-      url: API.DELETE_TRIPS,
+      url: API.DELETE_OFFICE_EXPENSE,
       payload: payload,
       callback: (data) => {
         dispatch({
-          type: actionTypes.DELETE_TRIPS_SUCCESS,
+          type: actionTypes.DELETE_OFFICE_EXPENSE_SUCCESS,
         });
         cb();
       },
-      errorActionType: actionTypes.DELETE_TRIPS_FAILURE,
+      errorActionType: actionTypes.DELETE_OFFICE_EXPENSE_FAILURE,
       dispatch,
     };
 

@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
-import { ROUTES } from "../../../utils/constants";
-import { addTrips } from "../../../containers/Trips/action";
+import { ROUTES, pumpNames } from "../../../utils/constants";
+import { addTrips, editTrips } from "../../../containers/Trips/action";
 
 const initialTrip = {
   diNo: "",
@@ -17,7 +17,7 @@ const initialTrip = {
   driverName: "",
   driverPhone: "",
   diesel: "",
-  dieselIn: "Litre",
+  dieselIn: "",
   pumpName: "",
   cash: null,
   remarks: "",
@@ -25,8 +25,13 @@ const initialTrip = {
 
 const AddTrips = (props) => {
   const [trip, setTrip] = useState(initialTrip);
+  const { initialFields } = props;
   const history = useHistory();
-  const { addLoading } = props.trips;
+  const { addLoading, editLoading } = props.trips;
+
+  useEffect(() => {
+    if (initialFields) setTrip(initialFields);
+  }, [initialFields]);
 
   const inputFields = [
     { id: "diNo", type: "number", label: "DI No.", required: true },
@@ -36,6 +41,7 @@ const AddTrips = (props) => {
       type: "date",
       handleChange: (date) => setTrip({ ...trip, date }),
       label: "Date",
+      maxDate: new Date().toISOString(),
     },
     {
       id: "loadingPoint",
@@ -71,14 +77,7 @@ const AddTrips = (props) => {
       label: "Pump Name",
       type: "customSelect",
       handleChange: (val) => setTrip({ ...trip, pumpName: val }),
-      options: [
-        "Saurabh Fuels",
-        "Saudimini Fuels",
-        "Lal Fuels",
-        "HPCL",
-        "BPCL",
-        "IOCL",
-      ],
+      options: pumpNames,
     },
     { id: "cash", type: "number", label: "Cash" },
     { id: "remarks", label: "Remarks" },
@@ -102,7 +101,8 @@ const AddTrips = (props) => {
     const cb = () => {
       history.push(ROUTES.TRIPS);
     };
-    props.addTrips(trip, cb);
+    if (initialFields) props.editTrips(trip, cb);
+    else props.addTrips(trip, cb);
   };
 
   return (
@@ -114,7 +114,8 @@ const AddTrips = (props) => {
       handleReset={handleReset}
       handleSubmit={handleSubmit}
       data={trip}
-      submitLoading={addLoading}
+      submitLoading={addLoading || editLoading}
+      edit={initialFields ? true : false}
     />
   );
 };
@@ -125,4 +126,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addTrips })(AddTrips);
+export default connect(mapStateToProps, { addTrips, editTrips })(AddTrips);

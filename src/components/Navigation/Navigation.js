@@ -14,11 +14,12 @@ import {
 } from "react-pro-sidebar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-//import PlaceIcon from "@mui/icons-material/Place";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+//import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
-//import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import BusinessIcon from "@mui/icons-material/Business";
 import { BiTrip } from "react-icons/bi";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
@@ -47,7 +48,6 @@ const Navigation = (props) => {
     {
       icon: <DirectionsBusIcon />,
       title: "Vehicles",
-      link: ROUTES.VEHICLES,
       subMenu: [
         {
           title: "Documents",
@@ -59,18 +59,29 @@ const Navigation = (props) => {
           link: ROUTES.TRIPS,
           icon: <BiTrip style={{ fontSize: "28px" }} />,
         },
-        // {
-        //   title: "Advance",
-        //   link: ROUTES.ADVANCE,
-        //   icon: <AccountBalanceWalletIcon />,
-        // },
       ],
     },
-    // {
-    //   icon: <PlaceIcon />,
-    //   title: "Places",
-    //   link: ROUTES.PLACES,
-    // },
+    {
+      icon: <AccountBalanceWalletIcon />,
+      title: "Expenses",
+      subMenu: [
+        {
+          title: "Office",
+          link: ROUTES.OFFICE_EXPENSE,
+          icon: <BusinessIcon />,
+        },
+        // {
+        //   title: "Driver",
+        //   link: ROUTES.DRIVER_EXPENSE,
+        //   icon: <PersonIcon />,
+        // },
+        {
+          title: "Vehicles",
+          link: ROUTES.VEHICLES_EXPENSE,
+          icon: <DirectionsBusIcon />,
+        },
+      ],
+    },
   ];
 
   return (

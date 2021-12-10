@@ -1,3 +1,5 @@
+import { formatDateInDDMMYYY } from "../../../utils/constants";
+
 export const header = [
   "DI No.",
   "LR No.",
@@ -39,7 +41,7 @@ export const sampleData = [
   [
     "6123457890",
     "1452369874",
-    "02-12-2021",
+    formatDateInDDMMYYY(),
     "Tilda",
     "Durg",
     "Hirmi",
@@ -56,7 +58,7 @@ export const sampleData = [
   [
     "6123547890",
     "1425369874",
-    "02-12-2021",
+    formatDateInDDMMYYY(),
     "Tilda",
     "Raigarh",
     "Grasim",
@@ -70,4 +72,40 @@ export const sampleData = [
     "2000",
     "Food",
   ],
+  [
+    "4523547890",
+    "1425369874",
+    formatDateInDDMMYYY(),
+    "Tilda",
+    "Raigarh",
+    "Grasim",
+    "CG04JD1051",
+    "30",
+    "Mahesh",
+    "9898512314",
+    "",
+    "",
+    "",
+    "2000",
+    "Food",
+  ],
+  [
+    "5896547890",
+    "1425369874",
+    formatDateInDDMMYYY(),
+    "Tilda",
+    "Raigarh",
+    "Grasim",
+    "CG04JD1051",
+    "30",
+    "Mahesh",
+    "9898512314",
+    "5000",
+    "Amount",
+    "Saurabh Fuels",
+    "",
+    "",
+  ],
 ];
+
+export const EDIT_URL = (id) => `/vehicles/trips/${id}/edit`;

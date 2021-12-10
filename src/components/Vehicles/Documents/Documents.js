@@ -7,7 +7,6 @@ import TableCell from "@mui/material/TableCell";
 
 import {
   getDocuments,
-  addDocuments,
   deleteDocuments,
   uploadDocuments,
 } from "../../../containers/Documents/action";
@@ -189,7 +188,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getDocuments,
-  addDocuments,
   deleteDocuments,
   uploadDocuments,
 })(Documents);

@@ -6,10 +6,18 @@ import { ROUTES } from "../../utils/constants";
 import Home from "../Home/Home";
 import Trips from "../Vehicles/Trips/Trips";
 import AddTrips from "../Vehicles/Trips/AddTrips";
+import EditTrips from "../Vehicles/Trips/EditTrips";
 import Documents from "../Vehicles/Documents/Documents";
 import AddDocument from "../Vehicles/Documents/AddDocument";
 import ViewDocument from "../Vehicles/Documents/ViewDocument";
 import EditDocument from "../Vehicles/Documents/EditDocument";
+//import DriverExpense from "../Expenses/Driver/Driver";
+import OfficeExpense from "../Expenses/Office/Office";
+import AddOfficeExpense from "../Expenses/Office/AddOffice";
+import EditOfficeExpense from "../Expenses/Office/EditOffice";
+import VehiclesExpense from "../Expenses/Vehicles/Vehicles";
+import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles";
+import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
@@ -40,6 +48,10 @@ const Routes = (props) => {
       component: <AddTrips />,
     },
     {
+      path: ROUTES.EDIT_TRIP,
+      component: <EditTrips />,
+    },
+    {
       path: ROUTES.DOCUMENTS,
       component: <Documents />,
     },
@@ -54,6 +66,38 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_DOCUMENT,
       component: <EditDocument />,
+    },
+    {
+      path: ROUTES.OFFICE_EXPENSE,
+      component: <OfficeExpense />,
+    },
+    {
+      path: ROUTES.OFFICE_EXPENSE,
+      component: <OfficeExpense />,
+    },
+    {
+      path: ROUTES.ADD_OFFICE_EXPENSE,
+      component: <AddOfficeExpense />,
+    },
+    {
+      path: ROUTES.EDIT_OFFICE_EXPENSE,
+      component: <EditOfficeExpense />,
+    },
+    // {
+    //   path: ROUTES.DRIVER_EXPENSE,
+    //   component: <DriverExpense />,
+    // },
+    {
+      path: ROUTES.VEHICLES_EXPENSE,
+      component: <VehiclesExpense />,
+    },
+    {
+      path: ROUTES.ADD_VEHICLES_EXPENSE,
+      component: <AddVehiclesExpense />,
+    },
+    {
+      path: ROUTES.EDIT_VEHICLES_EXPENSE,
+      component: <EditVehiclesExpense />,
     },
   ];
 

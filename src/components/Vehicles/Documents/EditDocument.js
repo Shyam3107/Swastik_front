@@ -14,6 +14,8 @@ const EditDocument = (props) => {
     getDocuments({ vehicleNo });
   }, [vehicleNo, getDocuments]);
 
+  if (documents && Array.isArray(documents)) documents = null;
+
   return <AddDocument initialFields={documents} />;
 };
 

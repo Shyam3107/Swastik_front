@@ -10,6 +10,9 @@ const modules = {
   student: "/student",
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
+  driverExpenses: "/expenses/driver",
+  officeExpenses: "/expenses/office",
+  vehiclesExpenses: "/expenses/vehicles",
 };
 
 export const API = {
@@ -29,6 +32,27 @@ export const API = {
   UPLOAD_DOCUMENTS: `${modules.documents}/uploadDocuments`,
   EDIT_DOCUMENTS: `${modules.documents}/editDocuments`,
   DELETE_DOCUMENTS: `${modules.documents}/deleteDocuments`,
+
+  //OFFICE EXPENSES
+  GET_OFFICE_EXPENSE: `${modules.officeExpenses}/getExpenses`,
+  ADD_OFFICE_EXPENSE: `${modules.officeExpenses}/addExpenses`,
+  UPLOAD_OFFICE_EXPENSE: `${modules.officeExpenses}/uploadExpenses`,
+  EDIT_OFFICE_EXPENSE: `${modules.officeExpenses}/editExpenses`,
+  DELETE_OFFICE_EXPENSE: `${modules.officeExpenses}/deleteExpenses`,
+
+  //DRIVER EXPENSES
+  GET_DRIVER_EXPENSE: `${modules.driverExpenses}/getExpenses`,
+  ADD_DRIVER_EXPENSE: `${modules.driverExpenses}/addExpenses`,
+  UPLOAD_DRIVER_EXPENSE: `${modules.driverExpenses}/uploadExpenses`,
+  EDIT_DRIVER_EXPENSE: `${modules.driverExpenses}/editExpenses`,
+  DELETE_DRIVER_EXPENSE: `${modules.driverExpenses}/deleteExpenses`,
+
+  //VEHICLES EXPENSES
+  GET_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/getExpenses`,
+  ADD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/addExpenses`,
+  UPLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/uploadExpenses`,
+  EDIT_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/editExpenses`,
+  DELETE_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/deleteExpenses`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {
