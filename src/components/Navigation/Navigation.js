@@ -141,7 +141,9 @@ const Navigation = (props) => {
         </SidebarFooter>
       </ProSidebar>
 
-      <div style={{ width: "100%", overflowX: "auto" }}>
+      <div
+        style={{ width: "100%", overflowX: "auto", backgroundColor: "#F6F6F7" }}
+      >
         <Header
           MenuIcon={
             <IconButton

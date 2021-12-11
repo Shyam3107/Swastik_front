@@ -13,6 +13,7 @@ const modules = {
   driverExpenses: "/expenses/driver",
   officeExpenses: "/expenses/office",
   vehiclesExpenses: "/expenses/vehicles",
+  configureAccounts: "/configure/accounts",
 };
 
 export const API = {
@@ -53,6 +54,12 @@ export const API = {
   UPLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/uploadExpenses`,
   EDIT_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/editExpenses`,
   DELETE_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/deleteExpenses`,
+
+  //CONFIGURATION ACCOUNTS
+  GET_ACCOUNTS: `${modules.configureAccounts}/getAccount`,
+  ADD_ACCOUNTS: `${modules.configureAccounts}/addAccount`,
+  EDIT_ACCOUNTS: `${modules.configureAccounts}/editAccount`,
+  DELETE_ACCOUNTS: `${modules.configureAccounts}/deleteAccount`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {

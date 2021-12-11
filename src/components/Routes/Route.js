@@ -18,6 +18,7 @@ import EditOfficeExpense from "../Expenses/Office/EditOffice";
 import VehiclesExpense from "../Expenses/Vehicles/Vehicles";
 import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles";
 import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles";
+import Configuration from "../Configuration/Configuration";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
@@ -98,6 +99,10 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_VEHICLES_EXPENSE,
       component: <EditVehiclesExpense />,
+    },
+    {
+      path: ROUTES.CONFIGURATION,
+      component: <Configuration />,
     },
   ];
 

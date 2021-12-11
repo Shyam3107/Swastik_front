@@ -53,6 +53,9 @@ export const ROUTES = {
   VEHICLES_EXPENSE: "/expenses/vehicles",
   EDIT_VEHICLES_EXPENSE: "/expenses/vehicles/:expenseId/edit",
   ADD_VEHICLES_EXPENSE: "/expenses/vehicles/add",
+
+  //CONFIGURATION
+  CONFIGURATION: "/configuration",
 };
 
 export const formatDate = (date, time = false) => {

@@ -5,6 +5,7 @@ import tripsReducer from "./Trips/reducer";
 import officeExpenseReducer from "./OfficeExpense/reducer";
 import driverExpenseReducer from "./DriverExpense/reducer";
 import vehiclesExpenseReducer from "./VehicleExpense/reducer";
+import accountReducer from "./Accounts/reducer";
 
 export default combineReducers({
   user: loginReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   officeExpense: officeExpenseReducer,
   driverExpense: driverExpenseReducer,
   vehiclesExpense: vehiclesExpenseReducer,
+  accounts: accountReducer,
 });
