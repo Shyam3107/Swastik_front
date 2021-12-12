@@ -2,7 +2,8 @@ import axios from "axios";
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage";
 import { error, warn, success } from "../utils/constants";
 
-export const backendURL = "http://localhost:5000";
+//export const backendURL = "http://localhost:5000";
+export const backendURL = "https://swastik-backend.herokuapp.com";
 
 const modules = {
   login: "/login",

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
-import uploadFileForm from "../../../utils/uploadFileForm";
+import convertCSVToJson from "../../../utils/convertCSVtoJSON";
 import Layout from "../../Layout/Layout";
 import {
   includesInArray,
@@ -41,7 +41,7 @@ const Office = (props) => {
   }, [getExpense]);
 
   const handleFileSubmit = (file) => {
-    props.uploadExpense(uploadFileForm(file), getExpense);
+    convertCSVToJson(file, props.uploadExpense, getExpense);
   };
 
   if (!expenses || !Array.isArray(expenses)) expenses = [];

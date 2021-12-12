@@ -11,7 +11,7 @@ import useValidate from "../CustomComponents/CustomHooks/useValidate";
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 import { editAccount, addAccount } from "../../containers/Accounts/action";
 
-const initialForm = { userName: "", location: "" };
+const initialForm = { userName: "", location: "", password: "" };
 
 const AddEmployeeAccount = (props) => {
   const [form, setForm] = useState(initialForm);
@@ -27,7 +27,6 @@ const AddEmployeeAccount = (props) => {
         userName: initialFields.userName,
         location: initialFields.location,
       });
-    else setForm({ password: "", ...form });
   }, [initialFields, setForm]);
 
   let inputFields = [
