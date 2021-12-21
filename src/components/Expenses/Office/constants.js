@@ -1,8 +1,8 @@
 import { formatDateInDDMMYYY } from "../../../utils/constants";
 
-export const header = ["Date", "Cash", "Remarks"];
+export const header = ["Date", "Amount", "Remarks"];
 
-export const headerKey = ["date", "cash", "remarks"];
+export const headerKey = ["date", "amount", "remarks"];
 
 export const sampleData = [
   header,

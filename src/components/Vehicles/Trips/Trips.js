@@ -59,6 +59,7 @@ const Trips = (props) => {
           val.vehicleNo,
           val.driverName,
           val.pumpName ? val.pumpName : "",
+          val.loadingPoint,
           val.addedBy && val.addedBy.location ? val.addedBy.location : "",
         ],
         search

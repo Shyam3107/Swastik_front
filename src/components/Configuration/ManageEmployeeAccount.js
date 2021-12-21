@@ -8,6 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
+import DeleteIcon from "@mui/icons-material/Delete";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
@@ -18,11 +21,13 @@ import {
   deleteAccount,
 } from "../../containers/Accounts/action";
 import AddEmployeeAccount from "./AddEmployeeAccount";
+import CustomDialog from "../CustomComponents/CustomDialog/CustomDialog";
 
 const ManageEmployeeAccount = (props) => {
   const [state, setState] = useState("Manage");
   const [accountData, setAccounData] = useState(null);
-  let { accounts, loading } = props.accounts;
+  const [dialog, setDialog] = useState(false);
+  let { accounts, loading, deleteLoading } = props.accounts;
   if (!accounts || !Array.isArray(accounts)) accounts = [];
   const { getAccount } = props;
 
@@ -35,6 +40,15 @@ const ManageEmployeeAccount = (props) => {
     setState("Add");
   };
 
+  const handleDeleteIcon = (row) => {
+    setAccounData(row);
+    setDialog(true);
+  };
+
+  const handleAgree = () => {
+    props.deleteAccount([accountData._id], props.getAccount);
+  };
+
   const AddAccountIcon = () => {
     return (
       <Box textAlign="right" paddingRight="3%">
@@ -45,7 +59,7 @@ const ManageEmployeeAccount = (props) => {
     );
   };
 
-  if (loading) return <CustomLoader />;
+  if (loading || deleteLoading) return <CustomLoader />;
   else if (state === "Add") {
     return (
       <AddEmployeeAccount
@@ -64,6 +78,11 @@ const ManageEmployeeAccount = (props) => {
   else
     return (
       <React.Fragment>
+        <CustomDialog
+          open={dialog}
+          setOpen={setDialog}
+          handleAgree={handleAgree}
+        />
         <AddAccountIcon />
         <TableContainer
           component={Paper}
@@ -74,6 +93,7 @@ const ManageEmployeeAccount = (props) => {
               <TableRow>
                 <TableCell style={{ fontWeight: "600" }}>User Name</TableCell>
                 <TableCell style={{ fontWeight: "600" }}>Location</TableCell>
+                <TableCell></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -90,6 +110,13 @@ const ManageEmployeeAccount = (props) => {
                     {row.userName}
                   </TableCell>
                   <TableCell>{row.location}</TableCell>
+                  <TableCell>
+                    <Tooltip title="Delete">
+                      <IconButton onClick={() => handleDeleteIcon(row)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </Tooltip>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>

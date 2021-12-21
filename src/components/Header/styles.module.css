@@ -1,0 +1,22 @@
+.header {
+  flex-grow: 1;
+}
+
+.printTitle {
+  display: none;
+}
+
+@media print {
+  .title {
+    display: none;
+  }
+
+  .printTitle {
+    content: "Swastik Minerals";
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    color: black;
+    margin-left: 30vw;
+  }
+}

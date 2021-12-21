@@ -65,11 +65,11 @@ const CustomTableOutput = ({
         style={{
           textAlign: "center",
           padding: "20px 0",
-          fontWeight: "500",
+          fontWeight: "600",
         }}
       >
         {mssg}
-        No {mssgTitle} found
+        No {mssgTitle} Found
       </Box>
     );
   else if (!loading && data.length > 0)

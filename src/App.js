@@ -33,7 +33,7 @@ function App(props) {
   const loggedIn = props.user.loggedIn;
 
   return (
-    <div className="App" style={{ position: "relative", minHeight: "100vh" }}>
+    <div className="App">
       <Suspense fallback={<BackDropLoader />}>
         <Router history={hist}>
           {loggedIn && <Navigation />}

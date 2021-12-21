@@ -15,7 +15,6 @@ import {
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
-//import PersonIcon from "@mui/icons-material/Person";
 import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
@@ -78,11 +77,6 @@ const Navigation = (props) => {
           link: ROUTES.OFFICE_EXPENSE,
           icon: <BusinessIcon />,
         },
-        // {
-        //   title: "Driver",
-        //   link: ROUTES.DRIVER_EXPENSE,
-        //   icon: <PersonIcon />,
-        // },
         {
           title: "Vehicles",
           link: ROUTES.VEHICLES_EXPENSE,
@@ -107,7 +101,7 @@ const Navigation = (props) => {
               alt="logo"
             />
           </div>
-          <div className="sideBarHeaderName">Swastik minerals</div>
+          <div className="sideBarHeaderName">Swastik Minerals</div>
         </SidebarHeader>
 
         <SidebarContent>

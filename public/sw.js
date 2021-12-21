@@ -1,4 +1,4 @@
-const version = 7;
+const version = 9;
 const STATIC_CACHE = "static_cache_v" + version;
 const DYNAMIC_CACHE = "dynamic-cache";
 
@@ -12,6 +12,11 @@ const staticFiles = [
   "/static/js/main.chunk.js",
   "/static/js/bundle.js",
   "/static/js/vendors~main.chunk.js",
+  "https://use.fontawesome.com/releases/v5.0.7/js/all.js",
+  "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css",
+  "https://code.jquery.com/jquery-3.2.1.slim.min.js",
+  "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js",
+  "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js",
 ];
 
 self.addEventListener("install", (event) => {
@@ -43,25 +48,27 @@ self.addEventListener("fetch", (event) => {
 
   event.respondWith(
     caches.match(event.request).then((res) => {
-      if (res) {
-        return res;
-      }
+      return fetch(event.request)
+        .then((response) => {
+          if (
+            !response ||
+            response.status % 100 !== 2 ||
+            response.type !== "basic"
+          ) {
+            return response;
+          }
 
-      return fetch(event.request).then((response) => {
-        if (
-          !response ||
-          response.status % 100 !== 2 ||
-          response.type !== "basic"
-        ) {
+          const responseClone = response.clone();
+          caches.open(DYNAMIC_CACHE).then((cache) => {
+            cache.put(event.request, responseClone).catch((err) => {});
+          });
           return response;
-        }
-
-        const responseClone = response.clone();
-        caches.open(DYNAMIC_CACHE).then((cache) => {
-          cache.put(event.request, responseClone).catch((err) => {});
+        })
+        .catch((err) => {
+          if (res) {
+            return res;
+          }
         });
-        return response;
-      });
     })
   );
 });

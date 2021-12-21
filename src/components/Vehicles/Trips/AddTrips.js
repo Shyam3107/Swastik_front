@@ -94,7 +94,8 @@ const AddTrips = (props) => {
   };
 
   const handleReset = () => {
-    setTrip(initialTrip);
+    if (initialFields) setTrip(initialFields);
+    else setTrip(initialTrip);
   };
 
   const handleSubmit = () => {

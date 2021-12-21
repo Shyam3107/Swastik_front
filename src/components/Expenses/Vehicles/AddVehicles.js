@@ -12,7 +12,7 @@ const initialExpense = {
   date: new Date().toISOString(),
   vehicleNo: "",
   driverName: "",
-  cash: 0,
+  amount: 0,
   remarks: "",
   pumpName: "",
   diesel: "",
@@ -40,7 +40,7 @@ const Vehicles = (props) => {
     },
     { id: "vehicleNo", label: "Vehicle No.", required: true },
     { id: "driverName", label: "Driver Name", required: true },
-    { id: "cash", type: "number", label: "Cash", required: true },
+    { id: "amount", type: "number", label: "Amount", required: true },
     { id: "remarks", label: "Remarks", required: true },
     { id: "diesel", type: "number", label: "Diesel" },
     {
@@ -79,7 +79,8 @@ const Vehicles = (props) => {
   };
 
   const handleReset = () => {
-    setExpense(initialExpense);
+    if (initialFields) setExpense(initialFields);
+    else setExpense(initialExpense);
   };
 
   const handleSubmit = () => {

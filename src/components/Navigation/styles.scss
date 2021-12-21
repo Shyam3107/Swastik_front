@@ -69,3 +69,13 @@ body {
 .pro-sidebar-inner .pro-sidebar-layout .active {
   background-image: linear-gradient(0deg, #fece00 0%, #ffe172 100%);
 }
+
+@media print {
+  .MuiPaper-root {
+    box-shadow: none !important;
+  }
+
+  * {
+    overflow: hidden;
+  }
+}

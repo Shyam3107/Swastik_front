@@ -3,7 +3,6 @@ import loginReducer from "./Login/reducer";
 import documentsReducer from "./Documents/reducer";
 import tripsReducer from "./Trips/reducer";
 import officeExpenseReducer from "./OfficeExpense/reducer";
-import driverExpenseReducer from "./DriverExpense/reducer";
 import vehiclesExpenseReducer from "./VehicleExpense/reducer";
 import accountReducer from "./Accounts/reducer";
 
@@ -12,7 +11,6 @@ export default combineReducers({
   documents: documentsReducer,
   trips: tripsReducer,
   officeExpense: officeExpenseReducer,
-  driverExpense: driverExpenseReducer,
   vehiclesExpense: vehiclesExpenseReducer,
   accounts: accountReducer,
 });

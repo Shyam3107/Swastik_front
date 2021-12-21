@@ -90,7 +90,7 @@ const Documents = (props) => {
     downloadData.push(
       [...headerKey, "addedBy"].map((item, index) => {
         if (item === "addedBy")
-          return item.addedBy ? item.addedBy.location : "";
+          return val.addedBy ? val.addedBy.location : "";
         if (index > 0) return formatDateInDDMMYYY(val[item]);
         return val[item];
       })
@@ -101,7 +101,7 @@ const Documents = (props) => {
 
   documents = tempDocuments;
 
-  downloadData = [[header, "Added By"], ...downloadData];
+  downloadData = [[...header, "Added By"], ...downloadData];
 
   const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
     <TableCell key={index} style={{ fontWeight: "600" }}>

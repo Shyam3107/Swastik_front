@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons";
+import styles from "./styles.module.css";
 
 const LayoutView = ({
   loading,
@@ -24,8 +25,8 @@ const LayoutView = ({
   return (
     <React.Fragment>
       <Box display="flex">
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
+        <Grid container className={styles.viewHeader}>
+          <Grid item xs={10} md={3}>
             <Typography
               sx={{ flex: "1 1 100%" }}
               variant="h5"
@@ -36,7 +37,7 @@ const LayoutView = ({
           </Grid>
           <Grid
             item
-            xs={12}
+            xs={2}
             md={9}
             style={{ display: "flex", justifyContent: "flex-end" }}
           >
@@ -50,21 +51,24 @@ const LayoutView = ({
         </Grid>
       </Box>
 
-      <Grid container style={{ padding: "20px", width: "100%" }} spacing={4}>
+      <Grid container style={{ padding: "20px", width: "100%" }} spacing={3}>
         {viewFields.map((item, index) => {
           return (
-            <Grid item xs={12} sm={5} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={6}
+              sm={4}
+              md={3}
+              key={index}
+              className={styles.gridItem}
+            >
               <Typography variant="h6">{item.label}</Typography>
               <Typography>{item.value ? item.value : data[item.id]}</Typography>
             </Grid>
           );
         })}
       </Grid>
-      <Grid
-        container
-        style={{ padding: "20px", width: "100%", justifyContent: "center" }}
-        spacing={1}
-      >
+      <Grid container spacing={1} className={styles.goBack}>
         {handleBack && (
           <Grid item sm={3} md={3} lg={2} onClick={handleBack}>
             <Button variant="contained">Go Back</Button>

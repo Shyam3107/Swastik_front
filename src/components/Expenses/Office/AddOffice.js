@@ -10,7 +10,7 @@ import { ROUTES } from "../../../utils/constants";
 
 const initialExpense = {
   date: new Date().toISOString(),
-  cash: 0,
+  amount: 0,
   remarks: "",
 };
 
@@ -32,7 +32,7 @@ const Office = (props) => {
       label: "Date",
       maxDate: new Date().toISOString(),
     },
-    { id: "cash", type: "number", label: "Cash", required: true },
+    { id: "amount", type: "number", label: "Amount", required: true },
     { id: "remarks", label: "Remarks", required: true },
   ];
 
@@ -45,7 +45,8 @@ const Office = (props) => {
   };
 
   const handleReset = () => {
-    setExpense(initialExpense);
+    if (initialFields) setExpense(initialFields);
+    else setExpense(initialExpense);
   };
 
   const handleSubmit = () => {

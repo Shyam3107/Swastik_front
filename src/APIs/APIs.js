@@ -42,13 +42,6 @@ export const API = {
   EDIT_OFFICE_EXPENSE: `${modules.officeExpenses}/editExpenses`,
   DELETE_OFFICE_EXPENSE: `${modules.officeExpenses}/deleteExpenses`,
 
-  //DRIVER EXPENSES
-  GET_DRIVER_EXPENSE: `${modules.driverExpenses}/getExpenses`,
-  ADD_DRIVER_EXPENSE: `${modules.driverExpenses}/addExpenses`,
-  UPLOAD_DRIVER_EXPENSE: `${modules.driverExpenses}/uploadExpenses`,
-  EDIT_DRIVER_EXPENSE: `${modules.driverExpenses}/editExpenses`,
-  DELETE_DRIVER_EXPENSE: `${modules.driverExpenses}/deleteExpenses`,
-
   //VEHICLES EXPENSES
   GET_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/getExpenses`,
   ADD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/addExpenses`,

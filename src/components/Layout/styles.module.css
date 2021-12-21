@@ -1,0 +1,19 @@
+.goBack {
+  padding: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
+@media print {
+  .viewHeader {
+    display: none !important;
+  }
+
+  .goBack {
+    display: none;
+  }
+
+  .gridItem {
+    max-width: 25%;
+  }
+}
