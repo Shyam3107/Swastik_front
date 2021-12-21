@@ -22,24 +22,23 @@ const AddEmployeeAccount = (props) => {
   const submitLoading = addLoading || editLoading;
 
   useEffect(() => {
-    if (initialFields)
-      setForm({
-        userName: initialFields.userName,
-        location: initialFields.location,
-      });
+    if (initialFields) setForm({ ...initialFields, password: "" });
   }, [initialFields, setForm]);
 
   let inputFields = [
     { label: "User Name", id: "userName", required: true },
     { label: "Location", id: "location", required: true },
+    {
+      label: "Password",
+      id: "password",
+      required: initialFields ? false : true,
+    },
   ];
-
-  if (!initialFields)
-    inputFields.push({ label: "Password", id: "password", required: true });
 
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-    handleValidate(e.target.name, e.target.value);
+    if (e.target.name !== "password")
+      handleValidate(e.target.name, e.target.value);
   };
 
   const handleSubmit = () => {
@@ -108,8 +107,10 @@ const AddEmployeeAccount = (props) => {
             variant="contained"
             disabled={
               Object.keys(error).length !== 0 ||
-              !Object.values(form).every((val) => val) ||
-              submitLoading
+              !form.userName ||
+              !form.location ||
+              submitLoading ||
+              (!initialFields && !form.password)
             }
           >
             {submitLoading ? (

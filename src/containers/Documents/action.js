@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes";
 import { API, makeRequest } from "../../APIs/APIs";
+import convertCSVToJson from "../../utils/convertCSVtoJSON";
 
 export const getDocuments =
   (params = {}) =>
@@ -70,7 +71,7 @@ export const uploadDocuments =
       dispatch,
     };
 
-    makeRequest(options);
+    convertCSVToJson(payload, options);
   };
 
 export const editDocuments =

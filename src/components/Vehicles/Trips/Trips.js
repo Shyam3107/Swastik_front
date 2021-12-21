@@ -9,7 +9,6 @@ import {
   deleteTrips,
   uploadTrips,
 } from "../../../containers/Trips/action";
-import uploadFileForm from "../../../utils/uploadFileForm";
 import Layout from "../../Layout/Layout";
 import {
   includesInArray,
@@ -41,7 +40,7 @@ const Trips = (props) => {
   }, [getTrips]);
 
   const handleFileSubmit = (file) => {
-    props.uploadTrips(uploadFileForm(file), getTrips);
+    props.uploadTrips(file, getTrips);
   };
 
   if (!trips || !Array.isArray(trips)) trips = [];
@@ -59,6 +58,7 @@ const Trips = (props) => {
           val.vehicleNo,
           val.driverName,
           val.pumpName ? val.pumpName : "",
+          val.addedBy && val.addedBy.location ? val.addedBy.location : "",
         ],
         search
       )
@@ -66,27 +66,32 @@ const Trips = (props) => {
   });
 
   let downloadData = trips.map((item) => {
-    return headerKey.map((val) => {
+    return [...headerKey, "addedBy"].map((val) => {
       if (val === "date") return formatDateInDDMMYYY(item[val]);
+      if (val === "addedBy") return item[val] ? item[val].location : "";
       return item[val];
     });
   });
 
-  downloadData = [header, ...downloadData];
+  downloadData = [[...header, "Added By"], ...downloadData];
 
-  const tableRow = header.map((headCell, index) => (
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
   ));
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
       return (
         <TableCell key={index}>
-          {headVal === "date"
-            ? formatDateInDDMMYYY(row[headVal])
-            : row[headVal]}
+          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
+          {headVal === "addedBy"
+            ? row.addedBy
+              ? row.addedBy.location
+              : ""
+            : ""}
+          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
         </TableCell>
       );
     });

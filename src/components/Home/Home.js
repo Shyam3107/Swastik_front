@@ -1,5 +1,7 @@
+import UnderDevelopment from "../UnderDevelopment/UnderDevelopment";
+
 const Home = () => {
-  return <h1>This is home Page</h1>;
+  return <UnderDevelopment />;
 };
 
 export default Home;

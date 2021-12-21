@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
-import uploadFileForm from "../../../utils/uploadFileForm";
 import Layout from "../../Layout/Layout";
 import {
   includesInArray,
@@ -41,7 +40,7 @@ const Vehicles = (props) => {
   }, [getExpense]);
 
   const handleFileSubmit = (file) => {
-    props.uploadExpense(uploadFileForm(file), getExpense);
+    props.uploadExpense(file, getExpense);
   };
 
   if (!expenses || !Array.isArray(expenses)) expenses = [];
@@ -57,6 +56,7 @@ const Vehicles = (props) => {
           val.dieselFor ? val.dieselFor : "",
           val.driverName,
           val.vehicleNo,
+          val.addedBy && val.addedBy.location ? val.addedBy.location : "",
         ],
         search
       )
@@ -64,27 +64,32 @@ const Vehicles = (props) => {
   });
 
   let downloadData = expenses.map((item) => {
-    return headerKey.map((val) => {
+    return [...headerKey, "addedBy"].map((val) => {
       if (val === "date") return formatDateInDDMMYYY(item[val]);
+      if (val === "addedBy") return item.addedBy ? item.addedBy.location : "";
       return item[val];
     });
   });
 
-  downloadData = [header, ...downloadData];
+  downloadData = [[...header, "Added By"], ...downloadData];
 
-  const tableRow = header.map((headCell, index) => (
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
   ));
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
       return (
         <TableCell key={index}>
-          {headVal === "date"
-            ? formatDateInDDMMYYY(row[headVal])
-            : row[headVal]}
+          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
+          {headVal === "addedBy"
+            ? row.addedBy
+              ? row.addedBy.location
+              : ""
+            : ""}
+          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
         </TableCell>
       );
     });

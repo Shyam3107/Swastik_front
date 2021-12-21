@@ -1,5 +1,5 @@
-import React, { useState, lazy } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, lazy, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles.scss";
 import ReceiptIcon from "@mui/icons-material/Receipt";
@@ -35,9 +35,17 @@ const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
   const isOnline = useNetworkStatus();
 
-  const handleToggleSidebar = (value) => {
-    setToggled(value);
+  const history = useHistory();
+
+  const handleToggleSidebar = () => {
+    setToggled(!toggled);
   };
+
+  useEffect(() => {
+    history.listen(() => {
+      handleToggleSidebar();
+    });
+  }, [history, handleToggleSidebar]);
 
   const menuItems = [
     {

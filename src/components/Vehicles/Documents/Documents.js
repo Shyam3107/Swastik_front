@@ -10,7 +10,6 @@ import {
   deleteDocuments,
   uploadDocuments,
 } from "../../../containers/Documents/action";
-import uploadFileForm from "../../../utils/uploadFileForm";
 import Layout from "../../Layout/Layout";
 import {
   formatDateInDDMMYYY,
@@ -59,7 +58,7 @@ const Documents = (props) => {
   }, [getDocuments]);
 
   const handleFileSubmit = (file) => {
-    props.uploadDocuments(uploadFileForm(file), getDocuments);
+    props.uploadDocuments(file, getDocuments);
   };
 
   if (!documents || !Array.isArray(documents)) documents = [];
@@ -84,10 +83,13 @@ const Documents = (props) => {
       val.taxStatus,
       val.insuranceStatus,
       val.fitnessStatus,
+      val.addedBy && val.addedBy.location ? val.addedBy.location : "",
     ];
 
     downloadData.push(
-      headerKey.map((item, index) => {
+      [...headerKey, "addedBy"].map((item, index) => {
+        if (item === "addedBy")
+          return item.addedBy ? item.addedBy.location : "";
         if (index > 0) return formatDateInDDMMYYY(val[item]);
         return val[item];
       })
@@ -98,22 +100,28 @@ const Documents = (props) => {
 
   documents = tempDocuments;
 
-  downloadData = [header, ...downloadData];
+  downloadData = [[header, "Added By"], ...downloadData];
 
-  const tableRow = tableHeader.map((headCell, index) => (
+  const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
     <TableCell key={index} style={{ fontWeight: "600" }}>
       {headCell}
     </TableCell>
   ));
 
   const tableBodyFunc = (row) => {
-    return tableHeaderKey.map((headVal, index) => {
+    return [...tableHeaderKey, "addedBy"].map((headVal, index) => {
       if (headVal === "vehicleNo")
         return (
           <TableCell key={index}>
             <Link to={`/vehicles/document/${row[headVal]}`}>
               {row[headVal]}
             </Link>
+          </TableCell>
+        );
+      if (headVal === "addedBy")
+        return (
+          <TableCell key={index}>
+            {row.addedBy ? row.addedBy.location : ""}
           </TableCell>
         );
       return (

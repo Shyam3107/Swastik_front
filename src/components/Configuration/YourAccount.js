@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -8,17 +8,25 @@ import FormHelperText from "@mui/material/FormHelperText";
 import Button from "@mui/material/Button";
 
 import useValidate from "../CustomComponents/CustomHooks/useValidate";
-import { editAccount } from "../../containers/Accounts/action";
+import { editAccount, getAccount } from "../../containers/Accounts/action";
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 
 const YourAccount = (props) => {
+  let { accounts, loading } = props.accounts;
+  if (!accounts || Array.isArray(accounts)) accounts = {};
   const user = props.user;
+  const accountId = user.user._id;
   const [form, setForm] = useState(user.user);
   const [error, handleValidate] = useValidate();
+  const { getAccount } = props;
 
-  const inputFields = [
-    { label: "User Name", id: "userName", required: true },
-    { label: "Location", id: "location", required: true },
-  ];
+  useEffect(() => {
+    getAccount({ accountId });
+  }, [getAccount, accountId]);
+
+  useEffect(() => {
+    if (accounts && accounts.userName) setForm(accounts);
+  }, [accounts]);
 
   const handleInputChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -28,6 +36,13 @@ const YourAccount = (props) => {
   const handleSaveButton = () => {
     props.editAccount(form);
   };
+
+  if (loading) return <CustomLoader />;
+
+  const inputFields = [
+    { label: "User Name", id: "userName", required: true },
+    { label: "Location", id: "location", required: true },
+  ];
 
   return (
     <Box>
@@ -68,8 +83,11 @@ const YourAccount = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    accounts: state.accounts,
     user: state.user,
   };
 };
 
-export default connect(mapStateToProps, { editAccount })(YourAccount);
+export default connect(mapStateToProps, { editAccount, getAccount })(
+  YourAccount
+);
