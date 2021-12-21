@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
@@ -17,7 +18,7 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants";
-import { header, headerKey, sampleData, EDIT_URL } from "./constants";
+import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants";
 
 const Trips = (props) => {
   let { getTrips } = props;
@@ -83,6 +84,12 @@ const Trips = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
+      if (headVal === "diNo")
+        return (
+          <TableCell key={index}>
+            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
+          </TableCell>
+        );
       return (
         <TableCell key={index}>
           {headVal === "date" && formatDateInDDMMYYY(row[headVal])}

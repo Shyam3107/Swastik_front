@@ -109,3 +109,4 @@ export const sampleData = [
 ];
 
 export const EDIT_URL = (id) => `/vehicles/trips/${id}/edit`;
+export const VIEW_URL = (id) => `/vehicles/trips/${id}`;

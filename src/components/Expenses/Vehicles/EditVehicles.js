@@ -5,7 +5,7 @@ import { getExpense } from "../../../containers/VehicleExpense/action";
 import AddVehicles from "./AddVehicles";
 
 const Vehicles = (props) => {
-  let { expenses } = props.vehiclesExpenses;
+  let { expenses } = props.vehiclesExpense;
   const params = useParams();
   const { getExpense } = props;
   const { expenseId } = params;

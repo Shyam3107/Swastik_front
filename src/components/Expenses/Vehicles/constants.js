@@ -51,4 +51,4 @@ export const sampleData = [
   ],
 ];
 
-export const EDIT_URL = (id) => `/expense/vehicles/${id}/edit`;
+export const EDIT_URL = (id) => `/expenses/vehicles/${id}/edit`;

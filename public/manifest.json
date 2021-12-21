@@ -1,0 +1,47 @@
+{
+    "short_name": "Swastik Minerals",
+    "name": "Swastik Minerals",
+    "description": "Transport Managing System for solely Swastik Minerals",
+    "icons": [
+        {
+            "src": "/images/logo/16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/24.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/64.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/images/logo/512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "scope": ".",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#1976d2",
+    "background_color": "#ffffff"
+}

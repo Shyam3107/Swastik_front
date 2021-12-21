@@ -30,6 +30,7 @@ export const ROUTES = {
 
   // TRIPS
   TRIPS: "/vehicles/trips",
+  VIEW_TRIP: "/vehicles/trips/:diNo",
   ADD_TRIP: "/vehicles/trips/add",
   EDIT_TRIP: "/vehicles/trips/:diNo/edit",
 

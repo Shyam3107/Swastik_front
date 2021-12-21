@@ -23,6 +23,7 @@ import {
   EXPIRED,
   ACTIVE,
   EDIT_URL,
+  VIEW_URL,
 } from "./constants";
 
 const tableHeader = [
@@ -113,9 +114,7 @@ const Documents = (props) => {
       if (headVal === "vehicleNo")
         return (
           <TableCell key={index}>
-            <Link to={`/vehicles/document/${row[headVal]}`}>
-              {row[headVal]}
-            </Link>
+            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
           </TableCell>
         );
       if (headVal === "addedBy")

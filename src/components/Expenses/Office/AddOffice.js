@@ -18,7 +18,7 @@ const Office = (props) => {
   const [expense, setExpense] = useState(initialExpense);
   const { initialFields } = props;
   const history = useHistory();
-  const { addLoading, editLoading } = props.officeExpense;
+  const { addLoading, editLoading, loading } = props.officeExpense;
 
   useEffect(() => {
     if (initialFields) setExpense(initialFields);
@@ -65,6 +65,7 @@ const Office = (props) => {
       handleReset={handleReset}
       handleSubmit={handleSubmit}
       data={expense}
+      loading={loading}
       submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />

@@ -7,6 +7,7 @@ import Home from "../Home/Home";
 import Trips from "../Vehicles/Trips/Trips";
 import AddTrips from "../Vehicles/Trips/AddTrips";
 import EditTrips from "../Vehicles/Trips/EditTrips";
+import ViewTrip from "../Vehicles/Trips/ViewTrip";
 import Documents from "../Vehicles/Documents/Documents";
 import AddDocument from "../Vehicles/Documents/AddDocument";
 import ViewDocument from "../Vehicles/Documents/ViewDocument";
@@ -51,6 +52,10 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_TRIP,
       component: <EditTrips />,
+    },
+    {
+      path: ROUTES.VIEW_TRIP,
+      component: <ViewTrip />,
     },
     {
       path: ROUTES.DOCUMENTS,

@@ -46,3 +46,4 @@ export const EXPIRED = "EXPIRED";
 export const ACTIVE = "ACTIVE";
 
 export const EDIT_URL = (id) => `/vehicles/document/${id}/edit`;
+export const VIEW_URL = (id) => `/vehicles/document/${id}`;
