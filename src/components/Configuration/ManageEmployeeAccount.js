@@ -46,7 +46,11 @@ const ManageEmployeeAccount = (props) => {
   };
 
   const handleAgree = () => {
-    props.deleteAccount([accountData._id], props.getAccount);
+    const cb = () => {
+      props.getAccount();
+      setAccounData(null);
+    };
+    props.deleteAccount([accountData._id], cb);
   };
 
   const AddAccountIcon = () => {

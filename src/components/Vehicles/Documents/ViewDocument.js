@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { useHistory, useParams } from "react-router";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
 
 import { formatDate, ROUTES } from "../../../utils/constants";
 import {
@@ -8,7 +14,7 @@ import {
   deleteDocuments,
 } from "../../../containers/Documents/action";
 import LayoutView from "../../Layout/LayoutView";
-import { header, headerKey, EDIT_URL } from "./constants";
+import { EDIT_URL } from "./constants";
 
 const ViewDocument = (props) => {
   const history = useHistory();
@@ -17,17 +23,10 @@ const ViewDocument = (props) => {
   let { loading, documents } = props.documents;
   const { getDocuments } = props;
 
-  let fields = [];
   let selected = [];
 
   if (documents && !Array.isArray(documents)) {
-    fields = header.map((head, index) => {
-      return {
-        label: head,
-        id: headerKey[index],
-        value: index > 0 ? formatDate(documents[headerKey[index]]) : null,
-      };
-    });
+    selected = [];
     selected.push(documents._id);
   } else documents = {};
 
@@ -56,13 +55,41 @@ const ViewDocument = (props) => {
       title={vehicleNo}
       loading={loading}
       data={documents}
-      viewFields={fields}
       handleBack={handleBack}
       handleDeleteAgree={handleDeleteAgree}
       handleAddButton={handleAddButton}
       handleEditButton={handleEditButton}
       numSelected={selected}
-    />
+    >
+      <TableContainer style={{ marginRight: "3%", width: "95%" }}>
+        <Table aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell></TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Paid On</TableCell>
+              <TableCell style={{ fontWeight: "600" }}>Validity Upto</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>Tax</TableCell>
+              <TableCell>{formatDate(documents.taxPaidOn)}</TableCell>
+              <TableCell>{formatDate(documents.taxPaidUpto)}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>Insurance</TableCell>
+              <TableCell>{formatDate(documents.insurancePaidOn)}</TableCell>
+              <TableCell>{formatDate(documents.insurancePaidUpto)}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>Fitness</TableCell>
+              <TableCell>{formatDate(documents.fitnessPaidOn)}</TableCell>
+              <TableCell>{formatDate(documents.fitnessPaidUpto)}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </LayoutView>
   );
 };
 

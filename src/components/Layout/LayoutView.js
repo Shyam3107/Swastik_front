@@ -19,6 +19,7 @@ const LayoutView = ({
   handleEditButton,
   handleAddButton,
   numSelected,
+  children,
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />;
 
@@ -68,6 +69,7 @@ const LayoutView = ({
           );
         })}
       </Grid>
+      {children}
       <Grid container spacing={1} className={styles.goBack}>
         {handleBack && (
           <Grid item sm={3} md={3} lg={2} onClick={handleBack}>
