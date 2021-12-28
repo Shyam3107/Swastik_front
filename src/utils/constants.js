@@ -9,14 +9,7 @@ export const monthEnd = moment().endOf("month");
 export const yearEnd = moment().endOf("year");
 export const currentDate = moment().endOf("day");
 
-export const pumpNames = [
-  "Saurabh Fuels",
-  "Saudimini Fuels",
-  "Lal Fuels",
-  "HPCL",
-  "BPCL",
-  "IOCL",
-];
+export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"];
 
 export const ROUTES = {
   // LOGIN

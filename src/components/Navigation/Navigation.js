@@ -1,5 +1,5 @@
-import React, { useState, lazy, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React, { useState, lazy } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles.scss";
 import ReceiptIcon from "@mui/icons-material/Receipt";
@@ -34,17 +34,9 @@ const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
   const isOnline = useNetworkStatus();
 
-  const history = useHistory();
-
   const handleToggleSidebar = () => {
     setToggled(!toggled);
   };
-
-  useEffect(() => {
-    history.listen(() => {
-      handleToggleSidebar();
-    });
-  }, [history, handleToggleSidebar]);
 
   const menuItems = [
     {
@@ -117,7 +109,11 @@ const Navigation = (props) => {
                   >
                     {item.subMenu.map((sub, ind) => {
                       return (
-                        <MenuItem key={ind} icon={sub.icon}>
+                        <MenuItem
+                          key={ind}
+                          icon={sub.icon}
+                          onClick={handleToggleSidebar}
+                        >
                           <Link to={sub.link}>{sub.title}</Link>
                         </MenuItem>
                       );
@@ -126,7 +122,12 @@ const Navigation = (props) => {
                 );
               } else
                 return (
-                  <MenuItem icon={item.icon} key={index} active={item.active}>
+                  <MenuItem
+                    icon={item.icon}
+                    key={index}
+                    active={item.active}
+                    onClick={handleToggleSidebar}
+                  >
                     <Link to={item.link}>{item.title}</Link>
                   </MenuItem>
                 );

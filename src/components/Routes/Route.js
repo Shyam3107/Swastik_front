@@ -12,7 +12,6 @@ import Documents from "../Vehicles/Documents/Documents";
 import AddDocument from "../Vehicles/Documents/AddDocument";
 import ViewDocument from "../Vehicles/Documents/ViewDocument";
 import EditDocument from "../Vehicles/Documents/EditDocument";
-//import DriverExpense from "../Expenses/Driver/Driver";
 import OfficeExpense from "../Expenses/Office/Office";
 import AddOfficeExpense from "../Expenses/Office/AddOffice";
 import EditOfficeExpense from "../Expenses/Office/EditOffice";
@@ -23,6 +22,7 @@ import Configuration from "../Configuration/Configuration";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
+  const user = props.user.user;
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
@@ -89,10 +89,6 @@ const Routes = (props) => {
       path: ROUTES.EDIT_OFFICE_EXPENSE,
       component: <EditOfficeExpense />,
     },
-    // {
-    //   path: ROUTES.DRIVER_EXPENSE,
-    //   component: <DriverExpense />,
-    // },
     {
       path: ROUTES.VEHICLES_EXPENSE,
       component: <VehiclesExpense />,
@@ -108,6 +104,7 @@ const Routes = (props) => {
     {
       path: ROUTES.CONFIGURATION,
       component: <Configuration />,
+      noShow: user && !user.addedBy ? false : true,
     },
   ];
 
@@ -126,7 +123,7 @@ const Routes = (props) => {
       {privateRoutes.map((rout, index) => {
         return (
           <PrivateRoute exact path={rout.path} key={index}>
-            {rout.component}
+            {rout.noShow ? <Redirect to={ROUTES.HOME} /> : rout.component}
           </PrivateRoute>
         );
       })}
