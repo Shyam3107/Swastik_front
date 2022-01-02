@@ -12,7 +12,7 @@ import { editAccount, getAccount } from "../../containers/Accounts/action";
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 
 const YourAccount = (props) => {
-  let { accounts, loading } = props.accounts;
+  let { accounts, loading, editLoading } = props.accounts;
   if (!accounts || Array.isArray(accounts)) accounts = {};
   const user = props.user;
   const accountId = user.user._id;
@@ -25,7 +25,12 @@ const YourAccount = (props) => {
   }, [getAccount, accountId]);
 
   useEffect(() => {
-    if (accounts && accounts.userName) setForm(accounts);
+    if (accounts && accounts.userName)
+      setForm({
+        _id: accounts._id,
+        userName: accounts.userName,
+        location: accounts.location,
+      });
   }, [accounts]);
 
   const handleInputChange = (e) => {
@@ -34,10 +39,11 @@ const YourAccount = (props) => {
   };
 
   const handleSaveButton = () => {
-    props.editAccount(form);
+    const cb = () => getAccount({ accountId });
+    props.editAccount(form, cb);
   };
 
-  if (loading) return <CustomLoader />;
+  if (loading || editLoading) return <CustomLoader />;
 
   const inputFields = [
     { label: "User Name", id: "userName", required: true },
