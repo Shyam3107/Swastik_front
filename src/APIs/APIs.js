@@ -7,14 +7,13 @@ export const backendURL = "https://swastik-backend.herokuapp.com";
 
 const modules = {
   login: "/login",
-  leave: "/leave",
-  student: "/student",
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
   driverExpenses: "/expenses/driver",
   officeExpenses: "/expenses/office",
   vehiclesExpenses: "/expenses/vehicles",
   configureAccounts: "/configure/accounts",
+  receipts: "/receipts",
 };
 
 export const API = {
@@ -54,6 +53,12 @@ export const API = {
   ADD_ACCOUNTS: `${modules.configureAccounts}/addAccount`,
   EDIT_ACCOUNTS: `${modules.configureAccounts}/editAccount`,
   DELETE_ACCOUNTS: `${modules.configureAccounts}/deleteAccount`,
+
+  // RECEIPTS
+  GET_RECEIPT: `${modules.receipts}/getReceipt`,
+  ADD_RECEIPT: `${modules.receipts}/addReceipt`,
+  EDIT_RECEIPT: `${modules.receipts}/editReceipt`,
+  DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {

@@ -19,7 +19,7 @@ const initialTrip = {
   diesel: "",
   dieselIn: "",
   pumpName: "",
-  cash: null,
+  cash: undefined,
   remarks: "",
 };
 
@@ -61,6 +61,7 @@ const AddTrips = (props) => {
       type: "number",
       label: "Driver Phone No.",
       required: true,
+      customValidate: [{ type: "PHONE" }],
     },
     { id: "diesel", type: "number", label: "Diesel" },
     {

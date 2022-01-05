@@ -19,10 +19,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import BusinessIcon from "@mui/icons-material/Business";
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import { BiTrip } from "react-icons/bi";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
+import { useHistory } from "react-router";
 
+import { userLogout } from "../../containers/Login/action";
 import { ROUTES } from "../../utils/constants";
 import Footer, { OfflineFooter } from "../Footer/Footer";
 import useNetworkStatus from "../CustomComponents/CustomHooks/useNetworkStatus";
@@ -33,9 +36,16 @@ const Route = lazy(() => import("../Routes/Route"));
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
   const isOnline = useNetworkStatus();
+  const history = useHistory();
 
   const handleToggleSidebar = () => {
     setToggled(!toggled);
+  };
+
+  const handleLogout = () => {
+    history.push(ROUTES.LOGIN);
+    sessionStorage.clear();
+    props.userLogout();
   };
 
   const menuItems = [
@@ -45,13 +55,18 @@ const Navigation = (props) => {
       link: ROUTES.HOME,
     },
     {
+      icon: <ReceiptIcon />,
+      title: "Receipt",
+      link: ROUTES.RECEIPT,
+    },
+    {
       icon: <DirectionsBusIcon />,
       title: "Vehicles",
       subMenu: [
         {
           title: "Documents",
           link: ROUTES.DOCUMENTS,
-          icon: <ReceiptIcon />,
+          icon: <ArticleRoundedIcon />,
         },
         {
           title: "Trips",
@@ -136,8 +151,8 @@ const Navigation = (props) => {
         </SidebarContent>
         <SidebarFooter className="sideBarFooter">
           <Menu iconShape="circle">
-            <MenuItem icon={<LogoutIcon />}>
-              <Link to={ROUTES.LOGOUT}>Logout</Link>
+            <MenuItem icon={<LogoutIcon />} onClick={handleLogout}>
+              Logout
             </MenuItem>
             <Footer />
           </Menu>
@@ -185,4 +200,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(Navigation);
+export default connect(mapStateToProps, { userLogout })(Navigation);

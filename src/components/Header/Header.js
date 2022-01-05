@@ -19,8 +19,7 @@ const Header = (props) => {
         <Toolbar>
           {props.MenuIcon}
           <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
-            <span className={styles.title}>Transport Management System</span>
-            <span className={styles.printTitle}>Swastik Minerals</span>
+            Transport Management System
           </Typography>
           {user && !user.addedBy && (
             <Button

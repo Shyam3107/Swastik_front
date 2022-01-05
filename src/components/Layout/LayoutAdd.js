@@ -69,7 +69,11 @@ const LayoutAdd = ({
               event = { target: { name: item.id, value: event } };
 
             if (item.required)
-              handleValidate(event.target.name, event.target.value);
+              handleValidate(
+                event.target.name,
+                event.target.value,
+                item.customValidate
+              );
           };
 
           return (
@@ -127,7 +131,14 @@ const LayoutAdd = ({
         style={{ padding: "20px", width: "100%", justifyContent: "center" }}
         spacing={1}
       >
-        <Grid item sm={3} md={3} lg={1} onClick={handleCancel} marginRight='10px'>
+        <Grid
+          item
+          sm={3}
+          md={3}
+          lg={1}
+          onClick={handleCancel}
+          marginRight="10px"
+        >
           <Button disabled={submitLoading} variant="contained">
             Cancel
           </Button>

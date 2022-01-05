@@ -19,6 +19,9 @@ import VehiclesExpense from "../Expenses/Vehicles/Vehicles";
 import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles";
 import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles";
 import Configuration from "../Configuration/Configuration";
+import Receipt from "../Receipt/Receipt";
+import AddReceipt from "../Receipt/AddReceipt";
+import EditReceipt from "../Receipt/EditReceipt";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
@@ -100,6 +103,18 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_VEHICLES_EXPENSE,
       component: <EditVehiclesExpense />,
+    },
+    {
+      path: ROUTES.RECEIPT,
+      component: <Receipt />,
+    },
+    {
+      path: ROUTES.EDIT_RECEIPT,
+      component: <EditReceipt />,
+    },
+    {
+      path: ROUTES.ADD_RECEIPT,
+      component: <AddReceipt />,
     },
     {
       path: ROUTES.CONFIGURATION,

@@ -48,6 +48,11 @@ export const ROUTES = {
   EDIT_VEHICLES_EXPENSE: "/expenses/vehicles/:expenseId/edit",
   ADD_VEHICLES_EXPENSE: "/expenses/vehicles/add",
 
+  // RECEIPT
+  RECEIPT: "/receipt",
+  EDIT_RECEIPT: "/receipt/:receiptId/edit",
+  ADD_RECEIPT: "/receipt/add",
+
   //CONFIGURATION
   CONFIGURATION: "/configuration",
 };

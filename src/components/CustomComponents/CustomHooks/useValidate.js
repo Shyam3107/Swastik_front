@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+const validatePhoneNo = (phoneNo) => {
+  const regex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+  return regex.test(phoneNo);
+};
+
 const useValidate = () => {
   const [error, setError] = useState({});
 
@@ -10,12 +15,22 @@ const useValidate = () => {
     let newError = { ...error };
     delete newError[fieldId];
     if (customValidate) {
-      console.log("Cutom Vlidate call");
-    } else {
-      if (!fieldValue) {
-        newError[fieldId] = defaultMssg;
-      }
+      let errMssg = null;
+      customValidate.forEach(({ mssg, check, type }) => {
+        if (mssg) return;
+        if (check) {
+        } else if (type === "PHONE") {
+          if (!validatePhoneNo(fieldValue))
+            errMssg = mssg || "Enter Valid Phone No.";
+        }
+      });
+      if (errMssg) newError[fieldId] = errMssg;
     }
+
+    if (!fieldValue) {
+      newError[fieldId] = defaultMssg;
+    }
+
     setError(newError);
   };
 
