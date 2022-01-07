@@ -31,6 +31,32 @@ export const userLogin =
     makeRequest(options);
   };
 
+export const forgotPassword =
+  (params = {}, cb = () => {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.FORGOT_PASSWORD_PENDING,
+    });
+
+    const options = {
+      method: "get",
+      url: API.FORGOT_PASSWORD,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.FORGOT_PASSWORD_SUCCESS,
+          payload: data,
+        });
+        toastMessage(data.message, success);
+        cb();
+      },
+      errorActionType: actionTypes.FORGOT_PASSWORD_FAILURE,
+      dispatch,
+    };
+
+    makeRequest(options);
+  };
+
 export const userLogout = () => (dispatch) => {
   dispatch({
     type: actionTypes.LOGOUT,

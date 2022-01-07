@@ -25,12 +25,7 @@ const YourAccount = (props) => {
   }, [getAccount, accountId]);
 
   useEffect(() => {
-    if (accounts && accounts.userName)
-      setForm({
-        _id: accounts._id,
-        userName: accounts.userName,
-        location: accounts.location,
-      });
+    if (accounts && accounts.userName) setForm(accounts);
   }, [accounts]);
 
   const handleInputChange = (e) => {
@@ -48,6 +43,8 @@ const YourAccount = (props) => {
   const inputFields = [
     { label: "User Name", id: "userName", required: true },
     { label: "Location", id: "location", required: true },
+    { label: "Company Name", id: "companyName" },
+    { label: "T.P.T Code", id: "tptCode" },
   ];
 
   return (

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
+import { withRouter } from "react-router";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -17,7 +18,7 @@ import LayoutView from "../../Layout/LayoutView";
 import { EDIT_URL } from "./constants";
 
 const ViewDocument = (props) => {
-  const history = useHistory();
+  const history = props.history;
   const params = useParams();
   const { vehicleNo } = params;
   let { loading, documents } = props.documents;
@@ -99,6 +100,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { getDocuments, deleteDocuments })(
-  ViewDocument
+export default withRouter(
+  connect(mapStateToProps, { getDocuments, deleteDocuments })(ViewDocument)
 );

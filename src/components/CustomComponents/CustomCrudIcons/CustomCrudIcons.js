@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import Tooltip from "@mui/material/Tooltip";
 import Grid from "@mui/material/Grid";
+import PrintIcon from "@mui/icons-material/Print";
 
 const styleButton = {
   color: "black",
@@ -36,6 +37,7 @@ const CustomCrudIcons = ({
   handleEditButton,
   numSelected = [],
   downloadLoading,
+  print = false,
 }) => {
   return (
     <Box width="100%">
@@ -81,6 +83,13 @@ const CustomCrudIcons = ({
           display="flex"
           justifyContent="flex-end"
         >
+          {print && (
+            <Tooltip title="Print">
+              <IconButton style={styleButton} onClick={() => window.print()}>
+                <PrintIcon />
+              </IconButton>
+            </Tooltip>
+          )}
           {numSelected.length > 0 && handleDeleteAgree && (
             <CustomDeleteIcon
               handleDeleteAgree={handleDeleteAgree}

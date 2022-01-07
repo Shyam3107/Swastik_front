@@ -19,11 +19,11 @@ import HomeIcon from "@mui/icons-material/Home";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
 import BusinessIcon from "@mui/icons-material/Business";
-import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
 import { BiTrip } from "react-icons/bi";
 import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 
 import { userLogout } from "../../containers/Login/action";
 import { ROUTES } from "../../utils/constants";
@@ -36,7 +36,10 @@ const Route = lazy(() => import("../Routes/Route"));
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false);
   const isOnline = useNetworkStatus();
-  const history = useHistory();
+  const history = props.history;
+  let user = props.user.user;
+
+  if (!user) user = {};
 
   const handleToggleSidebar = () => {
     setToggled(!toggled);
@@ -99,6 +102,7 @@ const Navigation = (props) => {
         toggled={toggled}
         breakPoint="md"
         onToggle={handleToggleSidebar}
+        className="noPrint"
       >
         <SidebarHeader className="sideBarHeader">
           <div className="sideBarHeaderImg">
@@ -108,7 +112,13 @@ const Navigation = (props) => {
               alt="logo"
             />
           </div>
-          <div className="sideBarHeaderName">Swastik Minerals</div>
+          <div className="sideBarHeaderName">
+            {user.companyName
+              ? user.companyName
+              : user.companyAdminId.companyName
+              ? user.companyAdminId.companyName
+              : "Swastik Minerals"}
+          </div>
         </SidebarHeader>
 
         <SidebarContent>
@@ -200,4 +210,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { userLogout })(Navigation);
+export default withRouter(connect(mapStateToProps, { userLogout })(Navigation));

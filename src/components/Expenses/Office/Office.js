@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
@@ -33,7 +33,7 @@ const Office = (props) => {
     deleteLoading,
     uploadLoading,
   } = props.officeExpense;
-  const history = useHistory();
+  const history = props.history;
 
   useEffect(() => {
     getExpense();
@@ -147,8 +147,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getExpense,
-  deleteExpense,
-  uploadExpense,
-})(Office);
+export default withRouter(
+  connect(mapStateToProps, {
+    getExpense,
+    deleteExpense,
+    uploadExpense,
+  })(Office)
+);

@@ -23,6 +23,13 @@ export default function reducer(state = initialState, action = {}) {
       return { ...initialState, ...action.payload, loggedIn: true };
     case actionTypes.LOGIN_FAILURE:
       return { ...initialState, error: action.payload };
+    case actionTypes.FORGOT_PASSWORD_PENDING:
+      return { ...initialState, loading: true };
+    case actionTypes.FORGOT_PASSWORD_SUCCESS:
+      return { ...initialState, loading: false };
+    case actionTypes.FORGOT_PASSWORD_FAILURE:
+      return { ...initialState, error: action.payload };
+
     case actionTypes.LOGOUT: {
       return { ...initialState, user: null, token: null, loggedIn: false };
     }

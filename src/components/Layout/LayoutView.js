@@ -20,11 +20,13 @@ const LayoutView = ({
   handleAddButton,
   numSelected,
   children,
+  print = false,
+  className = "",
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />;
 
   return (
-    <React.Fragment>
+    <Box className={className}>
       <Box display="flex">
         <Grid container className={styles.viewHeader}>
           <Grid item xs={10} md={3}>
@@ -47,6 +49,7 @@ const LayoutView = ({
               handleEditButton={handleEditButton}
               handleAddButton={handleAddButton}
               numSelected={numSelected}
+              print={print}
             />
           </Grid>
         </Grid>
@@ -77,7 +80,7 @@ const LayoutView = ({
           </Grid>
         )}
       </Grid>
-    </React.Fragment>
+    </Box>
   );
 };
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import LayoutAdd from "../Layout/LayoutAdd";
 import { addReceipt, editReceipt } from "../../containers/Receipt/action";
 import { ROUTES } from "../../utils/constants";
@@ -14,7 +14,7 @@ const initialReceipt = {
 const Receipt = (props) => {
   const [receipt, setReceipt] = useState(initialReceipt);
   const { initialFields } = props;
-  const history = useHistory();
+  const history = props.history;
   const { addLoading, editLoading, loading } = props.receipt;
 
   useEffect(() => {
@@ -77,4 +77,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addReceipt, editReceipt })(Receipt);
+export default withRouter(
+  connect(mapStateToProps, { addReceipt, editReceipt })(Receipt)
+);

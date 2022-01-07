@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -34,7 +34,7 @@ const Trips = (props) => {
     deleteLoading,
     uploadLoading,
   } = props.trips;
-  const history = useHistory();
+  const history = props.history;
 
   useEffect(() => {
     getTrips();
@@ -162,8 +162,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getTrips,
-  deleteTrips,
-  uploadTrips,
-})(Trips);
+export default withRouter(
+  connect(mapStateToProps, {
+    getTrips,
+    deleteTrips,
+    uploadTrips,
+  })(Trips)
+);

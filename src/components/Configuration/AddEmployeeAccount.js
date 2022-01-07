@@ -11,7 +11,13 @@ import useValidate from "../CustomComponents/CustomHooks/useValidate";
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 import { editAccount, addAccount } from "../../containers/Accounts/action";
 
-const initialForm = { userName: "", location: "", password: "" };
+const initialForm = {
+  userName: "",
+  location: "",
+  password: "",
+  companyName: "",
+  tptCode: "",
+};
 
 const AddEmployeeAccount = (props) => {
   const [form, setForm] = useState(initialForm);
@@ -33,13 +39,9 @@ const AddEmployeeAccount = (props) => {
       id: "password",
       required: initialFields ? false : true,
     },
+    { label: "Company Name", id: "companyName" },
+    { label: "T.P.T Code", id: "tptCode" },
   ];
-
-  const handleInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    if (e.target.name !== "password")
-      handleValidate(e.target.name, e.target.value);
-  };
 
   const handleSubmit = () => {
     const cb = () => {
@@ -63,6 +65,10 @@ const AddEmployeeAccount = (props) => {
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
         {inputFields.map((item, index) => {
+          const handleInputChange = (e) => {
+            setForm({ ...form, [e.target.name]: e.target.value });
+            if (item.required) handleValidate(e.target.name, e.target.value);
+          };
           return (
             <Grid item xs={12} sm={5} md={4} lg={3} key={index}>
               <Typography variant="h6">

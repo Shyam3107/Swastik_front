@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import moment from "moment";
@@ -52,7 +52,7 @@ const Documents = (props) => {
     deleteLoading,
     uploadLoading,
   } = props.documents;
-  const history = useHistory();
+  const history = props.history;
 
   useEffect(() => {
     getDocuments();
@@ -89,8 +89,7 @@ const Documents = (props) => {
 
     downloadData.push(
       [...headerKey, "addedBy"].map((item, index) => {
-        if (item === "addedBy")
-          return val.addedBy ? val.addedBy.location : "";
+        if (item === "addedBy") return val.addedBy ? val.addedBy.location : "";
         if (index > 0) return formatDateInDDMMYYY(val[item]);
         return val[item];
       })
@@ -193,8 +192,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getDocuments,
-  deleteDocuments,
-  uploadDocuments,
-})(Documents);
+export default withRouter(
+  connect(mapStateToProps, {
+    getDocuments,
+    deleteDocuments,
+    uploadDocuments,
+  })(Documents)
+);

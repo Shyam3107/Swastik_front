@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import moment from "moment";
 import TableCell from "@mui/material/TableCell";
@@ -23,7 +23,7 @@ const Office = (props) => {
   const [to, setTo] = useState(currentDate);
   let { loading, receipts, addLoading, editLoading, deleteLoading } =
     props.receipt;
-  const history = useHistory();
+  const history = props.history;
 
   useEffect(() => {
     getReceipt();
@@ -132,7 +132,9 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {
-  getReceipt,
-  deleteReceipt,
-})(Office);
+export default withRouter(
+  connect(mapStateToProps, {
+    getReceipt,
+    deleteReceipt,
+  })(Office)
+);

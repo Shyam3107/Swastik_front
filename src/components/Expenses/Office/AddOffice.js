@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
 import {
   addExpense,
@@ -17,7 +17,7 @@ const initialExpense = {
 const Office = (props) => {
   const [expense, setExpense] = useState(initialExpense);
   const { initialFields } = props;
-  const history = useHistory();
+  const history = props.history;
   const { addLoading, editLoading, loading } = props.officeExpense;
 
   useEffect(() => {
@@ -80,4 +80,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addExpense, editExpense })(Office);
+export default withRouter(
+  connect(mapStateToProps, { addExpense, editExpense })(Office)
+);

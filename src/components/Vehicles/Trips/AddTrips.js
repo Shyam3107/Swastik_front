@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
 import { ROUTES, pumpNames } from "../../../utils/constants";
 import { addTrips, editTrips } from "../../../containers/Trips/action";
@@ -26,7 +26,7 @@ const initialTrip = {
 const AddTrips = (props) => {
   const [trip, setTrip] = useState(initialTrip);
   const { initialFields } = props;
-  const history = useHistory();
+  const history = props.history;
   const { addLoading, editLoading, loading } = props.trips;
 
   useEffect(() => {
@@ -129,4 +129,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addTrips, editTrips })(AddTrips);
+export default withRouter(
+  connect(mapStateToProps, { addTrips, editTrips })(AddTrips)
+);

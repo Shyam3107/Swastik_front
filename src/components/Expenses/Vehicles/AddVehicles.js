@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
 import {
   addExpense,
@@ -23,7 +23,7 @@ const initialExpense = {
 const Vehicles = (props) => {
   const [expense, setExpense] = useState(initialExpense);
   const { initialFields } = props;
-  const history = useHistory();
+  const history = props.history;
   const { addLoading, editLoading, loading } = props.vehiclesExpense;
 
   useEffect(() => {
@@ -114,4 +114,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addExpense, editExpense })(Vehicles);
+export default withRouter(
+  connect(mapStateToProps, { addExpense, editExpense })(Vehicles)
+);

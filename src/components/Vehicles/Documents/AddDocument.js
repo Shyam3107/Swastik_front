@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
-import { useHistory } from "react-router";
+import { withRouter } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
 import { ROUTES, formatInDayEnd } from "../../../utils/constants";
-import { addDocuments, editDocuments } from "../../../containers/Documents/action";
+import {
+  addDocuments,
+  editDocuments,
+} from "../../../containers/Documents/action";
 
 const initialDocument = {
   vehicleNo: "",
@@ -20,7 +23,7 @@ const AddDocument = (props) => {
   const { addLoading, editLoading, loading } = props.documents;
   const { initialFields } = props;
   const [document, setDocument] = useState(initialDocument);
-  const history = useHistory();
+  const history = props.history;
 
   useEffect(() => {
     if (initialFields) setDocument(initialFields);
@@ -124,6 +127,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { addDocuments, editDocuments })(
-  AddDocument
+export default withRouter(
+  connect(mapStateToProps, { addDocuments, editDocuments })(AddDocument)
 );

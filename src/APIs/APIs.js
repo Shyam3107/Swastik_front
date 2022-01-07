@@ -6,7 +6,7 @@ import { error, warn, success } from "../utils/constants";
 export const backendURL = "https://swastik-backend.herokuapp.com";
 
 const modules = {
-  login: "/login",
+  user: "/user",
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
   driverExpenses: "/expenses/driver",
@@ -18,7 +18,8 @@ const modules = {
 
 export const API = {
   //LOGIN
-  LOGIN: `${modules.login}`,
+  LOGIN: `${modules.user}/login`,
+  FORGOT_PASSWORD: `${modules.user}/forgotPassword`,
 
   // Trips
   GET_TRIPS: `${modules.trips}/getTrips`,
@@ -64,7 +65,13 @@ export const API = {
 export const handleError = (dispatch = () => {}, action = {}, err) => {
   dispatch(action);
   if (!navigator.onLine) return toastMessage("You Are Offline", warn);
-  let errMssg = err.response ? err.response.data.errors : "Some Error Occured";
+  let errMssg = err.response
+    ? err.response.data.errors
+    : err.message
+    ? err.message
+    : "Some Error Occured";
+
+  if (!errMssg) errMssg = "Some Error Occured";
   return toastMessage(errMssg, error);
 };
 
