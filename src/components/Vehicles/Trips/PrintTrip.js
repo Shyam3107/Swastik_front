@@ -23,13 +23,13 @@ const PrintTrip = (props) => {
   return (
     <div className={styles.printDiv}>
       <Grid container>
-        <Grid item style={{ textAlign: "center", width: "70%" }}>
-          <h1 style={{ fontSize: "3rem" }}>
+        <Grid item style={{ textAlign: "center", width: "60%" }}>
+          <h1 style={{ fontSize: "3rem", fontWeight: "700" }}>
             <img
-              src="https://www.clipartmax.com/png/small/18-189224_big-image-swastik-logo-black-white.png"
+              src={process.env.PUBLIC_URL + "/images/Swastik Logo.png"}
               height="50px"
               width="auto"
-              style={{ marginRight: "10px", marginBottom: "10px" }}
+              style={{ marginRight: "20px", marginBottom: "10px" }}
               alt="Swastik Logo"
             />
             M/S.{" "}
@@ -39,23 +39,22 @@ const PrintTrip = (props) => {
               ? user.companyAdminId.companyName.toUpperCase()
               : "SWASTIK MINERALS"}
           </h1>
-          <h5>FLEET OWNERS AND TRANSPORT CONTRACTOR</h5>
-          <h5>Authorised Transport Contractor</h5>
-          <h5>GOOD CONSIGNMENT NOTE</h5>
+          <h3>FLEET OWNERS AND TRANSPORT CONTRACTOR</h3>
+          <h3>Authorised Transport Contractor</h3>
+          <h3>GOOD CONSIGNMENT NOTE</h3>
         </Grid>
-        <Grid item style={{ textAlign: "center", width: "30%" }}>
+        <Grid item style={{ textAlign: "center", width: "40%" }}>
           <Box borderRadius="10px" className={styles.border} padding="5px">
-            <h5>(Mob) 9977115338, 7415844010</h5>
-            <h5>H.O : Gandhi Chowk, Neora</h5>
-            <h5>Distt. Raipur (C.G)</h5>
+            <h3>(Mob) 7415844010, 9977115338</h3>
+            <h3>H.O : Gandhi Chowk, Neora</h3>
+            <h3>Distt. Raipur (C.G)</h3>
           </Box>
-          <h5 style={{ marginTop: "10px" }}>
+          <h3 style={{ marginTop: "15px" }}>
             T.P.T Code:{" "}
             {user.tptCode ? user.tptCode : user.companyAdminId.tptCode}
-          </h5>
+          </h3>
         </Grid>
       </Grid>
-      <br />
       <Grid container>
         <Grid item style={{ width: "25%" }}>
           <h5>Branch: {location[1].toUpperCase()}</h5>
@@ -121,9 +120,9 @@ const PrintTrip = (props) => {
             <h5 className={styles.borderBottom} style={{ padding: "10px" }}>
               Qty
             </h5>
-            <h5 style={{ marginTop: "30px", textAlign: "center" }}>
+            <h4 style={{ marginTop: "30px", textAlign: "center" }}>
               {trips.quantity}
-            </h5>
+            </h4>
           </Grid>
           <Grid item style={{ width: "80%" }} className={styles.borderLeft}>
             <h5
@@ -159,7 +158,12 @@ const PrintTrip = (props) => {
         <h3
           style={{ textAlign: "end", marginRight: "10px", marginTop: "7rem" }}
         >
-          For, Swastik Minerals
+          For,{" "}
+          {user.companyName
+            ? user.companyName
+            : user.companyAdminId.companyName
+            ? user.companyAdminId.companyName
+            : "SWASTIK MINERALS"}
         </h3>
       </Box>
     </div>
