@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { withRouter } from "react-router";
+import Tooltip from "@mui/material/Tooltip";
 
 import { ROUTES } from "../../utils/constants";
 import styles from "./styles.module.css";
@@ -22,13 +23,16 @@ const Header = (props) => {
             Transport Management System
           </Typography>
           {user && !user.addedBy && (
-            <Button
-              color="inherit"
-              onClick={() => history.push(ROUTES.CONFIGURATION)}
-              cursor="pointer"
-            >
-              <SettingsIcon />
-            </Button>
+            <Tooltip title="Add">
+              <Button
+                color="inherit"
+                onClick={() => history.push(ROUTES.CONFIGURATION)}
+                cursor="pointer"
+                aria-label="Settings"
+              >
+                <SettingsIcon />
+              </Button>
+            </Tooltip>
           )}
         </Toolbar>
       </AppBar>

@@ -2,6 +2,7 @@ import React, { useState, lazy } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./styles.scss";
+import "./bootstap.scss";
 import ReceiptIcon from "@mui/icons-material/Receipt";
 import {
   ProSidebar,
@@ -161,10 +162,16 @@ const Navigation = (props) => {
         </SidebarContent>
         <SidebarFooter className="sideBarFooter">
           <Menu iconShape="circle">
-            <MenuItem icon={<LogoutIcon />} onClick={handleLogout}>
+            <MenuItem
+              icon={<LogoutIcon />}
+              onClick={handleLogout}
+              style={{ paddingLeft: "30px" }}
+            >
               Logout
             </MenuItem>
-            <Footer />
+            <MenuItem>
+              <Footer />
+            </MenuItem>
           </Menu>
         </SidebarFooter>
       </ProSidebar>
@@ -180,6 +187,7 @@ const Navigation = (props) => {
               color="inherit"
               className="btn-toggle"
               onClick={handleToggleSidebar}
+              aria-label="Menu"
             >
               <MenuIcon />
             </IconButton>

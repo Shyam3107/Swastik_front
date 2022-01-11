@@ -10,6 +10,8 @@ import TableRow from "@mui/material/TableRow";
 import CustomLoader from "../CustomLoader/CustomLoader";
 import Checkbox from "@mui/material/Checkbox";
 import Paper from "@mui/material/Paper";
+import toastMessage from "../ToastMessage/toastMessage";
+import { error } from "../../../utils/constants";
 
 const CustomTableOutput = ({
   data = [],
@@ -21,6 +23,7 @@ const CustomTableOutput = ({
   tableBodyFunc,
   numSelected = [],
   setNumSelected,
+  checkBoxCondition,
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -47,6 +50,8 @@ const CustomTableOutput = ({
   };
 
   const handleSelectClick = (event, row) => {
+    if (checkBoxCondition && !checkBoxCondition(row))
+      return toastMessage("You can't select Others Data", error);
     const selectedIndex = numSelected.indexOf(row._id);
     let newSelected = [];
     if (selectedIndex < 0) {
@@ -107,14 +112,12 @@ const CustomTableOutput = ({
                   .map((row, index) => {
                     const isSelected = isItemSelected(row);
                     return (
-                      <TableRow
-                        hover
-                        key={index}
-                        selected={isSelected}
-                        onClick={(event) => handleSelectClick(event, row)}
-                      >
+                      <TableRow hover key={index} selected={isSelected}>
                         {setNumSelected && (
-                          <TableCell padding="checkbox">
+                          <TableCell
+                            padding="checkbox"
+                            onClick={(event) => handleSelectClick(event, row)}
+                          >
                             <Checkbox color="primary" checked={isSelected} />
                           </TableCell>
                         )}

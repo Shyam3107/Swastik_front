@@ -16,6 +16,7 @@ const ViewTrip = (props) => {
   const { diNo } = params;
   let { loading, trips } = props.trips;
   const { getTrips } = props;
+  const user = props.user.user;
 
   let fields = [];
   let selected = [];
@@ -29,7 +30,7 @@ const ViewTrip = (props) => {
       };
     });
     selected.push(trips._id);
-  } else trips = {};
+  } else trips = { addedBy: {} };
 
   useEffect(() => {
     getTrips({ diNo });
@@ -60,9 +61,17 @@ const ViewTrip = (props) => {
         data={trips}
         viewFields={fields}
         handleBack={handleBack}
-        handleDeleteAgree={handleDeleteAgree}
+        handleDeleteAgree={
+          user._id === trips.addedBy._id || user._id === user.companyAdminId._id
+            ? handleDeleteAgree
+            : null
+        }
         handleAddButton={handleAddButton}
-        handleEditButton={handleEditButton}
+        handleEditButton={
+          user._id === trips.addedBy._id || user._id === user.companyAdminId._id
+            ? handleEditButton
+            : null
+        }
         numSelected={selected}
         print
         className={styles.viewDiv}
@@ -73,6 +82,7 @@ const ViewTrip = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     trips: state.trips,
   };
 };

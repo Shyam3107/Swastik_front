@@ -29,8 +29,7 @@ const Configuration = (props) => {
 
   return (
     <Box
-      paddingLeft="3%"
-      paddingTop="1%"
+      paddingLeft="2%"
       backgroundColor="#C5E9EA"
       marginTop="-10px"
     >

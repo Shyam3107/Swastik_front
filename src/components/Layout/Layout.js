@@ -36,6 +36,7 @@ const Layout = ({
   selectedFrom,
   selectedTo,
   downloadLoading,
+  checkBoxCondition,
 }) => {
   if (addLoading || editLoading || deleteLoading)
     return <CustomLoader style={{ height: "80%" }} />;
@@ -88,6 +89,7 @@ const Layout = ({
         tableBodyFunc={tableBodyFunc}
         numSelected={numSelected}
         setNumSelected={setNumSelected}
+        checkBoxCondition={checkBoxCondition}
       />
     </React.Fragment>
   );

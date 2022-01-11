@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createBrowserHistory } from "history";
 import axios from "axios";
 import { connect } from "react-redux";
 import { ToastContainer } from "react-toastify";
@@ -29,13 +28,12 @@ axios.interceptors.request.use(
 );
 
 function App(props) {
-  const hist = createBrowserHistory();
   const loggedIn = props.user.loggedIn;
 
   return (
     <div className="App">
       <Suspense fallback={<BackDropLoader />}>
-        <Router history={hist}>
+        <Router>
           {loggedIn && <Navigation />}
           {!loggedIn && <Login />}
           <ToastContainer />

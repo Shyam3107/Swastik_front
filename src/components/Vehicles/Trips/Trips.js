@@ -35,6 +35,7 @@ const Trips = (props) => {
     uploadLoading,
   } = props.trips;
   const history = props.history;
+  const user = props.user.user;
 
   useEffect(() => {
     getTrips();
@@ -123,6 +124,10 @@ const Trips = (props) => {
     history.push(EDIT_URL(searchId[0].diNo));
   };
 
+  const checkBoxCondition = (row) => {
+    return row.addedBy._id === user._id || user._id === user.companyAdminId._id;
+  };
+
   return (
     <Layout
       addLoading={addLoading || uploadLoading}
@@ -140,6 +145,7 @@ const Trips = (props) => {
       tableBodyFunc={tableBodyFunc}
       numSelected={selected}
       setNumSelected={setSelected}
+      checkBoxCondition={checkBoxCondition}
       fileName="trips"
       sampleName="tripSample"
       handleAddButton={handleAddButton}
