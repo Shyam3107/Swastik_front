@@ -34,6 +34,7 @@ const Office = (props) => {
     uploadLoading,
   } = props.officeExpense;
   const history = props.history;
+  const user = props.user.user;
 
   useEffect(() => {
     getExpense();
@@ -108,6 +109,10 @@ const Office = (props) => {
     history.push(EDIT_URL(expenseId));
   };
 
+  const checkBoxCondition = (row) => {
+    return row.addedBy._id === user._id || user._id === user.companyAdminId._id;
+  };
+
   return (
     <Layout
       title="Office Expenses"
@@ -126,6 +131,7 @@ const Office = (props) => {
       deleteLoading={deleteLoading}
       handleDeleteAgree={handleDeleteAgree}
       handleFileSubmit={handleFileSubmit}
+      checkBoxCondition={checkBoxCondition}
       setSearch={setSearch}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}

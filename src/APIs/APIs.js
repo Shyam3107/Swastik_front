@@ -7,6 +7,7 @@ export const backendURL = "https://swastik-backend.herokuapp.com";
 
 const modules = {
   user: "/user",
+  home: "/home",
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
   driverExpenses: "/expenses/driver",
@@ -20,6 +21,9 @@ export const API = {
   //LOGIN
   LOGIN: `${modules.user}/login`,
   FORGOT_PASSWORD: `${modules.user}/forgotPassword`,
+
+  // HOME
+  GET_HOME: `${modules.home}`,
 
   // Trips
   GET_TRIPS: `${modules.trips}/getTrips`,

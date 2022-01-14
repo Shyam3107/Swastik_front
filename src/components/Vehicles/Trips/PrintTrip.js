@@ -45,7 +45,9 @@ const PrintTrip = (props) => {
         </Grid>
         <Grid item style={{ textAlign: "center", width: "40%" }}>
           <Box borderRadius="10px" className={styles.border} padding="5px">
-            <h3>(Mob) 7415844010, 9977115338</h3>
+            <h3>
+              (Mob) 7415844010, 9977115338 {user.phone ? `, ${user.phone}` : ""}
+            </h3>
             <h3>H.O : Gandhi Chowk, Neora</h3>
             <h3>Distt. Raipur (C.G)</h3>
           </Box>

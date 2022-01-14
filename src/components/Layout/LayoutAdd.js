@@ -131,24 +131,25 @@ const LayoutAdd = ({
         style={{ padding: "20px", width: "100%", justifyContent: "center" }}
         spacing={1}
       >
-        <Grid
-          item
-          sm={3}
-          md={3}
-          lg={1}
-          onClick={handleCancel}
-          marginRight="10px"
-        >
-          <Button disabled={submitLoading} variant="contained">
+        <Grid item sm={3} md={3} lg={1} marginRight="10px">
+          <Button
+            disabled={submitLoading}
+            onClick={handleCancel}
+            variant="contained"
+          >
             Cancel
           </Button>
         </Grid>
-        <Grid item sm={3} md={3} lg={1} onClick={handleReset}>
-          <Button disabled={submitLoading} variant="contained">
+        <Grid item sm={3} md={3} lg={1}>
+          <Button
+            disabled={submitLoading}
+            variant="contained"
+            onClick={handleReset}
+          >
             Reset
           </Button>
         </Grid>
-        <Grid item sm={3} md={3} lg={1} onClick={handleSubmit}>
+        <Grid item sm={3} md={3} lg={1}>
           <Button
             variant="contained"
             disabled={
@@ -156,6 +157,7 @@ const LayoutAdd = ({
               submitLoading ||
               Object.keys(error).length !== 0
             }
+            onClick={handleSubmit}
           >
             {submitLoading ? (
               <CustomLoader

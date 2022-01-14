@@ -15,6 +15,7 @@ const initialForm = {
   userName: "",
   location: "",
   password: "",
+  phone: "",
   companyName: "",
   tptCode: "",
 };
@@ -28,7 +29,8 @@ const AddEmployeeAccount = (props) => {
   const submitLoading = addLoading || editLoading;
 
   useEffect(() => {
-    if (initialFields) setForm({ ...initialFields, password: "" });
+    if (initialFields)
+      setForm({ ...initialForm, ...initialFields, password: "" });
   }, [initialFields, setForm]);
 
   let inputFields = [
@@ -39,6 +41,7 @@ const AddEmployeeAccount = (props) => {
       id: "password",
       required: initialFields ? false : true,
     },
+    { label: "Phone No.", id: "phone" },
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
   ];

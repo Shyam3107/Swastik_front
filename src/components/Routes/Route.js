@@ -25,7 +25,6 @@ import EditReceipt from "../Receipt/EditReceipt";
 
 const Routes = (props) => {
   const loggedIn = props.user.loggedIn;
-  const user = props.user.user;
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
@@ -119,7 +118,6 @@ const Routes = (props) => {
     {
       path: ROUTES.CONFIGURATION,
       component: <Configuration />,
-      noShow: user && !user.addedBy ? false : true,
     },
   ];
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { connect } from "react-redux";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import YourAccount from "./YourAccount";
@@ -6,15 +7,16 @@ import ManageEmployeeAccount from "./ManageEmployeeAccount";
 
 const Configuration = (props) => {
   const [title, setTitle] = useState("Your Account");
+  const user = props.user.user;
 
   const titleBar = [
     {
       title: "Your Account",
     },
-    {
-      title: "Manage Employee Accounts",
-    },
   ];
+
+  if (user && !user.addedBy)
+    titleBar.push({ title: "Manage Employee Accounts" });
 
   const SwitchFunc = () => {
     switch (title) {
@@ -28,11 +30,7 @@ const Configuration = (props) => {
   };
 
   return (
-    <Box
-      paddingLeft="2%"
-      backgroundColor="#C5E9EA"
-      marginTop="-10px"
-    >
+    <Box paddingLeft="2%" backgroundColor="#C5E9EA" marginTop="-10px">
       <Grid container marginBottom="20px">
         {titleBar.map((item, index) => {
           return (
@@ -59,4 +57,10 @@ const Configuration = (props) => {
   );
 };
 
-export default Configuration;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(Configuration);

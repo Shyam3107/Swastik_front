@@ -53,6 +53,7 @@ const Documents = (props) => {
     uploadLoading,
   } = props.documents;
   const history = props.history;
+  const user = props.user.user;
 
   useEffect(() => {
     getDocuments();
@@ -157,6 +158,10 @@ const Documents = (props) => {
     history.push(EDIT_URL(searchId[0].vehicleNo));
   };
 
+  const checkBoxCondition = (row) => {
+    return row.addedBy._id === user._id || user._id === user.companyAdminId._id;
+  };
+
   return (
     <Layout
       title="Documents"
@@ -166,6 +171,7 @@ const Documents = (props) => {
       setNumSelected={setSelected}
       handleAddButton={handleAddButton}
       handleEditButton={handleEditButton}
+      checkBoxCondition={checkBoxCondition}
       setSearch={setSearch}
       search={search}
       data={documents}

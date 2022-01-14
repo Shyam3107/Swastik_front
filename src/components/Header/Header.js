@@ -12,28 +12,29 @@ import styles from "./styles.module.css";
 
 const Header = (props) => {
   const history = props.history;
-  const user = props.user.user;
 
   return (
     <header className={styles.header}>
       <AppBar position="static">
         <Toolbar>
           {props.MenuIcon}
-          <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h5"
+            component="div"
+            sx={{ flexGrow: 1, textAlign: "center" }}
+          >
             Transport Management System
           </Typography>
-          {user && !user.addedBy && (
-            <Tooltip title="Add">
-              <Button
-                color="inherit"
-                onClick={() => history.push(ROUTES.CONFIGURATION)}
-                cursor="pointer"
-                aria-label="Settings"
-              >
-                <SettingsIcon />
-              </Button>
-            </Tooltip>
-          )}
+          <Tooltip title="Settings">
+            <Button
+              color="inherit"
+              onClick={() => history.push(ROUTES.CONFIGURATION)}
+              cursor="pointer"
+              aria-label="Settings"
+            >
+              <SettingsIcon />
+            </Button>
+          </Tooltip>
         </Toolbar>
       </AppBar>
     </header>
