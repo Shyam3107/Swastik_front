@@ -138,7 +138,6 @@ const PrintTrip = (props) => {
               <h5>Gate Pass No.</h5>
               <h5>Date : {formatDateInDDMMYYY(trips.date)}</h5>
               <h5>D.I NO. : {trips.diNo}</h5>
-              <h5>Adv. Amount : {trips.cash}</h5>
             </Box>
           </Grid>
         </Grid>
