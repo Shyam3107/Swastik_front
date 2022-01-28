@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -24,9 +24,15 @@ const CustomTableOutput = ({
   numSelected = [],
   setNumSelected,
   checkBoxCondition,
+  selectedFrom,
+  selectedTo,
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  useEffect(() => {
+    setPage(0);
+  }, [selectedFrom, selectedTo]);
 
   const emptyRows =
     page > 0 ? Math.min(3, (1 + page) * rowsPerPage - data.length) : 0;
@@ -73,8 +79,7 @@ const CustomTableOutput = ({
           fontWeight: "600",
         }}
       >
-        {mssg}
-        No {mssgTitle} Found
+        {mssg ? mssg : `No ${mssgTitle} Found`}
       </Box>
     );
   else if (!loading && data.length > 0)

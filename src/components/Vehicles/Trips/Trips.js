@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { withRouter } from "react-router";
+import moment from "moment";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import moment from "moment";
 import TableCell from "@mui/material/TableCell";
 
 import {
@@ -14,7 +14,6 @@ import Layout from "../../Layout/Layout";
 import {
   includesInArray,
   ROUTES,
-  monthStart,
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants";
@@ -24,7 +23,7 @@ const Trips = (props) => {
   let { getTrips } = props;
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
-  const [from, setFrom] = useState(monthStart);
+  const [from, setFrom] = useState(currentDate);
   const [to, setTo] = useState(currentDate);
   let {
     loading,
@@ -38,8 +37,11 @@ const Trips = (props) => {
   const user = props.user.user;
 
   useEffect(() => {
-    getTrips();
-  }, [getTrips]);
+    getTrips({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    });
+  }, [getTrips, from, to]);
 
   const handleFileSubmit = (file) => {
     props.uploadTrips(file, getTrips);
@@ -48,23 +50,19 @@ const Trips = (props) => {
   if (!trips || !Array.isArray(trips)) trips = [];
 
   trips = trips.filter((val) => {
-    return (
-      moment(from).isSameOrBefore(val.date) &&
-      moment(to).isSameOrAfter(val.date) &&
-      includesInArray(
-        [
-          val.diNo,
-          val.lrNo,
-          val.partyName,
-          val.location,
-          val.vehicleNo,
-          val.driverName,
-          val.pumpName ? val.pumpName : "",
-          val.loadingPoint,
-          val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-        ],
-        search
-      )
+    return includesInArray(
+      [
+        val.diNo,
+        val.lrNo,
+        val.partyName,
+        val.location,
+        val.vehicleNo,
+        val.driverName,
+        val.pumpName ? val.pumpName : "",
+        val.loadingPoint,
+        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+      ],
+      search
     );
   });
 
@@ -140,6 +138,7 @@ const Trips = (props) => {
       setSearch={setSearch}
       data={trips}
       mssgTitle="Trips"
+      mssg="No Trips found on Selected Date Interval"
       loading={loading}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}

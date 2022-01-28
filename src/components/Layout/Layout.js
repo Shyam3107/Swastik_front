@@ -90,6 +90,8 @@ const Layout = ({
         numSelected={numSelected}
         setNumSelected={setNumSelected}
         checkBoxCondition={checkBoxCondition}
+        selectedFrom={selectedFrom}
+        selectedTo={selectedTo}
       />
     </React.Fragment>
   );
