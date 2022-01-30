@@ -26,9 +26,7 @@ axios.interceptors.request.use(
 )
 
 function App(props) {
-  const loggedIn = props.user.loggedIn
-
-  console.log("App started")
+  const loggedIn = props.user.loggedInr
 
   return (
     <div className="App">
