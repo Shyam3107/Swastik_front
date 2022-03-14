@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from "react"
 import {
   Paper,
   Typography,
@@ -7,11 +7,14 @@ import {
   Popper,
   Box,
   MenuList,
-} from "@mui/material";
-import { CSVLink } from "react-csv";
-import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
+} from "@mui/material"
+import { CSVLink } from "react-csv"
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined"
+import IconButton from "@mui/material/IconButton"
+import Tooltip from "@mui/material/Tooltip"
+import Workbook from "react-excel-workbook"
+
+import { arrayToObj } from "../../../utils/convertCSVtoJSON"
 
 export default function UploadFile({
   onFileUpload,
@@ -19,24 +22,28 @@ export default function UploadFile({
   sampleName = "sampleFile",
   styleButton,
 }) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState(null);
-  const inputRef = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [file, setFile] = useState(null)
+  const [fileName, setFileName] = useState(null)
+  const inputRef = useRef(null)
 
   const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget);
-  };
+    setAnchorEl(anchorEl ? null : event.currentTarget)
+  }
 
   const handleUpload = () => {
-    onFileUpload(file);
-    setFile(null);
-    setFileName(null);
-    inputRef.current.value = null;
-    setAnchorEl(null);
-  };
+    onFileUpload(file)
+    setFile(null)
+    setFileName(null)
+    inputRef.current.value = null
+    setAnchorEl(null)
+  }
 
-  const open = Boolean(anchorEl);
+  const open = Boolean(anchorEl)
+
+  let sampleDataExcel = arrayToObj(sampleData)
+
+  let column = sampleData[0]
 
   return (
     <React.Fragment>
@@ -66,23 +73,39 @@ export default function UploadFile({
                 Download CSV Sample
               </CSVLink>
             </MenuItem>
+            <MenuItem>
+              <Workbook
+                filename={sampleName + ".xlsx"}
+                element="Download Excel Sample"
+              >
+                <Workbook.Sheet data={sampleDataExcel} name={sampleName}>
+                  {column.map((col, index) => {
+                    return (
+                      <Workbook.Column
+                        key={index}
+                        label={col}
+                        value={(row) => row[col]}
+                      />
+                    )
+                  })}
+                </Workbook.Sheet>
+              </Workbook>
+            </MenuItem>
             <MenuItem style={{ justifyContent: "center" }}>
               <Typography>
                 <input
-                  accept=".csv"
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
                   style={{ display: "none" }}
                   id="contained-button-file"
                   type="file"
                   ref={inputRef}
                   onChange={(e) => {
-                    setFile(e.target.files[0]);
-                    setFileName(
-                      e.target.files[0] ? e.target.files[0].name : ""
-                    );
+                    setFile(e.target.files[0])
+                    setFileName(e.target.files[0] ? e.target.files[0].name : "")
                   }}
                 />
                 <label htmlFor="contained-button-file">
-                  {fileName ? fileName : "Select a CSV File"}
+                  {fileName ? fileName : "Select a File"}
                 </label>
               </Typography>
             </MenuItem>
@@ -106,5 +129,5 @@ export default function UploadFile({
         </Paper>
       </Popper>
     </React.Fragment>
-  );
+  )
 }
