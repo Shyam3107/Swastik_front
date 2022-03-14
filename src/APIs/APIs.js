@@ -1,9 +1,13 @@
-import axios from "axios";
-import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage";
-import { error, warn, success } from "../utils/constants";
+import axios from "axios"
+import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage"
+import { error, warn, success } from "../utils/constants"
 
-//export const backendURL = "http://localhost:5000";
-export const backendURL = "https://swastik-backend.herokuapp.com";
+let backendURL
+if (process.env.NODE_ENV && process.env.NODE_ENV === "development")
+  backendURL = "http://localhost:5000"
+else backendURL = "https://swastik-backend.herokuapp.com"
+
+export { backendURL }
 
 const modules = {
   user: "/user",
@@ -15,7 +19,7 @@ const modules = {
   vehiclesExpenses: "/expenses/vehicles",
   configureAccounts: "/configure/accounts",
   receipts: "/receipts",
-};
+}
 
 export const API = {
   //LOGIN
@@ -64,32 +68,32 @@ export const API = {
   ADD_RECEIPT: `${modules.receipts}/addReceipt`,
   EDIT_RECEIPT: `${modules.receipts}/editReceipt`,
   DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
-};
+}
 
 export const handleError = (dispatch = () => {}, action = {}, err) => {
-  dispatch(action);
-  if (!navigator.onLine) return toastMessage("You Are Offline", warn);
+  dispatch(action)
+  if (!navigator.onLine) return toastMessage("You Are Offline", warn)
   let errMssg = err.response
     ? err.response.data.errors
     : err.message
     ? err.message
-    : "Some Error Occured";
+    : "Some Error Occured"
 
-  if (!errMssg) errMssg = "Some Error Occured";
-  return toastMessage(errMssg, error);
-};
+  if (!errMssg) errMssg = "Some Error Occured"
+  return toastMessage(errMssg, error)
+}
 
 export const makeRequest = (options = {}) => {
   const { url, params, method, callback, errorActionType, payload, dispatch } =
-    options;
+    options
 
   switch (method) {
     case "get":
       axios
         .get(url, { params: params ? params : {} })
         .then(({ status, data }) => {
-          if (status === 200) callback(data);
-          return;
+          if (status === 200) callback(data)
+          return
         })
         .catch((err) => {
           return handleError(
@@ -99,17 +103,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          );
-        });
-      return;
+          )
+        })
+      return
 
     case "post":
       axios
         .post(url, payload)
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data);
-            return toastMessage(data.message, success);
+            callback(data)
+            return toastMessage(data.message, success)
           }
         })
         .catch((err) => {
@@ -120,17 +124,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          );
-        });
-      return;
+          )
+        })
+      return
 
     case "put":
       axios
         .put(url, payload)
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data);
-            return toastMessage(data.message, success);
+            callback(data)
+            return toastMessage(data.message, success)
           }
         })
         .catch((err) => {
@@ -141,17 +145,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          );
-        });
-      return;
+          )
+        })
+      return
 
     case "delete":
       axios
         .delete(url, { data: payload })
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data);
-            return toastMessage(data.message, success);
+            callback(data)
+            return toastMessage(data.message, success)
           }
         })
         .catch((err) => {
@@ -162,11 +166,11 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          );
-        });
-      return;
+          )
+        })
+      return
 
     default:
-      return;
+      return
   }
-};
+}

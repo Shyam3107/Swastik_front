@@ -17,6 +17,7 @@
     "@testing-library/user-event": "^12.8.3",
     "apexcharts": "^3.33.0",
     "axios": "^0.24.0",
+    "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "papaparse": "^5.3.1",
@@ -40,7 +41,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "git push origin master"
+    "deploy": "git push origin master",
+    "dev": " cross-env NODE_ENV=DEV react-scripts start"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +68,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "cross-env": "^7.0.3",
     "react-error-overlay": "^6.0.9",
     "unimported": "^1.19.1"
   }
