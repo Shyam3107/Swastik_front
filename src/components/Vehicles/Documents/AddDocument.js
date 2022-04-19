@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import moment from "moment";
-import { withRouter } from "react-router";
-import LayoutAdd from "../../Layout/LayoutAdd";
-import { ROUTES, formatInDayEnd } from "../../../utils/constants";
+import { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import moment from "moment"
+import { withRouter } from "react-router"
+import LayoutAdd from "../../Layout/LayoutAdd"
+import { ROUTES, formatInDayEnd } from "../../../utils/constants"
 import {
   addDocuments,
   editDocuments,
-} from "../../../containers/Documents/action";
+} from "../../../containers/Documents/action"
 
 const initialDocument = {
   vehicleNo: "",
@@ -17,17 +17,20 @@ const initialDocument = {
   insurancePaidUpto: formatInDayEnd(),
   fitnessPaidOn: moment().toISOString(),
   fitnessPaidUpto: formatInDayEnd(),
-};
+  pollutionPaidOn: moment().toISOString(),
+  pollutionPaidUpto: formatInDayEnd(),
+  googleDriveLink: "",
+}
 
 const AddDocument = (props) => {
-  const { addLoading, editLoading, loading } = props.documents;
-  const { initialFields } = props;
-  const [document, setDocument] = useState(initialDocument);
-  const history = props.history;
+  const { addLoading, editLoading, loading } = props.documents
+  const { initialFields } = props
+  const [document, setDocument] = useState(initialDocument)
+  const history = props.history
 
   useEffect(() => {
-    if (initialFields) setDocument(initialFields);
-  }, [initialFields]);
+    if (initialFields) setDocument(initialFields)
+  }, [initialFields])
 
   const inputFields = [
     { id: "vehicleNo", label: "Vehicle No.", required: true },
@@ -80,30 +83,53 @@ const AddDocument = (props) => {
         }),
       label: "Fitness Paid Upto",
     },
-  ];
+    {
+      id: "pollutionPaidOn",
+      type: "date",
+      handleChange: (date) =>
+        setDocument({ ...document, pollutionPaidOn: date }),
+      label: "Pollution Paid On",
+      maxDate: moment().toISOString(),
+    },
+    {
+      id: "pollutionPaidUpto",
+      type: "date",
+      handleChange: (date) =>
+        setDocument({
+          ...document,
+          pollutionPaidUpto: formatInDayEnd(date),
+        }),
+      label: "Pollution Paid Upto",
+    },
+    {
+      id: "googleDriveLink",
+      label: "Google Drive Link",
+      customValidate: [{ type: "LINK" }],
+    },
+  ]
 
   const handleValueChange = (e) => {
     if (e.target.name === "vehicleNo")
-      e.target.value = e.target.value.toUpperCase();
-    setDocument({ ...document, [e.target.name]: e.target.value });
-  };
+      e.target.value = e.target.value.toUpperCase()
+    setDocument({ ...document, [e.target.name]: e.target.value })
+  }
 
   const handleCancel = () => {
-    history.push(ROUTES.DOCUMENTS);
-  };
+    history.push(ROUTES.DOCUMENTS)
+  }
 
   const handleReset = () => {
-    if (initialFields) setDocument(initialFields);
-    else setDocument(initialDocument);
-  };
+    if (initialFields) setDocument(initialFields)
+    else setDocument(initialDocument)
+  }
 
   const handleSubmit = () => {
     const cb = () => {
-      history.push(ROUTES.DOCUMENTS);
-    };
-    if (initialFields) props.editDocuments(document, cb);
-    else props.addDocuments(document, cb);
-  };
+      history.push(ROUTES.DOCUMENTS)
+    }
+    if (initialFields) props.editDocuments(document, cb)
+    else props.addDocuments(document, cb)
+  }
 
   return (
     <LayoutAdd
@@ -118,15 +144,15 @@ const AddDocument = (props) => {
       submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, { addDocuments, editDocuments })(AddDocument)
-);
+)

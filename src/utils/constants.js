@@ -1,15 +1,15 @@
-import moment from "moment";
+import moment from "moment"
 
-export const error = "error";
-export const success = "success";
-export const warn = "warn";
+export const error = "error"
+export const success = "success"
+export const warn = "warn"
 
-export const monthStart = moment().startOf("month");
-export const monthEnd = moment().endOf("month");
-export const yearEnd = moment().endOf("year");
-export const currentDate = moment().endOf("day");
+export const monthStart = moment().startOf("month")
+export const monthEnd = moment().endOf("month")
+export const yearEnd = moment().endOf("year")
+export const currentDate = moment().endOf("day")
 
-export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"];
+export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"]
 
 export const ROUTES = {
   // LOGIN
@@ -55,37 +55,45 @@ export const ROUTES = {
 
   //CONFIGURATION
   CONFIGURATION: "/configuration",
-};
+}
 
 export const formatDate = (date, time = false) => {
   try {
-    if (time) return moment(date).format("MMMM Do YYYY, h:mm:ss a");
-    else return moment(date).format("Do MMMM YYYY");
+    if (time) return moment(date).format("MMMM Do YYYY, h:mm:ss a")
+    else return moment(date).format("Do MMMM YYYY")
   } catch (error) {
-    return "InValid Date";
+    return "InValid Date"
   }
-};
+}
 
 export const formatDateInDDMMYYY = (date = new Date()) => {
   try {
-    return moment(date).format("DD-MM-YYYY");
+    return moment(date).format("DD-MM-YYYY")
   } catch (error) {
-    return "InValid Date";
+    return "InValid Date"
   }
-};
+}
 
 export const includesInArray = (stringArray, search) => {
   let exist = stringArray.every((val) => {
-    if (typeof val === "number") val = val.toString();
-    return !val.toLowerCase().includes(search.toLowerCase());
-  });
-  return !exist;
-};
+    if (typeof val === "number") val = val.toString()
+    return !val.toLowerCase().includes(search.toLowerCase())
+  })
+  return !exist
+}
 
 export const formatInDayEnd = (date = moment()) => {
   try {
-    return moment(date).endOf("day").toISOString();
+    return moment(date).endOf("day").toISOString()
   } catch (error) {
-    return "InValid Date";
+    return "InValid Date"
   }
-};
+}
+
+export const validateUrlValid = (userInput) => {
+  if (!userInput) return false
+  let res = userInput.match(
+    /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+  )
+  return res ? true : false
+}

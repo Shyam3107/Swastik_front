@@ -2,8 +2,8 @@ import axios from "axios"
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage"
 import { error, warn, success } from "../utils/constants"
 
-let backendURL = "https://swastik-backend.herokuapp.com"
-if (process.env.LOCAL) backendURL = "http://localhost:5000"
+//let backendURL = "https://swastik-backend.herokuapp.com"
+let backendURL = "http://localhost:5000"
 
 export { backendURL }
 

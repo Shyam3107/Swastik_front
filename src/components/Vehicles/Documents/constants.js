@@ -1,4 +1,4 @@
-import { formatDateInDDMMYYY, yearEnd } from "../../../utils/constants";
+import { formatDateInDDMMYYY, yearEnd } from "../../../utils/constants"
 
 export const header = [
   "Vehicle No.",
@@ -8,7 +8,10 @@ export const header = [
   "Insurance Paid Upto",
   "Fitness Paid On",
   "Fitness Paid Upto",
-];
+  "Pollution Paid On",
+  "Pollution Paid Upto",
+  "Google Drive Link",
+]
 
 export const headerKey = [
   "vehicleNo",
@@ -18,7 +21,10 @@ export const headerKey = [
   "insurancePaidUpto",
   "fitnessPaidOn",
   "fitnessPaidUpto",
-];
+  "pollutionPaidOn",
+  "pollutionPaidUpto",
+  "googleDriveLink",
+]
 
 export const sampleData = [
   header,
@@ -30,6 +36,9 @@ export const sampleData = [
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(),
     formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
+    "https://google.com",
   ],
   [
     "CG04MH5676",
@@ -39,11 +48,31 @@ export const sampleData = [
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(),
     formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
   ],
-];
+]
 
-export const EXPIRED = "EXPIRED";
-export const ACTIVE = "ACTIVE";
+export const EXPIRED = "EXPIRED"
+export const ACTIVE = "ACTIVE"
 
-export const EDIT_URL = (id) => `/vehicles/document/${id}/edit`;
-export const VIEW_URL = (id) => `/vehicles/document/${id}`;
+export const EDIT_URL = (id) => `/vehicles/document/${id}/edit`
+export const VIEW_URL = (id) => `/vehicles/document/${id}`
+
+export const tableHeader = [
+  "Vehicle No.",
+  "Tax Status",
+  "Insurance Status",
+  "Fitness Status",
+  "Pollution",
+  "Documents Link",
+]
+
+export const tableHeaderKey = [
+  "vehicleNo",
+  "taxStatus",
+  "insuranceStatus",
+  "fitnessStatus",
+  "pollutionStatus",
+  "googleDriveLink",
+]

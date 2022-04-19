@@ -1,24 +1,27 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import CustomDeleteIcon from "../CustomDeleteIcon/CustomDeleteIcon";
-import UploadFile from "../UploadFile/UploadFile";
-import DownloadFile from "../DownloadFile/DownloadFile";
-import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
-import EditIcon from "@mui/icons-material/Edit";
-import TextField from "@mui/material/TextField";
-import InputAdornment from "@mui/material/InputAdornment";
-import Tooltip from "@mui/material/Tooltip";
-import Grid from "@mui/material/Grid";
-import PrintIcon from "@mui/icons-material/Print";
+import React from "react"
+import Box from "@mui/material/Box"
+import CustomDeleteIcon from "../CustomDeleteIcon/CustomDeleteIcon"
+import UploadFile from "../UploadFile/UploadFile"
+import DownloadFile from "../DownloadFile/DownloadFile"
+import CustomDatePicker from "../CustomDatePicker/CustomDatePicker"
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
+import IconButton from "@mui/material/IconButton"
+import SearchIcon from "@mui/icons-material/Search"
+import EditIcon from "@mui/icons-material/Edit"
+import TextField from "@mui/material/TextField"
+import InputAdornment from "@mui/material/InputAdornment"
+import Tooltip from "@mui/material/Tooltip"
+import Grid from "@mui/material/Grid"
+import PrintIcon from "@mui/icons-material/Print"
+import InsertLinkRoundedIcon from "@mui/icons-material/InsertLinkRounded"
+
+import { validateUrlValid } from "../../../utils/constants"
 
 const styleButton = {
   color: "black",
   height: "40px",
   width: "40px",
-};
+}
 
 const CustomCrudIcons = ({
   setSelectedFrom,
@@ -38,6 +41,7 @@ const CustomCrudIcons = ({
   numSelected = [],
   downloadLoading,
   print = false,
+  googleDriveLink,
 }) => {
   return (
     <Box width="100%">
@@ -83,6 +87,19 @@ const CustomCrudIcons = ({
           display="flex"
           justifyContent="flex-end"
         >
+          {validateUrlValid(googleDriveLink) && (
+            <Tooltip title="Link">
+              <IconButton style={styleButton}>
+                <a
+                  href={googleDriveLink}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <InsertLinkRoundedIcon style={{ color: "black" }} />
+                </a>
+              </IconButton>
+            </Tooltip>
+          )}
           {print && (
             <Tooltip title="Print">
               <IconButton style={styleButton} onClick={() => window.print()}>
@@ -151,7 +168,7 @@ const CustomCrudIcons = ({
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
-export default CustomCrudIcons;
+export default CustomCrudIcons

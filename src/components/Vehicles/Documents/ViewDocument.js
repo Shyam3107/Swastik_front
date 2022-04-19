@@ -1,55 +1,55 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router";
-import { withRouter } from "react-router";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
+import React, { useEffect } from "react"
+import { connect } from "react-redux"
+import { useParams } from "react-router"
+import { withRouter } from "react-router"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
 
-import { formatDate, ROUTES } from "../../../utils/constants";
+import { formatDate, ROUTES } from "../../../utils/constants"
 import {
   getDocuments,
   deleteDocuments,
-} from "../../../containers/Documents/action";
-import LayoutView from "../../Layout/LayoutView";
-import { EDIT_URL } from "./constants";
+} from "../../../containers/Documents/action"
+import LayoutView from "../../Layout/LayoutView"
+import { EDIT_URL } from "./constants"
 
 const ViewDocument = (props) => {
-  const history = props.history;
-  const params = useParams();
-  const { vehicleNo } = params;
-  let { loading, documents } = props.documents;
-  const { getDocuments } = props;
+  const history = props.history
+  const params = useParams()
+  const { vehicleNo } = params
+  let { loading, documents } = props.documents
+  const { getDocuments } = props
 
-  let selected = [];
+  let selected = []
 
   if (documents && !Array.isArray(documents)) {
-    selected = [];
-    selected.push(documents._id);
-  } else documents = {};
+    selected = []
+    selected.push(documents._id)
+  } else documents = {}
 
   useEffect(() => {
-    getDocuments({ vehicleNo });
-  }, [vehicleNo, getDocuments]);
+    getDocuments({ vehicleNo })
+  }, [vehicleNo, getDocuments])
 
   const handleBack = () => {
-    history.push(ROUTES.DOCUMENTS);
-  };
+    history.push(ROUTES.DOCUMENTS)
+  }
 
   const handleDeleteAgree = () => {
-    props.deleteDocuments(selected, handleBack);
-  };
+    props.deleteDocuments(selected, handleBack)
+  }
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_DOCUMENT);
-  };
+    history.push(ROUTES.ADD_DOCUMENT)
+  }
 
   const handleEditButton = () => {
-    history.push(EDIT_URL(documents.vehicleNo));
-  };
+    history.push(EDIT_URL(documents.vehicleNo))
+  }
 
   return (
     <LayoutView
@@ -61,6 +61,7 @@ const ViewDocument = (props) => {
       handleAddButton={handleAddButton}
       handleEditButton={handleEditButton}
       numSelected={selected}
+      googleDriveLink={documents.googleDriveLink}
     >
       <TableContainer style={{ marginRight: "3%", width: "95%" }}>
         <Table aria-label="simple table">
@@ -87,19 +88,24 @@ const ViewDocument = (props) => {
               <TableCell>{formatDate(documents.fitnessPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.fitnessPaidUpto)}</TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>Pollution</TableCell>
+              <TableCell>{formatDate(documents.pollutionPaidOn)}</TableCell>
+              <TableCell>{formatDate(documents.pollutionPaidUpto)}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>
     </LayoutView>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, { getDocuments, deleteDocuments })(ViewDocument)
-);
+)
