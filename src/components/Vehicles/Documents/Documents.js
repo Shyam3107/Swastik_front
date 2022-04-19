@@ -56,6 +56,14 @@ const Documents = (props) => {
 
   let tempDocuments = []
   let downloadData = []
+  let downloadHeaders = [...header]
+  let downloadHeadersKey = [...headerKey]
+
+  if (user && user._id === user.companyAdminId._id) {
+    downloadHeadersKey = [...headerKey, "googleDriveLink"]
+    downloadHeaders = [...header, "Google Drive Link"]
+  }
+
   documents.forEach((val) => {
     val.taxStatus = moment(val.taxPaidUpto).isBefore(moment())
       ? EXPIRED
@@ -83,7 +91,7 @@ const Documents = (props) => {
     ]
 
     downloadData.push(
-      [...headerKey, "addedBy"].map((item, index) => {
+      [...downloadHeadersKey, "addedBy"].map((item, index) => {
         if (item === "addedBy") return val.addedBy ? val.addedBy.location : ""
         if (index > 0 && item !== "googleDriveLink")
           return formatDateInDDMMYYY(val[item])
@@ -95,8 +103,7 @@ const Documents = (props) => {
   })
 
   documents = tempDocuments
-
-  downloadData = [[...header, "Added By"], ...downloadData]
+  downloadData = [[...downloadHeaders, "Added By"], ...downloadData]
 
   const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
     <TableCell key={index} style={{ fontWeight: "600" }}>

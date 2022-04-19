@@ -1,33 +1,33 @@
-import { useState } from "react";
-import { connect } from "react-redux";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import YourAccount from "./YourAccount";
-import ManageEmployeeAccount from "./ManageEmployeeAccount";
+import { useState } from "react"
+import { connect } from "react-redux"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
+import YourAccount from "./YourAccount"
+import ManageEmployeeAccount from "./ManageEmployeeAccount"
 
 const Configuration = (props) => {
-  const [title, setTitle] = useState("Your Account");
-  const user = props.user.user;
+  const [title, setTitle] = useState("Your Account")
+  const user = props.user.user
 
   const titleBar = [
     {
       title: "Your Account",
     },
-  ];
+  ]
 
   if (user && !user.addedBy)
-    titleBar.push({ title: "Manage Employee Accounts" });
+    titleBar.push({ title: "Manage Employee Accounts" })
 
   const SwitchFunc = () => {
     switch (title) {
       case "Your Account":
-        return <YourAccount />;
+        return <YourAccount />
       case "Manage Employee Accounts":
-        return <ManageEmployeeAccount />;
+        return <ManageEmployeeAccount />
       default:
-        return;
+        return
     }
-  };
+  }
 
   return (
     <Box paddingLeft="2%" backgroundColor="#C5E9EA" marginTop="-10px">
@@ -47,20 +47,20 @@ const Configuration = (props) => {
             >
               <h5 onClick={() => setTitle(item.title)}>{item.title}</h5>
             </Grid>
-          );
+          )
         })}
       </Grid>
       <Box paddingBottom="30px">
         <SwitchFunc />
       </Box>
     </Box>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(Configuration);
+export default connect(mapStateToProps)(Configuration)

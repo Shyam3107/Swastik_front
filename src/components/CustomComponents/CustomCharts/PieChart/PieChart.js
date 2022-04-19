@@ -1,5 +1,5 @@
-import React from "react";
-import Chart from "react-apexcharts";
+import React from "react"
+import Chart from "react-apexcharts"
 
 const PieChart = ({
   data = [],
@@ -40,7 +40,7 @@ const PieChart = ({
         },
       ],
     },
-  };
+  }
 
   return (
     <Chart
@@ -50,7 +50,7 @@ const PieChart = ({
       width={width}
       height={height}
     />
-  );
-};
+  )
+}
 
-export default PieChart;
+export default PieChart

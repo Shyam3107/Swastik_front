@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import Box from "@mui/material/Box";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
-import Button from "@mui/material/Button";
+import React, { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import Table from "@mui/material/Table"
+import TableBody from "@mui/material/TableBody"
+import TableCell from "@mui/material/TableCell"
+import TableContainer from "@mui/material/TableContainer"
+import TableHead from "@mui/material/TableHead"
+import TableRow from "@mui/material/TableRow"
+import Paper from "@mui/material/Paper"
+import Box from "@mui/material/Box"
+import DeleteIcon from "@mui/icons-material/Delete"
+import IconButton from "@mui/material/IconButton"
+import Tooltip from "@mui/material/Tooltip"
+import Button from "@mui/material/Button"
 
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 import {
   editAccount,
   addAccount,
   getAccount,
   deleteAccount,
-} from "../../containers/Accounts/action";
-import AddEmployeeAccount from "./AddEmployeeAccount";
-import CustomDialog from "../CustomComponents/CustomDialog/CustomDialog";
+} from "../../containers/Accounts/action"
+import AddEmployeeAccount from "./AddEmployeeAccount"
+import CustomDialog from "../CustomComponents/CustomDialog/CustomDialog"
 
 const ManageEmployeeAccount = (props) => {
-  const [state, setState] = useState("Manage");
-  const [accountData, setAccounData] = useState(null);
-  const [dialog, setDialog] = useState(false);
-  let { accounts, loading, deleteLoading } = props.accounts;
-  if (!accounts || !Array.isArray(accounts)) accounts = [];
-  const { getAccount } = props;
+  const [state, setState] = useState("Manage")
+  const [accountData, setAccounData] = useState(null)
+  const [dialog, setDialog] = useState(false)
+  let { accounts, loading, deleteLoading } = props.accounts
+  if (!accounts || !Array.isArray(accounts)) accounts = []
+  const { getAccount } = props
 
   useEffect(() => {
-    if (state === "Manage") getAccount();
-  }, [state, getAccount]);
+    if (state === "Manage") getAccount()
+  }, [state, getAccount])
 
   const handleClick = (data) => {
-    setAccounData(data);
-    setState("Add");
-  };
+    setAccounData(data)
+    setState("Add")
+  }
 
   const handleDeleteIcon = (row) => {
-    setAccounData(row);
-    setDialog(true);
-  };
+    setAccounData(row)
+    setDialog(true)
+  }
 
   const handleAgree = () => {
     const cb = () => {
-      props.getAccount();
-      setAccounData(null);
-    };
-    props.deleteAccount([accountData._id], cb);
-  };
+      props.getAccount()
+      setAccounData(null)
+    }
+    props.deleteAccount([accountData._id], cb)
+  }
 
   const AddAccountIcon = () => {
     return (
@@ -60,10 +60,10 @@ const ManageEmployeeAccount = (props) => {
           <span style={{ fontSize: "1.5rem" }}>+</span>Add Account
         </Button>
       </Box>
-    );
-  };
+    )
+  }
 
-  if (loading || deleteLoading) return <CustomLoader />;
+  if (loading || deleteLoading) return <CustomLoader />
   else if (state === "Add") {
     return (
       <AddEmployeeAccount
@@ -71,14 +71,14 @@ const ManageEmployeeAccount = (props) => {
         initialFields={accountData}
         setAccountData={setAccounData}
       />
-    );
+    )
   } else if (!loading && accounts.length === 0)
     return (
       <Box textAlign="center" padding="0" fontWeight="500">
         <AddAccountIcon />
         No Accounts found
       </Box>
-    );
+    )
   else
     return (
       <React.Fragment>
@@ -127,19 +127,19 @@ const ManageEmployeeAccount = (props) => {
           </Table>
         </TableContainer>
       </React.Fragment>
-    );
-};
+    )
+}
 
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
     user: state.user,
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps, {
   editAccount,
   addAccount,
   getAccount,
   deleteAccount,
-})(ManageEmployeeAccount);
+})(ManageEmployeeAccount)

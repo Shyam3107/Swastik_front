@@ -10,7 +10,6 @@ export const header = [
   "Fitness Paid Upto",
   "Pollution Paid On",
   "Pollution Paid Upto",
-  "Google Drive Link",
 ]
 
 export const headerKey = [
@@ -23,7 +22,6 @@ export const headerKey = [
   "fitnessPaidUpto",
   "pollutionPaidOn",
   "pollutionPaidUpto",
-  "googleDriveLink",
 ]
 
 export const sampleData = [

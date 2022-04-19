@@ -1,37 +1,29 @@
-import { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import FormHelperText from "@mui/material/FormHelperText";
-import Button from "@mui/material/Button";
+import { useEffect, useState } from "react"
+import { connect } from "react-redux"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import Box from "@mui/material/Box"
+import TextField from "@mui/material/TextField"
+import FormHelperText from "@mui/material/FormHelperText"
+import Button from "@mui/material/Button"
 
-import useValidate from "../CustomComponents/CustomHooks/useValidate";
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
-import { editAccount, addAccount } from "../../containers/Accounts/action";
-
-const initialForm = {
-  userName: "",
-  location: "",
-  password: "",
-  phone: "",
-  companyName: "",
-  tptCode: "",
-};
+import useValidate from "../CustomComponents/CustomHooks/useValidate"
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
+import { editAccount, addAccount } from "../../containers/Accounts/action"
+import { initialForm } from "./constants"
 
 const AddEmployeeAccount = (props) => {
-  const [form, setForm] = useState(initialForm);
-  const [error, handleValidate] = useValidate();
+  const [form, setForm] = useState(initialForm)
+  const [error, handleValidate] = useValidate()
 
-  const { initialFields } = props;
-  const { addLoading, editLoading } = props.accounts;
-  const submitLoading = addLoading || editLoading;
+  const { initialFields } = props
+  const { addLoading, editLoading } = props.accounts
+  const submitLoading = addLoading || editLoading
 
   useEffect(() => {
     if (initialFields)
-      setForm({ ...initialForm, ...initialFields, password: "" });
-  }, [initialFields, setForm]);
+      setForm({ ...initialForm, ...initialFields, password: "" })
+  }, [initialFields, setForm])
 
   let inputFields = [
     { label: "User Name", id: "userName", required: true },
@@ -44,34 +36,34 @@ const AddEmployeeAccount = (props) => {
     { label: "Phone No.", id: "phone" },
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
-  ];
+  ]
 
   const handleSubmit = () => {
     const cb = () => {
-      props.setState("Manage");
-      props.setAccountData(null);
-    };
-    if (initialFields) props.editAccount(form, cb);
-    else props.addAccount(form, cb);
-  };
+      props.setState("Manage")
+      props.setAccountData(null)
+    }
+    if (initialFields) props.editAccount(form, cb)
+    else props.addAccount(form, cb)
+  }
 
   const handleReset = () => {
-    setForm(initialForm);
-  };
+    setForm(initialForm)
+  }
 
   const handleCancel = () => {
-    props.setState("Manage");
-    props.setAccountData(null);
-  };
+    props.setState("Manage")
+    props.setAccountData(null)
+  }
 
   return (
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
         {inputFields.map((item, index) => {
           const handleInputChange = (e) => {
-            setForm({ ...form, [e.target.name]: e.target.value });
-            if (item.required) handleValidate(e.target.name, e.target.value);
-          };
+            setForm({ ...form, [e.target.name]: e.target.value })
+            if (item.required) handleValidate(e.target.name, e.target.value)
+          }
           return (
             <Grid item xs={12} sm={5} md={4} lg={3} key={index}>
               <Typography variant="h6">
@@ -93,7 +85,7 @@ const AddEmployeeAccount = (props) => {
                 {error[item.id]}
               </FormHelperText>
             </Grid>
-          );
+          )
         })}
       </Grid>
       <Grid
@@ -141,16 +133,16 @@ const AddEmployeeAccount = (props) => {
         </Grid>
       </Grid>
     </Box>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
     user: state.user,
-  };
-};
+  }
+}
 
 export default connect(mapStateToProps, { addAccount, editAccount })(
   AddEmployeeAccount
-);
+)

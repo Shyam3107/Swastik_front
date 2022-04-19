@@ -1,13 +1,13 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
-import convertCSVToJson from "../../utils/convertCSVtoJSON";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
+import convertCSVToJson from "../../utils/convertCSVtoJSON"
 
 export const getExpense =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_VEHICLES_EXPENSE_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -17,21 +17,21 @@ export const getExpense =
         dispatch({
           type: actionTypes.GET_VEHICLES_EXPENSE_SUCCESS,
           payload: data.data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_VEHICLES_EXPENSE_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const addExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_VEHICLES_EXPENSE_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -40,22 +40,22 @@ export const addExpense =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_VEHICLES_EXPENSE_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.ADD_VEHICLES_EXPENSE_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const uploadExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.UPLOAD_VEHICLES_EXPENSE_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -64,22 +64,22 @@ export const uploadExpense =
       callback: (data) => {
         dispatch({
           type: actionTypes.UPLOAD_VEHICLES_EXPENSE_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.UPLOAD_VEHICLES_EXPENSE_FAILURE,
       dispatch,
-    };
+    }
 
-    convertCSVToJson(payload, options);
-  };
+    convertCSVToJson(payload, options)
+  }
 
 export const editExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_VEHICLES_EXPENSE_PENDING,
-    });
+    })
 
     const options = {
       method: "put",
@@ -88,22 +88,22 @@ export const editExpense =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_VEHICLES_EXPENSE_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.EDIT_VEHICLES_EXPENSE_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const deleteExpense =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_VEHICLES_EXPENSE_PENDING,
-    });
+    })
 
     const options = {
       method: "delete",
@@ -112,12 +112,12 @@ export const deleteExpense =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_VEHICLES_EXPENSE_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.DELETE_VEHICLES_EXPENSE_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

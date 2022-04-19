@@ -1,5 +1,5 @@
-import React from "react";
-import Chart from "react-apexcharts";
+import React from "react"
+import Chart from "react-apexcharts"
 
 const BarChart = ({
   data = [],
@@ -78,7 +78,7 @@ const BarChart = ({
           colors: ["#fff"],
         },
         formatter: function (val, opt) {
-          return val;
+          return val
           //return opt.w.globals.labels[opt.dataPointIndex] + ":  " + val;
         },
         offsetX: 0,
@@ -98,13 +98,13 @@ const BarChart = ({
         x: {
           title: {
             formatter: function () {
-              return "";
+              return ""
             },
           },
         },
       },
     },
-  };
+  }
 
   return (
     <Chart
@@ -114,7 +114,7 @@ const BarChart = ({
       width={width}
       height={height}
     />
-  );
-};
+  )
+}
 
-export default BarChart;
+export default BarChart

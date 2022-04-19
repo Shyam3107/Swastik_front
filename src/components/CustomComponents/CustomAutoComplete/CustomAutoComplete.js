@@ -1,6 +1,6 @@
-import React from "react";
-import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
+import React from "react"
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
 
 const CustomAutoComplete = ({
   options = [],
@@ -10,11 +10,11 @@ const CustomAutoComplete = ({
   style = {},
 }) => {
   // options is array of ["option1","option2","option3"]
-  options.sort();
+  options.sort()
 
   const handleSelectChange = (e, val) => {
-    handleChange(val);
-  };
+    handleChange(val)
+  }
 
   return (
     <Autocomplete
@@ -27,6 +27,6 @@ const CustomAutoComplete = ({
       groupBy={(val) => val && val[0]}
       style={style}
     />
-  );
-};
-export default CustomAutoComplete;
+  )
+}
+export default CustomAutoComplete
