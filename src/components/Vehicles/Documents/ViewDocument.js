@@ -93,6 +93,11 @@ const ViewDocument = (props) => {
               <TableCell>{formatDate(documents.pollutionPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.pollutionPaidUpto)}</TableCell>
             </TableRow>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>Permit</TableCell>
+              <TableCell>{formatDate(documents.permitPaidOn)}</TableCell>
+              <TableCell>{formatDate(documents.permitPaidUpto)}</TableCell>
+            </TableRow>
           </TableBody>
         </Table>
       </TableContainer>

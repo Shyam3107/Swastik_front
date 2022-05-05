@@ -92,14 +92,24 @@ const AddDocument = (props) => {
       maxDate: moment().toISOString(),
     },
     {
-      id: "pollutionPaidUpto",
+      id: "permitPaidUpto",
       type: "date",
       handleChange: (date) =>
         setDocument({
           ...document,
-          pollutionPaidUpto: formatInDayEnd(date),
+          permitPaidUpto: formatInDayEnd(date),
         }),
-      label: "Pollution Paid Upto",
+      label: "Permit Paid Upto",
+    },
+    {
+      id: "permitPaidUpto",
+      type: "date",
+      handleChange: (date) =>
+        setDocument({
+          ...document,
+          permitPaidUpto: formatInDayEnd(date),
+        }),
+      label: "Permit Paid Upto",
     },
     {
       id: "googleDriveLink",

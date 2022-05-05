@@ -81,12 +81,17 @@ const Documents = (props) => {
       ? EXPIRED
       : ACTIVE
 
+    val.permitStatus = moment(val.permitPaidUpto).isBefore(moment())
+      ? EXPIRED
+      : ACTIVE
+
     const searchIn = [
       val.vehicleNo,
       val.taxStatus,
       val.insuranceStatus,
       val.fitnessStatus,
       val.pollutionStatus,
+      val.permitStatus,
       val.addedBy && val.addedBy.location ? val.addedBy.location : "",
     ]
 

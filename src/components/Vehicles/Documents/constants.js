@@ -10,6 +10,8 @@ export const header = [
   "Fitness Paid Upto",
   "Pollution Paid On",
   "Pollution Paid Upto",
+  "Permit Paid On",
+  "Permit Paid Upto",
 ]
 
 export const headerKey = [
@@ -22,6 +24,8 @@ export const headerKey = [
   "fitnessPaidUpto",
   "pollutionPaidOn",
   "pollutionPaidUpto",
+  "permitPaidOn",
+  "permitPaidUpto",
 ]
 
 export const sampleData = [
@@ -36,10 +40,14 @@ export const sampleData = [
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(),
     formatDateInDDMMYYY(yearEnd),
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
     "https://google.com",
   ],
   [
     "CG04MH5676",
+    formatDateInDDMMYYY(),
+    formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(),
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(),
@@ -63,6 +71,7 @@ export const tableHeader = [
   "Insurance Status",
   "Fitness Status",
   "Pollution",
+  "Permit",
   "Documents Link",
 ]
 
@@ -72,5 +81,6 @@ export const tableHeaderKey = [
   "insuranceStatus",
   "fitnessStatus",
   "pollutionStatus",
+  "permitStatus",
   "googleDriveLink",
 ]
