@@ -3,7 +3,7 @@ import toastMessage from "../components/CustomComponents/ToastMessage/toastMessa
 import { error, warn, success } from "../utils/constants"
 
 //let backendURL = "https://swastik-backend.herokuapp.com"
-let backendURL = "http://localhost:5000"
+let backendURL = "http://localhost:9000"
 
 export { backendURL }
 

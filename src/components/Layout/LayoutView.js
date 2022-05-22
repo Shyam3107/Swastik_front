@@ -22,7 +22,6 @@ const LayoutView = ({
   children,
   print = false,
   className = "",
-  googleDriveLink,
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />
 
@@ -51,7 +50,6 @@ const LayoutView = ({
               handleAddButton={handleAddButton}
               numSelected={numSelected}
               print={print}
-              googleDriveLink={googleDriveLink}
             />
           </Grid>
         </Grid>

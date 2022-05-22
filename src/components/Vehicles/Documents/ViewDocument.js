@@ -61,42 +61,43 @@ const ViewDocument = (props) => {
       handleAddButton={handleAddButton}
       handleEditButton={handleEditButton}
       numSelected={selected}
-      googleDriveLink={documents.googleDriveLink}
     >
       <TableContainer style={{ marginRight: "3%", width: "95%" }}>
         <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
-              <TableCell style={{ fontWeight: "600" }}>Paid On</TableCell>
               <TableCell style={{ fontWeight: "600" }}>Validity Upto</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             <TableRow>
               <TableCell style={{ fontWeight: "600" }}>Tax</TableCell>
-              <TableCell>{formatDate(documents.taxPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.taxPaidUpto)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell style={{ fontWeight: "600" }}>Insurance</TableCell>
-              <TableCell>{formatDate(documents.insurancePaidOn)}</TableCell>
               <TableCell>{formatDate(documents.insurancePaidUpto)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell style={{ fontWeight: "600" }}>Fitness</TableCell>
-              <TableCell>{formatDate(documents.fitnessPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.fitnessPaidUpto)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell style={{ fontWeight: "600" }}>Pollution</TableCell>
-              <TableCell>{formatDate(documents.pollutionPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.pollutionPaidUpto)}</TableCell>
             </TableRow>
             <TableRow>
               <TableCell style={{ fontWeight: "600" }}>Permit</TableCell>
-              <TableCell>{formatDate(documents.permitPaidOn)}</TableCell>
               <TableCell>{formatDate(documents.permitPaidUpto)}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell style={{ fontWeight: "600" }}>
+                National Permit
+              </TableCell>
+              <TableCell>
+                {formatDate(documents.nationalPermitPaidUpto)}
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>

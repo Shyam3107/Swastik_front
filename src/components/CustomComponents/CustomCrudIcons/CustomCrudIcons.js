@@ -13,9 +13,6 @@ import InputAdornment from "@mui/material/InputAdornment"
 import Tooltip from "@mui/material/Tooltip"
 import Grid from "@mui/material/Grid"
 import PrintIcon from "@mui/icons-material/Print"
-import InsertLinkRoundedIcon from "@mui/icons-material/InsertLinkRounded"
-
-import { validateUrlValid } from "../../../utils/constants"
 
 const styleButton = {
   color: "black",
@@ -41,7 +38,6 @@ const CustomCrudIcons = ({
   numSelected = [],
   downloadLoading,
   print = false,
-  googleDriveLink,
 }) => {
   return (
     <Box width="100%">
@@ -87,19 +83,6 @@ const CustomCrudIcons = ({
           display="flex"
           justifyContent="flex-end"
         >
-          {validateUrlValid(googleDriveLink) && (
-            <Tooltip title="Link">
-              <IconButton style={styleButton}>
-                <a
-                  href={googleDriveLink}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <InsertLinkRoundedIcon style={{ color: "black" }} />
-                </a>
-              </IconButton>
-            </Tooltip>
-          )}
           {print && (
             <Tooltip title="Print">
               <IconButton style={styleButton} onClick={() => window.print()}>

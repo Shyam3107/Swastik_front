@@ -50,7 +50,7 @@ const CustomTableOutput = ({
     if (event.target.checked) {
       let newSelecteds = []
       data.forEach((n) => {
-        if (checkBoxCondition(n)) newSelecteds.push(n._id)
+        if (!checkBoxCondition || checkBoxCondition(n)) newSelecteds.push(n._id)
       })
       setNumSelected(newSelecteds)
       return

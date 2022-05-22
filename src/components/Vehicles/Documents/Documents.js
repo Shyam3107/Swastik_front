@@ -15,7 +15,6 @@ import {
   formatDateInDDMMYYY,
   includesInArray,
   ROUTES,
-  validateUrlValid,
 } from "../../../utils/constants"
 import {
   header,
@@ -27,6 +26,7 @@ import {
   VIEW_URL,
   tableHeaderKey,
   tableHeader,
+  daysLeft,
 } from "./constants"
 
 const Documents = (props) => {
@@ -59,15 +59,9 @@ const Documents = (props) => {
   let downloadHeaders = [...header]
   let downloadHeadersKey = [...headerKey]
 
-  if (user && user._id === user.companyAdminId._id) {
-    downloadHeadersKey = [...headerKey, "googleDriveLink"]
-    downloadHeaders = [...header, "Google Drive Link"]
-  }
-
   documents.forEach((val) => {
-    val.taxStatus = moment(val.taxPaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
+    let diff = moment().diff(val.taxPaidUpto, "days")
+    val.taxStatus = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
 
     val.insuranceStatus = moment(val.insurancePaidUpto).isBefore(moment())
       ? EXPIRED
@@ -85,6 +79,10 @@ const Documents = (props) => {
       ? EXPIRED
       : ACTIVE
 
+    val.nationalPermitStatus = moment(val.permitPaidUpto).isBefore(moment())
+      ? EXPIRED
+      : ACTIVE
+
     const searchIn = [
       val.vehicleNo,
       val.taxStatus,
@@ -92,14 +90,14 @@ const Documents = (props) => {
       val.fitnessStatus,
       val.pollutionStatus,
       val.permitStatus,
+      val.nationalPermitStatus,
       val.addedBy && val.addedBy.location ? val.addedBy.location : "",
     ]
 
     downloadData.push(
       [...downloadHeadersKey, "addedBy"].map((item, index) => {
         if (item === "addedBy") return val.addedBy ? val.addedBy.location : ""
-        if (index > 0 && item !== "googleDriveLink")
-          return formatDateInDDMMYYY(val[item])
+        if (index > 0) return formatDateInDDMMYYY(val[item])
         return val[item]
       })
     )
@@ -130,21 +128,11 @@ const Documents = (props) => {
             {row.addedBy ? row.addedBy.location : ""}
           </TableCell>
         )
-      if (headVal === "googleDriveLink")
-        return (
-          <TableCell key={index}>
-            {validateUrlValid(row[headVal]) && (
-              <a href={row[headVal]} target="_blank" rel="noreferrer">
-                Click here
-              </a>
-            )}
-          </TableCell>
-        )
       return (
         <TableCell key={index}>
           <span
             style={{
-              backgroundColor: row[headVal] === ACTIVE ? "green" : "#8b0000",
+              backgroundColor: row[headVal] == EXPIRED ? "#8b0000" : "green",
               padding: "10px",
               color: "white",
               borderRadius: "10%",

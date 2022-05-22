@@ -11,15 +11,12 @@ import {
 
 const initialDocument = {
   vehicleNo: "",
-  taxPaidOn: moment().toISOString(),
   taxPaidUpto: formatInDayEnd(),
-  insurancePaidOn: moment().toISOString(),
   insurancePaidUpto: formatInDayEnd(),
-  fitnessPaidOn: moment().toISOString(),
   fitnessPaidUpto: formatInDayEnd(),
-  pollutionPaidOn: moment().toISOString(),
   pollutionPaidUpto: formatInDayEnd(),
-  googleDriveLink: "",
+  permitPaidUpto: formatInDayEnd(),
+  nationalPermitPaidUpto: formatInDayEnd(),
 }
 
 const AddDocument = (props) => {
@@ -35,26 +32,11 @@ const AddDocument = (props) => {
   const inputFields = [
     { id: "vehicleNo", label: "Vehicle No.", required: true },
     {
-      id: "taxPaidOn",
-      type: "date",
-      handleChange: (date) => setDocument({ ...document, taxPaidOn: date }),
-      label: "Tax Paid On",
-      maxDate: moment().toISOString(),
-    },
-    {
       id: "taxPaidUpto",
       type: "date",
       handleChange: (date) =>
         setDocument({ ...document, taxPaidUpto: formatInDayEnd(date) }),
       label: "Tax Paid Upto",
-    },
-    {
-      id: "insurancePaidOn",
-      type: "date",
-      handleChange: (date) =>
-        setDocument({ ...document, insurancePaidOn: date }),
-      label: "Insurance Paid On",
-      maxDate: moment().toISOString(),
     },
     {
       id: "insurancePaidUpto",
@@ -67,13 +49,6 @@ const AddDocument = (props) => {
       label: "Insurance Paid Upto",
     },
     {
-      id: "fitnessPaidOn",
-      type: "date",
-      handleChange: (date) => setDocument({ ...document, fitnessPaidOn: date }),
-      label: "Fitness Paid On",
-      maxDate: moment().toISOString(),
-    },
-    {
       id: "fitnessPaidUpto",
       type: "date",
       handleChange: (date) =>
@@ -84,11 +59,11 @@ const AddDocument = (props) => {
       label: "Fitness Paid Upto",
     },
     {
-      id: "pollutionPaidOn",
+      id: "pollutionPaidUpto",
       type: "date",
       handleChange: (date) =>
-        setDocument({ ...document, pollutionPaidOn: date }),
-      label: "Pollution Paid On",
+        setDocument({ ...document, pollutionPaidUpto: date }),
+      label: "Pollution Paid Upto",
       maxDate: moment().toISOString(),
     },
     {
@@ -102,19 +77,14 @@ const AddDocument = (props) => {
       label: "Permit Paid Upto",
     },
     {
-      id: "permitPaidUpto",
+      id: "nationalPermitPaidUpto",
       type: "date",
       handleChange: (date) =>
         setDocument({
           ...document,
-          permitPaidUpto: formatInDayEnd(date),
+          nationalPermitPaidUpto: formatInDayEnd(date),
         }),
-      label: "Permit Paid Upto",
-    },
-    {
-      id: "googleDriveLink",
-      label: "Google Drive Link",
-      customValidate: [{ type: "LINK" }],
+      label: "National Permit Paid Upto",
     },
   ]
 

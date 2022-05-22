@@ -15,7 +15,15 @@ const Home = (props) => {
   let { home, loading } = props.home
   const getHome = props.getHome
   if (!home)
-    home = { tax: [], insurance: [], fitness: [], trips: [], pollution: [] }
+    home = {
+      tax: [],
+      insurance: [],
+      fitness: [],
+      trips: [],
+      pollution: [],
+      permit: [],
+      nationalPermit: [],
+    }
 
   useEffect(() => {
     getHome()
@@ -41,6 +49,16 @@ const Home = (props) => {
       data: home.pollution,
       labels: vehicleStatus,
       title: "Pollution",
+    },
+    {
+      data: home.permit,
+      labels: vehicleStatus,
+      title: "Permit",
+    },
+    {
+      data: home.nationalPermit,
+      labels: vehicleStatus,
+      title: "National Permit",
     },
   ]
 
@@ -112,9 +130,3 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(connect(mapStateToProps, { getHome })(Home))
-
-// add vehicle fitness status
-// tax status
-// insurance status
-
-// per month trip
