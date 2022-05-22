@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes"
 
 const initialState = {
   loading: false,
@@ -8,46 +8,51 @@ const initialState = {
   editLoading: false,
   deleteLoading: false,
   uploadLoading: false,
-};
+  documentsLink: null,
+}
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case actionTypes.GET_DOCUMENTS_PENDING:
-      return { ...initialState, loading: true };
+      return { ...initialState, loading: true }
     case actionTypes.GET_DOCUMENTS_SUCCESS:
-      return { ...initialState, documents: action.payload };
+      return {
+        ...initialState,
+        documents: action.payload.data,
+        documentsLink: action.payload.documentsLink,
+      }
     case actionTypes.GET_DOCUMENTS_FAILURE:
-      return { ...initialState, error: action.payload };
+      return { ...initialState, error: action.payload }
 
     case actionTypes.ADD_DOCUMENTS_PENDING:
-      return { ...state, addLoading: true };
+      return { ...state, addLoading: true }
     case actionTypes.ADD_DOCUMENTS_SUCCESS:
-      return { ...state, addLoading: false };
+      return { ...state, addLoading: false }
     case actionTypes.ADD_DOCUMENTS_FAILURE:
-      return { ...state, addLoading: false };
+      return { ...state, addLoading: false }
 
     case actionTypes.UPLOAD_DOCUMENTS_PENDING:
-      return { ...state, uploadLoading: true };
+      return { ...state, uploadLoading: true }
     case actionTypes.UPLOAD_DOCUMENTS_SUCCESS:
-      return { ...state, uploadLoading: false };
+      return { ...state, uploadLoading: false }
     case actionTypes.UPLOAD_DOCUMENTS_FAILURE:
-      return { ...state, uploadLoading: false };
+      return { ...state, uploadLoading: false }
 
     case actionTypes.EDIT_DOCUMENTS_PENDING:
-      return { ...state, editLoading: true };
+      return { ...state, editLoading: true }
     case actionTypes.EDIT_DOCUMENTS_SUCCESS:
-      return { ...state, editLoading: false };
+      return { ...state, editLoading: false }
     case actionTypes.EDIT_DOCUMENTS_FAILURE:
-      return { ...state, editLoading: false };
+      return { ...state, editLoading: false }
 
     case actionTypes.DELETE_DOCUMENTS_PENDING:
-      return { ...state, deleteLoading: true };
+      return { ...state, deleteLoading: true }
     case actionTypes.DELETE_DOCUMENTS_SUCCESS:
-      return { ...state, deleteLoading: false };
+      return { ...state, deleteLoading: false }
     case actionTypes.DELETE_DOCUMENTS_FAILURE:
-      return { ...state, deleteLoading: false };
+      return { ...state, deleteLoading: false }
 
     default:
-      return state;
+      return state
   }
 }

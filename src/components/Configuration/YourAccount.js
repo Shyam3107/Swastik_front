@@ -10,6 +10,7 @@ import Button from "@mui/material/Button"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
 import { editAccount, getAccount } from "../../containers/Accounts/action"
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
+import { isAdmin } from "../../utils/constants"
 
 const YourAccount = (props) => {
   let { accounts, loading, editLoading } = props.accounts
@@ -47,6 +48,9 @@ const YourAccount = (props) => {
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
   ]
+
+  if (isAdmin())
+    inputFields.push({ label: "Documents Link", id: "documentsLink" })
 
   return (
     <Box>

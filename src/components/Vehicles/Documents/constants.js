@@ -44,7 +44,7 @@ export const sampleData = [
 
 export const EXPIRED = "EXPIRED"
 export const ACTIVE = "ACTIVE"
-export const daysLeft = (days) => `${days}Days`
+export const daysLeft = (days) => `${days} Days`
 
 export const EDIT_URL = (id) => `/vehicles/document/${id}/edit`
 export const VIEW_URL = (id) => `/vehicles/document/${id}`

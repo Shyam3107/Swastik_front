@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, Fragment } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
@@ -15,6 +15,7 @@ import {
   formatDateInDDMMYYY,
   includesInArray,
   ROUTES,
+  validateUrlValid
 } from "../../../utils/constants"
 import {
   header,
@@ -40,6 +41,7 @@ const Documents = (props) => {
     editLoading,
     deleteLoading,
     uploadLoading,
+    documentsLink
   } = props.documents
   const history = props.history
   const user = props.user.user
@@ -60,37 +62,24 @@ const Documents = (props) => {
   let downloadHeadersKey = [...headerKey]
 
   documents.forEach((val) => {
-    let diff = moment().diff(val.taxPaidUpto, "days")
-    val.taxStatus = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
+    const temp = {
+      taxStatus: val.taxPaidUpto,
+      insuranceStatus: val.insurancePaidUpto,
+      fitnessStatus: val.fitnessPaidUpto,
+      pollutionStatus: val.pollutionPaidUpto,
+      permitStatus: val.permitPaidUpto,
+      nationalPermitStatus: val.nationalPermitPaidUpto,
+    }
 
-    val.insuranceStatus = moment(val.insurancePaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
-
-    val.fitnessStatus = moment(val.fitnessPaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
-
-    val.pollutionStatus = moment(val.pollutionPaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
-
-    val.permitStatus = moment(val.permitPaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
-
-    val.nationalPermitStatus = moment(val.permitPaidUpto).isBefore(moment())
-      ? EXPIRED
-      : ACTIVE
+    Object.keys(temp).forEach((key) => {
+      let diff = moment(temp[key]).diff(moment(), "days")
+      val[key] = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
+      console.log(diff + " " + val[key])
+    })
 
     const searchIn = [
       val.vehicleNo,
-      val.taxStatus,
-      val.insuranceStatus,
-      val.fitnessStatus,
-      val.pollutionStatus,
-      val.permitStatus,
-      val.nationalPermitStatus,
+      ...Object.keys(temp),
       val.addedBy && val.addedBy.location ? val.addedBy.location : "",
     ]
 
@@ -132,7 +121,7 @@ const Documents = (props) => {
         <TableCell key={index}>
           <span
             style={{
-              backgroundColor: row[headVal] == EXPIRED ? "#8b0000" : "green",
+              backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",
               padding: "10px",
               color: "white",
               borderRadius: "10%",
@@ -168,31 +157,39 @@ const Documents = (props) => {
   }
 
   return (
-    <Layout
-      title="Documents"
-      handleDeleteAgree={handleDeleteAgree}
-      handleFileSubmit={handleFileSubmit}
-      tableBodyFunc={tableBodyFunc}
-      setNumSelected={setSelected}
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
-      checkBoxCondition={checkBoxCondition}
-      setSearch={setSearch}
-      search={search}
-      data={documents}
-      mssgTitle="Documents"
-      loading={loading}
-      tableRow={tableRow}
-      numSelected={selected}
-      fileName="documents"
-      sampleName="documentSample"
-      sampleData={sampleData}
-      downloadData={downloadData}
-      addLoading={addLoading || uploadLoading}
-      editLoading={editLoading}
-      deleteLoading={deleteLoading}
-      downloadLoading={addLoading}
-    />
+    <Fragment>
+      <Layout
+        title="Documents"
+        handleDeleteAgree={handleDeleteAgree}
+        handleFileSubmit={handleFileSubmit}
+        tableBodyFunc={tableBodyFunc}
+        setNumSelected={setSelected}
+        handleAddButton={handleAddButton}
+        handleEditButton={handleEditButton}
+        checkBoxCondition={checkBoxCondition}
+        setSearch={setSearch}
+        search={search}
+        data={documents}
+        mssgTitle="Documents"
+        loading={loading}
+        tableRow={tableRow}
+        numSelected={selected}
+        fileName="documents"
+        sampleName="documentSample"
+        sampleData={sampleData}
+        downloadData={downloadData}
+        addLoading={addLoading || uploadLoading}
+        editLoading={editLoading}
+        deleteLoading={deleteLoading}
+        downloadLoading={addLoading}
+      />
+      {validateUrlValid(documentsLink) && <p style={{ marginLeft: "10px" }}>
+        <a target="_blank" href={documentsLink}>
+          Click here
+        </a>{" "}
+        to view the Documents{" "}
+      </p>}
+    </Fragment>
   )
 }
 

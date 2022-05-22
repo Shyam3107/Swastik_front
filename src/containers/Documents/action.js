@@ -16,7 +16,7 @@ export const getDocuments =
       callback: (data) => {
         dispatch({
           type: actionTypes.GET_DOCUMENTS_SUCCESS,
-          payload: data.data,
+          payload: data,
         });
       },
       errorActionType: actionTypes.GET_DOCUMENTS_FAILURE,

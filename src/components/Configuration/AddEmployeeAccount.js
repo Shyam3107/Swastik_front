@@ -48,7 +48,9 @@ const AddEmployeeAccount = (props) => {
   }
 
   const handleReset = () => {
-    setForm(initialForm)
+    if (initialFields)
+      setForm({ ...initialForm, ...initialFields, password: "" })
+    else setForm(initialForm)
   }
 
   const handleCancel = () => {
