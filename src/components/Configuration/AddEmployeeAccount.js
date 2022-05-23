@@ -10,7 +10,8 @@ import Button from "@mui/material/Button"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 import { editAccount, addAccount } from "../../containers/Accounts/action"
-import { initialForm } from "./constants"
+import { accessOptions, initialForm, operationsOptions } from "./constants"
+import CustomCheckBox from "../CustomComponents/CustomCheckBox/CustomCheckBox"
 
 const AddEmployeeAccount = (props) => {
   const [form, setForm] = useState(initialForm)
@@ -25,6 +26,20 @@ const AddEmployeeAccount = (props) => {
       setForm({ ...initialForm, ...initialFields, password: "" })
   }, [initialFields, setForm])
 
+  const handleCheckBox = (field, value, checked) => {
+    let temp = [...form[field]]
+    if (checked) {
+      temp = [...form[field], value]
+      setForm({ ...form, [field]: temp })
+    } else {
+      const index = form[field].indexOf(value)
+      if (index !== -1) {
+        temp.splice(index, 1)
+        setForm({ ...form, [field]: temp })
+      }
+    }
+  }
+
   let inputFields = [
     { label: "User Name", id: "userName", required: true },
     { label: "Location", id: "location", required: true },
@@ -36,6 +51,32 @@ const AddEmployeeAccount = (props) => {
     { label: "Phone No.", id: "phone" },
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
+    {
+      label: "Access",
+      id: "access",
+      type: "CHECKBOX",
+      options: accessOptions,
+      handleChange: (value, checked) => {
+        handleCheckBox("access", value, checked)
+      },
+      lg: 12,
+      md: 12,
+      sm: 12,
+      value: form.access,
+    },
+    {
+      label: "Operations",
+      id: "operations",
+      type: "CHECKBOX",
+      options: operationsOptions,
+      handleChange: (value, checked) => {
+        handleCheckBox("operations", value, checked)
+      },
+      lg: 12,
+      md: 12,
+      sm: 12,
+      value: form.operations,
+    },
   ]
 
   const handleSubmit = () => {
@@ -67,22 +108,37 @@ const AddEmployeeAccount = (props) => {
             if (item.required) handleValidate(e.target.name, e.target.value)
           }
           return (
-            <Grid item xs={12} sm={5} md={4} lg={3} key={index}>
+            <Grid
+              item
+              xs={item.xs ? item.xs : 12}
+              sm={item.sm ? item.sm : 5}
+              md={item.md ? item.md : 4}
+              lg={item.lg ? item.lg : 3}
+              key={index}
+            >
               <Typography variant="h6">
                 {item.label}
                 {item.required && <span style={{ color: "red" }}>*</span>}
               </Typography>
-              <TextField
-                id={item.id}
-                variant="standard"
-                style={{ width: "100%" }}
-                value={form[item.id]}
-                type="text"
-                onChange={handleInputChange}
-                name={item.id}
-                error={Boolean(error[item.id])}
-                onBlur={handleInputChange}
-              />
+              {item.type === "CHECKBOX" ? (
+                <CustomCheckBox
+                  value={item.value}
+                  options={item.options}
+                  handleChange={item.handleChange}
+                />
+              ) : (
+                <TextField
+                  id={item.id}
+                  variant="standard"
+                  style={{ width: "100%" }}
+                  value={form[item.id]}
+                  type="text"
+                  onChange={handleInputChange}
+                  name={item.id}
+                  error={Boolean(error[item.id])}
+                  onBlur={handleInputChange}
+                />
+              )}
               <FormHelperText error={Boolean(error[item.id])}>
                 {error[item.id]}
               </FormHelperText>

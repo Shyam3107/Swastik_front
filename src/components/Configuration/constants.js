@@ -6,4 +6,21 @@ export const initialForm = {
   companyName: "",
   tptCode: "",
   documentsLink: "",
+  access: [],
+  operations: [],
 }
+
+export const accessOptions = [
+  { label: "Trips", id: "TRIPS" },
+  { label: "Documents", id: "DOCUMENTS" },
+  { label: "Receipts", id: "RECEIPTS" },
+  { label: "Office Expenses", id: "OFFICE EXPENSES" },
+  { label: "Vehicle Expenses", id: "VEHICLE EXPENSES" },
+]
+
+export const operationsOptions = [
+  { label: "Read", id: "READ" },
+  { label: "Create", id: "CREATE" },
+  { label: "Update", id: "UPDATE" },
+  { label: "Delete", id: "DELETE" },
+]

@@ -15,7 +15,7 @@ import {
   formatDateInDDMMYYY,
   includesInArray,
   ROUTES,
-  validateUrlValid
+  validateUrlValid,
 } from "../../../utils/constants"
 import {
   header,
@@ -41,7 +41,7 @@ const Documents = (props) => {
     editLoading,
     deleteLoading,
     uploadLoading,
-    documentsLink
+    documentsLink,
   } = props.documents
   const history = props.history
   const user = props.user.user
@@ -72,9 +72,8 @@ const Documents = (props) => {
     }
 
     Object.keys(temp).forEach((key) => {
-      let diff = moment(temp[key]).diff(moment(), "days")
+      let diff = moment(temp[key]).diff(moment().endOf("day"), "days")
       val[key] = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
-      console.log(diff + " " + val[key])
     })
 
     const searchIn = [
@@ -98,7 +97,7 @@ const Documents = (props) => {
   downloadData = [[...downloadHeaders, "Added By"], ...downloadData]
 
   const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
-    <TableCell key={index} style={{ fontWeight: "600" }}>
+    <TableCell key={index} style={{ fontWeight: "600", textAlign: "center" }}>
       {headCell}
     </TableCell>
   ))
@@ -118,7 +117,7 @@ const Documents = (props) => {
           </TableCell>
         )
       return (
-        <TableCell key={index}>
+        <TableCell key={index} style={{ padding: "5px", textAlign: "center" }}>
           <span
             style={{
               backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",
@@ -183,12 +182,14 @@ const Documents = (props) => {
         deleteLoading={deleteLoading}
         downloadLoading={addLoading}
       />
-      {validateUrlValid(documentsLink) && <p style={{ marginLeft: "10px" }}>
-        <a target="_blank" href={documentsLink}>
-          Click here
-        </a>{" "}
-        to view the Documents{" "}
-      </p>}
+      {validateUrlValid(documentsLink) && (
+        <p style={{ marginLeft: "10px" }}>
+          <a target="_blank" href={documentsLink} rel="noreferrer">
+            Click here
+          </a>{" "}
+          to view the Documents{" "}
+        </p>
+      )}
     </Fragment>
   )
 }

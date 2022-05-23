@@ -97,8 +97,3 @@ export const validateUrlValid = (userInput) => {
   )
   return res ? true : false
 }
-
-export const isAdmin = () => {
-  const user = JSON.parse(sessionStorage.getItem("user"))
-  return user && !user.addedBy
-}
