@@ -15,7 +15,7 @@ import ReceiptIcon from "@mui/icons-material/Receipt"
 
 import { ROUTES } from "../../utils/constants"
 
-const Content = (props) => {
+const SideContent = (props) => {
   const menuItems = [
     {
       icon: <HomeIcon />,
@@ -109,4 +109,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Content))
+export default withRouter(connect(mapStateToProps)(SideContent))

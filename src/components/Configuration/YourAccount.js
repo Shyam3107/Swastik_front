@@ -10,7 +10,7 @@ import Button from "@mui/material/Button"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
 import { editAccount, getAccount } from "../../containers/Accounts/action"
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
-import { isAdmin } from "../../utils/permissions"
+import { isAdmin } from "../../utils/utilities"
 
 const YourAccount = (props) => {
   let { accounts, loading, editLoading } = props.accounts

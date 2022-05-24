@@ -5,7 +5,7 @@ import "./bootstap.scss"
 import { SidebarHeader } from "react-pro-sidebar"
 import { withRouter } from "react-router"
 
-const Header = (props) => {
+const SideHeader = (props) => {
   let user = props.user.user
 
   if (!user) user = {}
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Header))
+export default withRouter(connect(mapStateToProps)(SideHeader))

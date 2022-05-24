@@ -10,7 +10,7 @@ import { userLogout } from "../../containers/Login/action"
 import { ROUTES } from "../../utils/constants"
 import Footer from "../Footer/Footer"
 
-const Footer = (props) => {
+const SideFooter = (props) => {
   const history = props.history
 
   const handleLogout = () => {
@@ -43,4 +43,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { userLogout })(Footer))
+export default withRouter(connect(mapStateToProps, { userLogout })(SideFooter))

@@ -8,9 +8,9 @@ import MenuIcon from "@mui/icons-material/Menu"
 import Box from "@mui/material/Box"
 import Paper from "@mui/material/Paper"
 import { withRouter } from "react-router"
-import SideHeader from "./Header"
-import SideFooter from "./Footer"
-import SideContent from "./Content"
+import SideHeader from "./SideHeader"
+import SideFooter from "./SideFooter"
+import SideContent from "./SideContent"
 import { userLogout } from "../../containers/Login/action"
 
 import { OfflineFooter } from "../Footer/Footer"
@@ -22,7 +22,6 @@ const Route = lazy(() => import("../Routes/Route"))
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false)
   const isOnline = useNetworkStatus()
-  const history = props.history
   let user = props.user.user
 
   if (!user) user = {}
