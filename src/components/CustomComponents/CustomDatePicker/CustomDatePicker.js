@@ -1,7 +1,7 @@
-import React from "react";
-import DateFnsUtils from "@date-io/date-fns";
-import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers";
-import moment from "moment";
+import React from "react"
+import DateFnsUtils from "@date-io/date-fns"
+import { MuiPickersUtilsProvider, DatePicker } from "@material-ui/pickers"
+import moment from "moment"
 
 const CustomDatePicker = ({
   selectedDate,
@@ -13,10 +13,10 @@ const CustomDatePicker = ({
 }) => {
   const handleDateChange = (date) => {
     if (id === "To") {
-      date = moment(date).endOf("day");
+      date = moment(date).endOf("day")
     }
-    setSelectedDate(new Date(date).toISOString());
-  };
+    setSelectedDate(new Date(date).toISOString())
+  }
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -33,7 +33,7 @@ const CustomDatePicker = ({
         label={label}
       />
     </MuiPickersUtilsProvider>
-  );
-};
+  )
+}
 
-export default CustomDatePicker;
+export default CustomDatePicker

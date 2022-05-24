@@ -1,13 +1,13 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
-import convertCSVToJson from "../../utils/convertCSVtoJSON";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
+import convertCSVToJson from "../../utils/convertCSVtoJSON"
 
 export const getDocuments =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_DOCUMENTS_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -17,21 +17,21 @@ export const getDocuments =
         dispatch({
           type: actionTypes.GET_DOCUMENTS_SUCCESS,
           payload: data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_DOCUMENTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const addDocuments =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_DOCUMENTS_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -40,22 +40,22 @@ export const addDocuments =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_DOCUMENTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.ADD_DOCUMENTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const uploadDocuments =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.UPLOAD_DOCUMENTS_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -64,22 +64,22 @@ export const uploadDocuments =
       callback: (data) => {
         dispatch({
           type: actionTypes.UPLOAD_DOCUMENTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.UPLOAD_DOCUMENTS_FAILURE,
       dispatch,
-    };
+    }
 
-    convertCSVToJson(payload, options);
-  };
+    convertCSVToJson(payload, options)
+  }
 
 export const editDocuments =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_DOCUMENTS_PENDING,
-    });
+    })
 
     const options = {
       method: "put",
@@ -88,22 +88,22 @@ export const editDocuments =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_DOCUMENTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.EDIT_DOCUMENTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const deleteDocuments =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_DOCUMENTS_PENDING,
-    });
+    })
 
     const options = {
       method: "delete",
@@ -112,12 +112,12 @@ export const deleteDocuments =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_DOCUMENTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.DELETE_DOCUMENTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

@@ -1,35 +1,35 @@
-import { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import { connect } from "react-redux";
-import moment from "moment";
-import TableCell from "@mui/material/TableCell";
+import { useState, useEffect } from "react"
+import { withRouter } from "react-router"
+import { connect } from "react-redux"
+import moment from "moment"
+import TableCell from "@mui/material/TableCell"
 
-import Layout from "../Layout/Layout";
+import Layout from "../Layout/Layout"
 import {
   includesInArray,
   ROUTES,
   monthStart,
   currentDate,
   formatDateInDDMMYYY,
-} from "../../utils/constants";
-import { header, headerKey, sampleData, EDIT_URL } from "./constants";
-import { getReceipt, deleteReceipt } from "../../containers/Receipt/action";
+} from "../../utils/constants"
+import { header, headerKey, sampleData, EDIT_URL } from "./constants"
+import { getReceipt, deleteReceipt } from "../../containers/Receipt/action"
 
 const Office = (props) => {
-  let { getReceipt } = props;
-  const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState([]);
-  const [from, setFrom] = useState(monthStart);
-  const [to, setTo] = useState(currentDate);
+  let { getReceipt } = props
+  const [search, setSearch] = useState("")
+  const [selected, setSelected] = useState([])
+  const [from, setFrom] = useState(monthStart)
+  const [to, setTo] = useState(currentDate)
   let { loading, receipts, addLoading, editLoading, deleteLoading } =
-    props.receipt;
-  const history = props.history;
+    props.receipt
+  const history = props.history
 
   useEffect(() => {
-    getReceipt();
-  }, [getReceipt]);
+    getReceipt()
+  }, [getReceipt])
 
-  if (!receipts || !Array.isArray(receipts)) receipts = [];
+  if (!receipts || !Array.isArray(receipts)) receipts = []
 
   receipts = receipts.filter((val) => {
     return (
@@ -42,24 +42,24 @@ const Office = (props) => {
         ],
         search
       )
-    );
-  });
+    )
+  })
 
   let downloadData = receipts.map((item) => {
     return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val]);
-      if (val === "addedBy") return item.addedBy ? item.addedBy.location : "";
-      return item[val];
-    });
-  });
+      if (val === "date") return formatDateInDDMMYYY(item[val])
+      if (val === "addedBy") return item.addedBy ? item.addedBy.location : ""
+      return item[val]
+    })
+  })
 
-  downloadData = [[...header, "Added By"], ...downloadData];
+  downloadData = [[...header, "Added By"], ...downloadData]
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
-  ));
+  ))
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
@@ -73,26 +73,26 @@ const Office = (props) => {
             : ""}
           {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
         </TableCell>
-      );
-    });
-  };
+      )
+    })
+  }
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      props.getReceipt();
-      setSelected([]);
-    };
-    props.deleteReceipt(selected, cb);
-  };
+      props.getReceipt()
+      setSelected([])
+    }
+    props.deleteReceipt(selected, cb)
+  }
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_RECEIPT);
-  };
+    history.push(ROUTES.ADD_RECEIPT)
+  }
 
   const handleEditButton = () => {
-    const expenseId = selected[0];
-    history.push(EDIT_URL(expenseId));
-  };
+    const expenseId = selected[0]
+    history.push(EDIT_URL(expenseId))
+  }
 
   return (
     <Layout
@@ -122,19 +122,19 @@ const Office = (props) => {
       setSelectedTo={setTo}
       sampleData={sampleData}
     />
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     receipt: state.receipt,
     user: state.user,
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, {
     getReceipt,
     deleteReceipt,
   })(Office)
-);
+)

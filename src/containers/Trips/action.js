@@ -1,13 +1,13 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
-import convertCSVToJson from "../../utils/convertCSVtoJSON";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
+import convertCSVToJson from "../../utils/convertCSVtoJSON"
 
 export const getTrips =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_TRIPS_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -17,21 +17,21 @@ export const getTrips =
         dispatch({
           type: actionTypes.GET_TRIPS_SUCCESS,
           payload: data.data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_TRIPS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const addTrips =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_TRIPS_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -40,22 +40,22 @@ export const addTrips =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_TRIPS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.ADD_TRIPS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const uploadTrips =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.UPLOAD_TRIPS_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -64,22 +64,22 @@ export const uploadTrips =
       callback: (data) => {
         dispatch({
           type: actionTypes.UPLOAD_TRIPS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.UPLOAD_TRIPS_FAILURE,
       dispatch,
-    };
+    }
 
-    convertCSVToJson(payload, options);
-  };
+    convertCSVToJson(payload, options)
+  }
 
 export const editTrips =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_TRIPS_PENDING,
-    });
+    })
 
     const options = {
       method: "put",
@@ -88,22 +88,22 @@ export const editTrips =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_TRIPS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.EDIT_TRIPS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const deleteTrips =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_TRIPS_PENDING,
-    });
+    })
 
     const options = {
       method: "delete",
@@ -112,12 +112,12 @@ export const deleteTrips =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_TRIPS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.DELETE_TRIPS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

@@ -1,5 +1,5 @@
 export default function serviceWorker() {
-  let swURL = process.env.PUBLIC_URL + "/sw.js";
+  let swURL = process.env.PUBLIC_URL + "/sw.js"
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register(swURL)
@@ -8,6 +8,6 @@ export default function serviceWorker() {
       })
       .catch(() => {
         //console.log("Failed to register Service Worker");
-      });
+      })
   }
 }

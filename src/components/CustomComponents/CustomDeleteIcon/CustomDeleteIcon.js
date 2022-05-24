@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import CustomDialog from "../CustomDialog/CustomDialog";
-import DeleteIcon from "@mui/icons-material/Delete";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
+import React, { useState } from "react"
+import CustomDialog from "../CustomDialog/CustomDialog"
+import DeleteIcon from "@mui/icons-material/Delete"
+import IconButton from "@mui/material/IconButton"
+import Tooltip from "@mui/material/Tooltip"
 
 const CustomDeleteIcon = ({ handleDeleteAgree, styleButton }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
   return (
     <React.Fragment>
@@ -20,7 +20,7 @@ const CustomDeleteIcon = ({ handleDeleteAgree, styleButton }) => {
         </IconButton>
       </Tooltip>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default CustomDeleteIcon;
+export default CustomDeleteIcon

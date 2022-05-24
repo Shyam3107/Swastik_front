@@ -1,7 +1,7 @@
-import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
-import Skeleton from "@mui/material/Skeleton";
-import React from "react";
+import CircularProgress from "@mui/material/CircularProgress"
+import Box from "@mui/material/Box"
+import Skeleton from "@mui/material/Skeleton"
+import React from "react"
 
 export default function Loader({ skeleton, style = {}, circleStyle = {} }) {
   return skeleton ? (
@@ -26,5 +26,5 @@ export default function Loader({ skeleton, style = {}, circleStyle = {} }) {
     >
       <CircularProgress style={circleStyle} color="primary" />
     </Box>
-  );
+  )
 }

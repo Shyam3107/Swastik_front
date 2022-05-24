@@ -1,29 +1,29 @@
-import { useEffect } from "react";
-import { connect } from "react-redux";
-import { useParams } from "react-router";
-import { getExpense } from "../../../containers/OfficeExpense/action";
-import AddOffice from "./AddOffice";
+import { useEffect } from "react"
+import { connect } from "react-redux"
+import { useParams } from "react-router"
+import { getExpense } from "../../../containers/OfficeExpense/action"
+import AddOffice from "./AddOffice"
 
 const Office = (props) => {
-  let { expenses } = props.officeExpense;
-  const params = useParams();
-  const { getExpense } = props;
-  const { expenseId } = params;
+  let { expenses } = props.officeExpense
+  const params = useParams()
+  const { getExpense } = props
+  const { expenseId } = params
 
   useEffect(() => {
-    getExpense({ expenseId });
-  }, [expenseId, getExpense]);
+    getExpense({ expenseId })
+  }, [expenseId, getExpense])
 
-  if (expenses && Array.isArray(expenses)) expenses = null;
+  if (expenses && Array.isArray(expenses)) expenses = null
 
-  return <AddOffice initialFields={expenses} />;
-};
+  return <AddOffice initialFields={expenses} />
+}
 
 const mapStateToProps = (state) => {
   return {
     officeExpense: state.officeExpense,
     user: state.user,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, { getExpense })(Office);
+export default connect(mapStateToProps, { getExpense })(Office)

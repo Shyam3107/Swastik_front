@@ -1,5 +1,5 @@
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select"
+import MenuItem from "@mui/material/MenuItem"
 
 const CustomSelectInput = ({ id, value, handleChange, menuItems, style }) => {
   return (
@@ -16,10 +16,10 @@ const CustomSelectInput = ({ id, value, handleChange, menuItems, style }) => {
           <MenuItem value={item.value} key={index}>
             {item.label}
           </MenuItem>
-        );
+        )
       })}
     </Select>
-  );
-};
+  )
+}
 
-export default CustomSelectInput;
+export default CustomSelectInput

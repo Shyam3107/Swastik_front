@@ -1,12 +1,12 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
 
 export const getAccount =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_ACCOUNTS_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -16,21 +16,21 @@ export const getAccount =
         dispatch({
           type: actionTypes.GET_ACCOUNTS_SUCCESS,
           payload: data.data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_ACCOUNTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const addAccount =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_ACCOUNTS_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -39,22 +39,22 @@ export const addAccount =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_ACCOUNTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.ADD_ACCOUNTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const editAccount =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_ACCOUNTS_PENDING,
-    });
+    })
 
     const options = {
       method: "put",
@@ -63,22 +63,22 @@ export const editAccount =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_ACCOUNTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.EDIT_ACCOUNTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const deleteAccount =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_ACCOUNTS_PENDING,
-    });
+    })
 
     const options = {
       method: "delete",
@@ -87,12 +87,12 @@ export const deleteAccount =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_ACCOUNTS_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.DELETE_ACCOUNTS_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

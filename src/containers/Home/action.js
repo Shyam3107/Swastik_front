@@ -1,12 +1,12 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
 
 export const getHome =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_HOME_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -16,11 +16,11 @@ export const getHome =
         dispatch({
           type: actionTypes.GET_HOME_SUCCESS,
           payload: data.data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_HOME_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

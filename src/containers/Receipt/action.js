@@ -1,12 +1,12 @@
-import * as actionTypes from "./actionTypes";
-import { API, makeRequest } from "../../APIs/APIs";
+import * as actionTypes from "./actionTypes"
+import { API, makeRequest } from "../../APIs/APIs"
 
 export const getReceipt =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_RECEIPT_PENDING,
-    });
+    })
 
     const options = {
       method: "get",
@@ -16,21 +16,21 @@ export const getReceipt =
         dispatch({
           type: actionTypes.GET_RECEIPT_SUCCESS,
           payload: data.data,
-        });
+        })
       },
       errorActionType: actionTypes.GET_RECEIPT_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const addReceipt =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_RECEIPT_PENDING,
-    });
+    })
 
     const options = {
       method: "post",
@@ -39,22 +39,22 @@ export const addReceipt =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_RECEIPT_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.ADD_RECEIPT_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const editReceipt =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_RECEIPT_PENDING,
-    });
+    })
 
     const options = {
       method: "put",
@@ -63,22 +63,22 @@ export const editReceipt =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_RECEIPT_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.EDIT_RECEIPT_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }
 
 export const deleteReceipt =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_RECEIPT_PENDING,
-    });
+    })
 
     const options = {
       method: "delete",
@@ -87,12 +87,12 @@ export const deleteReceipt =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_RECEIPT_SUCCESS,
-        });
-        cb();
+        })
+        cb()
       },
       errorActionType: actionTypes.DELETE_RECEIPT_FAILURE,
       dispatch,
-    };
+    }
 
-    makeRequest(options);
-  };
+    makeRequest(options)
+  }

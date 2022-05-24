@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import LayoutAdd from "../../Layout/LayoutAdd";
+import { useState, useEffect } from "react"
+import { connect } from "react-redux"
+import { withRouter } from "react-router"
+import LayoutAdd from "../../Layout/LayoutAdd"
 import {
   addExpense,
   editExpense,
-} from "../../../containers/VehicleExpense/action";
-import { ROUTES, pumpNames } from "../../../utils/constants";
+} from "../../../containers/VehicleExpense/action"
+import { ROUTES, pumpNames } from "../../../utils/constants"
 
 const initialExpense = {
   date: new Date().toISOString(),
@@ -18,17 +18,17 @@ const initialExpense = {
   diesel: "",
   dieselIn: "",
   dieselFor: "",
-};
+}
 
 const Vehicles = (props) => {
-  const [expense, setExpense] = useState(initialExpense);
-  const { initialFields } = props;
-  const history = props.history;
-  const { addLoading, editLoading, loading } = props.vehiclesExpense;
+  const [expense, setExpense] = useState(initialExpense)
+  const { initialFields } = props
+  const history = props.history
+  const { addLoading, editLoading, loading } = props.vehiclesExpense
 
   useEffect(() => {
-    if (initialFields) setExpense(initialFields);
-  }, [initialFields]);
+    if (initialFields) setExpense(initialFields)
+  }, [initialFields])
 
   const inputFields = [
     {
@@ -68,28 +68,28 @@ const Vehicles = (props) => {
       handleChange: (val) => setExpense({ ...expense, pumpName: val }),
       options: pumpNames,
     },
-  ];
+  ]
 
   const handleValueChange = (e) => {
-    setExpense({ ...expense, [e.target.name]: e.target.value });
-  };
+    setExpense({ ...expense, [e.target.name]: e.target.value })
+  }
 
   const handleCancel = () => {
-    history.push(ROUTES.VEHICLES_EXPENSE);
-  };
+    history.push(ROUTES.VEHICLES_EXPENSE)
+  }
 
   const handleReset = () => {
-    if (initialFields) setExpense(initialFields);
-    else setExpense(initialExpense);
-  };
+    if (initialFields) setExpense(initialFields)
+    else setExpense(initialExpense)
+  }
 
   const handleSubmit = () => {
     const cb = () => {
-      history.push(ROUTES.VEHICLES_EXPENSE);
-    };
-    if (initialFields) props.editExpense(expense, cb);
-    else props.addExpense(expense, cb);
-  };
+      history.push(ROUTES.VEHICLES_EXPENSE)
+    }
+    if (initialFields) props.editExpense(expense, cb)
+    else props.addExpense(expense, cb)
+  }
 
   return (
     <LayoutAdd
@@ -104,16 +104,16 @@ const Vehicles = (props) => {
       submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     vehiclesExpense: state.vehiclesExpense,
     user: state.user,
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, { addExpense, editExpense })(Vehicles)
-);
+)

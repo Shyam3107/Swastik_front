@@ -1,30 +1,30 @@
-import { useState, useEffect } from "react";
-import { withRouter } from "react-router";
-import moment from "moment";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import TableCell from "@mui/material/TableCell";
+import { useState, useEffect } from "react"
+import { withRouter } from "react-router"
+import moment from "moment"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import TableCell from "@mui/material/TableCell"
 
 import {
   getTrips,
   deleteTrips,
   uploadTrips,
-} from "../../../containers/Trips/action";
-import Layout from "../../Layout/Layout";
+} from "../../../containers/Trips/action"
+import Layout from "../../Layout/Layout"
 import {
   includesInArray,
   ROUTES,
   currentDate,
   formatDateInDDMMYYY,
-} from "../../../utils/constants";
-import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants";
+} from "../../../utils/constants"
+import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
 
 const Trips = (props) => {
-  let { getTrips } = props;
-  const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState([]);
-  const [from, setFrom] = useState(currentDate);
-  const [to, setTo] = useState(currentDate);
+  let { getTrips } = props
+  const [search, setSearch] = useState("")
+  const [selected, setSelected] = useState([])
+  const [from, setFrom] = useState(currentDate)
+  const [to, setTo] = useState(currentDate)
   let {
     loading,
     trips,
@@ -32,22 +32,22 @@ const Trips = (props) => {
     editLoading,
     deleteLoading,
     uploadLoading,
-  } = props.trips;
-  const history = props.history;
-  const user = props.user.user;
+  } = props.trips
+  const history = props.history
+  const user = props.user.user
 
   useEffect(() => {
     getTrips({
       from: moment(from).toISOString(),
       to: moment(to).toISOString(),
-    });
-  }, [getTrips, from, to]);
+    })
+  }, [getTrips, from, to])
 
   const handleFileSubmit = (file) => {
-    props.uploadTrips(file, getTrips);
-  };
+    props.uploadTrips(file, getTrips)
+  }
 
-  if (!trips || !Array.isArray(trips)) trips = [];
+  if (!trips || !Array.isArray(trips)) trips = []
 
   trips = trips.filter((val) => {
     return includesInArray(
@@ -63,24 +63,24 @@ const Trips = (props) => {
         val.addedBy && val.addedBy.location ? val.addedBy.location : "",
       ],
       search
-    );
-  });
+    )
+  })
 
   let downloadData = trips.map((item) => {
     return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val]);
-      if (val === "addedBy") return item[val] ? item[val].location : "";
-      return item[val];
-    });
-  });
+      if (val === "date") return formatDateInDDMMYYY(item[val])
+      if (val === "addedBy") return item[val] ? item[val].location : ""
+      return item[val]
+    })
+  })
 
-  downloadData = [[...header, "Added By"], ...downloadData];
+  downloadData = [[...header, "Added By"], ...downloadData]
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
-  ));
+  ))
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
@@ -89,7 +89,7 @@ const Trips = (props) => {
           <TableCell key={index}>
             <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
           </TableCell>
-        );
+        )
       return (
         <TableCell key={index}>
           {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
@@ -100,31 +100,31 @@ const Trips = (props) => {
             : ""}
           {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
         </TableCell>
-      );
-    });
-  };
+      )
+    })
+  }
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      props.getTrips();
-      setSelected([]);
-    };
-    props.deleteTrips(selected, cb);
-  };
+      props.getTrips()
+      setSelected([])
+    }
+    props.deleteTrips(selected, cb)
+  }
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_TRIP);
-  };
+    history.push(ROUTES.ADD_TRIP)
+  }
 
   const handleEditButton = () => {
-    const tripId = selected[0];
-    const searchId = trips.filter((val) => val._id === tripId);
-    history.push(EDIT_URL(searchId[0].diNo));
-  };
+    const tripId = selected[0]
+    const searchId = trips.filter((val) => val._id === tripId)
+    history.push(EDIT_URL(searchId[0].diNo))
+  }
 
   const checkBoxCondition = (row) => {
-    return row.addedBy._id === user._id || user._id === user.companyAdminId._id;
-  };
+    return row.addedBy._id === user._id || user._id === user.companyAdminId._id
+  }
 
   return (
     <Layout
@@ -157,15 +157,15 @@ const Trips = (props) => {
       downloadData={downloadData}
       downloadLoading={addLoading}
     />
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
     user: state.user,
-  };
-};
+  }
+}
 
 export default withRouter(
   connect(mapStateToProps, {
@@ -173,4 +173,4 @@ export default withRouter(
     deleteTrips,
     uploadTrips,
   })(Trips)
-);
+)

@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import { toast } from "react-toastify"
 
 export default function toastMessage(message, type) {
   toast[type](message, {
@@ -9,5 +9,5 @@ export default function toastMessage(message, type) {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-  });
+  })
 }

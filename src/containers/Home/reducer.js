@@ -1,4 +1,4 @@
-import * as actionTypes from "./actionTypes";
+import * as actionTypes from "./actionTypes"
 
 const initialState = {
   loading: false,
@@ -8,18 +8,18 @@ const initialState = {
   editLoading: false,
   deleteLoading: false,
   uploadLoading: false,
-};
+}
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case actionTypes.GET_HOME_PENDING:
-      return { ...initialState, loading: true };
+      return { ...initialState, loading: true }
     case actionTypes.GET_HOME_SUCCESS:
-      return { ...initialState, home: action.payload };
+      return { ...initialState, home: action.payload }
     case actionTypes.GET_HOME_FAILURE:
-      return { ...initialState, error: action.payload };
+      return { ...initialState, error: action.payload }
 
     default:
-      return state;
+      return state
   }
 }
