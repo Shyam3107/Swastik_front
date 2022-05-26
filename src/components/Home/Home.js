@@ -13,6 +13,7 @@ import { tripsMonth, vehicleStatus } from "./constants"
 
 const Home = (props) => {
   let { home, loading } = props.home
+  const user = props.user
   const getHome = props.getHome
   if (!home)
     home = {
@@ -26,8 +27,10 @@ const Home = (props) => {
     }
 
   useEffect(() => {
-    getHome()
-  }, [getHome])
+    if (user.loggedIn) {
+      getHome()
+    }
+  }, [getHome, user])
 
   const pieCharts = [
     {
