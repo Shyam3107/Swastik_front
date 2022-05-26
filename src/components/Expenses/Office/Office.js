@@ -18,6 +18,11 @@ import {
   deleteExpense,
   uploadExpense,
 } from "../../../containers/OfficeExpense/action"
+import {
+  access,
+  isOperationAllowed,
+  operations,
+} from "../../../utils/utilities"
 
 const Office = (props) => {
   let { getExpense } = props
@@ -129,16 +134,28 @@ const Office = (props) => {
       downloadData={downloadData}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
-      handleDeleteAgree={handleDeleteAgree}
-      handleFileSubmit={handleFileSubmit}
+      handleDeleteAgree={
+        isOperationAllowed(access.OFFICE_EXPENSES, operations.DELETE) &&
+        handleDeleteAgree
+      }
+      handleFileSubmit={
+        isOperationAllowed(access.OFFICE_EXPENSES, operations.CREATE) &&
+        handleFileSubmit
+      }
       checkBoxCondition={checkBoxCondition}
       setSearch={setSearch}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       numSelected={selected}
       setNumSelected={setSelected}
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
+      handleAddButton={
+        isOperationAllowed(access.OFFICE_EXPENSES, operations.CREATE) &&
+        handleAddButton
+      }
+      handleEditButton={
+        isOperationAllowed(access.OFFICE_EXPENSES, operations.EDIT) &&
+        handleEditButton
+      }
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       sampleData={sampleData}

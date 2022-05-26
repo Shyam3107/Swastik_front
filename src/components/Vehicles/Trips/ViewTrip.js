@@ -9,6 +9,11 @@ import { getTrips, deleteTrips } from "../../../containers/Trips/action"
 import LayoutView from "../../Layout/LayoutView"
 import { header, headerKey, EDIT_URL } from "./constants"
 import PrintTrip from "./PrintTrip"
+import {
+  access,
+  isOperationAllowed,
+  operations,
+} from "../../../utils/utilities"
 
 const ViewTrip = (props) => {
   const history = props.history
@@ -16,7 +21,6 @@ const ViewTrip = (props) => {
   const { diNo } = params
   let { loading, trips } = props.trips
   const { getTrips } = props
-  const user = props.user.user
 
   let fields = []
   let selected = []
@@ -62,15 +66,16 @@ const ViewTrip = (props) => {
         viewFields={fields}
         handleBack={handleBack}
         handleDeleteAgree={
-          user._id === trips.addedBy._id || user._id === user.companyAdminId._id
-            ? handleDeleteAgree
-            : null
+          isOperationAllowed(access.TRIPS, operations.DELETE, trips) &&
+          handleDeleteAgree
         }
-        handleAddButton={handleAddButton}
+        handleAddButton={
+          isOperationAllowed(access.TRIPS, operations.CREATE) &&
+          handleAddButton
+        }
         handleEditButton={
-          user._id === trips.addedBy._id || user._id === user.companyAdminId._id
-            ? handleEditButton
-            : null
+          isOperationAllowed(access.TRIPS, operations.EDIT, trips) &&
+          handleEditButton
         }
         numSelected={selected}
         print

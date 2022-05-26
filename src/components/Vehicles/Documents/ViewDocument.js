@@ -16,6 +16,11 @@ import {
 } from "../../../containers/Documents/action"
 import LayoutView from "../../Layout/LayoutView"
 import { EDIT_URL } from "./constants"
+import {
+  access,
+  isOperationAllowed,
+  operations,
+} from "../../../utils/utilities"
 
 const ViewDocument = (props) => {
   const history = props.history
@@ -51,15 +56,35 @@ const ViewDocument = (props) => {
     history.push(EDIT_URL(documents.vehicleNo))
   }
 
+  const data = [
+    { title: "Tax", value: formatDate(documents.taxPaidUpto) },
+    { title: "Insurance", value: formatDate(documents.insurancePaidUpto) },
+    { title: "Fitness", value: formatDate(documents.fitnessPaidUpto) },
+    { title: "Permit", value: formatDate(documents.permitPaidUpto) },
+    {
+      title: "National Permit",
+      value: formatDate(documents.nationalPermitPaidUpto),
+    },
+  ]
+
   return (
     <LayoutView
       title={vehicleNo}
       loading={loading}
       data={documents}
       handleBack={handleBack}
-      handleDeleteAgree={handleDeleteAgree}
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
+      handleDeleteAgree={
+        isOperationAllowed(access.DOCUMENTS, operations.DELETE, documents) &&
+        handleDeleteAgree
+      }
+      handleAddButton={
+        isOperationAllowed(access.DOCUMENTS, operations.CREATE) &&
+        handleAddButton
+      }
+      handleEditButton={
+        isOperationAllowed(access.DOCUMENTS, operations.EDIT, documents) &&
+        handleEditButton
+      }
       numSelected={selected}
     >
       <TableContainer style={{ marginRight: "3%", width: "95%" }}>
@@ -71,34 +96,16 @@ const ViewDocument = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>Tax</TableCell>
-              <TableCell>{formatDate(documents.taxPaidUpto)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>Insurance</TableCell>
-              <TableCell>{formatDate(documents.insurancePaidUpto)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>Fitness</TableCell>
-              <TableCell>{formatDate(documents.fitnessPaidUpto)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>Pollution</TableCell>
-              <TableCell>{formatDate(documents.pollutionPaidUpto)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>Permit</TableCell>
-              <TableCell>{formatDate(documents.permitPaidUpto)}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ fontWeight: "600" }}>
-                National Permit
-              </TableCell>
-              <TableCell>
-                {formatDate(documents.nationalPermitPaidUpto)}
-              </TableCell>
-            </TableRow>
+            {data.map((val, index) => {
+              return (
+                <TableRow key={index}>
+                  <TableCell style={{ fontWeight: "600" }}>
+                    {val.title}
+                  </TableCell>
+                  <TableCell>{val.value}</TableCell>
+                </TableRow>
+              )
+            })}
           </TableBody>
         </Table>
       </TableContainer>

@@ -18,6 +18,11 @@ import {
   deleteExpense,
   uploadExpense,
 } from "../../../containers/VehicleExpense/action"
+import {
+  access,
+  isOperationAllowed,
+  operations,
+} from "../../../utils/utilities"
 
 const Vehicles = (props) => {
   let { getExpense } = props
@@ -133,16 +138,28 @@ const Vehicles = (props) => {
       downloadData={downloadData}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
-      handleDeleteAgree={handleDeleteAgree}
-      handleFileSubmit={handleFileSubmit}
+      handleDeleteAgree={
+        isOperationAllowed(access.VEHICLE_EXPENSES, operations.DELETE) &&
+        handleDeleteAgree
+      }
+      handleFileSubmit={
+        isOperationAllowed(access.VEHICLE_EXPENSES, operations.CREATE) &&
+        handleFileSubmit
+      }
       checkBoxCondition={checkBoxCondition}
       setSearch={setSearch}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       numSelected={selected}
       setNumSelected={setSelected}
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
+      handleAddButton={
+        isOperationAllowed(access.VEHICLE_EXPENSES, operations.CREATE) &&
+        handleAddButton
+      }
+      handleEditButton={
+        isOperationAllowed(access.VEHICLE_EXPENSES, operations.EDIT) &&
+        handleEditButton
+      }
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       sampleData={sampleData}

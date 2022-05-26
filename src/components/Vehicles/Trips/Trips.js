@@ -18,6 +18,11 @@ import {
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
 import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
+import {
+  isOperationAllowed,
+  access,
+  operations,
+} from "../../../utils/utilities"
 
 const Trips = (props) => {
   let { getTrips } = props
@@ -126,14 +131,20 @@ const Trips = (props) => {
     return row.addedBy._id === user._id || user._id === user.companyAdminId._id
   }
 
+  console.log(isOperationAllowed(access.TRIPS, operations.DELETE))
+
   return (
     <Layout
       addLoading={addLoading || uploadLoading}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
       title="Trips"
-      handleDeleteAgree={handleDeleteAgree}
-      handleFileSubmit={handleFileSubmit}
+      handleDeleteAgree={
+        isOperationAllowed(access.TRIPS, operations.DELETE) && handleDeleteAgree
+      }
+      handleFileSubmit={
+        isOperationAllowed(access.TRIPS, operations.CREATE) && handleFileSubmit
+      }
       search={search}
       setSearch={setSearch}
       data={trips}
@@ -147,8 +158,12 @@ const Trips = (props) => {
       checkBoxCondition={checkBoxCondition}
       fileName="trips"
       sampleName="tripSample"
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
+      handleAddButton={
+        isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
+      }
+      handleEditButton={
+        isOperationAllowed(access.TRIPS, operations.EDIT) && handleEditButton
+      }
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       selectedFrom={from}

@@ -14,6 +14,7 @@ import {
 } from "../../utils/constants"
 import { header, headerKey, sampleData, EDIT_URL } from "./constants"
 import { getReceipt, deleteReceipt } from "../../containers/Receipt/action"
+import { access, isOperationAllowed, operations } from "../../utils/utilities"
 
 const Office = (props) => {
   let { getReceipt } = props
@@ -110,14 +111,21 @@ const Office = (props) => {
       downloadData={downloadData}
       editLoading={editLoading}
       deleteLoading={deleteLoading}
-      handleDeleteAgree={handleDeleteAgree}
+      handleDeleteAgree={
+        isOperationAllowed(access.RECEIPTS, operations.DELETE) &&
+        handleDeleteAgree
+      }
       setSearch={setSearch}
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       numSelected={selected}
       setNumSelected={setSelected}
-      handleAddButton={handleAddButton}
-      handleEditButton={handleEditButton}
+      handleAddButton={
+        isOperationAllowed(access.RECEIPTS, operations.ADD) && handleAddButton
+      }
+      handleEditButton={
+        isOperationAllowed(access.RECEIPTS, operations.EDIT) && handleEditButton
+      }
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       sampleData={sampleData}

@@ -29,6 +29,11 @@ import {
   tableHeader,
   daysLeft,
 } from "./constants"
+import {
+  access,
+  isOperationAllowed,
+  operations,
+} from "../../../utils/utilities"
 
 const Documents = (props) => {
   let { getDocuments } = props
@@ -159,12 +164,24 @@ const Documents = (props) => {
     <Fragment>
       <Layout
         title="Documents"
-        handleDeleteAgree={handleDeleteAgree}
-        handleFileSubmit={handleFileSubmit}
+        handleDeleteAgree={
+          isOperationAllowed(access.DOCUMENTS, operations.DELETE) &&
+          handleDeleteAgree
+        }
+        handleFileSubmit={
+          isOperationAllowed(access.DOCUMENTS, operations.CREATE) &&
+          handleFileSubmit
+        }
         tableBodyFunc={tableBodyFunc}
         setNumSelected={setSelected}
-        handleAddButton={handleAddButton}
-        handleEditButton={handleEditButton}
+        handleAddButton={
+          isOperationAllowed(access.DOCUMENTS, operations.CREATE) &&
+          handleAddButton
+        }
+        handleEditButton={
+          isOperationAllowed(access.DOCUMENTS, operations.EDIT) &&
+          handleEditButton
+        }
         checkBoxCondition={checkBoxCondition}
         setSearch={setSearch}
         search={search}
