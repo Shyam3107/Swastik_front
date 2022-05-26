@@ -1,57 +1,57 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import IconButton from "@mui/material/IconButton";
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import React, { useState } from "react"
+import { connect } from "react-redux"
+import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
+import FormControlLabel from "@mui/material/FormControlLabel"
+import Checkbox from "@mui/material/Checkbox"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid"
+import IconButton from "@mui/material/IconButton"
+import InputAdornment from "@mui/material/InputAdornment"
+import Visibility from "@mui/icons-material/Visibility"
+import VisibilityOff from "@mui/icons-material/VisibilityOff"
 
-import styles from "./styles.module.css";
-import { userLogin } from "../../containers/Login/action";
-import { withRouter } from "react-router";
-import { ROUTES } from "../../utils/constants";
-import Copyright from "./CopyRight";
+import styles from "./styles.module.css"
+import { userLogin } from "../../containers/Login/action"
+import { withRouter } from "react-router"
+import { ROUTES } from "../../utils/constants"
+import Copyright from "./CopyRight"
 
 const LoginForm = (props) => {
-  let initialForm = JSON.parse(localStorage.getItem("auth"));
+  let initialForm = JSON.parse(localStorage.getItem("auth"))
   if (!initialForm)
     initialForm = {
       userName: "",
       password: "",
       remember: true,
-    };
+    }
 
-  let loading = props.user.loading;
-  const [showPassword, setShowPassword] = useState(false);
-  const [form, setForm] = useState(initialForm);
+  let loading = props.user.loading
+  const [showPassword, setShowPassword] = useState(false)
+  const [form, setForm] = useState(initialForm)
 
   const cb = () => {
-    if (form.remember) localStorage.setItem("auth", JSON.stringify(form));
-    else localStorage.removeItem("auth");
-    history.push(ROUTES.PROFILE);
-  };
+    if (form.remember) localStorage.setItem("auth", JSON.stringify(form))
+    else localStorage.removeItem("auth")
+    history.push(ROUTES.PROFILE)
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
-    props.userLogin(form, cb);
-  };
+    event.preventDefault()
+    props.userLogin(form, cb)
+  }
 
-  const history = props.history;
+  const history = props.history
 
   const handleShowPassword = () => {
-    setShowPassword((show) => !show);
-  };
+    setShowPassword((show) => !show)
+  }
 
   const handleFormChange = (e) => {
-    setForm((form) => ({ ...form, [e.target.id]: e.target.value }));
-  };
+    setForm((form) => ({ ...form, [e.target.id]: e.target.value }))
+  }
 
-  loading = loading || !Boolean(form.userName && form.password);
+  loading = loading || !Boolean(form.userName && form.password)
 
   return (
     <React.Fragment>
@@ -121,15 +121,24 @@ const LoginForm = (props) => {
           </Grid>
         </Grid>
         <Copyright sx={{ mt: 5 }} />
+        <p
+          style={{
+            color: "rgba(0, 0, 0, 0.6)",
+            fontSize: "12px",
+            textAlign: "center",
+          }}
+        >
+          For any help, Contact 8109292093
+        </p>
       </Box>
     </React.Fragment>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  };
-};
+  }
+}
 
-export default withRouter(connect(mapStateToProps, { userLogin })(LoginForm));
+export default withRouter(connect(mapStateToProps, { userLogin })(LoginForm))
