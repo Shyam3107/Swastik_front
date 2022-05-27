@@ -12,9 +12,9 @@ import { CSVLink } from "react-csv"
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import Workbook from "react-excel-workbook"
 
 import { arrayToObj } from "../../../utils/convertCSVtoJSON"
+import DownloadExcel from "../DownloadExcel/DownloadExcel"
 
 export default function UploadFile({
   onFileUpload,
@@ -74,22 +74,12 @@ export default function UploadFile({
               </CSVLink>
             </MenuItem>
             <MenuItem>
-              <Workbook
-                filename={sampleName + ".xlsx"}
+              <DownloadExcel
+                filename={sampleName}
+                data={sampleDataExcel}
+                column={column}
                 element="Download Excel Sample"
-              >
-                <Workbook.Sheet data={sampleDataExcel} name={sampleName}>
-                  {column.map((col, index) => {
-                    return (
-                      <Workbook.Column
-                        key={index}
-                        label={col}
-                        value={(row) => row[col]}
-                      />
-                    )
-                  })}
-                </Workbook.Sheet>
-              </Workbook>
+              />
             </MenuItem>
             <MenuItem style={{ justifyContent: "center" }}>
               <Typography>

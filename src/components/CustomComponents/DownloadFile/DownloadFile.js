@@ -4,10 +4,10 @@ import { CSVLink } from "react-csv"
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
-import Workbook from "react-excel-workbook"
 
 import styles from "./styles.module.css"
 import { arrayToObj } from "../../../utils/convertCSVtoJSON"
+import DownloadExcel from "../DownloadExcel/DownloadExcel"
 
 export default function CustomDrop({
   downloadData,
@@ -50,19 +50,11 @@ export default function CustomDrop({
             </CSVLink>
           </Typography>
           <Typography className={styles.button}>
-            <Workbook filename={filename + ".xlsx"} element={"Excel"}>
-              <Workbook.Sheet data={downloadDataExcel} name={filename}>
-                {column.map((col, index) => {
-                  return (
-                    <Workbook.Column
-                      key={index}
-                      label={col}
-                      value={(row) => row[col]}
-                    />
-                  )
-                })}
-              </Workbook.Sheet>
-            </Workbook>
+            <DownloadExcel
+              filename={filename}
+              data={downloadDataExcel}
+              column={column}
+            />
           </Typography>
         </Paper>
       </Popper>
