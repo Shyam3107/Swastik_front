@@ -15,12 +15,12 @@ export const userLogin =
       url: API.LOGIN,
       params: params,
       callback: (data) => {
+        sessionStorage.setItem("user", JSON.stringify(data.user))
+        sessionStorage.setItem("token", data.token)
         dispatch({
           type: actionTypes.LOGIN_SUCCESS,
           payload: data,
         })
-        sessionStorage.setItem("user", JSON.stringify(data.user))
-        sessionStorage.setItem("token", data.token)
         toastMessage(data.message, success)
         cb()
       },

@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableHead from "@mui/material/TableHead"
-import TableRow from "@mui/material/TableRow"
-import Paper from "@mui/material/Paper"
 import Box from "@mui/material/Box"
-import DeleteIcon from "@mui/icons-material/Delete"
-import IconButton from "@mui/material/IconButton"
-import Tooltip from "@mui/material/Tooltip"
 import Button from "@mui/material/Button"
+import TextField from "@mui/material/TextField"
 
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 import {
@@ -22,11 +13,14 @@ import {
 } from "../../containers/Accounts/action"
 import AddEmployeeAccount from "./AddEmployeeAccount"
 import CustomDialog from "../CustomComponents/CustomDialog/CustomDialog"
+import AccountTable from "./AccountTable"
 
 const ManageEmployeeAccount = (props) => {
   const [state, setState] = useState("Manage")
+  const [search, setSearch] = useState("")
   const [accountData, setAccounData] = useState(null)
   const [dialog, setDialog] = useState(false)
+  
   let { accounts, loading, deleteLoading } = props.accounts
   if (!accounts || !Array.isArray(accounts)) accounts = []
   const { getAccount } = props
@@ -87,45 +81,26 @@ const ManageEmployeeAccount = (props) => {
           setOpen={setDialog}
           handleAgree={handleAgree}
         />
+        <Box backgroundColor="white" marginRight="5%">
+          <TextField
+            id="searchAccount"
+            variant="standard"
+            style={{ width: "100%", padding: "0 10px 5px" }}
+            value={search}
+            type="text"
+            onChange={(val) => {
+              setSearch(val.target.value)
+            }}
+            placeholder="Search"
+            name="search"
+          />
+        </Box>
         <AddAccountIcon />
-        <TableContainer
-          component={Paper}
-          style={{ marginRight: "3%", width: "95%" }}
-        >
-          <Table aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: "600" }}>User Name</TableCell>
-                <TableCell style={{ fontWeight: "600" }}>Location</TableCell>
-                <TableCell></TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {accounts.map((row, index) => (
-                <TableRow key={index}>
-                  <TableCell
-                    style={{
-                      color: "blue",
-                      cursor: "pointer",
-                      "&:hover": { color: "yellow" },
-                    }}
-                    onClick={() => handleClick(row)}
-                  >
-                    {row.userName}
-                  </TableCell>
-                  <TableCell>{row.location}</TableCell>
-                  <TableCell>
-                    <Tooltip title="Delete">
-                      <IconButton onClick={() => handleDeleteIcon(row)}>
-                        <DeleteIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <AccountTable
+          handleClick={handleClick}
+          handleDeleteIcon={handleDeleteIcon}
+          search={search}
+        />
       </React.Fragment>
     )
 }

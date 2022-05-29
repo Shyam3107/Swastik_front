@@ -14,6 +14,7 @@
     "@mui/icons-material": "^5.0.4",
     "@mui/material": "^5.0.4",
     "@mui/utils": "^5.0.1",
+    "@reduxjs/toolkit": "^1.8.2",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -73,7 +74,7 @@
   "license": "ISC",
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "react-error-overlay": "^6.0.11",
+    "react-error-overlay": "^6.0.9",
     "unimported": "^1.19.1"
   }
 }

@@ -16,6 +16,7 @@ export const accessOptions = [
   { label: "Receipts", id: "RECEIPTS" },
   { label: "Office Expenses", id: "OFFICE EXPENSES" },
   { label: "Vehicle Expenses", id: "VEHICLE EXPENSES" },
+  { label: "Accounts", id: "ACCOUNTS" },
 ]
 
 export const operationsOptions = [

@@ -22,6 +22,7 @@ import {
   isOperationAllowed,
   access,
   operations,
+  checkBoxCondition,
 } from "../../../utils/utilities"
 
 const Trips = (props) => {
@@ -39,7 +40,6 @@ const Trips = (props) => {
     uploadLoading,
   } = props.trips
   const history = props.history
-  const user = props.user.user
 
   useEffect(() => {
     getTrips({
@@ -126,12 +126,6 @@ const Trips = (props) => {
     const searchId = trips.filter((val) => val._id === tripId)
     history.push(EDIT_URL(searchId[0].diNo))
   }
-
-  const checkBoxCondition = (row) => {
-    return row.addedBy._id === user._id || user._id === user.companyAdminId._id
-  }
-
-  console.log(isOperationAllowed(access.TRIPS, operations.DELETE))
 
   return (
     <Layout

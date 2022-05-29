@@ -77,7 +77,7 @@ export const formatDateInDDMMYYY = (date = new Date()) => {
 export const includesInArray = (stringArray, search) => {
   let exist = stringArray.every((val) => {
     if (typeof val === "number") val = val.toString()
-    return !val.toLowerCase().includes(search.toLowerCase())
+    return !val?.toLowerCase()?.includes(search?.toLowerCase())
   })
   return !exist
 }

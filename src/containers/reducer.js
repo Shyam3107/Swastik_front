@@ -1,4 +1,3 @@
-import { combineReducers } from "redux"
 import loginReducer from "./Login/reducer"
 import documentsReducer from "./Documents/reducer"
 import tripsReducer from "./Trips/reducer"
@@ -8,7 +7,7 @@ import accountReducer from "./Accounts/reducer"
 import receiptReducer from "./Receipt/reducer"
 import homeReducer from "./Home/reducer"
 
-export default combineReducers({
+const rootReducer = {
   user: loginReducer,
   home: homeReducer,
   documents: documentsReducer,
@@ -17,4 +16,6 @@ export default combineReducers({
   vehiclesExpense: vehiclesExpenseReducer,
   accounts: accountReducer,
   receipt: receiptReducer,
-})
+}
+
+export default rootReducer

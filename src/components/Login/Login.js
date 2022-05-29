@@ -1,25 +1,24 @@
-import { useState } from "react";
-import { connect } from "react-redux";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
-import Avatar from "@mui/material/Avatar";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useState } from "react"
+import { connect } from "react-redux"
+import Paper from "@mui/material/Paper"
+import Grid from "@mui/material/Grid"
+import Avatar from "@mui/material/Avatar"
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined"
+import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 
-import BackDropLoader from "../CustomComponents/BackDropLoader/BackDropLoader";
-import { userLogin } from "../../containers/Login/action";
-import { withRouter } from "react-router";
-import Background from "./Background";
-import LoginForm from "./LoginForm";
-import ForgotPassword from "./ForgotPassword";
+import BackDropLoader from "../CustomComponents/BackDropLoader/BackDropLoader"
+import { withRouter } from "react-router"
+import Background from "./Background"
+import LoginForm from "./LoginForm"
+import ForgotPassword from "./ForgotPassword"
 
-const theme = createTheme();
+const theme = createTheme()
 
 const Login = (props) => {
-  const [loginPage, setLoginPage] = useState(true);
-  const loading = props.user.loading;
+  const [loginPage, setLoginPage] = useState(true)
+  const loading = props.user.loading
 
   return (
     <ThemeProvider theme={theme}>
@@ -51,13 +50,13 @@ const Login = (props) => {
         </Grid>
       </Grid>
     </ThemeProvider>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  };
-};
+  }
+}
 
-export default withRouter(connect(mapStateToProps, { userLogin })(Login));
+export default withRouter(connect(mapStateToProps)(Login))

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { connect } from "react-redux"
-import moment from "moment"
 import { withRouter } from "react-router"
 import LayoutAdd from "../../Layout/LayoutAdd"
 import { ROUTES, formatInDayEnd } from "../../../utils/constants"
@@ -64,7 +63,6 @@ const AddDocument = (props) => {
       handleChange: (date) =>
         setDocument({ ...document, pollutionPaidUpto: date }),
       label: "Pollution Paid Upto",
-      maxDate: moment().toISOString(),
     },
     {
       id: "permitPaidUpto",

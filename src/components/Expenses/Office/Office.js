@@ -22,6 +22,7 @@ import {
   access,
   isOperationAllowed,
   operations,
+  checkBoxCondition,
 } from "../../../utils/utilities"
 
 const Office = (props) => {
@@ -39,7 +40,6 @@ const Office = (props) => {
     uploadLoading,
   } = props.officeExpense
   const history = props.history
-  const user = props.user.user
 
   useEffect(() => {
     getExpense()
@@ -112,10 +112,6 @@ const Office = (props) => {
   const handleEditButton = () => {
     const expenseId = selected[0]
     history.push(EDIT_URL(expenseId))
-  }
-
-  const checkBoxCondition = (row) => {
-    return row.addedBy._id === user._id || user._id === user.companyAdminId._id
   }
 
   return (

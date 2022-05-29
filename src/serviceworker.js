@@ -4,10 +4,10 @@ export default function serviceWorker() {
     navigator.serviceWorker
       .register(swURL)
       .then(() => {
-        //console.log("Service Worker Registered Successfully");
+        console.log("Service Worker Registered Successfully")
       })
       .catch(() => {
-        //console.log("Failed to register Service Worker");
+        console.log("Failed to register Service Worker")
       })
   }
 }

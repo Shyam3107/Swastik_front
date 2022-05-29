@@ -33,7 +33,7 @@ const LoginForm = (props) => {
   const cb = () => {
     if (form.remember) localStorage.setItem("auth", JSON.stringify(form))
     else localStorage.removeItem("auth")
-    history.push(ROUTES.PROFILE)
+    history.push(ROUTES.HOME)
   }
 
   const handleSubmit = (event) => {

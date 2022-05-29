@@ -33,6 +33,7 @@ import {
   access,
   isOperationAllowed,
   operations,
+  checkBoxCondition,
 } from "../../../utils/utilities"
 
 const Documents = (props) => {
@@ -49,7 +50,6 @@ const Documents = (props) => {
     documentsLink,
   } = props.documents
   const history = props.history
-  const user = props.user.user
 
   useEffect(() => {
     getDocuments()
@@ -76,16 +76,16 @@ const Documents = (props) => {
       nationalPermitStatus: val.nationalPermitPaidUpto,
     }
 
+    let searchIn = [
+      val.vehicleNo,
+      val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+    ]
+
     Object.keys(temp).forEach((key) => {
       let diff = moment(temp[key]).diff(moment().endOf("day"), "days")
       val[key] = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
+      searchIn.push(val[key])
     })
-
-    const searchIn = [
-      val.vehicleNo,
-      ...Object.keys(temp),
-      val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-    ]
 
     downloadData.push(
       [...downloadHeadersKey, "addedBy"].map((item, index) => {
@@ -154,10 +154,6 @@ const Documents = (props) => {
     const vehicleId = selected[0]
     const searchId = documents.filter((val) => val._id === vehicleId)
     history.push(EDIT_URL(searchId[0].vehicleNo))
-  }
-
-  const checkBoxCondition = (row) => {
-    return row.addedBy._id === user._id || user._id === user.companyAdminId._id
   }
 
   return (

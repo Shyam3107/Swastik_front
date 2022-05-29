@@ -13,16 +13,23 @@ export const access = {
   RECEIPTS: "RECEIPTS",
   OFFICE_EXPENSES: "OFFICE EXPENSES",
   VEHICLE_EXPENSES: "VEHICLE EXPENSES",
+  ACCOUNTS: "ACCOUNTS",
+}
+
+export const checkBoxCondition = (row) => {
+  return (
+    row?.addedBy?._id === user?._id || user?._id === user?.companyAdminId?._id
+  )
 }
 
 export const isAdmin = () => {
-  return user && !user.addedBy
+  return user && user._id === user.companyAdminId._id
 }
 
-export const isOperationAllowed = (access, operation = false, data = false) => {
+export const isOperationAllowed = (acc, operation = false, data = false) => {
   let isCreator = true
-  let accessGiven = isAdmin() || user?.access.indexOf(access) !== -1
-  let operationGiven = isAdmin() || user?.operations.indexOf(operation) !== -1
+  let accessGiven = user?.access.indexOf(acc) !== -1
+  let operationGiven = user?.operations.indexOf(operation) !== -1
 
   if (!operation) {
     return accessGiven
@@ -35,7 +42,7 @@ export const isOperationAllowed = (access, operation = false, data = false) => {
   ) {
     isCreator = user._id === data?.addedBy?._id
   }
-  if (access === "DOCUMENTS" && operation === "READ") return true
+  if (acc === access.DOCUMENTS && operation === operations.READ) return true
 
-  return accessGiven && operationGiven && isCreator
+  return isAdmin() || (accessGiven && operationGiven && isCreator)
 }

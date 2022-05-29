@@ -22,6 +22,7 @@ import {
   access,
   isOperationAllowed,
   operations,
+  checkBoxCondition,
 } from "../../../utils/utilities"
 
 const Vehicles = (props) => {
@@ -39,7 +40,6 @@ const Vehicles = (props) => {
     uploadLoading,
   } = props.vehiclesExpense
   const history = props.history
-  const user = props.user.user
 
   useEffect(() => {
     getExpense()
@@ -116,10 +116,6 @@ const Vehicles = (props) => {
   const handleEditButton = () => {
     const expenseId = selected[0]
     history.push(EDIT_URL(expenseId))
-  }
-
-  const checkBoxCondition = (row) => {
-    return row.addedBy._id === user._id || user._id === user.companyAdminId._id
   }
 
   return (
