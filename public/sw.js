@@ -1,4 +1,4 @@
-const version = 13
+const version = 17
 const STATIC_CACHE = "static_cache_v" + version
 const DYNAMIC_CACHE = "dynamic-cache_v" + version
 
@@ -51,6 +51,13 @@ self.addEventListener("fetch", function (event) {
   event.respondWith(
     (async () => {
       try {
+        // If exist in Static files return it
+        const urlPath = new URL(event.request.url)
+        if (staticFiles.includes(urlPath.pathname)) {
+          return caches.match(event.request.url)
+        }
+
+        // fetch from url, store in cache and return it
         const res = await fetch(event.request)
         const cache = await caches.open(DYNAMIC_CACHE)
         cache
@@ -58,6 +65,8 @@ self.addEventListener("fetch", function (event) {
           .catch((err) => console.log("Failed to add in cache " + err))
         return res
       } catch (error) {
+        // if failed to fetch from url, means user is offline
+        // return cache if exist else return offline page
         return caches.match(event.request)
       }
     })()
