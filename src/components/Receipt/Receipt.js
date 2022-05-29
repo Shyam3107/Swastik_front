@@ -27,22 +27,21 @@ const Office = (props) => {
   const history = props.history
 
   useEffect(() => {
-    getReceipt()
-  }, [getReceipt])
+    getReceipt({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    })
+  }, [getReceipt, from, to])
 
   if (!receipts || !Array.isArray(receipts)) receipts = []
 
   receipts = receipts.filter((val) => {
-    return (
-      moment(from).isSameOrBefore(val.date) &&
-      moment(to).isSameOrAfter(val.date) &&
-      includesInArray(
-        [
-          val.remarks,
-          val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-        ],
-        search
-      )
+    return includesInArray(
+      [
+        val.remarks,
+        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+      ],
+      search
     )
   })
 

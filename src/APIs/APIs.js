@@ -68,7 +68,7 @@ export const API = {
   DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
 }
 
-export const handleError = (dispatch = () => {}, action = {}, err) => {
+export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
   dispatch(action)
   if (!navigator.onLine) return toastMessage("You Are Offline", warn)
   let errMssg = err.response

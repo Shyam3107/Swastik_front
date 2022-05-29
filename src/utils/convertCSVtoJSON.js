@@ -20,7 +20,7 @@ export const arrayToObj = (data) => {
   return arr
 }
 
-export default async function convertCSVToJson(file, options) {
+const convertCSVToJson = async (file, options) => {
   const extension = file.name.substr(file.name.length - 3, 3)
 
   if (extension === "csv") {
@@ -38,3 +38,5 @@ export default async function convertCSVToJson(file, options) {
   }
   return []
 }
+
+export default convertCSVToJson

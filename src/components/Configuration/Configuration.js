@@ -4,7 +4,7 @@ import Grid from "@mui/material/Grid"
 import Box from "@mui/material/Box"
 import YourAccount from "./YourAccount"
 import ManageEmployeeAccount from "./ManageEmployeeAccount"
-import { access, isOperationAllowed, operations } from "../../utils/utilities"
+import { access, isOperationAllowed } from "../../utils/utilities"
 
 const Configuration = () => {
   const [title, setTitle] = useState("Your Account")
@@ -15,7 +15,7 @@ const Configuration = () => {
     },
   ]
 
-  if (isOperationAllowed(access.ACCOUNTS, operations.CREATE))
+  if (isOperationAllowed(access.ACCOUNTS))
     titleBar.push({ title: "Manage Employee Accounts" })
 
   const SwitchFunc = () => {

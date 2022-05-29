@@ -42,8 +42,11 @@ const Vehicles = (props) => {
   const history = props.history
 
   useEffect(() => {
-    getExpense()
-  }, [getExpense])
+    getExpense({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    })
+  }, [getExpense, from, to])
 
   const handleFileSubmit = (file) => {
     props.uploadExpense(file, getExpense)
@@ -52,20 +55,16 @@ const Vehicles = (props) => {
   if (!expenses || !Array.isArray(expenses)) expenses = []
 
   expenses = expenses.filter((val) => {
-    return (
-      moment(from).isSameOrBefore(val.date) &&
-      moment(to).isSameOrAfter(val.date) &&
-      includesInArray(
-        [
-          val.remarks,
-          val.pumpName ? val.pumpName : "",
-          val.dieselFor ? val.dieselFor : "",
-          val.driverName,
-          val.vehicleNo,
-          val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-        ],
-        search
-      )
+    return includesInArray(
+      [
+        val.remarks,
+        val.pumpName ? val.pumpName : "",
+        val.dieselFor ? val.dieselFor : "",
+        val.driverName,
+        val.vehicleNo,
+        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+      ],
+      search
     )
   })
 

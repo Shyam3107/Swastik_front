@@ -27,12 +27,13 @@ export const isAdmin = () => {
 }
 
 export const isOperationAllowed = (acc, operation = false, data = false) => {
+  if (isAdmin()) return true
   let isCreator = true
   let accessGiven = user?.access.indexOf(acc) !== -1
   let operationGiven = user?.operations.indexOf(operation) !== -1
 
   if (!operation) {
-    return accessGiven
+    return accessGiven || acc === access.DOCUMENTS
   }
 
   // Only creator can edit and delete
@@ -44,5 +45,5 @@ export const isOperationAllowed = (acc, operation = false, data = false) => {
   }
   if (acc === access.DOCUMENTS && operation === operations.READ) return true
 
-  return isAdmin() || (accessGiven && operationGiven && isCreator)
+  return accessGiven && operationGiven && isCreator
 }
