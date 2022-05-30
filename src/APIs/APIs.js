@@ -1,9 +1,13 @@
 import axios from "axios"
+import dotenv from "dotenv"
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage"
 import { error, warn, success } from "../utils/constants"
 
-let backendURL = "https://swastik-backend.herokuap5p.com"
-//let backendURL = "http://localhost:9000"
+dotenv.config()
+
+const env = process.env.REACT_APP_ENV
+let backendURL = "https://swastik-backend.herokuapp.com"
+if (env && env === "DEV") backendURL = "http://localhost:9000"
 
 export { backendURL }
 
