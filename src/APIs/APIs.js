@@ -2,7 +2,7 @@ import axios from "axios"
 import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage"
 import { error, warn, success } from "../utils/constants"
 
-let backendURL = "https://swastik-backend.herokuapp.com"
+let backendURL = "https://swastik-backend.herokuap5p.com"
 //let backendURL = "http://localhost:9000"
 
 export { backendURL }
@@ -72,7 +72,7 @@ export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
   dispatch(action)
   if (!navigator.onLine) return toastMessage("You Are Offline", warn)
   let errMssg = err.response
-    ? err.response.data.errors
+    ? err?.response?.data?.errors
     : err.message
     ? err.message
     : "Some Error Occured"
