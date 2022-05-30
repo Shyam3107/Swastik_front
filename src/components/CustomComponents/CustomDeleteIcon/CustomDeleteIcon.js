@@ -15,7 +15,7 @@ const CustomDeleteIcon = ({ handleDeleteAgree, styleButton }) => {
         handleAgree={handleDeleteAgree}
       />
       <Tooltip title="Delete">
-        <IconButton style={styleButton} onClick={() => setOpen(true)}>
+        <IconButton style={styleButton} onClick={() => setOpen(true)} aria-label="delete">
           <DeleteIcon />
         </IconButton>
       </Tooltip>

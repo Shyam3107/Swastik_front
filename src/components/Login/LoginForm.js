@@ -80,7 +80,7 @@ const LoginForm = (props) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleShowPassword} edge="end">
+                <IconButton onClick={handleShowPassword} edge="end" aria-label="showPassword">
                   {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>

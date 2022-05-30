@@ -34,6 +34,7 @@ export default function CustomDrop({
           style={styleButton}
           disabled={loading}
           onClick={handleClick}
+          aria-label="fileDownload"
         >
           <FileDownloadOutlinedIcon />
         </IconButton>

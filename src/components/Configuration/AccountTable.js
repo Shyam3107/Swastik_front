@@ -55,7 +55,7 @@ const AccountTable = (props) => {
               <TableCell>{row.location}</TableCell>
               <TableCell>
                 <Tooltip title="Delete">
-                  <IconButton onClick={() => props.handleDeleteIcon(row)}>
+                  <IconButton onClick={() => props.handleDeleteIcon(row)} aria-label="delete">
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>

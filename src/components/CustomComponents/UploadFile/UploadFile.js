@@ -48,7 +48,7 @@ export default function UploadFile({
   return (
     <React.Fragment>
       <Tooltip title="Upload">
-        <IconButton style={styleButton} onClick={handleClick}>
+        <IconButton style={styleButton} onClick={handleClick} aria-label="fileUpload">
           <FileUploadOutlinedIcon />
         </IconButton>
       </Tooltip>

@@ -85,7 +85,7 @@ const CustomCrudIcons = ({
         >
           {print && (
             <Tooltip title="Print">
-              <IconButton style={styleButton} onClick={() => window.print()}>
+              <IconButton style={styleButton} onClick={() => window.print()} aria-label="print">
                 <PrintIcon />
               </IconButton>
             </Tooltip>
@@ -99,7 +99,7 @@ const CustomCrudIcons = ({
 
           {handleAddButton && (
             <Tooltip title="Add">
-              <IconButton style={styleButton} onClick={handleAddButton}>
+              <IconButton style={styleButton} onClick={handleAddButton} aria-label="add">
                 <AddOutlinedIcon />
               </IconButton>
             </Tooltip>
@@ -107,7 +107,7 @@ const CustomCrudIcons = ({
 
           {handleEditButton && numSelected.length === 1 && (
             <Tooltip title="Edit">
-              <IconButton style={styleButton} onClick={handleEditButton}>
+              <IconButton style={styleButton} onClick={handleEditButton} aria-label="edit">
                 <EditIcon />
               </IconButton>
             </Tooltip>

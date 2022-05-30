@@ -75,7 +75,7 @@ const ForgotPassword = (props) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleShowPassword} edge="end">
+                <IconButton onClick={handleShowPassword} edge="end" aria-label="showPassword">
                   {showPassword ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
@@ -95,7 +95,7 @@ const ForgotPassword = (props) => {
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton onClick={handleShowSecretKey} edge="end">
+                <IconButton onClick={handleShowSecretKey} edge="end" aria-label="showKey">
                   {showSecretKey ? <Visibility /> : <VisibilityOff />}
                 </IconButton>
               </InputAdornment>
