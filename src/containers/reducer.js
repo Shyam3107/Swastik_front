@@ -6,6 +6,7 @@ import vehiclesExpenseReducer from "./VehicleExpense/reducer"
 import accountReducer from "./Accounts/reducer"
 import receiptReducer from "./Receipt/reducer"
 import homeReducer from "./Home/reducer"
+import reportsReducer from "./Reports/reducer"
 
 const rootReducer = {
   user: loginReducer,
@@ -16,6 +17,7 @@ const rootReducer = {
   vehiclesExpense: vehiclesExpenseReducer,
   accounts: accountReducer,
   receipt: receiptReducer,
+  reports: reportsReducer,
 }
 
 export default rootReducer

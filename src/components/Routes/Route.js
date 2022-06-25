@@ -1,38 +1,39 @@
-import { Switch, Route, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import Login from "../Login/Login";
-import Logout from "../Logout/Logout";
-import { ROUTES } from "../../utils/constants";
-import Home from "../Home/Home";
-import Trips from "../Vehicles/Trips/Trips";
-import AddTrips from "../Vehicles/Trips/AddTrips";
-import EditTrips from "../Vehicles/Trips/EditTrips";
-import ViewTrip from "../Vehicles/Trips/ViewTrip";
-import Documents from "../Vehicles/Documents/Documents";
-import AddDocument from "../Vehicles/Documents/AddDocument";
-import ViewDocument from "../Vehicles/Documents/ViewDocument";
-import EditDocument from "../Vehicles/Documents/EditDocument";
-import OfficeExpense from "../Expenses/Office/Office";
-import AddOfficeExpense from "../Expenses/Office/AddOffice";
-import EditOfficeExpense from "../Expenses/Office/EditOffice";
-import VehiclesExpense from "../Expenses/Vehicles/Vehicles";
-import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles";
-import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles";
-import Configuration from "../Configuration/Configuration";
-import Receipt from "../Receipt/Receipt";
-import AddReceipt from "../Receipt/AddReceipt";
-import EditReceipt from "../Receipt/EditReceipt";
+import { Switch, Route, Redirect } from "react-router-dom"
+import { connect } from "react-redux"
+import Login from "../Login/Login"
+import Logout from "../Logout/Logout"
+import { ROUTES } from "../../utils/constants"
+import Home from "../Home/Home"
+import Trips from "../Vehicles/Trips/Trips"
+import AddTrips from "../Vehicles/Trips/AddTrips"
+import EditTrips from "../Vehicles/Trips/EditTrips"
+import ViewTrip from "../Vehicles/Trips/ViewTrip"
+import Documents from "../Vehicles/Documents/Documents"
+import AddDocument from "../Vehicles/Documents/AddDocument"
+import ViewDocument from "../Vehicles/Documents/ViewDocument"
+import EditDocument from "../Vehicles/Documents/EditDocument"
+import OfficeExpense from "../Expenses/Office/Office"
+import AddOfficeExpense from "../Expenses/Office/AddOffice"
+import EditOfficeExpense from "../Expenses/Office/EditOffice"
+import VehiclesExpense from "../Expenses/Vehicles/Vehicles"
+import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles"
+import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles"
+import Configuration from "../Configuration/Configuration"
+import Receipt from "../Receipt/Receipt"
+import AddReceipt from "../Receipt/AddReceipt"
+import EditReceipt from "../Receipt/EditReceipt"
+import Reports from "../Reports/Reports"
 
 const Routes = (props) => {
-  const loggedIn = props.user.loggedIn;
+  const loggedIn = props.user.loggedIn
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
       <Route {...rest}>
         {loggedIn ? children : <Redirect to={ROUTES.LOGIN} />}
       </Route>
-    );
-  };
+    )
+  }
 
   const privateRoutes = [
     {
@@ -119,7 +120,11 @@ const Routes = (props) => {
       path: ROUTES.CONFIGURATION,
       component: <Configuration />,
     },
-  ];
+    {
+      path: ROUTES.REPORTS,
+      component: <Reports />,
+    },
+  ]
 
   return (
     <Switch>
@@ -138,19 +143,19 @@ const Routes = (props) => {
           <PrivateRoute exact path={rout.path} key={index}>
             {rout.noShow ? <Redirect to={ROUTES.HOME} /> : rout.component}
           </PrivateRoute>
-        );
+        )
       })}
       <Route>
         <Redirect to={ROUTES.HOME} />
       </Route>
     </Switch>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(Routes);
+export default connect(mapStateToProps)(Routes)

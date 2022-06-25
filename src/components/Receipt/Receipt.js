@@ -79,6 +79,8 @@ const Office = (props) => {
 
   const handleDeleteAgree = () => {
     const cb = () => {
+      setFrom(monthStart)
+      setTo(currentDate)
       props.getReceipt()
       setSelected([])
     }

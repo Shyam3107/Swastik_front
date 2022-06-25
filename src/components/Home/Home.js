@@ -15,6 +15,8 @@ const Home = (props) => {
   let { home, loading } = props.home
   const user = props.user
   const getHome = props.getHome
+  const makeCall = !user.loading && user.loggedIn
+
   if (!home)
     home = {
       tax: [],
@@ -27,10 +29,10 @@ const Home = (props) => {
     }
 
   useEffect(() => {
-    if (user.loggedIn) {
+    if (makeCall) {
       getHome()
     }
-  }, [getHome, user])
+  }, [getHome, makeCall])
 
   const pieCharts = [
     {

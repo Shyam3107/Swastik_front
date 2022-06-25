@@ -102,6 +102,8 @@ const Vehicles = (props) => {
 
   const handleDeleteAgree = () => {
     const cb = () => {
+      setFrom(monthStart)
+      setTo(currentDate)
       props.getExpense()
       setSelected([])
     }

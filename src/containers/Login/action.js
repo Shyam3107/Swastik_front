@@ -61,5 +61,5 @@ export const userLogout = () => (dispatch) => {
   dispatch({
     type: actionTypes.LOGOUT,
   })
-  return toastMessage("Logout Successfull", success)
+  return toastMessage("Logout Successful", success)
 }

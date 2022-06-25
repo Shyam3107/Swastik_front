@@ -55,6 +55,9 @@ export const ROUTES = {
 
   //CONFIGURATION
   CONFIGURATION: "/configuration",
+
+  // REPORTS
+  REPORTS: "/reports",
 }
 
 export const formatDate = (date, time = false) => {

@@ -111,6 +111,8 @@ const Trips = (props) => {
 
   const handleDeleteAgree = () => {
     const cb = () => {
+      setFrom(currentDate)
+      setTo(currentDate)
       props.getTrips()
       setSelected([])
     }

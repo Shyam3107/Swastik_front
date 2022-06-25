@@ -98,6 +98,8 @@ const Office = (props) => {
 
   const handleDeleteAgree = () => {
     const cb = () => {
+      setFrom(monthStart)
+      setTo(currentDate)
       props.getExpense()
       setSelected([])
     }

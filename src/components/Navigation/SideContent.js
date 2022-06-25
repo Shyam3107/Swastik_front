@@ -12,6 +12,7 @@ import BusinessIcon from "@mui/icons-material/Business"
 import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded"
 import { BiTrip } from "react-icons/bi"
 import ReceiptIcon from "@mui/icons-material/Receipt"
+import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp"
 
 import { ROUTES } from "../../utils/constants"
 
@@ -58,6 +59,11 @@ const SideContent = (props) => {
           icon: <DirectionsBusIcon />,
         },
       ],
+    },
+    {
+      icon: <AssessmentSharpIcon />,
+      title: "Reports",
+      link: ROUTES.REPORTS,
     },
   ]
 

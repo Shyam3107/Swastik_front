@@ -1,14 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import React from "react"
+import { connect } from "react-redux"
+import Typography from "@mui/material/Typography"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
 
-import CustomTableOutput from "../CustomComponents/CustomTableOutput/CustomTableOutput";
-import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons";
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
+import CustomTableOutput from "../CustomComponents/CustomTableOutput/CustomTableOutput"
+import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons"
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 
 const Layout = ({
+  children,
   addLoading,
   editLoading,
   deleteLoading,
@@ -39,7 +40,7 @@ const Layout = ({
   checkBoxCondition,
 }) => {
   if (addLoading || editLoading || deleteLoading)
-    return <CustomLoader style={{ height: "80%" }} />;
+    return <CustomLoader style={{ height: "80%" }} />
   return (
     <React.Fragment>
       <Box display="flex">
@@ -80,21 +81,25 @@ const Layout = ({
           </Grid>
         </Grid>
       </Box>
-      <CustomTableOutput
-        data={data}
-        mssgTitle={mssgTitle}
-        mssg={mssg}
-        loading={loading}
-        tableRow={tableRow}
-        tableBodyFunc={tableBodyFunc}
-        numSelected={numSelected}
-        setNumSelected={setNumSelected}
-        checkBoxCondition={checkBoxCondition}
-        selectedFrom={selectedFrom}
-        selectedTo={selectedTo}
-      />
+      {data ? (
+        <CustomTableOutput
+          data={data}
+          mssgTitle={mssgTitle}
+          mssg={mssg}
+          loading={loading}
+          tableRow={tableRow}
+          tableBodyFunc={tableBodyFunc}
+          numSelected={numSelected}
+          setNumSelected={setNumSelected}
+          checkBoxCondition={checkBoxCondition}
+          selectedFrom={selectedFrom}
+          selectedTo={selectedTo}
+        />
+      ) : (
+        children
+      )}
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default connect(null, null)(Layout);
+export default connect(null, null)(Layout)

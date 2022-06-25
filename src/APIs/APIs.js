@@ -21,6 +21,7 @@ const modules = {
   vehiclesExpenses: "/expenses/vehicles",
   configureAccounts: "/configure/accounts",
   receipts: "/receipts",
+  reports: "/reports",
 }
 
 export const API = {
@@ -70,6 +71,9 @@ export const API = {
   ADD_RECEIPT: `${modules.receipts}/addReceipt`,
   EDIT_RECEIPT: `${modules.receipts}/editReceipt`,
   DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
+
+  // REPORTS
+  GET_VEHICLES_REPORTS: `${modules.reports}/getVehiclesReport`,
 }
 
 export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
@@ -159,6 +163,36 @@ export const makeRequest = (options = {}) => {
             callback(data)
             return toastMessage(data.message, success)
           }
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          )
+        })
+      return
+
+    case "file":
+      axios
+        .get(url, {
+          responseType: "blob",
+          params: params ? params : {},
+        })
+        .then(({ status, data }) => {
+          if (status !== 200)
+            throw new Error("Failed to Download Report, Please try again")
+          const blob = new Blob([data])
+          const link = document.createElement("a")
+          link.href = window.URL.createObjectURL(blob)
+          link.download = `${new Date().getTime()}.xlsx`
+          link.click()
+          link.remove()
+          callback()
+          return
         })
         .catch((err) => {
           return handleError(
