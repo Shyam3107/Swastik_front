@@ -118,8 +118,6 @@ const AddEmployeeAccount = (props) => {
     props.setAccountData(null)
   }
 
-  console.log("form ", form)
-
   return (
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
