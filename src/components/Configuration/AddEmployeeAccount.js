@@ -10,8 +10,14 @@ import Button from "@mui/material/Button"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 import { editAccount, addAccount } from "../../containers/Accounts/action"
-import { accessOptions, initialForm, operationsOptions } from "./constants"
+import {
+  accessOptions,
+  initialForm,
+  operationsOptions,
+  showTripsOptions,
+} from "./constants"
 import CustomCheckBox from "../CustomComponents/CustomCheckBox/CustomCheckBox"
+import CustomRadio from "../CustomComponents/CustomRadio/CustomRadio"
 
 const AddEmployeeAccount = (props) => {
   const [form, setForm] = useState(initialForm)
@@ -77,6 +83,19 @@ const AddEmployeeAccount = (props) => {
       sm: 12,
       value: form.operations,
     },
+    {
+      label: "Show Trips",
+      id: "showTrips",
+      type: "RADIO",
+      options: showTripsOptions,
+      handleChange: (value) => {
+        setForm({ ...form, showTrips: value.target.value })
+      },
+      ld: 6,
+      md: 5,
+      sm: 6,
+      value: form.showTrips,
+    },
   ]
 
   const handleSubmit = () => {
@@ -99,6 +118,8 @@ const AddEmployeeAccount = (props) => {
     props.setAccountData(null)
   }
 
+  console.log("form ", form)
+
   return (
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
@@ -120,13 +141,25 @@ const AddEmployeeAccount = (props) => {
                 {item.label}
                 {item.required && <span style={{ color: "red" }}>*</span>}
               </Typography>
-              {item.type === "CHECKBOX" ? (
+              {item.type === "CHECKBOX" && (
                 <CustomCheckBox
                   value={item.value}
                   options={item.options}
                   handleChange={item.handleChange}
                 />
-              ) : (
+              )}
+              {item.type === "RADIO" && (
+                <CustomRadio
+                  value={item.value}
+                  options={item.options}
+                  label={item.label}
+                  handleChange={item.handleChange}
+                  lg={item.lg}
+                  md={item.md}
+                  sm={item.sm}
+                />
+              )}
+              {item.type == null && (
                 <TextField
                   id={item.id}
                   variant="standard"

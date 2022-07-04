@@ -8,6 +8,7 @@ export const initialForm = {
   documentsLink: "",
   access: [],
   operations: [],
+  showTrips: "ALL",
 }
 
 export const accessOptions = [
@@ -24,4 +25,9 @@ export const operationsOptions = [
   { label: "Create", id: "CREATE" },
   { label: "Update", id: "UPDATE" },
   { label: "Delete", id: "DELETE" },
+]
+
+export const showTripsOptions = [
+  { label: "All", value: "ALL" },
+  { label: "Self", value: "SELF" },
 ]
