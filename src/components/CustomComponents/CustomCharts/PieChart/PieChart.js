@@ -25,6 +25,7 @@ const PieChart = ({
         text: subTitle,
         align: "center",
       },
+      colors: ["#228B22", "#B22222"],
       labels: labels,
       responsive: [
         {
