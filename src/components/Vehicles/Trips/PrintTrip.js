@@ -1,15 +1,15 @@
-import React from "react";
-import { connect } from "react-redux";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
+import React from "react"
+import { connect } from "react-redux"
+import Grid from "@mui/material/Grid"
+import Box from "@mui/material/Box"
 
-import styles from "./styles.module.css";
-import { formatDateInDDMMYYY } from "../../../utils/constants";
+import styles from "./styles.module.css"
+import { formatDateInDDMMYYY } from "../../../utils/constants"
 
 const PrintTrip = (props) => {
-  let { trips } = props.trips;
-  let user = props.user.user;
-  if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } };
+  let { trips } = props.trips
+  let user = props.user.user
+  if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } }
 
   // const rules = [
   //   `a) I / We here by decalre that I/We have not taken the credit of Excise Duty Paid on inputs or capital goods or Service tax Credit on input services, used for providing the "Transport of Goods by Road" Service under the provision of Cenvat Credit Rules 2004.`,
@@ -17,8 +17,8 @@ const PrintTrip = (props) => {
   //   `c) I/We also agree to indemnify the company against any payment / liability lossof cridit/ damage caused to the company in case of our default for company with the said declaration.`,
   // ];
 
-  const location = trips.addedBy.location.split(",");
-  if (!location[1]) location[1] = "";
+  let consignor = trips.addedBy?.consignor
+  let branch = trips.addedBy?.branch
 
   return (
     <div className={styles.printDiv}>
@@ -59,7 +59,7 @@ const PrintTrip = (props) => {
       </Grid>
       <Grid container>
         <Grid item style={{ width: "25%" }}>
-          <h5>Branch: {location[1].toUpperCase()}</h5>
+          <h5>Branch: {branch ? branch : ""}</h5>
         </Grid>
         <Grid style={{ width: "25%" }}>
           <h5>LR No. : {trips.lrNo}</h5>
@@ -71,8 +71,8 @@ const PrintTrip = (props) => {
           className={styles.border}
           style={{ padding: "10px", width: "50%" }}
         >
-          <h5>Consignor : {location[0].toUpperCase()} LTD.</h5>
-          <h5>Form : {location[1].toUpperCase()}</h5>
+          <h5>Consignor : {consignor ? consignor + " LTD." : ""}</h5>
+          <h5>Form : {branch ? branch : ""}</h5>
         </Grid>
         <Grid
           item
@@ -168,14 +168,14 @@ const PrintTrip = (props) => {
         </h3>
       </Box>
     </div>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
     user: state.user,
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps)(PrintTrip);
+export default connect(mapStateToProps)(PrintTrip)

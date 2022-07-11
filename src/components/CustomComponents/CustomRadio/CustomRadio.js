@@ -13,6 +13,7 @@ const CustomRadio = (props) => {
           aria-labelledby={props.label}
           name={props.label}
           onChange={props.handleChange}
+          value={props.value}
         >
           {props.options.map((val, index) => {
             return (

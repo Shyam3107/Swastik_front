@@ -48,7 +48,8 @@ const AddEmployeeAccount = (props) => {
 
   let inputFields = [
     { label: "User Name", id: "userName", required: true },
-    { label: "Location", id: "location", required: true },
+    { label: "Consignor", id: "consignor" },
+    { label: "Branch", id: "branch" },
     {
       label: "Password",
       id: "password",
@@ -205,7 +206,6 @@ const AddEmployeeAccount = (props) => {
             disabled={
               Object.keys(error).length !== 0 ||
               !form.userName ||
-              !form.location ||
               submitLoading ||
               (!initialFields && !form.password)
             }

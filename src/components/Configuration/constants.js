@@ -1,6 +1,5 @@
 export const initialForm = {
   userName: "",
-  location: "",
   password: "",
   phone: "",
   companyName: "",
@@ -9,6 +8,8 @@ export const initialForm = {
   access: [],
   operations: [],
   showTrips: "ALL",
+  consignor: "",
+  branch: "",
 }
 
 export const accessOptions = [

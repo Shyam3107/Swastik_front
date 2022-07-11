@@ -43,7 +43,8 @@ const YourAccount = (props) => {
 
   const inputFields = [
     { label: "User Name", id: "userName", required: true },
-    { label: "Location", id: "location", required: true },
+    { label: "Consignor", id: "consignor" },
+    { label: "Branch", id: "branch" },
     { label: "Phone No.", id: "phone" },
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
