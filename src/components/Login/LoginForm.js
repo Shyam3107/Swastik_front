@@ -14,7 +14,6 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff"
 import styles from "./styles.module.css"
 import { userLogin } from "../../containers/Login/action"
 import { withRouter } from "react-router"
-import { ROUTES } from "../../utils/constants"
 import Copyright from "./CopyRight"
 
 const LoginForm = (props) => {
@@ -33,15 +32,12 @@ const LoginForm = (props) => {
   const cb = () => {
     if (form.remember) localStorage.setItem("auth", JSON.stringify(form))
     else localStorage.removeItem("auth")
-    history.push(ROUTES.HOME)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
     props.userLogin(form, cb)
   }
-
-  const history = props.history
 
   const handleShowPassword = () => {
     setShowPassword((show) => !show)

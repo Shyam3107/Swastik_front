@@ -26,14 +26,13 @@ axios.interceptors.request.use(
 )
 
 function App(props) {
-  const loggedIn = props.user.loggedIn
+  const loggedIn = !props.user.loading && props.user.loggedIn
 
   return (
     <div className="App">
       <Suspense fallback={<BackDropLoader />}>
         <Router>
-          {loggedIn && <Navigation />}
-          {!loggedIn && <Login />}
+          {loggedIn ? <Navigation /> : <Login />}
           <ToastContainer />
         </Router>
       </Suspense>

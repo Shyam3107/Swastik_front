@@ -25,7 +25,7 @@ import EditReceipt from "../Receipt/EditReceipt"
 import Reports from "../Reports/Reports"
 
 const Routes = (props) => {
-  const loggedIn = props.user.loggedIn
+  const loggedIn = !props.user.loading && props.user.loggedIn
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (

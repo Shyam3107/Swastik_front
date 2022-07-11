@@ -17,13 +17,17 @@ const YourAccount = (props) => {
   if (!accounts || Array.isArray(accounts)) accounts = {}
   const user = props.user
   const accountId = user.user._id
-  const [form, setForm] = useState(user.user)
+  const [form, setForm] = useState({})
   const [error, handleValidate] = useValidate()
   const { getAccount } = props
 
   useEffect(() => {
     getAccount({ accountId })
   }, [getAccount, accountId])
+
+  useEffect(() => {
+    if (!loading) setForm(user.user)
+  }, [user, loading])
 
   useEffect(() => {
     if (accounts && accounts.userName) setForm(accounts)
