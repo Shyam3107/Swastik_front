@@ -39,7 +39,7 @@ const Layout = ({
   downloadLoading,
   checkBoxCondition,
 }) => {
-  if (addLoading || editLoading || deleteLoading)
+  if (addLoading || editLoading || deleteLoading || loading)
     return <CustomLoader style={{ height: "80%" }} />
   return (
     <React.Fragment>
