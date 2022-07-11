@@ -1,4 +1,4 @@
-import { formatDateInDDMMYYY } from "../../../utils/constants";
+import { formatDateInDDMMYYY } from "../../../utils/constants"
 
 export const header = [
   "DI No.",
@@ -9,6 +9,7 @@ export const header = [
   "Location",
   "Vehicle No.",
   "Quantity",
+  "Material",
   "Driver Name",
   "Driver Phone",
   "Diesel",
@@ -16,7 +17,7 @@ export const header = [
   "Pump Name",
   "Cash",
   "Remarks",
-];
+]
 
 export const headerKey = [
   "diNo",
@@ -27,6 +28,7 @@ export const headerKey = [
   "location",
   "vehicleNo",
   "quantity",
+  "material",
   "driverName",
   "driverPhone",
   "diesel",
@@ -34,7 +36,7 @@ export const headerKey = [
   "pumpName",
   "cash",
   "remarks",
-];
+]
 
 export const sampleData = [
   header,
@@ -47,6 +49,7 @@ export const sampleData = [
     "Hirmi",
     "CG04JD1050",
     "25",
+    "Cement",
     "Ashok",
     "9993652140",
     "50",
@@ -64,6 +67,7 @@ export const sampleData = [
     "Grasim",
     "CG04JD1051",
     "30",
+    "Coal",
     "Mahesh",
     "9898512314",
     "5000",
@@ -81,6 +85,7 @@ export const sampleData = [
     "Grasim",
     "CG04JD1051",
     "30",
+    "Coal",
     "Mahesh",
     "9898512314",
     "",
@@ -98,6 +103,7 @@ export const sampleData = [
     "Grasim",
     "CG04JD1051",
     "30",
+    "Flyash",
     "Mahesh",
     "9898512314",
     "5000",
@@ -106,7 +112,7 @@ export const sampleData = [
     "",
     "",
   ],
-];
+]
 
-export const EDIT_URL = (id) => `/vehicles/trips/${id}/edit`;
-export const VIEW_URL = (id) => `/vehicles/trips/${id}`;
+export const EDIT_URL = (id) => `/vehicles/trips/${id}/edit`
+export const VIEW_URL = (id) => `/vehicles/trips/${id}`

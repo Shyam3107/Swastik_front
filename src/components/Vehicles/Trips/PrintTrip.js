@@ -109,7 +109,7 @@ const PrintTrip = (props) => {
             padding="5px"
           >
             <h5>PSC/PPC</h5>
-            <h5>Cement Bags : {trips.quantity * 20}</h5>
+            <h5>Material : {trips.material}</h5>
           </Box>
           <Box className={styles.borderRight} height="67%" padding="20px 5px">
             <h5>Party Phone No. : </h5>
@@ -120,7 +120,7 @@ const PrintTrip = (props) => {
         <Grid container item md={6} sm={6} style={{ width: "50%" }}>
           <Grid item style={{ width: "20%" }}>
             <h5 className={styles.borderBottom} style={{ padding: "10px" }}>
-              Qty
+              Qty (MT)
             </h5>
             <h4 style={{ marginTop: "30px", textAlign: "center" }}>
               {trips.quantity}

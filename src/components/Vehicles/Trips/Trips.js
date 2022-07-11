@@ -62,6 +62,7 @@ const Trips = (props) => {
         val.partyName,
         val.location,
         val.vehicleNo,
+        val.material,
         val.driverName,
         val.pumpName ? val.pumpName : "",
         val.loadingPoint,
