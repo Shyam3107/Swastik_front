@@ -16,6 +16,7 @@ const modules = {
   home: "/home",
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
+  vouchers: "/vehicles/vouchers",
   driverExpenses: "/expenses/driver",
   officeExpenses: "/expenses/office",
   vehiclesExpenses: "/expenses/vehicles",
@@ -38,6 +39,13 @@ export const API = {
   UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
+
+  // VOUCHERS
+  GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
+  ADD_VOUCHERS: `${modules.vouchers}/addVouchers`,
+  UPLOAD_VOUCHERS: `${modules.vouchers}/uploadVouchers`,
+  EDIT_VOUCHERS: `${modules.vouchers}/editVouchers`,
+  DELETE_VOUCHERS: `${modules.vouchers}/deleteVouchers`,
 
   //DOCUMENTS
   GET_DOCUMENTS: `${modules.documents}/getDocuments`,

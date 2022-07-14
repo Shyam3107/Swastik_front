@@ -11,6 +11,16 @@ export const currentDate = moment().endOf("day")
 
 export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"]
 
+const hostRoutes = {
+  TRIPS: "/vehicles/trips",
+  DOCUMENTS: "/vehicles/documents",
+  VOUCHERS: "/vehicles/vouchers",
+  OFFICE_EXPENSE: "/expenses/office",
+  DRIVER_EXPENSE: "/expenses/driver",
+  VEHICLES_EXPENSE: "/expenses/vehicles",
+  RECEIPT: "/receipt",
+}
+
 export const ROUTES = {
   // LOGIN
   LOGIN: "/login",
@@ -22,36 +32,42 @@ export const ROUTES = {
   HOME: "/home",
 
   // TRIPS
-  TRIPS: "/vehicles/trips",
-  VIEW_TRIP: "/vehicles/trips/:diNo",
-  ADD_TRIP: "/vehicles/trips/add",
-  EDIT_TRIP: "/vehicles/trips/:diNo/edit",
+  TRIPS: hostRoutes.TRIPS,
+  VIEW_TRIP: hostRoutes.TRIPS + "/:diNo",
+  ADD_TRIP: hostRoutes.TRIPS + "/add",
+  EDIT_TRIP: hostRoutes.TRIPS + "/:diNo/edit",
+
+  // VOUCHERS
+  VOUCHERS: hostRoutes.VOUCHERS,
+  VIEW_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId",
+  ADD_VOUCHER: hostRoutes.VOUCHERS + "/add",
+  EDIT_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId/edit",
 
   // DOCUMENTS
-  DOCUMENTS: "/vehicles/documents",
-  VIEW_DOCUMENT: "/vehicles/document/:vehicleNo",
-  EDIT_DOCUMENT: "/vehicles/document/:vehicleNo/edit",
-  ADD_DOCUMENT: "/vehicles/document/add",
+  DOCUMENTS: hostRoutes.DOCUMENTS,
+  VIEW_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo",
+  EDIT_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo/edit",
+  ADD_DOCUMENT: hostRoutes.DOCUMENTS + "/add",
 
   // OFFICE EXPENSE
-  OFFICE_EXPENSE: "/expenses/office",
-  EDIT_OFFICE_EXPENSE: "/expenses/office/:expenseId/edit",
-  ADD_OFFICE_EXPENSE: "/expenses/office/add",
+  OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE,
+  EDIT_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/:expenseId/edit",
+  ADD_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/add",
 
   // DRIVER EXPENSE
-  DRIVER_EXPENSE: "/expenses/driver",
-  EDIT_DRIVER_EXPENSE: "/expenses/driver/:expenseId/edit",
-  ADD_DRIVER_EXPENSE: "/expenses/driver/add",
+  DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE,
+  EDIT_DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE + "/:expenseId/edit",
+  ADD_DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE + "/add",
 
   // VEHICLE EXPENSE
-  VEHICLES_EXPENSE: "/expenses/vehicles",
-  EDIT_VEHICLES_EXPENSE: "/expenses/vehicles/:expenseId/edit",
-  ADD_VEHICLES_EXPENSE: "/expenses/vehicles/add",
+  VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE,
+  EDIT_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/:expenseId/edit",
+  ADD_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/add",
 
   // RECEIPT
-  RECEIPT: "/receipt",
-  EDIT_RECEIPT: "/receipt/:receiptId/edit",
-  ADD_RECEIPT: "/receipt/add",
+  RECEIPT: hostRoutes.RECEIPT,
+  EDIT_RECEIPT: hostRoutes.RECEIPT + "/:receiptId/edit",
+  ADD_RECEIPT: hostRoutes.RECEIPT + "/add",
 
   //CONFIGURATION
   CONFIGURATION: "/configuration",
@@ -79,7 +95,7 @@ export const formatDateInDDMMYYY = (date = new Date()) => {
 
 export const includesInArray = (stringArray, search) => {
   let exist = stringArray.every((val) => {
-    if (typeof val === "number") val = val.toString()
+    if (typeof val === "number") val = val?.toString()
     return !val?.toLowerCase()?.includes(search?.toLowerCase())
   })
   return !exist

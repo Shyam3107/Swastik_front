@@ -12,6 +12,7 @@ export const operations = {
 export const access = {
   DOCUMENTS: "DOCUMENTS",
   TRIPS: "TRIPS",
+  VOUCHERS: "VOUCHERS",
   RECEIPTS: "RECEIPTS",
   OFFICE_EXPENSES: "OFFICE EXPENSES",
   VEHICLE_EXPENSES: "VEHICLE EXPENSES",
@@ -20,7 +21,8 @@ export const access = {
 
 export const checkBoxCondition = (row) => {
   return (
-    row?.addedBy?._id === user()?._id || user()?._id === user()?.companyAdminId?._id
+    row?.addedBy?._id === user()?._id ||
+    user()?._id === user()?.companyAdminId?._id
   )
 }
 

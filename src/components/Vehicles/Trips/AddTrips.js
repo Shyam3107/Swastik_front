@@ -61,8 +61,8 @@ const AddTrips = (props) => {
       label: "Material",
       type: "customSelect",
       handleChange: (val) => setTrip({ ...trip, material: val }),
-      options: ["Cement", "Coal"],
-      required:true
+      options: ["Cement", "Coal", "Clinker", "Fly Ash"],
+      required: true,
     },
     { id: "driverName", label: "Driver Name", required: true },
     {

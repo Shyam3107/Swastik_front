@@ -1,0 +1,41 @@
+.printDiv {
+    display: none;
+    padding: 10px;
+    border: 2px solid black;
+  }
+  
+  .rules {
+    text-align: justify;
+    font-size: 0.9rem;
+  }
+  
+  .border {
+    border: 2px solid black;
+  }
+  
+  .borderLeft {
+    border-left: 2px solid black;
+  }
+  
+  .borderRight {
+    border-right: 2px solid black;
+  }
+  
+  .borderTop {
+    border-top: 2px solid black;
+  }
+  
+  .borderBottom {
+    border-bottom: 2px solid black;
+  }
+  
+  @media print {
+    .printDiv {
+      display: block !important;
+    }
+  
+    .viewDiv {
+      display: none !important;
+    }
+  }
+  

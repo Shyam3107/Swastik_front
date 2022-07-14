@@ -13,6 +13,7 @@ import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded"
 import { BiTrip } from "react-icons/bi"
 import ReceiptIcon from "@mui/icons-material/Receipt"
 import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp"
+import PaymentsIcon from '@mui/icons-material/Payments';
 
 import { ROUTES } from "../../utils/constants"
 
@@ -41,6 +42,11 @@ const SideContent = (props) => {
           title: "Trips",
           link: ROUTES.TRIPS,
           icon: <BiTrip style={{ fontSize: "28px" }} />,
+        },
+        {
+          title: "Vouchers",
+          link: ROUTES.VOUCHERS,
+          icon: <PaymentsIcon />,
         },
       ],
     },

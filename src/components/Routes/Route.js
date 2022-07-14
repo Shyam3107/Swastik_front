@@ -4,24 +4,36 @@ import Login from "../Login/Login"
 import Logout from "../Logout/Logout"
 import { ROUTES } from "../../utils/constants"
 import Home from "../Home/Home"
+
 import Trips from "../Vehicles/Trips/Trips"
 import AddTrips from "../Vehicles/Trips/AddTrips"
 import EditTrips from "../Vehicles/Trips/EditTrips"
 import ViewTrip from "../Vehicles/Trips/ViewTrip"
+
+import Vouchers from "../Vehicles/Vouchers/Vouchers"
+import AddVouchers from "../Vehicles/Vouchers/AddVouchers"
+import EditVouchers from "../Vehicles/Vouchers/EditVouchers"
+import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher"
+
 import Documents from "../Vehicles/Documents/Documents"
 import AddDocument from "../Vehicles/Documents/AddDocument"
 import ViewDocument from "../Vehicles/Documents/ViewDocument"
 import EditDocument from "../Vehicles/Documents/EditDocument"
+
 import OfficeExpense from "../Expenses/Office/Office"
 import AddOfficeExpense from "../Expenses/Office/AddOffice"
 import EditOfficeExpense from "../Expenses/Office/EditOffice"
+
 import VehiclesExpense from "../Expenses/Vehicles/Vehicles"
 import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles"
 import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles"
+
 import Configuration from "../Configuration/Configuration"
+
 import Receipt from "../Receipt/Receipt"
 import AddReceipt from "../Receipt/AddReceipt"
 import EditReceipt from "../Receipt/EditReceipt"
+
 import Reports from "../Reports/Reports"
 
 const Routes = (props) => {
@@ -59,6 +71,22 @@ const Routes = (props) => {
     {
       path: ROUTES.VIEW_TRIP,
       component: <ViewTrip />,
+    },
+    {
+      path: ROUTES.VOUCHERS,
+      component: <Vouchers />,
+    },
+    {
+      path: ROUTES.ADD_VOUCHER,
+      component: <AddVouchers />,
+    },
+    {
+      path: ROUTES.EDIT_VOUCHER,
+      component: <EditVouchers />,
+    },
+    {
+      path: ROUTES.VIEW_VOUCHER,
+      component: <ViewVoucher />,
     },
     {
       path: ROUTES.DOCUMENTS,
