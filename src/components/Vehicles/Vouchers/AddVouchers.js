@@ -18,6 +18,7 @@ const initialVoucher = {
   advance: "",
   tds: "",
   bagShortage: "",
+  other: "",
   total: 0,
   remarks: "",
 }
@@ -56,8 +57,9 @@ const AddVouchers = (props) => {
     { id: "advance", label: "Advance" },
     { id: "tds", label: "TDS" },
     { id: "bagShortage", label: "Bag Shortage" },
+    { id: "other", label: "Other" },
     { id: "total", type: "number", label: "Total", required: true },
-    { id: "remarks", label: "Reamrks" },
+    { id: "remarks", label: "Remarks" },
   ]
 
   const handleValueChange = (e) => {

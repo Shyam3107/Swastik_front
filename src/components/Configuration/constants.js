@@ -15,6 +15,7 @@ export const initialForm = {
 export const accessOptions = [
   { label: "Trips", id: "TRIPS" },
   { label: "Documents", id: "DOCUMENTS" },
+  { label: "Vouchers", id: "VOUCHERS" },
   { label: "Receipts", id: "RECEIPTS" },
   { label: "Office Expenses", id: "OFFICE EXPENSES" },
   { label: "Vehicle Expenses", id: "VEHICLE EXPENSES" },

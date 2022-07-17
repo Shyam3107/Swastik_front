@@ -28,6 +28,10 @@
   .borderBottom {
     border-bottom: 2px solid black;
   }
+
+  .printDiv p{
+    font-size: 1.5rem;
+  }
   
   @media print {
     .printDiv {

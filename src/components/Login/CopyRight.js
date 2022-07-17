@@ -1,4 +1,4 @@
-import Typography from "@mui/material/Typography";
+import Typography from "@mui/material/Typography"
 
 const Copyright = (props) => {
   return (
@@ -9,10 +9,10 @@ const Copyright = (props) => {
       {...props}
     >
       {"Copyright © "}
-      {new Date().getFullYear()} SWASTIK MINERALS
+      2022 SWASTIK MINERALS
       {"."}
     </Typography>
-  );
-};
+  )
+}
 
-export default Copyright;
+export default Copyright

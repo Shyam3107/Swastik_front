@@ -46,8 +46,8 @@ export const EXPIRED = "EXPIRED"
 export const ACTIVE = "ACTIVE"
 export const daysLeft = (days) => `${days} Days`
 
-export const EDIT_URL = (id) => `/vehicles/document/${id}/edit`
-export const VIEW_URL = (id) => `/vehicles/document/${id}`
+export const EDIT_URL = (id) => `/vehicles/documents/${id}/edit`
+export const VIEW_URL = (id) => `/vehicles/documents/${id}`
 
 export const tableHeader = [
   "Vehicle No.",

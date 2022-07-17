@@ -1,179 +1,194 @@
 import React from "react"
 import { connect } from "react-redux"
 import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
 
 import styles from "./styles.module.css"
 import { formatDateInDDMMYYY } from "../../../utils/constants"
 
+const blackBorder = "1px solid black"
+
 const PrintVoucher = (props) => {
-  let { trips } = props.trips
-  let user = props.user.user
-  if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } }
+  let { vouchers } = props.vouchers
 
-  // const rules = [
-  //   `a) I / We here by decalre that I/We have not taken the credit of Excise Duty Paid on inputs or capital goods or Service tax Credit on input services, used for providing the "Transport of Goods by Road" Service under the provision of Cenvat Credit Rules 2004.`,
-  //   `b) I/We hereby declare that We have not availed the benefit under norificotion of the Government of India in the Ministry of finance Department of Revenue No. 12/2003 Service Tax, dated the 20th June 2003 (G.S.R. 503(E) dated the 20th June 2003).`,
-  //   `c) I/We also agree to indemnify the company against any payment / liability lossof cridit/ damage caused to the company in case of our default for company with the said declaration.`,
-  // ];
+  let amount = [
+    {
+      title: "Cash",
+      value: vouchers?.cash,
+    },
+    {
+      title: "Diesel",
+      value: vouchers?.diesel,
+    },
+    {
+      title: "Advance",
+      value: vouchers?.advance,
+    },
+    {
+      title: "TDS",
+      value: vouchers?.tds,
+    },
+    {
+      title: "Bag Shortage",
+      value: vouchers?.bagShortage,
+    },
+    {
+      title: "Other",
+      value: vouchers?.other,
+    },
+    {
+      title: "Total",
+      value: vouchers?.total,
+    },
+  ]
 
-  let consignor = trips.addedBy?.consignor
-  let branch = trips.addedBy?.branch
+  let fields = [
+    {
+      title: "DI No.",
+      value: vouchers?.diNo,
+    },
+    {
+      title: "Designation",
+      value: vouchers?.trip?.location,
+    },
+    {
+      title: "LR No.",
+      value: vouchers?.trip?.lrNo,
+    },
+    {
+      title: "Billing Rate",
+      value: vouchers?.billingRate,
+    },
+    {
+      title: "Rate",
+      value: vouchers?.rate,
+      width: "33%",
+    },
+    {
+      title: "Quantity(MT)",
+      value: vouchers?.trip?.quantity,
+      width: "33%",
+    },
+    {
+      title: "Amount",
+      value: vouchers?.trip?.quantity * vouchers?.rate,
+      width: "33%",
+    },
+    {
+      title: "DI Date",
+      value: formatDateInDDMMYYY(vouchers?.trip?.date),
+    },
+    {
+      title: "Truck No.",
+      value: vouchers?.trip?.vehicleNo,
+    },
+    {
+      title: "Paid To",
+      value: vouchers?.paidTo,
+      width: "100%",
+    },
+    {
+      title: "Account No.",
+      value: vouchers?.accountNo,
+    },
+    {
+      title: "IFSC",
+      value: vouchers?.ifsc,
+    },
+    {
+      title: "Remarks",
+      value: vouchers?.remarks,
+      width: "100%",
+    },
+  ]
 
   return (
     <div className={styles.printDiv}>
-      <Grid container>
-        <Grid item style={{ textAlign: "center", width: "60%" }}>
-          <h1 style={{ fontSize: "3rem", fontWeight: "700" }}>
-            <img
-              src={process.env.PUBLIC_URL + "/images/Swastik Logo.png"}
-              height="50px"
-              width="auto"
-              style={{ marginRight: "20px", marginBottom: "10px" }}
-              alt="Swastik Logo"
-            />
-            M/S.{" "}
-            {user.companyName
-              ? user.companyName.toUpperCase()
-              : user.companyAdminId.companyName
-              ? user.companyAdminId.companyName.toUpperCase()
-              : "SWASTIK MINERALS"}
-          </h1>
-          <h3>FLEET OWNERS AND TRANSPORT CONTRACTOR</h3>
-          <h3>Authorised Transport Contractor</h3>
-          <h3>GOOD CONSIGNMENT NOTE</h3>
-        </Grid>
-        <Grid item style={{ textAlign: "center", width: "40%" }}>
-          <Box borderRadius="10px" className={styles.border} padding="5px">
-            <h3>
-              (Mob) 7415844010, 9977115338 {user.phone ? `, ${user.phone}` : ""}
-            </h3>
-            <h3>H.O : Gandhi Chowk, Neora</h3>
-            <h3>Distt. Raipur (C.G)</h3>
-          </Box>
-          <h3 style={{ marginTop: "15px" }}>
-            T.P.T Code:{" "}
-            {user.tptCode ? user.tptCode : user.companyAdminId.tptCode}
-          </h3>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid item style={{ width: "25%" }}>
-          <h5>Branch: {branch ? branch : ""}</h5>
-        </Grid>
-        <Grid style={{ width: "25%" }}>
-          <h5>LR No. : {trips.lrNo}</h5>
-        </Grid>
-      </Grid>
-      <Grid container>
-        <Grid
-          item
-          className={styles.border}
-          style={{ padding: "10px", width: "50%" }}
-        >
-          <h5>Consignor : {consignor ? consignor + " LTD." : ""}</h5>
-          <h5>Form : {branch ? branch : ""}</h5>
-        </Grid>
-        <Grid
-          item
-          style={{ padding: "10px", width: "50%" }}
-          className={`${styles.borderRight} ${styles.borderTop} ${styles.borderBottom}`}
-        >
-          <h5>Consignee</h5>
-          <Grid container spacing={3}>
-            <Grid item style={{ width: "50%" }}>
-              <h5 style={{ height: "100%" }}>To: {trips.partyName}</h5>
-            </Grid>
-            <Grid item style={{ width: "50%" }}>
-              <h5>Date: {formatDateInDDMMYYY(trips.date)}</h5>
-            </Grid>
-            <Grid item style={{ width: "50%", paddingTop: 0 }}>
-              <h5>Location: {trips.location}</h5>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Box
-        className={`${styles.borderRight} ${styles.borderLeft}`}
-        fontSize="1.6rem"
-        padding="5px"
-        textAlign="center"
-        fontWeight="600"
+      <h4 style={{ textAlign: "center" }}>Voucher</h4>
+      <Grid
+        container
+        style={{ borderBottom: blackBorder, marginBottom: "3px" }}
       >
-        ON BROKERS &#38; TRUCK OWNERS RISK &#38; RESPONSIBILITY
-      </Box>
-      <Grid container className={styles.border}>
-        <Grid item md={6} sm={6} style={{ width: "50%" }}>
-          <Box
-            className={`${styles.borderRight} ${styles.borderBottom}`}
-            padding="5px"
-          >
-            <h5>PSC/PPC</h5>
-            <h5>Material : {trips.material}</h5>
-          </Box>
-          <Box className={styles.borderRight} height="67%" padding="20px 5px">
-            <h5>Party Phone No. : </h5>
-            <h5>Driver Name : {trips.driverName}</h5>
-            <h5>Driver Phone No. : {trips.driverPhone}</h5>
-          </Box>
+        <Grid item style={{ width: "80%" }}>
+          <h4>JAGDISH PRASAD SINGHANIA</h4>
+          <h5>Pro. Swastik Minerals &amp; Govinda Roadlines</h5>
         </Grid>
-        <Grid container item md={6} sm={6} style={{ width: "50%" }}>
-          <Grid item style={{ width: "20%" }}>
-            <h5 className={styles.borderBottom} style={{ padding: "10px" }}>
-              Qty (MT)
-            </h5>
-            <h4 style={{ marginTop: "30px", textAlign: "center" }}>
-              {trips.quantity}
-            </h4>
-          </Grid>
-          <Grid item style={{ width: "80%" }} className={styles.borderLeft}>
-            <h5
-              style={{ textAlign: "center", padding: "10px" }}
-              className={styles.borderBottom}
-            >
-              Remarks
-            </h5>
-            <Box style={{ padding: "5px" }}>
-              <h5>Truck No. : {trips.vehicleNo}</h5>
-              <h5>Gate Pass No.</h5>
-              <h5>Date : {formatDateInDDMMYYY(trips.date)}</h5>
-              <h5>D.I NO. : {trips.diNo}</h5>
-            </Box>
-          </Grid>
+        <Grid item style={{ width: "20%" }}>
+          <p>Site: {vouchers?.trip?.addedBy?.branch}</p>
+          <p>Date: {formatDateInDDMMYYY(vouchers?.date)}</p>
+        </Grid>
+        <h6 style={{ paddingBottom: "5px" }}>
+          Near Tirupati Balaji Foods, Vill. Kohka, P.O. Neora, Distt.
+          Raipur(C.G) 493114
+        </h6>
+      </Grid>
+      <Grid container>
+        <Grid
+          item
+          style={{
+            width: "75%",
+            display: "flex",
+            border: blackBorder,
+            marginRight: "10px",
+            flexWrap: "wrap",
+          }}
+        >
+          {fields.map((val, index) => {
+            return (
+              <p
+                style={{
+                  width: val.width ? val.width : "50%",
+                  borderBottom:
+                    index !== fields.length - 1 ? blackBorder : null,
+                  padding: "1px 5px",
+                  margin: 0,
+                  display: "flex",
+                  alignItems: "center",
+                }}
+                key={index}
+              >
+                {val.title} : {val.value}
+              </p>
+            )
+          })}
+        </Grid>
+        <Grid
+          item
+          style={{ width: "23%", border: blackBorder, padding: "5px" }}
+        >
+          <h4 style={{ textAlign: "center" }}>Amount</h4>
+          <table style={{ width: "100%", border: blackBorder }}>
+            {amount.map((am, index) => {
+              return (
+                <tbody key={index}>
+                  <tr style={{ border: blackBorder }}>
+                    <td style={{ border: blackBorder, paddingLeft: "3px" }}>
+                      {am.title}
+                    </td>
+                    <td style={{ paddingLeft: "3px" }}> {am.value}</td>
+                  </tr>
+                </tbody>
+              )
+            })}
+          </table>
         </Grid>
       </Grid>
-      <Box marginTop="10px">
-        {/* {rules.map((rule, index) => {
-          return (
-            <h4 key={index} className={styles.rules}>
-              {rule}
-            </h4>
-          );
-        })}
-        <h4 className={styles.rules}>
-          We here by under take that we have into availed the credit on the duty
-          paid on input annd caprtal goods used for providing such taxble
-          service and have also not availed benefit under notification no
-          12/2003 dated 20/08/2003
-        </h4> */}
-        <h3
-          style={{ textAlign: "end", marginRight: "10px", marginTop: "7rem" }}
-        >
-          For,{" "}
-          {user.companyName
-            ? user.companyName
-            : user.companyAdminId.companyName
-            ? user.companyAdminId.companyName
-            : "SWASTIK MINERALS"}
-        </h3>
-      </Box>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          margin: "5rem 1rem 0",
+        }}
+      >
+        <p>Sender</p>
+        <p>Receiver</p>
+      </div>
     </div>
   )
 }
 
 const mapStateToProps = (state) => {
   return {
-    trips: state.trips,
+    vouchers: state.vouchers,
     user: state.user,
   }
 }

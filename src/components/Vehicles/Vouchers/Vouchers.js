@@ -17,7 +17,14 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
+import {
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  VIEW_URL,
+  downloadData,
+} from "./constants"
 import {
   isOperationAllowed,
   access,
@@ -70,16 +77,6 @@ const Vouchers = (props) => {
       search
     )
   })
-
-  let downloadData = vouchers.map((item) => {
-    return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      if (val === "addedBy") return item[val] ? item[val].location : ""
-      return item[val]
-    })
-  })
-
-  downloadData = [[...header, "Added By"], ...downloadData]
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -168,7 +165,7 @@ const Vouchers = (props) => {
       selectedFrom={from}
       selectedTo={to}
       sampleData={sampleData}
-      downloadData={downloadData}
+      downloadData={downloadData(vouchers)}
       downloadLoading={addLoading}
     />
   )
