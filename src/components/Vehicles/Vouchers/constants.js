@@ -12,9 +12,8 @@ export const header = [
   "Diesel",
   "Advance",
   "TDS",
-  "Bag Shortage",
+  "Shortage",
   "Other",
-  "Total",
   "Remarks",
 ]
 
@@ -30,9 +29,8 @@ export const headerKey = [
   "diesel",
   "advance",
   "tds",
-  "bagShortage",
+  "shortage",
   "other",
-  "total",
   "remarks",
 ]
 
@@ -52,12 +50,11 @@ export const sampleData = [
     "200",
     "255",
     "500",
-    "100000",
     "Trips",
   ],
   [
     formatDateInDDMMYYY(),
-    "3658954f89",
+    "3658954589",
     "1007",
     "925",
     "Swastik",
@@ -69,7 +66,6 @@ export const sampleData = [
     "",
     "",
     "655",
-    "10000",
     "Trips",
   ],
 ]
@@ -79,6 +75,18 @@ export const VIEW_URL = (id) => `/vehicles/vouchers/${id}`
 
 export const viewMoreFields = (voucher) => {
   return [
+    {
+      id: "total",
+      label: "Total",
+      value:
+        voucher?.trip?.quantity * voucher?.rate -
+        voucher?.cash -
+        voucher?.diesel -
+        voucher?.advance -
+        voucher?.tds -
+        voucher?.shortage -
+        voucher?.other,
+    },
     {
       id: "diDate",
       label: "DI Date",

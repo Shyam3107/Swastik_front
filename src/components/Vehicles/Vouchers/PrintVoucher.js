@@ -28,8 +28,8 @@ const PrintVoucher = (props) => {
       value: vouchers?.tds,
     },
     {
-      title: "Bag Shortage",
-      value: vouchers?.bagShortage,
+      title: "Shortage",
+      value: vouchers?.shortage,
     },
     {
       title: "Other",
@@ -37,7 +37,14 @@ const PrintVoucher = (props) => {
     },
     {
       title: "Total",
-      value: vouchers?.total,
+      value:
+        vouchers?.trip?.quantity * vouchers?.rate -
+        vouchers?.cash -
+        vouchers?.diesel -
+        vouchers?.advance -
+        vouchers?.tds -
+        vouchers?.shortage -
+        vouchers?.other,
     },
   ]
 
