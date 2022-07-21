@@ -23,3 +23,26 @@ export const getVehiclesReport =
 
     makeRequest(options)
   }
+
+export const getDieselsReport =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_DIESELS_REPORTS_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.GET_DIESELS_REPORTS,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.GET_DIESELS_REPORTS_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.GET_DIESELS_REPORTS_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

@@ -1,4 +1,4 @@
-const version = 20
+const version = 21
 const STATIC_CACHE = "static_cache_v" + version
 const DYNAMIC_CACHE = "dynamic-cache_v" + version
 

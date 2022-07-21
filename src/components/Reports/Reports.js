@@ -4,7 +4,10 @@ import { withRouter } from "react-router"
 import Box from "@mui/material/Box"
 import moment from "moment"
 
-import { getVehiclesReport } from "../../containers/Reports/action"
+import {
+  getVehiclesReport,
+  getDieselsReport,
+} from "../../containers/Reports/action"
 import Layout from "../Layout/Layout"
 import { monthStart, currentDate } from "../../utils/constants"
 
@@ -13,12 +16,24 @@ const Reports = (props) => {
   const [to, setTo] = useState(currentDate)
   const { loading } = props.reports
 
-  const handleClick = () => {
-    props.getVehiclesReport({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+  const handleClick = (cb) => {
+    return () =>
+      cb({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
   }
+
+  const fields = [
+    {
+      title: "Vehicle",
+      onClick: props.getVehiclesReport,
+    },
+    {
+      title: "Diesel",
+      onClick: props.getDieselsReport,
+    },
+  ]
 
   return (
     <React.Fragment>
@@ -30,14 +45,19 @@ const Reports = (props) => {
         setSelectedFrom={setFrom}
         setSelectedTo={setTo}
       >
-        <Box
-          margin="2%"
-          color="blue"
-          style={{ cursor: "pointer" }}
-          onClick={handleClick}
-        >
-          Click here to Download Vehicle Report
-        </Box>
+        {fields.map((val, index) => {
+          return (
+            <Box
+              key={index}
+              margin="2%"
+              color="blue"
+              style={{ cursor: "pointer" }}
+              onClick={handleClick(val.onClick)}
+            >
+              Click here to Download {val.title} Report
+            </Box>
+          )
+        })}
       </Layout>
     </React.Fragment>
   )
@@ -51,5 +71,5 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { getVehiclesReport })(Reports)
+  connect(mapStateToProps, { getVehiclesReport, getDieselsReport })(Reports)
 )
