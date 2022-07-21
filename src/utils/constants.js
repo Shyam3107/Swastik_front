@@ -15,6 +15,7 @@ const hostRoutes = {
   TRIPS: "/vehicles/trips",
   DOCUMENTS: "/vehicles/documents",
   VOUCHERS: "/vehicles/vouchers",
+  DIESELS: "/vehicles/diesels",
   OFFICE_EXPENSE: "/expenses/office",
   DRIVER_EXPENSE: "/expenses/driver",
   VEHICLES_EXPENSE: "/expenses/vehicles",
@@ -48,6 +49,11 @@ export const ROUTES = {
   VIEW_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo",
   EDIT_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo/edit",
   ADD_DOCUMENT: hostRoutes.DOCUMENTS + "/add",
+
+  // DIESELS
+  DIESELS: hostRoutes.DIESELS,
+  ADD_DIESEL: hostRoutes.DIESELS + "/add",
+  EDIT_DIESEL: hostRoutes.DIESELS + "/:dieselId/edit",
 
   // OFFICE EXPENSE
   OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE,

@@ -15,6 +15,10 @@ import AddVouchers from "../Vehicles/Vouchers/AddVouchers"
 import EditVouchers from "../Vehicles/Vouchers/EditVouchers"
 import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher"
 
+import Diesels from "../Vehicles/Diesels/Diesels"
+import AddDiesels from "../Vehicles/Diesels/AddDiesels"
+import EditDiesels from "../Vehicles/Diesels/EditDiesels"
+
 import Documents from "../Vehicles/Documents/Documents"
 import AddDocument from "../Vehicles/Documents/AddDocument"
 import ViewDocument from "../Vehicles/Documents/ViewDocument"
@@ -87,6 +91,18 @@ const Routes = (props) => {
     {
       path: ROUTES.VIEW_VOUCHER,
       component: <ViewVoucher />,
+    },
+    {
+      path: ROUTES.DIESELS,
+      component: <Diesels />,
+    },
+    {
+      path: ROUTES.ADD_DIESEL,
+      component: <AddDiesels />,
+    },
+    {
+      path: ROUTES.EDIT_DIESEL,
+      component: <EditDiesels />,
     },
     {
       path: ROUTES.DOCUMENTS,

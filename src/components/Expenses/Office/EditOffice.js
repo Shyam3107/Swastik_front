@@ -4,7 +4,7 @@ import { useParams } from "react-router"
 import { getExpense } from "../../../containers/OfficeExpense/action"
 import AddOffice from "./AddOffice"
 
-const Office = (props) => {
+const EditOffice = (props) => {
   let { expenses } = props.officeExpense
   const params = useParams()
   const { getExpense } = props
@@ -26,4 +26,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps, { getExpense })(Office)
+export default connect(mapStateToProps, { getExpense })(EditOffice)

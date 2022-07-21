@@ -14,6 +14,7 @@ import { BiTrip } from "react-icons/bi"
 import ReceiptIcon from "@mui/icons-material/Receipt"
 import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp"
 import PaymentsIcon from '@mui/icons-material/Payments';
+import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 
 import { ROUTES } from "../../utils/constants"
 
@@ -47,6 +48,11 @@ const SideContent = (props) => {
           title: "Vouchers",
           link: ROUTES.VOUCHERS,
           icon: <PaymentsIcon />,
+        },
+        {
+          title: "Diesels",
+          link: ROUTES.DIESELS,
+          icon: <LocalGasStationIcon />,
         },
       ],
     },
