@@ -114,7 +114,10 @@ const Trips = (props) => {
     const cb = () => {
       setFrom(currentDate)
       setTo(currentDate)
-      props.getTrips()
+      getTrips({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
       setSelected([])
     }
     props.deleteTrips(selected, cb)

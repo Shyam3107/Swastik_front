@@ -34,8 +34,8 @@ const AddDiesels = (props) => {
       maxDate: new Date().toISOString(),
     },
     { id: "vehicleNo", label: "Vehicle No.", required: true },
-    { id: "quantity", type: "number", label: "Quantity", required: true },
-    { id: "amount", type: "number", label: "Amount", required: true },
+    { id: "quantity", type: "number", label: "Quantity"},
+    { id: "amount", type: "number", label: "Amount"},
     {
       id: "fuel",
       label: "Fuel",

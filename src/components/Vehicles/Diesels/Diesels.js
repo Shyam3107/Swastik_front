@@ -57,7 +57,11 @@ const Office = (props) => {
   diesels = diesels.filter((val) => {
     return includesInArray(
       [
+        val.vehicleNo,
+        val.quantity,
+        val.amount,
         val.remarks,
+        val.pumpName,
         val.addedBy && val.addedBy.location ? val.addedBy.location : "",
       ],
       search

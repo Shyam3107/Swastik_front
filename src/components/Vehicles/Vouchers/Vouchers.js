@@ -110,7 +110,10 @@ const Vouchers = (props) => {
     const cb = () => {
       setFrom(currentDate)
       setTo(currentDate)
-      props.getVouchers()
+      props.getVouchers({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
       setSelected([])
     }
     props.deleteVouchers(selected, cb)
