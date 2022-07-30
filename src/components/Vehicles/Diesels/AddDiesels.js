@@ -12,6 +12,7 @@ const initialDiesel = {
   amount: 0,
   fuel: "Diesel",
   pumpName: "",
+  remarks: "",
 }
 
 const AddDiesels = (props) => {
@@ -45,6 +46,7 @@ const AddDiesels = (props) => {
       ],
     },
     { id: "pumpName", label: "Pump Name", required: true },
+    { id: "remarks", label: "Remarks" },
   ]
 
   const handleValueChange = (e) => {

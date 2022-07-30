@@ -26,17 +26,15 @@ const useValidate = () => {
           if (!validatePhoneNo(fieldValue))
             errMssg = mssg || "Enter Valid Phone No."
         } else if (type === "LINK") {
-          if (!validateUrlValid(fieldValue))
-            errMssg = mssg || "Enter Valid URL"
+          if (!validateUrlValid(fieldValue)) errMssg = mssg || "Enter Valid URL"
         }
       })
       if (errMssg) newError[fieldId] = errMssg
     }
 
-    if (!fieldValue) {
+    if (!fieldValue && fieldValue !== 0) {
       newError[fieldId] = defaultMssg
     }
-
     setError(newError)
   }
 

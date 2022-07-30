@@ -7,6 +7,7 @@ export const header = [
   "Amount",
   "Fuel",
   "Pump Name",
+  "Remarks",
 ]
 
 export const headerKey = [
@@ -16,6 +17,7 @@ export const headerKey = [
   "amount",
   "fuel",
   "pumpName",
+  "remarks",
 ]
 
 export const sampleData = [
@@ -27,6 +29,7 @@ export const sampleData = [
     "3450.25",
     "Diesel",
     "Saurabh Fuels",
+    "Cash",
   ],
   [formatDateInDDMMYYY(), "CG04JD1051", "22", "2450.25", "Petrol", "H.H Fuels"],
 ]
