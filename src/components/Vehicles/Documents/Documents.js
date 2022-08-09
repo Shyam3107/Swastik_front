@@ -40,15 +40,7 @@ const Documents = (props) => {
   let { getDocuments } = props
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState([])
-  let {
-    loading,
-    documents,
-    addLoading,
-    editLoading,
-    deleteLoading,
-    uploadLoading,
-    documentsLink,
-  } = props.documents
+  let { loading, documents, documentsLink } = props.documents
   const history = props.history
 
   useEffect(() => {
@@ -190,10 +182,6 @@ const Documents = (props) => {
         sampleName="documentSample"
         sampleData={sampleData}
         downloadData={downloadData}
-        addLoading={addLoading || uploadLoading}
-        editLoading={editLoading}
-        deleteLoading={deleteLoading}
-        downloadLoading={addLoading}
       />
       {validateUrlValid(documentsLink) && (
         <p style={{ marginLeft: "10px" }}>

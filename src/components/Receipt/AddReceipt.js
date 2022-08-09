@@ -15,7 +15,7 @@ const Receipt = (props) => {
   const [receipt, setReceipt] = useState(initialReceipt)
   const { initialFields } = props
   const history = props.history
-  const { addLoading, editLoading, loading } = props.receipt
+  const { loading } = props.receipt
 
   useEffect(() => {
     if (initialFields) setReceipt(initialFields)
@@ -64,7 +64,6 @@ const Receipt = (props) => {
       handleSubmit={handleSubmit}
       data={receipt}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

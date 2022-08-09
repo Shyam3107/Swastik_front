@@ -10,9 +10,6 @@ import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 
 const Layout = ({
   children,
-  addLoading,
-  editLoading,
-  deleteLoading,
   title,
   handleDeleteAgree,
   handleFileSubmit,
@@ -39,8 +36,9 @@ const Layout = ({
   downloadLoading,
   checkBoxCondition,
 }) => {
-  if (addLoading || editLoading || deleteLoading || loading)
-    return <CustomLoader style={{ height: "80%" }} />
+  // Show Loader in case loading during add, get, edit or delete
+  if (loading) return <CustomLoader style={{ height: "80%" }} />
+
   return (
     <React.Fragment>
       <Box display="flex">

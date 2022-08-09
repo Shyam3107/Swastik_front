@@ -119,3 +119,26 @@ export const deleteDiesel =
 
     makeRequest(options)
   }
+
+export const downloadDiesel =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.DOWNLOAD_DIESEL_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.DOWNLOAD_DIESELS,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.DOWNLOAD_DIESEL_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.DOWNLOAD_DIESEL_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

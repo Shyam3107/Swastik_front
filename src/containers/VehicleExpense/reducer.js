@@ -4,10 +4,7 @@ const initialState = {
   loading: false,
   expenses: null,
   error: null,
-  addLoading: false,
-  editLoading: false,
-  deleteLoading: false,
-  uploadLoading: false,
+  downloadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -20,32 +17,39 @@ export default function reducer(state = initialState, action = {}) {
       return { ...initialState, error: action.payload }
 
     case actionTypes.ADD_VEHICLES_EXPENSE_PENDING:
-      return { ...state, addLoading: true }
+      return { ...state, loading: true }
     case actionTypes.ADD_VEHICLES_EXPENSE_SUCCESS:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
     case actionTypes.ADD_VEHICLES_EXPENSE_FAILURE:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.UPLOAD_VEHICLES_EXPENSE_PENDING:
-      return { ...state, uploadLoading: true }
+      return { ...state, loading: true }
     case actionTypes.UPLOAD_VEHICLES_EXPENSE_SUCCESS:
-      return { ...state, uploadLoading: false }
+      return { ...state, loading: false }
     case actionTypes.UPLOAD_VEHICLES_EXPENSE_FAILURE:
-      return { ...state, uploadLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.EDIT_VEHICLES_EXPENSE_PENDING:
-      return { ...state, editLoading: true }
+      return { ...state, loading: true }
     case actionTypes.EDIT_VEHICLES_EXPENSE_SUCCESS:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
     case actionTypes.EDIT_VEHICLES_EXPENSE_FAILURE:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.DELETE_VEHICLES_EXPENSE_PENDING:
-      return { ...state, deleteLoading: true }
+      return { ...state, loading: true }
     case actionTypes.DELETE_VEHICLES_EXPENSE_SUCCESS:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
     case actionTypes.DELETE_VEHICLES_EXPENSE_FAILURE:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
+
+    case actionTypes.DOWNLOAD_VEHICLES_EXPENSE_PENDING:
+      return { ...state, downloadLoading: true }
+    case actionTypes.DOWNLOAD_VEHICLES_EXPENSE_SUCCESS:
+      return { ...state, downloadLoading: false }
+    case actionTypes.DOWNLOAD_VEHICLES_EXPENSE_FAILURE:
+      return { ...state, downloadLoading: false }
 
     default:
       return state

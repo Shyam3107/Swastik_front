@@ -4,10 +4,7 @@ const initialState = {
   loading: false,
   receipts: null,
   error: null,
-  addLoading: false,
-  editLoading: false,
-  deleteLoading: false,
-  uploadLoading: false,
+  downloadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -20,32 +17,39 @@ export default function reducer(state = initialState, action = {}) {
       return { ...initialState, error: action.payload }
 
     case actionTypes.ADD_RECEIPT_PENDING:
-      return { ...state, addLoading: true }
+      return { ...state, loading: true }
     case actionTypes.ADD_RECEIPT_SUCCESS:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
     case actionTypes.ADD_RECEIPT_FAILURE:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.UPLOAD_RECEIPT_PENDING:
-      return { ...state, uploadLoading: true }
+      return { ...state, loading: true }
     case actionTypes.UPLOAD_RECEIPT_SUCCESS:
-      return { ...state, uploadLoading: false }
+      return { ...state, loading: false }
     case actionTypes.UPLOAD_RECEIPT_FAILURE:
-      return { ...state, uploadLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.EDIT_RECEIPT_PENDING:
-      return { ...state, editLoading: true }
+      return { ...state, loading: true }
     case actionTypes.EDIT_RECEIPT_SUCCESS:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
     case actionTypes.EDIT_RECEIPT_FAILURE:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.DELETE_RECEIPT_PENDING:
-      return { ...state, deleteLoading: true }
+      return { ...state, loading: true }
     case actionTypes.DELETE_RECEIPT_SUCCESS:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
     case actionTypes.DELETE_RECEIPT_FAILURE:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
+
+    case actionTypes.DOWNLOAD_RECEIPT_PENDING:
+      return { ...state, downloadLoading: true }
+    case actionTypes.DOWNLOAD_RECEIPT_SUCCESS:
+      return { ...state, downloadLoading: false }
+    case actionTypes.DOWNLOAD_RECEIPT_FAILURE:
+      return { ...state, downloadLoading: false }
 
     default:
       return state

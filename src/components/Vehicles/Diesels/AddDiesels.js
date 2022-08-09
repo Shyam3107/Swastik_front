@@ -19,7 +19,7 @@ const AddDiesels = (props) => {
   const [diesel, setDiesel] = useState(initialDiesel)
   const { initialFields } = props
   const history = props.history
-  const { addLoading, editLoading, loading } = props.diesels
+  const { loading } = props.diesels
 
   useEffect(() => {
     if (initialFields) setDiesel(initialFields)
@@ -34,8 +34,8 @@ const AddDiesels = (props) => {
       maxDate: new Date().toISOString(),
     },
     { id: "vehicleNo", label: "Vehicle No.", required: true },
-    { id: "quantity", type: "number", label: "Quantity"},
-    { id: "amount", type: "number", label: "Amount"},
+    { id: "quantity", type: "number", label: "Quantity" },
+    { id: "amount", type: "number", label: "Amount" },
     {
       id: "fuel",
       label: "Fuel",
@@ -80,7 +80,6 @@ const AddDiesels = (props) => {
       handleSubmit={handleSubmit}
       data={diesel}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

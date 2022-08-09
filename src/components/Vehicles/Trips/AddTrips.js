@@ -28,7 +28,7 @@ const AddTrips = (props) => {
   const [trip, setTrip] = useState(initialTrip)
   const { initialFields } = props
   const history = props.history
-  const { addLoading, editLoading, loading } = props.trips
+  const { loading } = props.trips
 
   useEffect(() => {
     if (initialFields) setTrip(initialFields)
@@ -126,7 +126,6 @@ const AddTrips = (props) => {
       handleSubmit={handleSubmit}
       data={trip}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

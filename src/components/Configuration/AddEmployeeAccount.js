@@ -24,8 +24,7 @@ const AddEmployeeAccount = (props) => {
   const [error, handleValidate] = useValidate()
 
   const { initialFields } = props
-  const { addLoading, editLoading } = props.accounts
-  const submitLoading = addLoading || editLoading
+  const { loading } = props.accounts
 
   useEffect(() => {
     if (initialFields)
@@ -191,12 +190,12 @@ const AddEmployeeAccount = (props) => {
           onClick={handleCancel}
           marginRight="10px"
         >
-          <Button disabled={submitLoading} variant="contained">
+          <Button disabled={loading} variant="contained">
             Cancel
           </Button>
         </Grid>
         <Grid item sm={3} md={3} lg={1} onClick={handleReset}>
-          <Button disabled={submitLoading} variant="contained">
+          <Button disabled={loading} variant="contained">
             Reset
           </Button>
         </Grid>
@@ -206,11 +205,11 @@ const AddEmployeeAccount = (props) => {
             disabled={
               Object.keys(error).length !== 0 ||
               !form.userName ||
-              submitLoading ||
+              loading ||
               (!initialFields && !form.password)
             }
           >
-            {submitLoading ? (
+            {loading ? (
               <CustomLoader
                 style={{ margin: "0", padding: "0 15px" }}
                 circleStyle={{ width: "25px", height: "auto" }}

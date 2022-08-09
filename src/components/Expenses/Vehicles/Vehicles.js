@@ -31,14 +31,7 @@ const Vehicles = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
-  let {
-    loading,
-    expenses,
-    addLoading,
-    editLoading,
-    deleteLoading,
-    uploadLoading,
-  } = props.vehiclesExpense
+  let { loading, expenses } = props.vehiclesExpense
   const history = props.history
 
   useEffect(() => {
@@ -126,15 +119,11 @@ const Vehicles = (props) => {
       mssgTitle="Expenses"
       sampleName="Vehicles Expenses Sample"
       loading={loading}
-      addLoading={addLoading || uploadLoading}
-      downloadLoading={addLoading}
       search={search}
       selectedFrom={from}
       selectedTo={to}
       data={expenses}
       downloadData={downloadData}
-      editLoading={editLoading}
-      deleteLoading={deleteLoading}
       handleDeleteAgree={
         isOperationAllowed(access.VEHICLE_EXPENSES, operations.DELETE) &&
         handleDeleteAgree

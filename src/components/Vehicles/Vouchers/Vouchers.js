@@ -38,14 +38,7 @@ const Vouchers = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(currentDate)
   const [to, setTo] = useState(currentDate)
-  let {
-    loading,
-    vouchers,
-    addLoading,
-    editLoading,
-    deleteLoading,
-    uploadLoading,
-  } = props.vouchers
+  let { loading, vouchers } = props.vouchers
   const history = props.history
 
   useEffect(() => {
@@ -131,9 +124,6 @@ const Vouchers = (props) => {
 
   return (
     <Layout
-      addLoading={addLoading || uploadLoading}
-      editLoading={editLoading}
-      deleteLoading={deleteLoading}
       title="Vouchers"
       handleDeleteAgree={
         isOperationAllowed(access.VOUCHERS, operations.DELETE) &&
@@ -169,7 +159,6 @@ const Vouchers = (props) => {
       selectedTo={to}
       sampleData={sampleData}
       downloadData={downloadData(vouchers)}
-      downloadLoading={addLoading}
     />
   )
 }

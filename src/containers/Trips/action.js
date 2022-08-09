@@ -121,3 +121,26 @@ export const deleteTrips =
 
     makeRequest(options)
   }
+
+export const downloadTrips =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.DOWNLOAD_TRIPS_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.DOWNLOAD_TRIPS,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.DOWNLOAD_TRIPS_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.DOWNLOAD_TRIPS_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

@@ -121,3 +121,26 @@ export const deleteExpense =
 
     makeRequest(options)
   }
+
+export const downloadExpense =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.DOWNLOAD_VEHICLES_EXPENSE_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.DOWNLOAD_VEHICLES_EXPENSE,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.DOWNLOAD_VEHICLES_EXPENSE_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.DOWNLOAD_VEHICLES_EXPENSE_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

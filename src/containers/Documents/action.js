@@ -121,3 +121,26 @@ export const deleteDocuments =
 
     makeRequest(options)
   }
+
+export const downloadDocuments =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.DOWNLOAD_DOCUMENTS_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.DOWNLOAD_DOCUMENTS,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.DOWNLOAD_DOCUMENTS_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.DOWNLOAD_DOCUMENTS_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

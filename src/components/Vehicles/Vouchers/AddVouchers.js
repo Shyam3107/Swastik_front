@@ -26,7 +26,7 @@ const AddVouchers = (props) => {
   const [voucher, setVoucher] = useState(initialVoucher)
   const { initialFields } = props
   const history = props.history
-  const { addLoading, editLoading, loading } = props.vouchers
+  const { loading } = props.vouchers
 
   useEffect(() => {
     if (initialFields) setVoucher(initialFields)
@@ -91,7 +91,6 @@ const AddVouchers = (props) => {
       handleSubmit={handleSubmit}
       data={voucher}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

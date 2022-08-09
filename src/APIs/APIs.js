@@ -24,6 +24,8 @@ const modules = {
   configureAccounts: "/configure/accounts",
   receipts: "/receipts",
   reports: "/reports",
+  products: "/store/product",
+  logistics: "/store/logistic",
 }
 
 export const API = {
@@ -40,6 +42,7 @@ export const API = {
   UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
+  DOWNLOAD_TRIPS: `${modules.trips}/downloadTrips`,
 
   // VOUCHERS
   GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
@@ -47,6 +50,7 @@ export const API = {
   UPLOAD_VOUCHERS: `${modules.vouchers}/uploadVouchers`,
   EDIT_VOUCHERS: `${modules.vouchers}/editVouchers`,
   DELETE_VOUCHERS: `${modules.vouchers}/deleteVouchers`,
+  DOWNLOAD_VOUCHERS: `${modules.vouchers}/downloadVouchers`,
 
   //DOCUMENTS
   GET_DOCUMENTS: `${modules.documents}/getDocuments`,
@@ -54,6 +58,7 @@ export const API = {
   UPLOAD_DOCUMENTS: `${modules.documents}/uploadDocuments`,
   EDIT_DOCUMENTS: `${modules.documents}/editDocuments`,
   DELETE_DOCUMENTS: `${modules.documents}/deleteDocuments`,
+  DOWNLOAD_DOCUMENTS: `${modules.documents}/downloadDocuments`,
 
   // DIESELS
   GET_DIESELS: `${modules.diesels}/getDiesels`,
@@ -61,6 +66,7 @@ export const API = {
   UPLOAD_DIESELS: `${modules.diesels}/uploadDiesels`,
   EDIT_DIESELS: `${modules.diesels}/editDiesels`,
   DELETE_DIESELS: `${modules.diesels}/deleteDiesels`,
+  DOWNLOAD_DIESELS: `${modules.diesels}/downloadDiesels`,
 
   //OFFICE EXPENSES
   GET_OFFICE_EXPENSE: `${modules.officeExpenses}/getExpenses`,
@@ -68,6 +74,7 @@ export const API = {
   UPLOAD_OFFICE_EXPENSE: `${modules.officeExpenses}/uploadExpenses`,
   EDIT_OFFICE_EXPENSE: `${modules.officeExpenses}/editExpenses`,
   DELETE_OFFICE_EXPENSE: `${modules.officeExpenses}/deleteExpenses`,
+  DOWNLOAD_OFFICE_EXPENSE: `${modules.officeExpenses}/downloadExpenses`,
 
   //VEHICLES EXPENSES
   GET_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/getExpenses`,
@@ -75,6 +82,7 @@ export const API = {
   UPLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/uploadExpenses`,
   EDIT_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/editExpenses`,
   DELETE_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/deleteExpenses`,
+  DOWNLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/downloadExpenses`,
 
   //CONFIGURATION ACCOUNTS
   GET_ACCOUNTS: `${modules.configureAccounts}/getAccount`,
@@ -87,6 +95,25 @@ export const API = {
   ADD_RECEIPT: `${modules.receipts}/addReceipt`,
   EDIT_RECEIPT: `${modules.receipts}/editReceipt`,
   DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
+  DOWNLOAD_RECEIPT: `${modules.receipts}/downloadReceipt`,
+
+  // PRODUCTS
+  GET_PRODUCTS: `${modules.products}/getProducts`,
+  GET_PRODUCTS_NAME: `${modules.products}/getProductsName`,
+  ADD_PRODUCTS: `${modules.products}/addProducts`,
+  EDIT_PRODUCTS: `${modules.products}/editProducts`,
+  UPLOAD_PRODUCTS: `${modules.products}/uploadProducts`,
+  DELETE_PRODUCTS: `${modules.products}/deleteProducts`,
+  DOWNLOAD_PRODUCTS: `${modules.products}/downloadProducts`,
+  DOWNLOAD_PRODUCTS_BY_ID: `${modules.products}//downloadProductsById`,
+
+  // LOGISTICS
+  GET_LOGISTICS: `${modules.logistics}/getLogistics`,
+  ADD_LOGISTICS: `${modules.logistics}/addLogistics`,
+  EDIT_LOGISTICS: `${modules.logistics}/editLogistics`,
+  UPLOAD_LOGISTICS: `${modules.logistics}/uploadLogistics`,
+  DELETE_LOGISTICS: `${modules.logistics}/deleteLogistics`,
+  DOWNLOAD_LOGISTICS: `${modules.logistics}/downloadLogistics`,
 
   // REPORTS
   GET_VEHICLES_REPORTS: `${modules.reports}/getVehiclesReport`,
@@ -205,7 +232,7 @@ export const makeRequest = (options = {}) => {
           const blob = new Blob([data])
           const link = document.createElement("a")
           link.href = window.URL.createObjectURL(blob)
-          link.download = `${new Date().getTime()}.xlsx`
+          link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
           link.click()
           link.remove()
           callback()

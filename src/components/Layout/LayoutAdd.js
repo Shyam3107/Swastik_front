@@ -14,8 +14,6 @@ import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAut
 
 const LayoutAdd = ({
   loading,
-  addLoading,
-  editLoading,
   title,
   edit,
   inputFields = [],
@@ -24,14 +22,12 @@ const LayoutAdd = ({
   handleReset,
   handleSubmit,
   data,
-  submitLoading = false,
 }) => {
   const [error, handleValidate] = useValidate()
 
   let submitButtonDisable = false
 
-  if (addLoading || editLoading || loading)
-    return <CustomLoader style={{ height: "80%" }} />
+  if (loading) return <CustomLoader style={{ height: "80%" }} />
 
   return (
     <React.Fragment>
@@ -132,20 +128,12 @@ const LayoutAdd = ({
         spacing={1}
       >
         <Grid item sm={3} md={3} lg={1} marginRight="10px">
-          <Button
-            disabled={submitLoading}
-            onClick={handleCancel}
-            variant="contained"
-          >
+          <Button onClick={handleCancel} variant="contained">
             Cancel
           </Button>
         </Grid>
         <Grid item sm={3} md={3} lg={1}>
-          <Button
-            disabled={submitLoading}
-            variant="contained"
-            onClick={handleReset}
-          >
+          <Button variant="contained" onClick={handleReset}>
             Reset
           </Button>
         </Grid>
@@ -153,20 +141,11 @@ const LayoutAdd = ({
           <Button
             variant="contained"
             disabled={
-              submitButtonDisable ||
-              submitLoading ||
-              Object.keys(error).length !== 0
+              submitButtonDisable || loading || Object.keys(error).length !== 0
             }
             onClick={handleSubmit}
           >
-            {submitLoading ? (
-              <CustomLoader
-                style={{ margin: "0", padding: "0 15px" }}
-                circleStyle={{ width: "25px", height: "auto" }}
-              />
-            ) : (
-              "Submit"
-            )}
+            Submit
           </Button>
         </Grid>
       </Grid>

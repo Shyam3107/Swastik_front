@@ -19,7 +19,7 @@ const initialDocument = {
 }
 
 const AddDocument = (props) => {
-  const { addLoading, editLoading, loading } = props.documents
+  const { loading } = props.documents
   const { initialFields } = props
   const [document, setDocument] = useState(initialDocument)
   const history = props.history
@@ -119,7 +119,6 @@ const AddDocument = (props) => {
       handleSubmit={handleSubmit}
       data={document}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

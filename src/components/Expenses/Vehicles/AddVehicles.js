@@ -24,7 +24,7 @@ const Vehicles = (props) => {
   const [expense, setExpense] = useState(initialExpense)
   const { initialFields } = props
   const history = props.history
-  const { addLoading, editLoading, loading } = props.vehiclesExpense
+  const { loading } = props.vehiclesExpense
 
   useEffect(() => {
     if (initialFields) setExpense(initialFields)
@@ -101,7 +101,6 @@ const Vehicles = (props) => {
       handleSubmit={handleSubmit}
       data={expense}
       loading={loading}
-      submitLoading={addLoading || editLoading}
       edit={initialFields ? true : false}
     />
   )

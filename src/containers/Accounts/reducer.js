@@ -4,9 +4,6 @@ const initialState = {
   loading: false,
   accounts: null,
   error: null,
-  addLoading: false,
-  editLoading: false,
-  deleteLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -19,25 +16,25 @@ export default function reducer(state = initialState, action = {}) {
       return { ...initialState, error: action.payload }
 
     case actionTypes.ADD_ACCOUNTS_PENDING:
-      return { ...state, addLoading: true }
+      return { ...state, loading: true }
     case actionTypes.ADD_ACCOUNTS_SUCCESS:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
     case actionTypes.ADD_ACCOUNTS_FAILURE:
-      return { ...state, addLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.EDIT_ACCOUNTS_PENDING:
-      return { ...state, editLoading: true }
+      return { ...state, loading: true }
     case actionTypes.EDIT_ACCOUNTS_SUCCESS:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
     case actionTypes.EDIT_ACCOUNTS_FAILURE:
-      return { ...state, editLoading: false }
+      return { ...state, loading: false }
 
     case actionTypes.DELETE_ACCOUNTS_PENDING:
-      return { ...state, deleteLoading: true }
+      return { ...state, loading: true }
     case actionTypes.DELETE_ACCOUNTS_SUCCESS:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
     case actionTypes.DELETE_ACCOUNTS_FAILURE:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
 
     default:
       return state

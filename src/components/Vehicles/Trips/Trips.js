@@ -31,14 +31,7 @@ const Trips = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(currentDate)
   const [to, setTo] = useState(currentDate)
-  let {
-    loading,
-    trips,
-    addLoading,
-    editLoading,
-    deleteLoading,
-    uploadLoading,
-  } = props.trips
+  let { loading, trips } = props.trips
   const history = props.history
 
   useEffect(() => {
@@ -135,9 +128,6 @@ const Trips = (props) => {
 
   return (
     <Layout
-      addLoading={addLoading || uploadLoading}
-      editLoading={editLoading}
-      deleteLoading={deleteLoading}
       title="Trips"
       handleDeleteAgree={
         isOperationAllowed(access.TRIPS, operations.DELETE) && handleDeleteAgree
@@ -170,7 +160,6 @@ const Trips = (props) => {
       selectedTo={to}
       sampleData={sampleData}
       downloadData={downloadData}
-      downloadLoading={addLoading}
     />
   )
 }

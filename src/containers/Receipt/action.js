@@ -96,3 +96,26 @@ export const deleteReceipt =
 
     makeRequest(options)
   }
+
+export const downloadReceipt =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.DOWNLOAD_RECEIPT_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.DOWNLOAD_RECEIPT,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.DOWNLOAD_RECEIPT_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.DOWNLOAD_RECEIPT_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

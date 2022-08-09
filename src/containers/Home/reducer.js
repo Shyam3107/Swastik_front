@@ -4,10 +4,6 @@ const initialState = {
   loading: false,
   home: null,
   error: null,
-  addLoading: false,
-  editLoading: false,
-  deleteLoading: false,
-  uploadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
