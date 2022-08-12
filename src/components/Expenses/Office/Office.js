@@ -17,6 +17,7 @@ import {
   getExpense,
   deleteExpense,
   uploadExpense,
+  downloadExpense,
 } from "../../../containers/OfficeExpense/action"
 import {
   access,
@@ -31,7 +32,7 @@ const Office = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
-  let { loading, expenses } = props.officeExpense
+  let { loading, expenses, downloadLoading } = props.officeExpense
   const history = props.history
 
   useEffect(() => {
@@ -45,47 +46,10 @@ const Office = (props) => {
     props.uploadExpense(file, getExpense)
   }
 
-  if (!expenses || !Array.isArray(expenses)) expenses = []
-
-  expenses = expenses.filter((val) => {
-    return includesInArray(
-      [
-        val.remarks,
-        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-      ],
-      search
-    )
-  })
-
-  let downloadData = expenses.map((item) => {
-    return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      if (val === "addedBy") return item.addedBy ? item.addedBy.location : ""
-      return item[val]
-    })
-  })
-
-  downloadData = [[...header, "Added By"], ...downloadData]
-
-  const tableRow = [...header, "Added By"].map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
-      {headCell}
-    </TableCell>
-  ))
-
-  const tableBodyFunc = (row) => {
-    return [...headerKey, "addedBy"].map((headVal, index) => {
-      return (
-        <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy"
-            ? row.addedBy
-              ? row.addedBy.location
-              : ""
-            : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
-        </TableCell>
-      )
+  const handleDownload = () => {
+    props.downloadExpense({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
     })
   }
 
@@ -108,10 +72,33 @@ const Office = (props) => {
     history.push(EDIT_URL(expenseId))
   }
 
+  if (!expenses || !Array.isArray(expenses)) expenses = []
+
+  expenses = expenses.filter((val) => {
+    return includesInArray([val.remarks, val?.addedBy?.location ?? ""], search)
+  })
+
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
+    <TableCell style={{ fontWeight: "600" }} key={index}>
+      {headCell}
+    </TableCell>
+  ))
+
+  const tableBodyFunc = (row) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
+      return (
+        <TableCell key={index}>
+          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
+          {headVal === "addedBy" ? row?.addedBy?.location ?? "" : ""}
+          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
+        </TableCell>
+      )
+    })
+  }
+
   return (
     <Layout
       title="Office Expenses"
-      fileName="Office Expenses"
       mssgTitle="Expenses"
       sampleName="Office Expenses Sample"
       loading={loading}
@@ -119,7 +106,16 @@ const Office = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={expenses}
-      downloadData={downloadData}
+      setSearch={setSearch}
+      tableRow={tableRow}
+      tableBodyFunc={tableBodyFunc}
+      numSelected={selected}
+      setNumSelected={setSelected}
+      setSelectedFrom={setFrom}
+      setSelectedTo={setTo}
+      sampleData={sampleData}
+      downloadLoading={downloadLoading}
+      checkBoxCondition={checkBoxCondition}
       handleDeleteAgree={
         isOperationAllowed(access.OFFICE_EXPENSES, operations.DELETE) &&
         handleDeleteAgree
@@ -128,12 +124,6 @@ const Office = (props) => {
         isOperationAllowed(access.OFFICE_EXPENSES, operations.CREATE) &&
         handleFileSubmit
       }
-      checkBoxCondition={checkBoxCondition}
-      setSearch={setSearch}
-      tableRow={tableRow}
-      tableBodyFunc={tableBodyFunc}
-      numSelected={selected}
-      setNumSelected={setSelected}
       handleAddButton={
         isOperationAllowed(access.OFFICE_EXPENSES, operations.CREATE) &&
         handleAddButton
@@ -142,9 +132,7 @@ const Office = (props) => {
         isOperationAllowed(access.OFFICE_EXPENSES, operations.EDIT) &&
         handleEditButton
       }
-      setSelectedFrom={setFrom}
-      setSelectedTo={setTo}
-      sampleData={sampleData}
+      handleDownload={handleDownload}
     />
   )
 }
@@ -161,5 +149,6 @@ export default withRouter(
     getExpense,
     deleteExpense,
     uploadExpense,
+    downloadExpense,
   })(Office)
 )

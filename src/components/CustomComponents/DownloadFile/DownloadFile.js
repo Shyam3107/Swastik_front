@@ -1,19 +1,15 @@
 import React, { useState } from "react"
-import { Paper, Typography, Popper } from "@mui/material"
-import { CSVLink } from "react-csv"
+import { Paper, Popper, Button } from "@mui/material"
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined"
 import IconButton from "@mui/material/IconButton"
 import Tooltip from "@mui/material/Tooltip"
 
 import styles from "./styles.module.css"
-import { arrayToObj } from "../../../utils/convertCSVtoJSON"
-import DownloadExcel from "../DownloadExcel/DownloadExcel"
 
 export default function CustomDrop({
-  downloadData,
-  filename,
   styleButton,
-  loading,
+  handleDownload,
+  loading = false,
 }) {
   const [anchorEl, setAnchorEl] = useState(null)
 
@@ -22,10 +18,6 @@ export default function CustomDrop({
   }
 
   const open = Boolean(anchorEl)
-
-  let downloadDataExcel = arrayToObj(downloadData)
-
-  let column = downloadData[0]
 
   return (
     <React.Fragment>
@@ -41,22 +33,14 @@ export default function CustomDrop({
       </Tooltip>
       <Popper open={open} anchorEl={anchorEl}>
         <Paper style={{ padding: "5px" }}>
-          <Typography className={styles.button}>
-            <CSVLink
-              data={downloadData}
-              filename={filename + ".csv"}
-              style={{ textDecoration: "none", color: "black" }}
-            >
-              CSV
-            </CSVLink>
-          </Typography>
-          <Typography className={styles.button}>
-            <DownloadExcel
-              filename={filename}
-              data={downloadDataExcel}
-              column={column}
-            />
-          </Typography>
+          {/* <Typography className={styles.button}>CSV</Typography> */}
+          <Button
+            disabled={loading}
+            className={styles.button}
+            onClick={handleDownload}
+          >
+            Excel
+          </Button>
         </Paper>
       </Popper>
     </React.Fragment>

@@ -30,7 +30,12 @@ const ViewTrip = (props) => {
       return {
         label: head,
         id: headerKey[index],
-        value: head === "Date" ? formatDate(trips[headerKey[index]]) : null,
+        value:
+          head === "Date"
+            ? formatDate(trips[headerKey[index]])
+            : head === "Added By"
+            ? trips?.addedBy?.location
+            : null,
       }
     })
     selected.push(trips._id)
@@ -70,8 +75,7 @@ const ViewTrip = (props) => {
           handleDeleteAgree
         }
         handleAddButton={
-          isOperationAllowed(access.TRIPS, operations.CREATE) &&
-          handleAddButton
+          isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
         }
         handleEditButton={
           isOperationAllowed(access.TRIPS, operations.EDIT, trips) &&

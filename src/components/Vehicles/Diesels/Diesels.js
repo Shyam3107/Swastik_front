@@ -17,6 +17,7 @@ import {
   getDiesel,
   deleteDiesel,
   uploadDiesel,
+  downloadDiesel,
 } from "../../../containers/Diesels/action"
 import {
   access,
@@ -31,7 +32,7 @@ const Office = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
-  let { loading, diesels } = props.diesels
+  let { loading, diesels, downloadLoading } = props.diesels
   const history = props.history
 
   useEffect(() => {
@@ -45,6 +46,32 @@ const Office = (props) => {
     props.uploadDiesel(file, getDiesel)
   }
 
+  const handleDownload = () => {
+    props.downloadDiesel({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    })
+  }
+
+  const handleDeleteAgree = () => {
+    const cb = () => {
+      setFrom(monthStart)
+      setTo(currentDate)
+      props.getDiesel()
+      setSelected([])
+    }
+    props.deleteDiesel(selected, cb)
+  }
+
+  const handleAddButton = () => {
+    history.push(ROUTES.ADD_DIESEL)
+  }
+
+  const handleEditButton = () => {
+    const dieselId = selected[0]
+    history.push(EDIT_URL(dieselId))
+  }
+
   if (!diesels || !Array.isArray(diesels)) diesels = []
 
   diesels = diesels.filter((val) => {
@@ -55,21 +82,11 @@ const Office = (props) => {
         val.amount,
         val.remarks,
         val.pumpName,
-        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+        val?.addedBy?.location ?? "",
       ],
       search
     )
   })
-
-  let downloadData = diesels.map((item) => {
-    return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      if (val === "addedBy") return item.addedBy ? item.addedBy.location : ""
-      return item[val]
-    })
-  })
-
-  downloadData = [[...header, "Added By"], ...downloadData]
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -93,29 +110,9 @@ const Office = (props) => {
     })
   }
 
-  const handleDeleteAgree = () => {
-    const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      props.getDiesel()
-      setSelected([])
-    }
-    props.deleteDiesel(selected, cb)
-  }
-
-  const handleAddButton = () => {
-    history.push(ROUTES.ADD_DIESEL)
-  }
-
-  const handleEditButton = () => {
-    const dieselId = selected[0]
-    history.push(EDIT_URL(dieselId))
-  }
-
   return (
     <Layout
       title="Diesels"
-      fileName="Diesels"
       mssgTitle="Diesels"
       sampleName="Diesels Sample"
       loading={loading}
@@ -123,7 +120,6 @@ const Office = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={diesels}
-      downloadData={downloadData}
       handleDeleteAgree={
         isOperationAllowed(access.DIESELS, operations.DELETE) &&
         handleDeleteAgree
@@ -147,6 +143,8 @@ const Office = (props) => {
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       sampleData={sampleData}
+      handleDownload={handleDownload}
+      downloadLoading={downloadLoading}
     />
   )
 }
@@ -163,5 +161,6 @@ export default withRouter(
     getDiesel,
     deleteDiesel,
     uploadDiesel,
+    downloadDiesel,
   })(Office)
 )

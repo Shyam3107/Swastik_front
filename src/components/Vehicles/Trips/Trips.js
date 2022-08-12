@@ -9,14 +9,10 @@ import {
   getTrips,
   deleteTrips,
   uploadTrips,
+  downloadTrips,
 } from "../../../containers/Trips/action"
 import Layout from "../../Layout/Layout"
-import {
-  includesInArray,
-  ROUTES,
-  currentDate,
-  formatDateInDDMMYYY,
-} from "../../../utils/constants"
+import { includesInArray, ROUTES, currentDate } from "../../../utils/constants"
 import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
 import {
   isOperationAllowed,
@@ -31,7 +27,7 @@ const Trips = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(currentDate)
   const [to, setTo] = useState(currentDate)
-  let { loading, trips } = props.trips
+  let { loading, trips, downloadLoading } = props.trips
   const history = props.history
 
   useEffect(() => {
@@ -45,61 +41,10 @@ const Trips = (props) => {
     props.uploadTrips(file, getTrips)
   }
 
-  if (!trips || !Array.isArray(trips)) trips = []
-
-  trips = trips.filter((val) => {
-    return includesInArray(
-      [
-        val.diNo,
-        val.lrNo,
-        val.partyName,
-        val.location,
-        val.vehicleNo,
-        val.material,
-        val.driverName,
-        val.pumpName ? val.pumpName : "",
-        val.loadingPoint,
-        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-      ],
-      search
-    )
-  })
-
-  let downloadData = trips.map((item) => {
-    return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      if (val === "addedBy") return item[val] ? item[val].location : ""
-      return item[val]
-    })
-  })
-
-  downloadData = [[...header, "Added By"], ...downloadData]
-
-  const tableRow = [...header, "Added By"].map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
-      {headCell}
-    </TableCell>
-  ))
-
-  const tableBodyFunc = (row) => {
-    return [...headerKey, "addedBy"].map((headVal, index) => {
-      if (headVal === "diNo")
-        return (
-          <TableCell key={index}>
-            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
-          </TableCell>
-        )
-      return (
-        <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy"
-            ? row.addedBy
-              ? row.addedBy.location
-              : ""
-            : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
-        </TableCell>
-      )
+  const handleDownload = () => {
+    props.downloadTrips({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
     })
   }
 
@@ -126,6 +71,46 @@ const Trips = (props) => {
     history.push(EDIT_URL(searchId[0].diNo))
   }
 
+  if (!trips || !Array.isArray(trips)) trips = []
+
+  trips = trips.filter((val) => {
+    return includesInArray(
+      [
+        val.diNo,
+        val.lrNo,
+        val.partyName,
+        val.location,
+        val.vehicleNo,
+        val.material,
+        val.driverName,
+        val?.pumpName ?? "",
+        val.loadingPoint,
+        val?.addedBy?.location ?? "",
+      ],
+      search
+    )
+  })
+
+  const tableRow = header.map((headCell, index) => (
+    <TableCell style={{ fontWeight: "600" }} key={index}>
+      {headCell}
+    </TableCell>
+  ))
+
+  const tableBodyFunc = (row) => {
+    return headerKey.map((headVal, index) => {
+      return (
+        <TableCell key={index}>
+          {headVal === "diNo" ? (
+            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
+          ) : (
+            row[headVal]
+          )}
+        </TableCell>
+      )
+    })
+  }
+
   return (
     <Layout
       title="Trips"
@@ -146,7 +131,6 @@ const Trips = (props) => {
       numSelected={selected}
       setNumSelected={setSelected}
       checkBoxCondition={checkBoxCondition}
-      fileName="trips"
       sampleName="tripSample"
       handleAddButton={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
@@ -159,7 +143,8 @@ const Trips = (props) => {
       selectedFrom={from}
       selectedTo={to}
       sampleData={sampleData}
-      downloadData={downloadData}
+      downloadLoading={downloadLoading}
+      handleDownload={handleDownload}
     />
   )
 }
@@ -176,5 +161,6 @@ export default withRouter(
     getTrips,
     deleteTrips,
     uploadTrips,
+    downloadTrips,
   })(Trips)
 )

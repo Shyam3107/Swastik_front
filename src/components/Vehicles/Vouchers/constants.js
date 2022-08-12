@@ -119,34 +119,3 @@ export const viewMoreFields = (voucher) => {
     },
   ]
 }
-
-export const downloadData = (vouchers) => {
-  let tempData = vouchers.map((item) => {
-    let tempReturn = headerKey.map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      return item[val]
-    })
-    tempReturn.push(formatDateInDDMMYYY(item?.trip?.date))
-    tempReturn.push(item?.trip?.vehicleNo)
-    tempReturn.push(item?.trip?.lrNo)
-    tempReturn.push(item?.trip?.location)
-    tempReturn.push(item?.trip?.quantity)
-    tempReturn.push(item?.trip?.addedBy?.branch)
-    tempReturn.push(item?.addedBy?.location)
-    return tempReturn
-  })
-
-  return [
-    [
-      ...header,
-      "DI Date",
-      "Vehicle No.",
-      "LR No.",
-      "Designation",
-      "Quantity",
-      "Site",
-      "Added By",
-    ],
-    ...tempData,
-  ]
-}

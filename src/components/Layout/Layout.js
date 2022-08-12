@@ -14,6 +14,7 @@ const Layout = ({
   handleDeleteAgree,
   handleFileSubmit,
   handleEditButton,
+  handleDownload,
   search,
   setSearch,
   data,
@@ -23,10 +24,8 @@ const Layout = ({
   tableRow,
   tableBodyFunc,
   numSelected,
-  fileName,
   setNumSelected,
   handleAddButton,
-  downloadData,
   sampleData,
   sampleName,
   setSelectedFrom,
@@ -62,12 +61,11 @@ const Layout = ({
               handleDeleteAgree={handleDeleteAgree}
               handleFileSubmit={handleFileSubmit}
               handleEditButton={handleEditButton}
+              handleDownload={handleDownload}
+              handleAddButton={handleAddButton}
               search={search}
               setSearch={setSearch}
-              fileName={fileName}
               sampleName={sampleName}
-              handleAddButton={handleAddButton}
-              downloadData={downloadData}
               sampleData={sampleData}
               setSelectedFrom={setSelectedFrom}
               setSelectedTo={setSelectedTo}

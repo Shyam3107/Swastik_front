@@ -20,6 +20,8 @@ const hostRoutes = {
   DRIVER_EXPENSE: "/expenses/driver",
   VEHICLES_EXPENSE: "/expenses/vehicles",
   RECEIPT: "/receipt",
+  PRODUCTS: "/stores/products",
+  LOGISTICS: "/stores/logistics",
 }
 
 export const ROUTES = {
@@ -74,6 +76,17 @@ export const ROUTES = {
   RECEIPT: hostRoutes.RECEIPT,
   EDIT_RECEIPT: hostRoutes.RECEIPT + "/:receiptId/edit",
   ADD_RECEIPT: hostRoutes.RECEIPT + "/add",
+
+  // PRODUCT
+  PRODUCT: hostRoutes.PRODUCTS,
+  EDIT_PRODUCT: hostRoutes.PRODUCTS + "/:productId/edit",
+  ADD_PRODUCT: hostRoutes.PRODUCTS + "/add",
+  VIEW_PRODUCT: hostRoutes.PRODUCTS + "/:productId/",
+
+  // LOGISTIC
+  LOGISTIC: hostRoutes.LOGISTICS,
+  EDIT_LOGISTIC: hostRoutes.LOGISTICS + "/:logisticId/edit",
+  ADD_LOGISTIC: hostRoutes.LOGISTICS + "/add",
 
   //CONFIGURATION
   CONFIGURATION: "/configuration",

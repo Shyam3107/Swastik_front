@@ -20,8 +20,8 @@ const AccountTable = (props) => {
     const searchIn = [
       val.userName,
       val.location,
-      val.tptCode ? val.tptCode : "",
-      val.companyName ? val.companyName : "",
+       val?.tptCode ?? "",
+     val?.companyName ?? "",
     ]
     return includesInArray(searchIn, props.search)
   })

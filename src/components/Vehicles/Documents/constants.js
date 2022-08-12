@@ -1,4 +1,8 @@
-import { formatDateInDDMMYYY, yearEnd } from "../../../utils/constants"
+import {
+  formatDateInDDMMYYY,
+  yearEnd,
+  includesInArray,
+} from "../../../utils/constants"
 
 export const header = [
   "Vehicle No.",
@@ -68,3 +72,13 @@ export const tableHeaderKey = [
   "permitStatus",
   "nationalPermitStatus",
 ]
+
+export const filterData = (data, search) => {
+  if (!data || !Array.isArray(data)) data = []
+  return data.filter((val) => {
+    return includesInArray(
+      [val.vehicleNo, val?.addedBy?.location ?? ""],
+      search
+    )
+  })
+}

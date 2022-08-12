@@ -143,7 +143,7 @@ const PrintVoucher = (props) => {
             return (
               <p
                 style={{
-                  width: val.width ? val.width : "50%",
+                  width: val?.width ?? "50%",
                   borderBottom:
                     index !== fields.length - 1 ? blackBorder : null,
                   padding: "1px 5px",

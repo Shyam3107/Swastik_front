@@ -33,11 +33,9 @@ const PrintTrip = (props) => {
               alt="Swastik Logo"
             />
             M/S.{" "}
-            {user.companyName
-              ? user.companyName.toUpperCase()
-              : user.companyAdminId.companyName
-              ? user.companyAdminId.companyName.toUpperCase()
-              : "SWASTIK MINERALS"}
+            {user?.companyName?.toUpperCase() ??
+              user?.companyAdminId?.companyName?.toUpperCase() ??
+              "SWASTIK MINERALS"}
           </h1>
           <h3>FLEET OWNERS AND TRANSPORT CONTRACTOR</h3>
           <h3>Authorised Transport Contractor</h3>

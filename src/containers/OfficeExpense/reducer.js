@@ -4,10 +4,7 @@ const initialState = {
   loading: false,
   expenses: null,
   error: null,
-  loading: false,
-  loading: false,
-  loading: false,
-  loading: false,
+  downloadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -54,11 +51,11 @@ export default function reducer(state = initialState, action = {}) {
 
     // DOWNLOAD CASES
     case actionTypes.DOWNLOAD_OFFICE_EXPENSE_PENDING:
-      return { ...state, loading: true }
+      return { ...state, downloadLoading: true }
     case actionTypes.DOWNLOAD_OFFICE_EXPENSE_SUCCESS:
-      return { ...state, loading: false }
+      return { ...state, downloadLoading: false }
     case actionTypes.DOWNLOAD_OFFICE_EXPENSE_FAILURE:
-      return { ...state, loading: false }
+      return { ...state, downloadLoading: false }
 
     default:
       return state

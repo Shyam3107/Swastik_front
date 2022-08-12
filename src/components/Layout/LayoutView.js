@@ -22,6 +22,12 @@ const LayoutView = ({
   children,
   print = false,
   className = "",
+  downloadLoading,
+  handleDownload,
+  selectedFrom,
+  selectedTo,
+  setSelectedFrom,
+  setSelectedTo,
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />
 
@@ -50,6 +56,12 @@ const LayoutView = ({
               handleAddButton={handleAddButton}
               numSelected={numSelected}
               print={print}
+              downloadLoading={downloadLoading}
+              handleDownload={handleDownload}
+              setSelectedFrom={setSelectedFrom}
+              setSelectedTo={setSelectedTo}
+              selectedFrom={selectedFrom}
+              selectedTo={selectedTo}
             />
           </Grid>
         </Grid>

@@ -4,7 +4,7 @@ const initialState = {
   loading: false,
   logistics: null,
   error: null,
-  deleteLoading: false,
+  downloadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -46,11 +46,11 @@ export default function reducer(state = initialState, action = {}) {
 
     // DELETE CASES
     case actionTypes.DELETE_LOGISTICS_PENDING:
-      return { ...state, deleteLoading: true }
+      return { ...state, loading: true }
     case actionTypes.DELETE_LOGISTICS_SUCCESS:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
     case actionTypes.DELETE_LOGISTICS_FAILURE:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
 
     // DOWNLOAD CASES
     case actionTypes.DOWNLOAD_LOGISTICS_PENDING:

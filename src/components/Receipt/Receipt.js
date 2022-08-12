@@ -13,7 +13,11 @@ import {
   formatDateInDDMMYYY,
 } from "../../utils/constants"
 import { header, headerKey, sampleData, EDIT_URL } from "./constants"
-import { getReceipt, deleteReceipt } from "../../containers/Receipt/action"
+import {
+  getReceipt,
+  deleteReceipt,
+  downloadReceipt,
+} from "../../containers/Receipt/action"
 import { access, isOperationAllowed, operations } from "../../utils/utilities"
 
 const Office = (props) => {
@@ -22,7 +26,7 @@ const Office = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
-  let { loading, receipts } = props.receipt
+  let { loading, receipts, downloadLoading } = props.receipt
   const history = props.history
 
   useEffect(() => {
@@ -32,27 +36,43 @@ const Office = (props) => {
     })
   }, [getReceipt, from, to])
 
+  const handleDeleteAgree = () => {
+    const cb = () => {
+      setFrom(monthStart)
+      setTo(currentDate)
+      props.getReceipt()
+      setSelected([])
+    }
+    props.deleteReceipt(selected, cb)
+  }
+
+  const handleAddButton = () => {
+    history.push(ROUTES.ADD_RECEIPT)
+  }
+
+  const handleEditButton = () => {
+    const expenseId = selected[0]
+    history.push(EDIT_URL(expenseId))
+  }
+
+  const handleDownload = () => {
+    props.downloadReceipt({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    })
+  }
+
   if (!receipts || !Array.isArray(receipts)) receipts = []
 
   receipts = receipts.filter((val) => {
     return includesInArray(
       [
         val.remarks,
-        val.addedBy && val.addedBy.location ? val.addedBy.location : "",
+        val?.addedBy?.location ?? "",
       ],
       search
     )
   })
-
-  let downloadData = receipts.map((item) => {
-    return [...headerKey, "addedBy"].map((val) => {
-      if (val === "date") return formatDateInDDMMYYY(item[val])
-      if (val === "addedBy") return item.addedBy ? item.addedBy.location : ""
-      return item[val]
-    })
-  })
-
-  downloadData = [[...header, "Added By"], ...downloadData]
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -76,29 +96,9 @@ const Office = (props) => {
     })
   }
 
-  const handleDeleteAgree = () => {
-    const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      props.getReceipt()
-      setSelected([])
-    }
-    props.deleteReceipt(selected, cb)
-  }
-
-  const handleAddButton = () => {
-    history.push(ROUTES.ADD_RECEIPT)
-  }
-
-  const handleEditButton = () => {
-    const expenseId = selected[0]
-    history.push(EDIT_URL(expenseId))
-  }
-
   return (
     <Layout
       title="Receipts"
-      fileName="Receipts"
       mssgTitle="Receipts"
       sampleName="Receipts Sample"
       loading={loading}
@@ -106,7 +106,6 @@ const Office = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={receipts}
-      downloadData={downloadData}
       handleDeleteAgree={
         isOperationAllowed(access.RECEIPTS, operations.DELETE) &&
         handleDeleteAgree
@@ -125,6 +124,8 @@ const Office = (props) => {
       setSelectedFrom={setFrom}
       setSelectedTo={setTo}
       sampleData={sampleData}
+      downloadLoading={downloadLoading}
+      handleDownload={handleDownload}
     />
   )
 }
@@ -140,5 +141,6 @@ export default withRouter(
   connect(mapStateToProps, {
     getReceipt,
     deleteReceipt,
+    downloadReceipt,
   })(Office)
 )

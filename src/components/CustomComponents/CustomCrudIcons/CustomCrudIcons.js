@@ -25,12 +25,11 @@ const CustomCrudIcons = ({
   setSelectedTo,
   selectedFrom,
   selectedTo,
-  fileName,
   sampleName,
   sampleData = [],
-  downloadData = [],
   handleDeleteAgree,
   handleFileSubmit,
+  handleDownload,
   search,
   setSearch,
   handleAddButton,
@@ -85,7 +84,11 @@ const CustomCrudIcons = ({
         >
           {print && (
             <Tooltip title="Print">
-              <IconButton style={styleButton} onClick={() => window.print()} aria-label="print">
+              <IconButton
+                style={styleButton}
+                onClick={() => window.print()}
+                aria-label="print"
+              >
                 <PrintIcon />
               </IconButton>
             </Tooltip>
@@ -99,7 +102,11 @@ const CustomCrudIcons = ({
 
           {handleAddButton && (
             <Tooltip title="Add">
-              <IconButton style={styleButton} onClick={handleAddButton} aria-label="add">
+              <IconButton
+                style={styleButton}
+                onClick={handleAddButton}
+                aria-label="add"
+              >
                 <AddOutlinedIcon />
               </IconButton>
             </Tooltip>
@@ -107,7 +114,11 @@ const CustomCrudIcons = ({
 
           {handleEditButton && numSelected.length === 1 && (
             <Tooltip title="Edit">
-              <IconButton style={styleButton} onClick={handleEditButton} aria-label="edit">
+              <IconButton
+                style={styleButton}
+                onClick={handleEditButton}
+                aria-label="edit"
+              >
                 <EditIcon />
               </IconButton>
             </Tooltip>
@@ -122,12 +133,11 @@ const CustomCrudIcons = ({
             />
           )}
 
-          {fileName && (
+          {handleDownload && (
             <DownloadFile
-              filename={fileName}
-              downloadData={downloadData}
               styleButton={styleButton}
               loading={downloadLoading}
+              handleDownload={handleDownload}
             />
           )}
 

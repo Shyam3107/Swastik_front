@@ -18,6 +18,8 @@ export const access = {
   OFFICE_EXPENSES: "OFFICE EXPENSES",
   VEHICLE_EXPENSES: "VEHICLE EXPENSES",
   ACCOUNTS: "ACCOUNTS",
+  PRODUCTS: "PRODUCTS",
+  LOGISTICS: "LOGISTICS",
 }
 
 export const checkBoxCondition = (row) => {

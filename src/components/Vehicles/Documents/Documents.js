@@ -2,32 +2,24 @@ import { useState, useEffect, Fragment } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 
 import {
   getDocuments,
   deleteDocuments,
   uploadDocuments,
+  downloadDocuments,
 } from "../../../containers/Documents/action"
 import Layout from "../../Layout/Layout"
+import { ROUTES, validateUrlValid } from "../../../utils/constants"
 import {
-  formatDateInDDMMYYY,
-  includesInArray,
-  ROUTES,
-  validateUrlValid,
-} from "../../../utils/constants"
-import {
-  header,
-  headerKey,
   sampleData,
   EXPIRED,
-  ACTIVE,
   EDIT_URL,
   VIEW_URL,
   tableHeaderKey,
   tableHeader,
-  daysLeft,
+  filterData,
 } from "./constants"
 import {
   access,
@@ -40,7 +32,7 @@ const Documents = (props) => {
   let { getDocuments } = props
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState([])
-  let { loading, documents, documentsLink } = props.documents
+  let { loading, documents, documentsLink, downloadLoading } = props.documents
   const history = props.history
 
   useEffect(() => {
@@ -51,83 +43,8 @@ const Documents = (props) => {
     props.uploadDocuments(file, getDocuments)
   }
 
-  if (!documents || !Array.isArray(documents)) documents = []
-
-  let tempDocuments = []
-  let downloadData = []
-  let downloadHeaders = [...header]
-  let downloadHeadersKey = [...headerKey]
-
-  documents.forEach((val) => {
-    const temp = {
-      taxStatus: val.taxPaidUpto,
-      insuranceStatus: val.insurancePaidUpto,
-      fitnessStatus: val.fitnessPaidUpto,
-      pollutionStatus: val.pollutionPaidUpto,
-      permitStatus: val.permitPaidUpto,
-      nationalPermitStatus: val.nationalPermitPaidUpto,
-    }
-
-    let searchIn = [
-      val.vehicleNo,
-      val.addedBy && val.addedBy.location ? val.addedBy.location : "",
-    ]
-
-    Object.keys(temp).forEach((key) => {
-      let diff = moment(temp[key]).diff(moment().endOf("day"), "days")
-      val[key] = diff < 0 ? EXPIRED : diff < 8 ? daysLeft(diff) : ACTIVE
-      searchIn.push(val[key])
-    })
-
-    downloadData.push(
-      [...downloadHeadersKey, "addedBy"].map((item, index) => {
-        if (item === "addedBy") return val.addedBy ? val.addedBy.location : ""
-        if (index > 0) return formatDateInDDMMYYY(val[item])
-        return val[item]
-      })
-    )
-
-    if (includesInArray(searchIn, search)) tempDocuments.push(val)
-  })
-
-  documents = tempDocuments
-  downloadData = [[...downloadHeaders, "Added By"], ...downloadData]
-
-  const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
-    <TableCell key={index} style={{ fontWeight: "600", textAlign: "center" }}>
-      {headCell}
-    </TableCell>
-  ))
-
-  const tableBodyFunc = (row) => {
-    return [...tableHeaderKey, "addedBy"].map((headVal, index) => {
-      if (headVal === "vehicleNo")
-        return (
-          <TableCell key={index}>
-            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
-          </TableCell>
-        )
-      if (headVal === "addedBy")
-        return (
-          <TableCell key={index}>
-            {row.addedBy ? row.addedBy.location : ""}
-          </TableCell>
-        )
-      return (
-        <TableCell key={index} style={{ padding: "5px", textAlign: "center" }}>
-          <span
-            style={{
-              backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",
-              padding: "10px",
-              color: "white",
-              borderRadius: "10%",
-            }}
-          >
-            {row[headVal]}
-          </span>
-        </TableCell>
-      )
-    })
+  const handleDownload = () => {
+    props.downloadDocuments()
   }
 
   const handleDeleteAgree = () => {
@@ -146,6 +63,43 @@ const Documents = (props) => {
     const vehicleId = selected[0]
     const searchId = documents.filter((val) => val._id === vehicleId)
     history.push(EDIT_URL(searchId[0].vehicleNo))
+  }
+
+  if (!documents || !Array.isArray(documents)) documents = []
+
+  documents = filterData(documents, search)
+
+  const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
+    <TableCell key={index} style={{ fontWeight: "600", textAlign: "center" }}>
+      {headCell}
+    </TableCell>
+  ))
+
+  const tableBodyFunc = (row) => {
+    return [...tableHeaderKey, "addedBy"].map((headVal, index) => {
+      if (headVal === "vehicleNo")
+        return (
+          <TableCell key={index}>
+            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
+          </TableCell>
+        )
+      if (headVal === "addedBy")
+        return <TableCell key={index}>{row[headVal]}</TableCell>
+      return (
+        <TableCell key={index} style={{ padding: "5px", textAlign: "center" }}>
+          <span
+            style={{
+              backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",
+              padding: "10px",
+              color: "white",
+              borderRadius: "10%",
+            }}
+          >
+            {row[headVal]}
+          </span>
+        </TableCell>
+      )
+    })
   }
 
   return (
@@ -178,10 +132,10 @@ const Documents = (props) => {
         loading={loading}
         tableRow={tableRow}
         numSelected={selected}
-        fileName="documents"
         sampleName="documentSample"
         sampleData={sampleData}
-        downloadData={downloadData}
+        downloadLoading={downloadLoading}
+        handleDownload={handleDownload}
       />
       {validateUrlValid(documentsLink) && (
         <p style={{ marginLeft: "10px" }}>
@@ -207,5 +161,6 @@ export default withRouter(
     getDocuments,
     deleteDocuments,
     uploadDocuments,
+    downloadDocuments,
   })(Documents)
 )

@@ -9,6 +9,7 @@ import {
   getVouchers,
   deleteVouchers,
   uploadVouchers,
+  downloadVouchers,
 } from "../../../containers/Vouchers/action"
 import Layout from "../../Layout/Layout"
 import {
@@ -17,14 +18,7 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
-import {
-  header,
-  headerKey,
-  sampleData,
-  EDIT_URL,
-  VIEW_URL,
-  downloadData,
-} from "./constants"
+import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
 import {
   isOperationAllowed,
   access,
@@ -38,7 +32,7 @@ const Vouchers = (props) => {
   const [selected, setSelected] = useState([])
   const [from, setFrom] = useState(currentDate)
   const [to, setTo] = useState(currentDate)
-  let { loading, vouchers } = props.vouchers
+  let { loading, vouchers, downloadLoading } = props.vouchers
   const history = props.history
 
   useEffect(() => {
@@ -50,6 +44,36 @@ const Vouchers = (props) => {
 
   const handleFileSubmit = (file) => {
     props.uploadVouchers(file, getVouchers)
+  }
+
+  const handleDownload = () => {
+    props.downloadVouchers({
+      from: moment(from).toISOString(),
+      to: moment(to).toISOString(),
+    })
+  }
+
+  const handleDeleteAgree = () => {
+    const cb = () => {
+      setFrom(currentDate)
+      setTo(currentDate)
+      props.getVouchers({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
+      setSelected([])
+    }
+    props.deleteVouchers(selected, cb)
+  }
+
+  const handleAddButton = () => {
+    history.push(ROUTES.ADD_VOUCHER)
+  }
+
+  const handleEditButton = () => {
+    const voucherId = selected[0]
+    const searchId = vouchers.filter((val) => val._id === voucherId)
+    history.push(EDIT_URL(searchId[0]._id))
   }
 
   if (!vouchers || !Array.isArray(vouchers)) vouchers = []
@@ -99,29 +123,6 @@ const Vouchers = (props) => {
     })
   }
 
-  const handleDeleteAgree = () => {
-    const cb = () => {
-      setFrom(currentDate)
-      setTo(currentDate)
-      props.getVouchers({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
-      setSelected([])
-    }
-    props.deleteVouchers(selected, cb)
-  }
-
-  const handleAddButton = () => {
-    history.push(ROUTES.ADD_VOUCHER)
-  }
-
-  const handleEditButton = () => {
-    const voucherId = selected[0]
-    const searchId = vouchers.filter((val) => val._id === voucherId)
-    history.push(EDIT_URL(searchId[0]._id))
-  }
-
   return (
     <Layout
       title="Vouchers"
@@ -144,7 +145,6 @@ const Vouchers = (props) => {
       numSelected={selected}
       setNumSelected={setSelected}
       checkBoxCondition={checkBoxCondition}
-      fileName="vouchers"
       sampleName="vouchersample"
       handleAddButton={
         isOperationAllowed(access.VOUCHERS, operations.CREATE) &&
@@ -158,7 +158,8 @@ const Vouchers = (props) => {
       selectedFrom={from}
       selectedTo={to}
       sampleData={sampleData}
-      downloadData={downloadData(vouchers)}
+      downloadLoading={downloadLoading}
+      handleDownload={handleDownload}
     />
   )
 }
@@ -175,5 +176,6 @@ export default withRouter(
     getVouchers,
     deleteVouchers,
     uploadVouchers,
+    downloadVouchers,
   })(Vouchers)
 )

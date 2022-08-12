@@ -17,6 +17,7 @@ export const header = [
   "Pump Name",
   "Cash",
   "Remarks",
+  "Added By",
 ]
 
 export const headerKey = [
@@ -36,10 +37,28 @@ export const headerKey = [
   "pumpName",
   "cash",
   "remarks",
+  "addedBy",
 ]
 
 export const sampleData = [
-  header,
+  [
+    "DI No.",
+    "LR No.",
+    "Date",
+    "Loading Point",
+    "Party Name",
+    "Location",
+    "Vehicle No.",
+    "Quantity",
+    "Material",
+    "Driver Name",
+    "Driver Phone",
+    "Diesel",
+    "Diesel In",
+    "Pump Name",
+    "Cash",
+    "Remarks",
+  ],
   [
     "6123457890",
     "1452369874",

@@ -32,6 +32,15 @@ import VehiclesExpense from "../Expenses/Vehicles/Vehicles"
 import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles"
 import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles"
 
+import Logistic from "../Store/Logistic/Logistic"
+import AddLogistic from "../Store/Logistic/AddLogistic"
+import EditLogistic from "../Store/Logistic/EditLogistic"
+
+import Product from "../Store/Product/Product"
+import AddProduct from "../Store/Product/AddProduct"
+import EditProduct from "../Store/Product/EditProduct"
+import ViewProduct from "../Store/Product/ViewProduct"
+
 import Configuration from "../Configuration/Configuration"
 
 import Receipt from "../Receipt/Receipt"
@@ -60,6 +69,8 @@ const Routes = (props) => {
       path: ROUTES.LOGOUT,
       component: <Logout />,
     },
+
+    // TRIPS
     {
       path: ROUTES.TRIPS,
       component: <Trips />,
@@ -76,6 +87,8 @@ const Routes = (props) => {
       path: ROUTES.VIEW_TRIP,
       component: <ViewTrip />,
     },
+
+    // VOUCHERS
     {
       path: ROUTES.VOUCHERS,
       component: <Vouchers />,
@@ -92,6 +105,8 @@ const Routes = (props) => {
       path: ROUTES.VIEW_VOUCHER,
       component: <ViewVoucher />,
     },
+
+    // DIESELS
     {
       path: ROUTES.DIESELS,
       component: <Diesels />,
@@ -104,6 +119,8 @@ const Routes = (props) => {
       path: ROUTES.EDIT_DIESEL,
       component: <EditDiesels />,
     },
+
+    // DOCUMENTS
     {
       path: ROUTES.DOCUMENTS,
       component: <Documents />,
@@ -120,6 +137,8 @@ const Routes = (props) => {
       path: ROUTES.EDIT_DOCUMENT,
       component: <EditDocument />,
     },
+
+    // OFFICE EXPENSE
     {
       path: ROUTES.OFFICE_EXPENSE,
       component: <OfficeExpense />,
@@ -136,6 +155,8 @@ const Routes = (props) => {
       path: ROUTES.EDIT_OFFICE_EXPENSE,
       component: <EditOfficeExpense />,
     },
+
+    // VEHICLE EXPENSE
     {
       path: ROUTES.VEHICLES_EXPENSE,
       component: <VehiclesExpense />,
@@ -148,6 +169,8 @@ const Routes = (props) => {
       path: ROUTES.EDIT_VEHICLES_EXPENSE,
       component: <EditVehiclesExpense />,
     },
+
+    // RECEIPT
     {
       path: ROUTES.RECEIPT,
       component: <Receipt />,
@@ -160,10 +183,46 @@ const Routes = (props) => {
       path: ROUTES.ADD_RECEIPT,
       component: <AddReceipt />,
     },
+
+    // PRODUCT
+    {
+      path: ROUTES.PRODUCT,
+      component: <Product />,
+    },
+    {
+      path: ROUTES.EDIT_PRODUCT,
+      component: <EditProduct />,
+    },
+    {
+      path: ROUTES.ADD_PRODUCT,
+      component: <AddProduct />,
+    },
+    {
+      path: ROUTES.VIEW_PRODUCT,
+      component: <ViewProduct />,
+    },
+
+    // LOGISTICS
+    {
+      path: ROUTES.LOGISTIC,
+      component: <Logistic />,
+    },
+    {
+      path: ROUTES.EDIT_LOGISTIC,
+      component: <EditLogistic />,
+    },
+    {
+      path: ROUTES.ADD_LOGISTIC,
+      component: <AddLogistic />,
+    },
+
+    // CONFIGURATION
     {
       path: ROUTES.CONFIGURATION,
       component: <Configuration />,
     },
+
+    // REPORTS
     {
       path: ROUTES.REPORTS,
       component: <Reports />,

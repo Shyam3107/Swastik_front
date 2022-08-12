@@ -8,13 +8,16 @@ import { withRouter } from "react-router"
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus"
 import HomeIcon from "@mui/icons-material/Home"
 import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"
+import StoreMallDirectorySharpIcon from "@mui/icons-material/StoreMallDirectorySharp"
 import BusinessIcon from "@mui/icons-material/Business"
 import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded"
 import { BiTrip } from "react-icons/bi"
 import ReceiptIcon from "@mui/icons-material/Receipt"
 import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp"
-import PaymentsIcon from '@mui/icons-material/Payments';
-import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import PaymentsIcon from "@mui/icons-material/Payments"
+import InventorySharpIcon from "@mui/icons-material/InventorySharp"
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation"
+import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp"
 
 import { ROUTES } from "../../utils/constants"
 
@@ -69,6 +72,22 @@ const SideContent = (props) => {
           title: "Vehicles",
           link: ROUTES.VEHICLES_EXPENSE,
           icon: <DirectionsBusIcon />,
+        },
+      ],
+    },
+    {
+      icon: <StoreMallDirectorySharpIcon />,
+      title: "Store",
+      subMenu: [
+        {
+          title: "Products",
+          link: ROUTES.PRODUCT,
+          icon: <InventorySharpIcon />,
+        },
+        {
+          title: "Logistics",
+          link: ROUTES.LOGISTIC,
+          icon: <ShoppingCartSharpIcon />,
         },
       ],
     },
