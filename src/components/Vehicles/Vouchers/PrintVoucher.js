@@ -147,7 +147,7 @@ const PrintVoucher = (props) => {
                   width: val?.width ?? "50%",
                   borderBottom:
                     index !== fields.length - 1 ? blackBorder : null,
-                  padding: "1px 5px",
+                  padding: "1px 10px",
                   margin: 0,
                   display: "flex",
                   alignItems: "center",
@@ -169,10 +169,10 @@ const PrintVoucher = (props) => {
               return (
                 <tbody key={index}>
                   <tr style={{ border: blackBorder, fontSize: "1.5rem" }}>
-                    <td style={{ border: blackBorder, paddingLeft: "3px" }}>
+                    <td style={{ border: blackBorder, paddingLeft: "5px" }}>
                       {am.title}
                     </td>
-                    <td style={{ paddingLeft: "3px" }}> {am.value}</td>
+                    <td style={{ paddingLeft: "5px" }}> {am.value}</td>
                   </tr>
                 </tbody>
               )
