@@ -12,7 +12,13 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL } from "./constants"
+import {
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  filterData,
+} from "./constants"
 import {
   getDiesel,
   deleteDiesel,
@@ -72,21 +78,7 @@ const Office = (props) => {
     history.push(EDIT_URL(dieselId))
   }
 
-  if (!diesels || !Array.isArray(diesels)) diesels = []
-
-  diesels = diesels.filter((val) => {
-    return includesInArray(
-      [
-        val.vehicleNo,
-        val.quantity,
-        val.amount,
-        val.remarks,
-        val.pumpName,
-        val?.addedBy?.location ?? "",
-      ],
-      search
-    )
-  })
+  diesels = filterData(diesels, search)
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -96,17 +88,7 @@ const Office = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
-      return (
-        <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy"
-            ? row.addedBy
-              ? row.addedBy.location
-              : ""
-            : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
-        </TableCell>
-      )
+      return <TableCell key={index}>{row[headVal]}</TableCell>
     })
   }
 

@@ -1,4 +1,4 @@
-import { formatDateInDDMMYYY } from "../../../utils/constants"
+import { formatDateInDDMMYYY, includesInArray } from "../../../utils/constants"
 
 export const header = [
   "Date",
@@ -33,5 +33,22 @@ export const sampleData = [
   ],
   [formatDateInDDMMYYY(), "CG04JD1051", "22", "2450.25", "Petrol", "H.H Fuels"],
 ]
+
+export const filterData = (data, search) => {
+  if (!data || !Array.isArray(data)) data = []
+  return data.filter((val) => {
+    return includesInArray(
+      [
+        val.vehicleNo,
+        val.quantity,
+        val.amount,
+        val.remarks,
+        val.pumpName,
+        val?.addedBy?.location ?? "",
+      ],
+      search
+    )
+  })
+}
 
 export const EDIT_URL = (id) => `/vehicles/diesels/${id}/edit`

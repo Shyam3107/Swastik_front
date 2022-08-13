@@ -12,7 +12,13 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL } from "./constants"
+import {
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  filterData,
+} from "./constants"
 import {
   getExpense,
   deleteExpense,
@@ -57,7 +63,10 @@ const Office = (props) => {
     const cb = () => {
       setFrom(monthStart)
       setTo(currentDate)
-      props.getExpense()
+      props.getExpense({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
       setSelected([])
     }
     props.deleteExpense(selected, cb)
@@ -72,11 +81,7 @@ const Office = (props) => {
     history.push(EDIT_URL(expenseId))
   }
 
-  if (!expenses || !Array.isArray(expenses)) expenses = []
-
-  expenses = expenses.filter((val) => {
-    return includesInArray([val.remarks, val?.addedBy?.location ?? ""], search)
-  })
+  expenses = filterData(expenses, search)
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -86,13 +91,7 @@ const Office = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
-      return (
-        <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy" ? row?.addedBy?.location ?? "" : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
-        </TableCell>
-      )
+      return <TableCell key={index}>{row[headVal]}</TableCell>
     })
   }
 

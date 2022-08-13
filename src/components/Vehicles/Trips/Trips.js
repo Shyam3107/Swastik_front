@@ -13,7 +13,14 @@ import {
 } from "../../../containers/Trips/action"
 import Layout from "../../Layout/Layout"
 import { includesInArray, ROUTES, currentDate } from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
+import {
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  VIEW_URL,
+  filterData,
+} from "./constants"
 import {
   isOperationAllowed,
   access,
@@ -71,34 +78,16 @@ const Trips = (props) => {
     history.push(EDIT_URL(searchId[0].diNo))
   }
 
-  if (!trips || !Array.isArray(trips)) trips = []
+  trips = filterData(trips, search)
 
-  trips = trips.filter((val) => {
-    return includesInArray(
-      [
-        val.diNo,
-        val.lrNo,
-        val.partyName,
-        val.location,
-        val.vehicleNo,
-        val.material,
-        val.driverName,
-        val?.pumpName ?? "",
-        val.loadingPoint,
-        val?.addedBy?.location ?? "",
-      ],
-      search
-    )
-  })
-
-  const tableRow = header.map((headCell, index) => (
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
       return (
         <TableCell key={index}>
           {headVal === "diNo" ? (

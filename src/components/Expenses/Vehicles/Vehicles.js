@@ -5,14 +5,14 @@ import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 
 import Layout from "../../Layout/Layout"
+import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
 import {
-  includesInArray,
-  ROUTES,
-  monthStart,
-  currentDate,
-  formatDateInDDMMYYY,
-} from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL } from "./constants"
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  filterData,
+} from "./constants"
 import {
   getExpense,
   deleteExpense,
@@ -57,7 +57,10 @@ const Vehicles = (props) => {
     const cb = () => {
       setFrom(monthStart)
       setTo(currentDate)
-      props.getExpense()
+      props.getExpense({
+        from: moment(from).toISOString(),
+        to: moment(to).toISOString(),
+      })
       setSelected([])
     }
     props.deleteExpense(selected, cb)
@@ -72,21 +75,7 @@ const Vehicles = (props) => {
     history.push(EDIT_URL(expenseId))
   }
 
-  if (!expenses || !Array.isArray(expenses)) expenses = []
-
-  expenses = expenses.filter((val) => {
-    return includesInArray(
-      [
-        val.remarks,
-         val?.pumpName ?? "",
-        val?.dieselFor ?? "",
-        val.driverName,
-        val.vehicleNo,
-        val?.addedBy?.location ?? "",
-      ],
-      search
-    )
-  })
+  expenses = filterData(expenses, search)
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -96,17 +85,7 @@ const Vehicles = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
-      return (
-        <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy"
-            ? row.addedBy
-              ? row.addedBy.location
-              : ""
-            : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
-        </TableCell>
-      )
+      return <TableCell key={index}>{row[headVal]}</TableCell>
     })
   }
 

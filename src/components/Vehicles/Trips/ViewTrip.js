@@ -30,12 +30,7 @@ const ViewTrip = (props) => {
       return {
         label: head,
         id: headerKey[index],
-        value:
-          head === "Date"
-            ? formatDate(trips[headerKey[index]])
-            : head === "Added By"
-            ? trips?.addedBy?.location
-            : null,
+        value: head === "Date" ? formatDate(trips[headerKey[index]]) : null,
       }
     })
     selected.push(trips._id)

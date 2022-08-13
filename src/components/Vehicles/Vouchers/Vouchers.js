@@ -18,7 +18,7 @@ import {
   currentDate,
   formatDateInDDMMYYY,
 } from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL, VIEW_URL } from "./constants"
+import { header, headerKey, sampleData, EDIT_URL, VIEW_URL, filterData } from "./constants"
 import {
   isOperationAllowed,
   access,
@@ -76,24 +76,7 @@ const Vouchers = (props) => {
     history.push(EDIT_URL(searchId[0]._id))
   }
 
-  if (!vouchers || !Array.isArray(vouchers)) vouchers = []
-
-  vouchers = vouchers.filter((val) => {
-    return includesInArray(
-      [
-        val.diNo,
-        val.paidTo,
-        val.accountNo,
-        val.ifsc,
-        val.total,
-        val.remarks,
-        val.billingRate,
-        val.rate,
-        val?.addedBy?.location,
-      ],
-      search
-    )
-  })
+  vouchers = filterData(vouchers,search)
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>

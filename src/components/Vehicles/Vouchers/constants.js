@@ -73,6 +73,26 @@ export const sampleData = [
 export const EDIT_URL = (id) => `/vehicles/vouchers/${id}/edit`
 export const VIEW_URL = (id) => `/vehicles/vouchers/${id}`
 
+export const filterData = (data, search) => {
+  if (!data || !Array.isArray(data)) data = []
+  return data.filter((val) => {
+    return includesInArray(
+      [
+        val.diNo,
+        val.paidTo,
+        val.accountNo,
+        val.ifsc,
+        val.total,
+        val.remarks,
+        val.billingRate,
+        val.rate,
+        val?.addedBy?.location,
+      ],
+      search
+    )
+  })
+}
+
 export const viewMoreFields = (voucher) => {
   return [
     {
