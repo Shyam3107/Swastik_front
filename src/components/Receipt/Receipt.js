@@ -5,13 +5,7 @@ import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 
 import Layout from "../Layout/Layout"
-import {
-  includesInArray,
-  ROUTES,
-  monthStart,
-  currentDate,
-  formatDateInDDMMYYY,
-} from "../../utils/constants"
+import { ROUTES, monthStart, currentDate } from "../../utils/constants"
 import {
   header,
   headerKey,

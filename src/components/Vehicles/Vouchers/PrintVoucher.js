@@ -110,23 +110,23 @@ const PrintVoucher = (props) => {
 
   return (
     <div className={styles.printDiv}>
-      <h4 style={{ textAlign: "center" }}>Voucher</h4>
+      <h2 style={{ textAlign: "center" }}>Voucher</h2>
       <Grid
         container
         style={{ borderBottom: blackBorder, marginBottom: "3px" }}
       >
         <Grid item style={{ width: "80%" }}>
-          <h4>JAGDISH PRASAD SINGHANIA</h4>
-          <h5>Pro. Swastik Minerals &amp; Govinda Roadlines</h5>
+          <h2>JAGDISH PRASAD SINGHANIA</h2>
+          <h3>Pro. Swastik Minerals &amp; Govinda Roadlines</h3>
         </Grid>
-        <Grid item style={{ width: "20%" }}>
+        <Grid item style={{ width: "20%", fontSize: "1.5rem" }}>
           <p>Site: {vouchers?.trip?.addedBy?.branch}</p>
           <p>Date: {formatDateInDDMMYYY(vouchers?.date)}</p>
         </Grid>
-        <h6 style={{ paddingBottom: "5px" }}>
+        <h3 style={{ paddingBottom: "5px" }}>
           Near Tirupati Balaji Foods, Vill. Kohka, P.O. Neora, Distt.
           Raipur(C.G) 493114
-        </h6>
+        </h3>
       </Grid>
       <Grid container>
         <Grid
@@ -137,6 +137,7 @@ const PrintVoucher = (props) => {
             border: blackBorder,
             marginRight: "10px",
             flexWrap: "wrap",
+            fontSize: "1.5rem",
           }}
         >
           {fields.map((val, index) => {
@@ -160,14 +161,14 @@ const PrintVoucher = (props) => {
         </Grid>
         <Grid
           item
-          style={{ width: "23%", border: blackBorder, padding: "5px" }}
+          style={{ width: "24%", border: blackBorder, padding: "5px" }}
         >
-          <h4 style={{ textAlign: "center" }}>Amount</h4>
+          <h3 style={{ textAlign: "center" }}>Amount</h3>
           <table style={{ width: "100%", border: blackBorder }}>
             {amount.map((am, index) => {
               return (
                 <tbody key={index}>
-                  <tr style={{ border: blackBorder }}>
+                  <tr style={{ border: blackBorder, fontSize: "1.5rem" }}>
                     <td style={{ border: blackBorder, paddingLeft: "3px" }}>
                       {am.title}
                     </td>
@@ -184,6 +185,7 @@ const PrintVoucher = (props) => {
           display: "flex",
           justifyContent: "space-between",
           margin: "5rem 1rem 0",
+          fontSize: "1.5rem",
         }}
       >
         <p>Sender</p>

@@ -78,6 +78,7 @@ const AddTrips = (props) => {
       label: "Diesel In",
       type: "select",
       menuItems: [
+        { label: "None", value: "" },
         { label: "Litre", value: "Litre" },
         { label: "Amount", value: "Amount" },
       ],

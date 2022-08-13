@@ -12,7 +12,7 @@ import {
   downloadTrips,
 } from "../../../containers/Trips/action"
 import Layout from "../../Layout/Layout"
-import { includesInArray, ROUTES, currentDate } from "../../../utils/constants"
+import { ROUTES, currentDate } from "../../../utils/constants"
 import {
   header,
   headerKey,

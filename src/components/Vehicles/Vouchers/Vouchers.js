@@ -12,13 +12,15 @@ import {
   downloadVouchers,
 } from "../../../containers/Vouchers/action"
 import Layout from "../../Layout/Layout"
+import { ROUTES, currentDate } from "../../../utils/constants"
 import {
-  includesInArray,
-  ROUTES,
-  currentDate,
-  formatDateInDDMMYYY,
-} from "../../../utils/constants"
-import { header, headerKey, sampleData, EDIT_URL, VIEW_URL, filterData } from "./constants"
+  header,
+  headerKey,
+  sampleData,
+  EDIT_URL,
+  VIEW_URL,
+  filterData,
+} from "./constants"
 import {
   isOperationAllowed,
   access,
@@ -76,7 +78,7 @@ const Vouchers = (props) => {
     history.push(EDIT_URL(searchId[0]._id))
   }
 
-  vouchers = filterData(vouchers,search)
+  vouchers = filterData(vouchers, search)
 
   const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
@@ -86,21 +88,13 @@ const Vouchers = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
-      if (headVal === "diNo")
-        return (
-          <TableCell key={index}>
-            <Link to={VIEW_URL(row._id)}>{row[headVal]}</Link>
-          </TableCell>
-        )
       return (
         <TableCell key={index}>
-          {headVal === "date" && formatDateInDDMMYYY(row[headVal])}
-          {headVal === "addedBy"
-            ? row.addedBy
-              ? row.addedBy.location
-              : ""
-            : ""}
-          {headVal !== "date" && headVal !== "addedBy" && row[headVal]}
+          {headVal === "diNo" ? (
+            <Link to={VIEW_URL(row._id)}>{row[headVal]}</Link>
+          ) : (
+            row[headVal]
+          )}
         </TableCell>
       )
     })

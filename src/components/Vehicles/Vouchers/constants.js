@@ -1,4 +1,4 @@
-import { formatDate, formatDateInDDMMYYY } from "../../../utils/constants"
+import { formatDateInDDMMYYY, includesInArray } from "../../../utils/constants"
 
 export const header = [
   "Date",
@@ -110,7 +110,7 @@ export const viewMoreFields = (voucher) => {
     {
       id: "diDate",
       label: "DI Date",
-      value: formatDate(voucher?.trip?.date),
+      value: formatDateInDDMMYYY(voucher?.trip?.date),
     },
     {
       id: "vehicleNo",
