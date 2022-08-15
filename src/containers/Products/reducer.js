@@ -5,7 +5,7 @@ const initialState = {
   products: null,
   productsName: null,
   error: null,
-  deleteLoading: false,
+  downloadLoading: false,
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -58,11 +58,11 @@ export default function reducer(state = initialState, action = {}) {
 
     // DELETE CASES
     case actionTypes.DELETE_PRODUCTS_PENDING:
-      return { ...state, deleteLoading: true }
+      return { ...state, loading: true }
     case actionTypes.DELETE_PRODUCTS_SUCCESS:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
     case actionTypes.DELETE_PRODUCTS_FAILURE:
-      return { ...state, deleteLoading: false }
+      return { ...state, loading: false }
 
     // DOWNLOAD CASES
     case actionTypes.DOWNLOAD_PRODUCTS_PENDING:
