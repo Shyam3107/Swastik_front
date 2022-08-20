@@ -52,10 +52,21 @@ const SideContent = (props) => {
           link: ROUTES.VOUCHERS,
           icon: <PaymentsIcon />,
         },
+      ],
+    },
+    {
+      icon: <LocalGasStationIcon />,
+      title: "Diesels",
+      subMenu: [
         {
-          title: "Diesels",
+          title: "Pump Diesels",
           link: ROUTES.DIESELS,
           icon: <LocalGasStationIcon />,
+        },
+        {
+          title: "Vehicles Owner",
+          link: ROUTES.VEHICLES_OWNER,
+          icon: <DirectionsBusIcon />,
         },
       ],
     },

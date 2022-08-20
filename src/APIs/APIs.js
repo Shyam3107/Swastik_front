@@ -17,7 +17,8 @@ const modules = {
   trips: "/vehicles/trips",
   documents: "/vehicles/documents",
   vouchers: "/vehicles/vouchers",
-  diesels: "/vehicles/diesels",
+  diesels: "/diesels/pumpDiesel",
+  vehicleOwner: "/diesels/vehicles",
   driverExpenses: "/expenses/driver",
   officeExpenses: "/expenses/office",
   vehiclesExpenses: "/expenses/vehicles",
@@ -67,6 +68,14 @@ export const API = {
   EDIT_DIESELS: `${modules.diesels}/editDiesels`,
   DELETE_DIESELS: `${modules.diesels}/deleteDiesels`,
   DOWNLOAD_DIESELS: `${modules.diesels}/downloadDiesels`,
+
+  // VEHICLE OWNER
+  GET_VEHICLE_OWNER: `${modules.vehicleOwner}/getOwner`,
+  ADD_VEHICLE_OWNER: `${modules.vehicleOwner}/addOwner`,
+  UPLOAD_VEHICLE_OWNER: `${modules.vehicleOwner}/uploadOwner`,
+  EDIT_VEHICLE_OWNER: `${modules.vehicleOwner}/editOwner`,
+  DELETE_VEHICLE_OWNER: `${modules.vehicleOwner}/deleteOwner`,
+  DOWNLOAD_VEHICLE_OWNER: `${modules.vehicleOwner}/downloadOwner`,
 
   //OFFICE EXPENSES
   GET_OFFICE_EXPENSE: `${modules.officeExpenses}/getExpenses`,

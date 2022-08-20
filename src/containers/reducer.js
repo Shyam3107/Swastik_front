@@ -11,6 +11,7 @@ import voucherReducer from "./Vouchers/reducer"
 import dieselReducer from "./Diesels/reducer"
 import productReducer from "./Products/reducer"
 import logisticReducer from "./Logistics/reducer"
+import vehicleOwnerReducer from "./VehicleOwner/reducer"
 
 const rootReducer = {
   user: loginReducer,
@@ -26,6 +27,7 @@ const rootReducer = {
   diesels: dieselReducer,
   products: productReducer,
   logistics: logisticReducer,
+  vehicleOwner: vehicleOwnerReducer,
 }
 
 export default rootReducer

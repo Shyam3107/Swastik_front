@@ -11,11 +11,12 @@ export const currentDate = moment().endOf("day")
 
 export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"]
 
-const hostRoutes = {
+export const hostRoutes = {
   TRIPS: "/vehicles/trips",
   DOCUMENTS: "/vehicles/documents",
   VOUCHERS: "/vehicles/vouchers",
-  DIESELS: "/vehicles/diesels",
+  DIESELS: "/diesels/pumpDiesel",
+  VEHICLES_OWNER: "/diesels/vehiceOwner",
   OFFICE_EXPENSE: "/expenses/office",
   DRIVER_EXPENSE: "/expenses/driver",
   VEHICLES_EXPENSE: "/expenses/vehicles",
@@ -56,6 +57,11 @@ export const ROUTES = {
   DIESELS: hostRoutes.DIESELS,
   ADD_DIESEL: hostRoutes.DIESELS + "/add",
   EDIT_DIESEL: hostRoutes.DIESELS + "/:dieselId/edit",
+
+  // VEHICLE OWNER
+  VEHICLES_OWNER: hostRoutes.VEHICLES_OWNER,
+  ADD_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/add",
+  EDIT_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/:vehicleNo/edit",
 
   // OFFICE EXPENSE
   OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE,

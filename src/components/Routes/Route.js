@@ -15,9 +15,13 @@ import AddVouchers from "../Vehicles/Vouchers/AddVouchers"
 import EditVouchers from "../Vehicles/Vouchers/EditVouchers"
 import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher"
 
-import Diesels from "../Vehicles/Diesels/Diesels"
-import AddDiesels from "../Vehicles/Diesels/AddDiesels"
-import EditDiesels from "../Vehicles/Diesels/EditDiesels"
+import Diesels from "../Diesels/PumpDiesels/Diesels"
+import AddDiesels from "../Diesels/PumpDiesels/AddDiesels"
+import EditDiesels from "../Diesels/PumpDiesels/EditDiesels"
+
+import VehicleOwner from "../Diesels/VehicleOwner/VehicleOwner"
+import AddVehicleOwner from "../Diesels/VehicleOwner/AddVehicleOwner"
+import EditVehicleOwner from "../Diesels/VehicleOwner/EditVehicleOwner"
 
 import Documents from "../Vehicles/Documents/Documents"
 import AddDocument from "../Vehicles/Documents/AddDocument"
@@ -118,6 +122,20 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_DIESEL,
       component: <EditDiesels />,
+    },
+
+    // VEHICLE OWNER
+    {
+      path: ROUTES.VEHICLES_OWNER,
+      component: <VehicleOwner />,
+    },
+    {
+      path: ROUTES.ADD_VEHICLE_OWNER,
+      component: <AddVehicleOwner />,
+    },
+    {
+      path: ROUTES.EDIT_VEHICLE_OWNER,
+      component: <EditVehicleOwner />,
     },
 
     // DOCUMENTS
