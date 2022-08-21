@@ -25,33 +25,38 @@ import {
   header as logisticHeader,
   headerKey as logisticHeaderKey,
   EDIT_URL as EDIT_LOGISTIC_URL,
+  filterData,
 } from "../Logistic/constants"
 
 const ViewProduct = (props) => {
   const history = props.history
+  const [search, setSearch] = useState("")
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
   const params = useParams()
   const { productId } = params
   let { loading, products, downloadLoading } = props.products
   const { getProducts } = props
-  const logistics = products?.logistics ?? []
+  let logistics = products?.logistics ?? []
   let periodQuantity = products?.periodQuantity
   products = products?.products
 
   let fields = []
   let selected = []
 
+  logistics = filterData(logistics, search)
+
   if (products && !Array.isArray(products)) {
-    fields = ["Quantity", "Remarks", "Opening Quantity"].map(
-      (head, index) => {
-        return {
-          label: head,
-          id: headerKey[index+1],
-          value: index === 2 ? (products?.quantity - periodQuantity)?.toString() : null,
-        }
+    fields = ["Quantity", "Remarks", "Opening Quantity"].map((head, index) => {
+      return {
+        label: head,
+        id: headerKey[index + 1],
+        value:
+          index === 2
+            ? (products?.quantity - periodQuantity)?.toString()
+            : null,
       }
-    )
+    })
     selected.push(products?._id)
   }
 
@@ -115,6 +120,8 @@ const ViewProduct = (props) => {
       loading={loading}
       data={products}
       viewFields={fields}
+      search={search}
+      setSearch={setSearch}
       selectedFrom={from}
       setSelectedFrom={setFrom}
       selectedTo={to}

@@ -62,13 +62,14 @@ export const filterData = (data, search) => {
   return data.filter((val) => {
     return includesInArray(
       [
-        val.remarks,
-        val.vehicleNo,
-        val.personName,
-        val.status,
-        val.product,
+        val?.remarks,
+        val?.vehicleNo,
+        val?.personName,
+        val?.status,
+        val?.quantity,
+        val?.product,
         val?.remarks ?? "",
-        val.name,
+        val?.name,
         val?.addedBy?.location ?? "",
       ],
       search

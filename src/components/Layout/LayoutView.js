@@ -28,6 +28,8 @@ const LayoutView = ({
   selectedTo,
   setSelectedFrom,
   setSelectedTo,
+  search,
+  setSearch,
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />
 
@@ -58,6 +60,8 @@ const LayoutView = ({
               print={print}
               downloadLoading={downloadLoading}
               handleDownload={handleDownload}
+              setSearch={setSearch}
+              search={search}
               setSelectedFrom={setSelectedFrom}
               setSelectedTo={setSelectedTo}
               selectedFrom={selectedFrom}
