@@ -12,7 +12,7 @@ import {
   downloadVouchers,
 } from "../../../containers/Vouchers/action"
 import Layout from "../../Layout/Layout"
-import { ROUTES, currentDate } from "../../../utils/constants"
+import { ROUTES, currentDate, monthStart } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -32,7 +32,7 @@ const Vouchers = (props) => {
   let { getVouchers } = props
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState([])
-  const [from, setFrom] = useState(currentDate)
+  const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
   let { loading, vouchers, downloadLoading } = props.vouchers
   const history = props.history

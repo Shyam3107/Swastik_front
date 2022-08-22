@@ -11,7 +11,7 @@ import { ROUTES } from "../../../utils/constants"
 
 const initialLogistic = {
   date: new Date().toISOString(),
-  product: "",
+  product: null,
   quantity: "1",
   vehicleNo: "",
   personName: "",
@@ -45,9 +45,9 @@ const Logistic = (props) => {
       id: "product",
       label: "Product",
       required: true,
-      type: "select",
-      menuItems: (productsName ?? []).map((val) => {
-        return { label: val.name, value: val._id }
+      type: "selectAutoComplete",
+      options: (productsName ?? []).map((val) => {
+        return { label: val.name, id: val._id }
       }),
     },
     { id: "quantity", label: "Quantity", type: "number", required: true },

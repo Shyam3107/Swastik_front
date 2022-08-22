@@ -3,35 +3,29 @@ import { formatDateInDDMMYYY, includesInArray } from "../../../utils/constants"
 export const header = [
   "Date",
   "DI No.",
-  "Billing Rate",
-  "Rate",
   "Paid To",
   "Account No.",
   "IFSC",
-  "Cash",
-  "Diesel",
-  "Advance",
-  "TDS",
+  "Diesel Rate",
+  "TDS (%)",
   "Shortage",
   "Other",
   "Remarks",
+  "Paid On",
 ]
 
 export const headerKey = [
   "date",
   "diNo",
-  "billingRate",
-  "rate",
   "paidTo",
   "accountNo",
   "ifsc",
-  "cash",
-  "diesel",
-  "advance",
+  "dieselRate",
   "tds",
   "shortage",
   "other",
   "remarks",
+  "paidOn",
 ]
 
 export const sampleData = [
@@ -39,34 +33,28 @@ export const sampleData = [
   [
     formatDateInDDMMYYY(),
     "365895489",
-    "1007",
-    "925",
     "Swastik",
     "312589964",
     "SBIN001470",
-    "500",
-    "521",
-    "10000",
+    "100.56",
+    "2",
+    "100",
     "200",
-    "255",
-    "500",
     "Trips",
+    formatDateInDDMMYYY(),
   ],
   [
     formatDateInDDMMYYY(),
-    "3658954589",
-    "1007",
-    "925",
+    "7658589559",
     "Swastik",
     "312589964",
     "SBIN001470",
+    "100.56",
+    "0",
     "",
     "",
-    "344443",
-    "",
-    "",
-    "655",
     "Trips",
+    formatDateInDDMMYYY(),
   ],
 ]
 
@@ -86,6 +74,9 @@ export const filterData = (data, search) => {
         val.remarks,
         val.billingRate,
         val.rate,
+        val.cash,
+        val.vehicleNo,
+        val.lrNo,
         val?.addedBy?.location,
       ],
       search
@@ -93,49 +84,52 @@ export const filterData = (data, search) => {
   })
 }
 
-export const viewMoreFields = (voucher) => {
+export const viewMoreFields = (val) => {
   return [
+    {
+      id: "cash",
+      label: "Cash",
+    },
+    {
+      id: "diesel",
+      label: "Diesel",
+    },
+    {
+      id: "billingRate",
+      label: "Billing Rate",
+    },
+    {
+      id: "rate",
+      label: "Rate",
+    },
     {
       id: "total",
       label: "Total",
-      value:
-        voucher?.trip?.quantity * voucher?.rate -
-        voucher?.cash -
-        voucher?.diesel -
-        voucher?.advance -
-        voucher?.tds -
-        voucher?.shortage -
-        voucher?.other,
     },
     {
       id: "diDate",
       label: "DI Date",
-      value: formatDateInDDMMYYY(voucher?.trip?.date),
+      value: formatDateInDDMMYYY(val?.diDate),
     },
     {
       id: "vehicleNo",
       label: "Vehicle No.",
-      value: voucher?.trip?.vehicleNo,
     },
     {
       id: "designation",
       label: "Designation",
-      value: voucher?.trip?.location,
     },
     {
       id: "lrNo",
       label: "LR No.",
-      value: voucher?.trip?.lrNo,
     },
     {
       id: "quantity",
       label: "Quantity",
-      value: voucher?.trip?.quantity,
     },
     {
       id: "site",
       label: "Site",
-      value: voucher?.trip?.addedBy?.branch,
     },
   ]
 }

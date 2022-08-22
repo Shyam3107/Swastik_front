@@ -22,6 +22,8 @@ const initialTrip = {
   pumpName: "",
   cash: undefined,
   remarks: "",
+  bilingRate: 0,
+  rate: 0,
 }
 
 const AddTrips = (props) => {
@@ -92,6 +94,8 @@ const AddTrips = (props) => {
     },
     { id: "cash", type: "number", label: "Cash" },
     { id: "remarks", label: "Remarks" },
+    { id: "billingRate", type: "number", label: "Billing Rate" },
+    { id: "rate", type: "number", label: "Rate" },
   ]
 
   const handleValueChange = (e) => {

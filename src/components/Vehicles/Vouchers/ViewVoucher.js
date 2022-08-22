@@ -33,7 +33,14 @@ const ViewVoucher = (props) => {
       return {
         label: head,
         id: headerKey[index],
-        value: head === "Date" ? formatDate(vouchers[headerKey[index]]) : null,
+        value:
+          head === "Date"
+            ? formatDate(vouchers[headerKey[index]])
+            : head === "Paid On"
+            ? vouchers.paidOn
+              ? formatDate(vouchers.paidOn)
+              : ""
+            : null,
       }
     })
     fields = [...fields, ...viewMoreFields(vouchers)]

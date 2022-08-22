@@ -1,4 +1,4 @@
-import { formatDateInDDMMYYY,includesInArray } from "../../../utils/constants"
+import { formatDateInDDMMYYY, includesInArray } from "../../../utils/constants"
 
 export const header = [
   "DI No.",
@@ -17,6 +17,8 @@ export const header = [
   "Pump Name",
   "Cash",
   "Remarks",
+  "Billing Rate",
+  "Rate",
 ]
 
 export const headerKey = [
@@ -36,6 +38,8 @@ export const headerKey = [
   "pumpName",
   "cash",
   "remarks",
+  "billingRate",
+  "rate",
 ]
 
 export const sampleData = [
@@ -56,6 +60,8 @@ export const sampleData = [
     "Pump Name",
     "Cash",
     "Remarks",
+    "Billing Rate",
+    "Rate",
   ],
   [
     "6123457890",
@@ -92,6 +98,8 @@ export const sampleData = [
     "Saurabh Fuels",
     "2000",
     "Food",
+    "1000",
+    "970",
   ],
   [
     "4523547890",
@@ -128,6 +136,8 @@ export const sampleData = [
     "Saurabh Fuels",
     "",
     "",
+    "1190",
+    "1100",
   ],
 ]
 

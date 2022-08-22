@@ -11,6 +11,7 @@ import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePic
 import CustomSelectInput from "../CustomComponents/CustomSelectInput/CustomSelectInput"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
 import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete"
+import CustomAutoCompleteSelect from "../CustomComponents/CustomAutoCompleteSelect/CustomAutoCompleteSelect"
 
 const LayoutAdd = ({
   loading,
@@ -109,6 +110,14 @@ const LayoutAdd = ({
               )}
               {item.type === "customSelect" && (
                 <CustomAutoComplete
+                  options={item.options}
+                  id={item.id}
+                  handleChange={handleInputChange}
+                  value={item.value ? item.value : data[item.id]}
+                />
+              )}
+              {item.type === "selectAutoComplete" && (
+                <CustomAutoCompleteSelect
                   options={item.options}
                   id={item.id}
                   handleChange={handleInputChange}

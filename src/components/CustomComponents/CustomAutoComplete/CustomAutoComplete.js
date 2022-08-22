@@ -2,6 +2,7 @@ import React from "react"
 import TextField from "@mui/material/TextField"
 import Autocomplete from "@mui/material/Autocomplete"
 
+// Select from suggested options and take value from user too
 const CustomAutoComplete = ({
   options = [],
   handleChange,
