@@ -32,7 +32,7 @@ const CustomTableOutput = ({
 
   useEffect(() => {
     setPage(0)
-  }, [selectedFrom, selectedTo])
+  }, [selectedFrom, selectedTo, data])
 
   const emptyRows =
     page > 0 ? Math.min(3, (1 + page) * rowsPerPage - data.length) : 0

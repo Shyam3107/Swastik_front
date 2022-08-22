@@ -64,7 +64,7 @@ const SideContent = (props) => {
           icon: <LocalGasStationIcon />,
         },
         {
-          title: "Vehicles Owner",
+          title: "Owner",
           link: ROUTES.VEHICLES_OWNER,
           icon: <DirectionsBusIcon />,
         },
@@ -120,6 +120,7 @@ const SideContent = (props) => {
                 icon={item.icon}
                 key={index}
                 active={item.active}
+                
               >
                 {item.subMenu.map((sub, ind) => {
                   return (
