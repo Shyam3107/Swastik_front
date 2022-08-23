@@ -20,11 +20,7 @@ const PrintVoucher = (props) => {
       value: vouchers?.diesel,
     },
     {
-      title: "Advance",
-      value: vouchers?.advance,
-    },
-    {
-      title: "TDS",
+      title: "TDS (%)",
       value: vouchers?.tds,
     },
     {
@@ -37,14 +33,7 @@ const PrintVoucher = (props) => {
     },
     {
       title: "Total",
-      value:
-        vouchers?.trip?.quantity * vouchers?.rate -
-        vouchers?.cash -
-        vouchers?.diesel -
-        vouchers?.advance -
-        vouchers?.tds -
-        vouchers?.shortage -
-        vouchers?.other,
+      value: vouchers?.total,
     },
   ]
 
@@ -55,38 +44,38 @@ const PrintVoucher = (props) => {
     },
     {
       title: "Designation",
-      value: vouchers?.trip?.location,
+      value: vouchers?.designation,
     },
     {
       title: "LR No.",
-      value: vouchers?.trip?.lrNo,
+      value: vouchers?.lrNo,
     },
-    {
-      title: "Billing Rate",
-      value: vouchers?.billingRate,
-    },
+    // {
+    //   title: "Billing Rate",
+    //   value: vouchers?.billingRate,
+    // },
     {
       title: "Rate",
       value: vouchers?.rate,
-      width: "33%",
+      //width: "33%",
     },
     {
       title: "Quantity(MT)",
-      value: vouchers?.trip?.quantity,
-      width: "33%",
+      value: vouchers?.quantity,
+      //width: "33%",
     },
     {
       title: "Amount",
-      value: vouchers?.trip?.quantity * vouchers?.rate,
-      width: "33%",
+      value: vouchers?.quantity * vouchers?.rate,
+      //width: "33%",
     },
     {
       title: "DI Date",
-      value: formatDateInDDMMYYY(vouchers?.trip?.date),
+      value: formatDateInDDMMYYY(vouchers?.date),
     },
     {
       title: "Truck No.",
-      value: vouchers?.trip?.vehicleNo,
+      value: vouchers?.vehicleNo,
     },
     {
       title: "Paid To",
@@ -120,7 +109,7 @@ const PrintVoucher = (props) => {
           <h3>Pro. Swastik Minerals &amp; Govinda Roadlines</h3>
         </Grid>
         <Grid item style={{ width: "20%", fontSize: "1.5rem" }}>
-          <p>Site: {vouchers?.trip?.addedBy?.branch}</p>
+          <p>Site: {vouchers?.site}</p>
           <p>Date: {formatDateInDDMMYYY(vouchers?.date)}</p>
         </Grid>
         <h3 style={{ paddingBottom: "5px" }}>

@@ -11,7 +11,7 @@ const initialVoucher = {
   paidTo: "",
   accountNo: "",
   ifsc: "",
-  dieseRate: 0,
+  dieselRate: 0,
   tds: 0,
   shortage: 0,
   other: 0,

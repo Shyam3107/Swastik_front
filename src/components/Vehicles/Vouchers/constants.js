@@ -91,6 +91,14 @@ export const viewMoreFields = (val) => {
       label: "Cash",
     },
     {
+      id: "dieselQty",
+      label: "Diesel (Qty)",
+    },
+    {
+      id: "dieselIn",
+      label: "Diesel In",
+    },
+    {
       id: "diesel",
       label: "Diesel",
     },
