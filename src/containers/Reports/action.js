@@ -46,3 +46,26 @@ export const getDieselsReport =
 
     makeRequest(options)
   }
+
+export const getHardwareShopsReport =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_HARDWARE_SHOPS_REPORTS_PENDING,
+    })
+
+    const options = {
+      method: "file",
+      url: API.GET_HARDWARE_SHOPS_REPORT,
+      params: params,
+      callback: () => {
+        dispatch({
+          type: actionTypes.GET_HARDWARE_SHOPS_REPORTS_SUCCESS,
+        })
+      },
+      errorActionType: actionTypes.GET_HARDWARE_SHOPS_REPORTS_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }

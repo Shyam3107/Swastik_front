@@ -27,10 +27,11 @@ const modules = {
   reports: "/reports",
   products: "/store/product",
   logistics: "/store/logistic",
+  hardwareShopBill: "/store/hardwareshops",
 }
 
 export const API = {
-  //LOGIN
+  // LOGIN
   LOGIN: `${modules.user}/login`,
   FORGOT_PASSWORD: `${modules.user}/forgotPassword`,
 
@@ -53,7 +54,7 @@ export const API = {
   DELETE_VOUCHERS: `${modules.vouchers}/deleteVouchers`,
   DOWNLOAD_VOUCHERS: `${modules.vouchers}/downloadVouchers`,
 
-  //DOCUMENTS
+  // DOCUMENTS
   GET_DOCUMENTS: `${modules.documents}/getDocuments`,
   ADD_DOCUMENTS: `${modules.documents}/addDocuments`,
   UPLOAD_DOCUMENTS: `${modules.documents}/uploadDocuments`,
@@ -77,7 +78,7 @@ export const API = {
   DELETE_VEHICLE_OWNER: `${modules.vehicleOwner}/deleteOwner`,
   DOWNLOAD_VEHICLE_OWNER: `${modules.vehicleOwner}/downloadOwner`,
 
-  //OFFICE EXPENSES
+  // OFFICE EXPENSES
   GET_OFFICE_EXPENSE: `${modules.officeExpenses}/getExpenses`,
   ADD_OFFICE_EXPENSE: `${modules.officeExpenses}/addExpenses`,
   UPLOAD_OFFICE_EXPENSE: `${modules.officeExpenses}/uploadExpenses`,
@@ -85,7 +86,7 @@ export const API = {
   DELETE_OFFICE_EXPENSE: `${modules.officeExpenses}/deleteExpenses`,
   DOWNLOAD_OFFICE_EXPENSE: `${modules.officeExpenses}/downloadExpenses`,
 
-  //VEHICLES EXPENSES
+  // VEHICLES EXPENSES
   GET_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/getExpenses`,
   ADD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/addExpenses`,
   UPLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/uploadExpenses`,
@@ -93,7 +94,7 @@ export const API = {
   DELETE_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/deleteExpenses`,
   DOWNLOAD_VEHICLES_EXPENSE: `${modules.vehiclesExpenses}/downloadExpenses`,
 
-  //CONFIGURATION ACCOUNTS
+  // CONFIGURATION ACCOUNTS
   GET_ACCOUNTS: `${modules.configureAccounts}/getAccount`,
   ADD_ACCOUNTS: `${modules.configureAccounts}/addAccount`,
   EDIT_ACCOUNTS: `${modules.configureAccounts}/editAccount`,
@@ -124,9 +125,18 @@ export const API = {
   DELETE_LOGISTICS: `${modules.logistics}/deleteLogistics`,
   DOWNLOAD_LOGISTICS: `${modules.logistics}/downloadLogistics`,
 
+  // HARDWARE SHOP BILLS
+  GET_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/getBills`,
+  ADD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/addBills`,
+  EDIT_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/editBills`,
+  UPLOAD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/uploadBills`,
+  DELETE_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/deleteBills`,
+  DOWNLOAD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/downloadBills`,
+
   // REPORTS
   GET_VEHICLES_REPORTS: `${modules.reports}/getVehiclesReport`,
   GET_DIESELS_REPORTS: `${modules.reports}/getDieselsReport`,
+  GET_HARDWARE_SHOPS_REPORT: `${modules.reports}/getHardwareShopReport`,
 }
 
 export const handleError = (dispatch = () => {}, action = {}, err = {}) => {

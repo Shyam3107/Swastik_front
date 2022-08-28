@@ -1,3 +1,5 @@
+import { access, operations } from "../../utils/utilities"
+
 export const initialForm = {
   userName: "",
   password: "",
@@ -13,22 +15,23 @@ export const initialForm = {
 }
 
 export const accessOptions = [
-  { label: "Trips", id: "TRIPS" },
-  { label: "Documents", id: "DOCUMENTS" },
-  { label: "Vouchers", id: "VOUCHERS" },
-  { label: "Receipts", id: "RECEIPTS" },
-  { label: "Office Expenses", id: "OFFICE EXPENSES" },
-  { label: "Vehicle Expenses", id: "VEHICLE EXPENSES" },
-  { label: "Accounts", id: "ACCOUNTS" },
-  { label: "Products", id: "PRODUCTS" },
-  { label: "Logistics", id: "LOGISTICS" },
+  { label: "Trips", id: access.TRIPS },
+  { label: "Documents", id: access.DOCUMENTS },
+  { label: "Vouchers", id: access.VOUCHERS },
+  { label: "Receipts", id: access.RECEIPTS },
+  { label: "Office Expenses", id: access.OFFICE_EXPENSES },
+  { label: "Vehicle Expenses", id: access.VEHICLE_EXPENSES },
+  { label: "Accounts", id: access.ACCOUNTS },
+  { label: "Products", id: access.PRODUCTS },
+  { label: "Logistics", id: access.LOGISTICS },
+  { label: "Store Bills", id: access.STORE_BILLS },
 ]
 
 export const operationsOptions = [
-  { label: "Read", id: "READ" },
-  { label: "Create", id: "CREATE" },
-  { label: "Update", id: "UPDATE" },
-  { label: "Delete", id: "DELETE" },
+  { label: "Read", id: operations.READ },
+  { label: "Create", id: operations.CREATE },
+  { label: "Update", id: operations.EDIT },
+  { label: "Delete", id: operations.DELETE },
 ]
 
 export const showTripsOptions = [

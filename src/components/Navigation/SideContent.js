@@ -100,6 +100,11 @@ const SideContent = (props) => {
           link: ROUTES.LOGISTIC,
           icon: <ShoppingCartSharpIcon />,
         },
+        {
+          title: "Bills",
+          link: ROUTES.HARDWARE_SHOP_BILL,
+          icon: <ReceiptIcon />,
+        },
       ],
     },
     {
@@ -120,7 +125,6 @@ const SideContent = (props) => {
                 icon={item.icon}
                 key={index}
                 active={item.active}
-                
               >
                 {item.subMenu.map((sub, ind) => {
                   return (

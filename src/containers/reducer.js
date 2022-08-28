@@ -12,6 +12,7 @@ import dieselReducer from "./Diesels/reducer"
 import productReducer from "./Products/reducer"
 import logisticReducer from "./Logistics/reducer"
 import vehicleOwnerReducer from "./VehicleOwner/reducer"
+import hardwareShopBillsReducer from "./HardwareShopBills/reducer"
 
 const rootReducer = {
   user: loginReducer,
@@ -28,6 +29,7 @@ const rootReducer = {
   products: productReducer,
   logistics: logisticReducer,
   vehicleOwner: vehicleOwnerReducer,
+  hardwareShopBills: hardwareShopBillsReducer,
 }
 
 export default rootReducer

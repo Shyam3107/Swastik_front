@@ -7,6 +7,7 @@ import moment from "moment"
 import {
   getVehiclesReport,
   getDieselsReport,
+  getHardwareShopsReport,
 } from "../../containers/Reports/action"
 import Layout from "../Layout/Layout"
 import { monthStart, currentDate } from "../../utils/constants"
@@ -32,6 +33,10 @@ const Reports = (props) => {
     {
       title: "Diesel",
       onClick: props.getDieselsReport,
+    },
+    {
+      title: "Store Bills",
+      onClick: props.getHardwareShopsReport,
     },
   ]
 
@@ -71,5 +76,9 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { getVehiclesReport, getDieselsReport })(Reports)
+  connect(mapStateToProps, {
+    getVehiclesReport,
+    getDieselsReport,
+    getHardwareShopsReport,
+  })(Reports)
 )

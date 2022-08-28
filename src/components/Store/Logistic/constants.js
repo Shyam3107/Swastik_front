@@ -1,4 +1,8 @@
-import { formatDateInDDMMYYY, includesInArray } from "../../../utils/constants"
+import {
+  formatDateInDDMMYYY,
+  hostRoutes,
+  includesInArray,
+} from "../../../utils/constants"
 
 export const header = [
   "Date",
@@ -77,5 +81,5 @@ export const filterData = (data, search) => {
   })
 }
 
-export const EDIT_URL = (id) => `/stores/logistics/${id}/edit`
-export const VIEW_PRODUCT_URL = (id) => `/stores/products/${id}`
+export const EDIT_URL = (id) => `${hostRoutes.LOGISTICS}/${id}/edit`
+export const VIEW_PRODUCT_URL = (id) => `${hostRoutes.PRODUCTS}/${id}`

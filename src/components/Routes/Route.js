@@ -45,6 +45,10 @@ import AddProduct from "../Store/Product/AddProduct"
 import EditProduct from "../Store/Product/EditProduct"
 import ViewProduct from "../Store/Product/ViewProduct"
 
+import Bills from "../Store/HardwareShopBills/Bills"
+import AddBill from "../Store/HardwareShopBills/AddBill"
+import EditBill from "../Store/HardwareShopBills/EditBill"
+
 import Configuration from "../Configuration/Configuration"
 
 import Receipt from "../Receipt/Receipt"
@@ -232,6 +236,20 @@ const Routes = (props) => {
     {
       path: ROUTES.ADD_LOGISTIC,
       component: <AddLogistic />,
+    },
+
+    // HARDWARE SHOP BILLS
+    {
+      path: ROUTES.HARDWARE_SHOP_BILL,
+      component: <Bills />,
+    },
+    {
+      path: ROUTES.EDIT_HARDWARE_SHOP_BILL,
+      component: <EditBill />,
+    },
+    {
+      path: ROUTES.ADD_HARDWARE_SHOP_BILL,
+      component: <AddBill />,
     },
 
     // CONFIGURATION

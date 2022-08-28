@@ -23,6 +23,7 @@ export const hostRoutes = {
   RECEIPT: "/receipt",
   PRODUCTS: "/stores/products",
   LOGISTICS: "/stores/logistics",
+  HARDWARE_SHOP_BILL: "/store/hardwareShopBill",
 }
 
 export const ROUTES = {
@@ -93,6 +94,11 @@ export const ROUTES = {
   LOGISTIC: hostRoutes.LOGISTICS,
   EDIT_LOGISTIC: hostRoutes.LOGISTICS + "/:logisticId/edit",
   ADD_LOGISTIC: hostRoutes.LOGISTICS + "/add",
+
+  // HARDWARE SHOPS BILLS
+  HARDWARE_SHOP_BILL: hostRoutes.HARDWARE_SHOP_BILL,
+  EDIT_HARDWARE_SHOP_BILL: hostRoutes.HARDWARE_SHOP_BILL + "/:billId/edit",
+  ADD_HARDWARE_SHOP_BILL: hostRoutes.HARDWARE_SHOP_BILL + "/add",
 
   //CONFIGURATION
   CONFIGURATION: "/configuration",
