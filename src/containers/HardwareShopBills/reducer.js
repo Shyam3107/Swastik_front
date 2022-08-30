@@ -12,14 +12,15 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // GET CASES
     case actionTypes.BILLS_PENDING:
-      return { ...initialState, loading: true }
+      return { ...state, loading: true }
     case actionTypes.BILLS_SUCCESS:
       return {
-        ...initialState,
+        ...state,
+        loading: false,
         bills: action.payload.data,
       }
     case actionTypes.BILLS_FAILURE:
-      return { ...initialState, error: action.payload }
+      return { ...state, error: action.payload }
 
     // GET SHOPS CASES
     case actionTypes.GET_HARDWARE_SHOPS_NAME_PENDING:
