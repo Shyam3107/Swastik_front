@@ -3,6 +3,7 @@ import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import moment from "moment"
 import TableCell from "@mui/material/TableCell"
+import { Link } from "react-router-dom"
 
 import Layout from "../../Layout/Layout"
 import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
@@ -12,6 +13,8 @@ import {
   sampleData,
   EDIT_URL,
   filterData,
+  VIEW_PUMP_URL,
+  VIEW_VEHICLE_URL,
 } from "./constants"
 import {
   getDiesel,
@@ -82,7 +85,19 @@ const Office = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...headerKey, "addedBy"].map((headVal, index) => {
-      return <TableCell key={index}>{row[headVal]}</TableCell>
+      return (
+        <TableCell key={index}>
+          {headVal === "pumpName" ? (
+            <Link to={VIEW_PUMP_URL(row[headVal])}>{row[headVal]}</Link>
+          ) : headVal === "date" ? (
+            <Link to={EDIT_URL(row._id)}>{row[headVal]}</Link>
+          ) : headVal === "vehicleNo" ? (
+            <Link to={VIEW_VEHICLE_URL(row.vehicleNo)}>{row[headVal]}</Link>
+          ) : (
+            row[headVal]
+          )}
+        </TableCell>
+      )
     })
   }
 

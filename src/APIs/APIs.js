@@ -65,14 +65,14 @@ export const API = {
   // DIESELS
   GET_DIESELS: `${modules.diesels}/getDiesels`,
   GET_DIESELS_BY_VEHICLE: `${modules.diesels}/getDieselsByVehicle`,
-  GET_DIESELS_BY_SHOP: `${modules.diesels}/getDieselsByPump`,
+  GET_DIESELS_BY_PUMP: `${modules.diesels}/getDieselsByPump`,
   ADD_DIESELS: `${modules.diesels}/addDiesels`,
   UPLOAD_DIESELS: `${modules.diesels}/uploadDiesels`,
   EDIT_DIESELS: `${modules.diesels}/editDiesels`,
   DELETE_DIESELS: `${modules.diesels}/deleteDiesels`,
   DOWNLOAD_DIESELS: `${modules.diesels}/downloadDiesels`,
   DOWNLOAD_DIESELS_BY_VEHICLE: `${modules.diesels}/downloadDieselsByVehicle`,
-  DOWNLOAD_DIESELS_BY_SHOP: `${modules.diesels}/downloadDieselsByPump`,
+  DOWNLOAD_DIESELS_BY_PUMP: `${modules.diesels}/downloadDieselsByPump`,
 
   // VEHICLE OWNER
   GET_VEHICLE_OWNER: `${modules.vehicleOwner}/getOwner`,

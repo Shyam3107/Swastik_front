@@ -11,11 +11,11 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // GET CASES
     case actionTypes.GET_DIESEL_PENDING:
-      return { ...initialState, loading: true }
+      return { ...state, loading: true }
     case actionTypes.GET_DIESEL_SUCCESS:
-      return { ...initialState, diesels: action.payload }
+      return { ...state, loading: false, diesels: action.payload }
     case actionTypes.GET_DIESEL_FAILURE:
-      return { ...initialState, error: action.payload }
+      return { ...state, loading: false, error: action.payload }
 
     // ADD CASES
     case actionTypes.ADD_DIESEL_PENDING:

@@ -18,6 +18,8 @@ import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher"
 import Diesels from "../Diesels/PumpDiesels/Diesels"
 import AddDiesels from "../Diesels/PumpDiesels/AddDiesels"
 import EditDiesels from "../Diesels/PumpDiesels/EditDiesels"
+import ViewDieselsByPump from "../Diesels/PumpDiesels/ViewDieselsByPump"
+import ViewDieselsByVehicle from "../Diesels/PumpDiesels/ViewDieselsByVehicle"
 
 import VehicleOwner from "../Diesels/VehicleOwner/VehicleOwner"
 import AddVehicleOwner from "../Diesels/VehicleOwner/AddVehicleOwner"
@@ -128,6 +130,14 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_DIESEL,
       component: <EditDiesels />,
+    },
+    {
+      path: ROUTES.VIEW_DIESEL_BY_PUMP,
+      component: <ViewDieselsByPump />,
+    },
+    {
+      path: ROUTES.VIEW_DIESEL_BY_VEHICLE,
+      component: <ViewDieselsByVehicle />,
     },
 
     // VEHICLE OWNER

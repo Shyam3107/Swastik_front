@@ -92,7 +92,7 @@ const Bills = (props) => {
   ))
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
       return (
         <TableCell key={index}>
           {headVal === "shopName" ? (

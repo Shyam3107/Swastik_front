@@ -11,7 +11,7 @@ export const getDiesel =
 
     const options = {
       method: "get",
-      url: API.GET_DIESELS,
+      url: params.url ?? API.GET_DIESELS,
       params: params,
       callback: (data) => {
         dispatch({
@@ -129,7 +129,7 @@ export const downloadDiesel =
 
     const options = {
       method: "file",
-      url: API.DOWNLOAD_DIESELS,
+      url: params.url ?? API.DOWNLOAD_DIESELS,
       params: params,
       callback: () => {
         dispatch({

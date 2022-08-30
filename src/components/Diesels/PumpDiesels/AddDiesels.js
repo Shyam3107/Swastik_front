@@ -40,6 +40,7 @@ const AddDiesels = (props) => {
       id: "fuel",
       label: "Fuel",
       type: "select",
+      value: diesel?.fuel ?? "Diesel",
       menuItems: [
         { label: "Diesel", value: "Diesel" },
         { label: "Petrol", value: "Petrol" },

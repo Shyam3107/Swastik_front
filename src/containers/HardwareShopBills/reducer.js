@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action = {}) {
         bills: action.payload.data,
       }
     case actionTypes.BILLS_FAILURE:
-      return { ...state, error: action.payload }
+      return { ...state, loading: false, error: action.payload }
 
     // GET SHOPS CASES
     case actionTypes.GET_HARDWARE_SHOPS_NAME_PENDING:

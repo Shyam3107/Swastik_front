@@ -58,6 +58,8 @@ export const ROUTES = {
   DIESELS: hostRoutes.DIESELS,
   ADD_DIESEL: hostRoutes.DIESELS + "/add",
   EDIT_DIESEL: hostRoutes.DIESELS + "/:dieselId/edit",
+  VIEW_DIESEL_BY_PUMP: hostRoutes.DIESELS + "/pump/:pumpName",
+  VIEW_DIESEL_BY_VEHICLE: hostRoutes.DIESELS + "/vehicle/:vehicleNo",
 
   // VEHICLE OWNER
   VEHICLES_OWNER: hostRoutes.VEHICLES_OWNER,
