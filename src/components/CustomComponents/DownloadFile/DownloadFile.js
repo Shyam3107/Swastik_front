@@ -34,7 +34,7 @@ export default function CustomDrop({
       <Popper open={open} anchorEl={anchorEl}>
         <Paper style={{ padding: "5px", textAlign: "center" }}>
           {/* <Typography className={styles.button}>CSV</Typography> */}
-          <Typography style={{ margin: "10px" }}>Downloads</Typography>
+          <Typography style={{ margin: "10px" }}>Download</Typography>
           <Button
             disabled={loading}
             className={styles.button}

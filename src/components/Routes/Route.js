@@ -9,6 +9,7 @@ import Trips from "../Vehicles/Trips/Trips"
 import AddTrips from "../Vehicles/Trips/AddTrips"
 import EditTrips from "../Vehicles/Trips/EditTrips"
 import ViewTrip from "../Vehicles/Trips/ViewTrip"
+import TripsByVehicle from "../Vehicles/Trips/TripsByVehicle"
 
 import Vouchers from "../Vehicles/Vouchers/Vouchers"
 import AddVouchers from "../Vehicles/Vouchers/AddVouchers"
@@ -98,6 +99,10 @@ const Routes = (props) => {
     {
       path: ROUTES.VIEW_TRIP,
       component: <ViewTrip />,
+    },
+    {
+      path: ROUTES.VIEW_TRIP_BY_VEHICLE,
+      component: <TripsByVehicle />,
     },
 
     // VOUCHERS

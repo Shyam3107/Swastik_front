@@ -39,6 +39,7 @@ export const ROUTES = {
   // TRIPS
   TRIPS: hostRoutes.TRIPS,
   VIEW_TRIP: hostRoutes.TRIPS + "/:diNo",
+  VIEW_TRIP_BY_VEHICLE: hostRoutes.TRIPS + "/vehicle/:vehicleNo",
   ADD_TRIP: hostRoutes.TRIPS + "/add",
   EDIT_TRIP: hostRoutes.TRIPS + "/:diNo/edit",
 

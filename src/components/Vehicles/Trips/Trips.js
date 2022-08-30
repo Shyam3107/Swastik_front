@@ -19,6 +19,7 @@ import {
   sampleData,
   EDIT_URL,
   VIEW_URL,
+  VIEW_VEHICLE_URL,
   filterData,
 } from "./constants"
 import {
@@ -92,6 +93,8 @@ const Trips = (props) => {
         <TableCell key={index}>
           {headVal === "diNo" ? (
             <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
+          ) : headVal === "vehicleNo" ? (
+            <Link to={VIEW_VEHICLE_URL(row[headVal])}>{row[headVal]}</Link>
           ) : (
             row[headVal]
           )}

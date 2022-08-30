@@ -11,11 +11,11 @@ export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     // GET CASES
     case actionTypes.GET_TRIPS_PENDING:
-      return { ...initialState, loading: true }
+      return { ...state, loading: true }
     case actionTypes.GET_TRIPS_SUCCESS:
-      return { ...initialState, trips: action.payload }
+      return { ...state, loading: false, trips: action.payload.data }
     case actionTypes.GET_TRIPS_FAILURE:
-      return { ...initialState, error: action.payload }
+      return { ...state, loading: false, error: action.payload }
 
     // ADD CASES
     case actionTypes.ADD_TRIPS_PENDING:

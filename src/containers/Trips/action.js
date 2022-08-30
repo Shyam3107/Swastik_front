@@ -11,12 +11,12 @@ export const getTrips =
 
     const options = {
       method: "get",
-      url: API.GET_TRIPS,
+      url: params.url ?? API.GET_TRIPS,
       params: params,
       callback: (data) => {
         dispatch({
           type: actionTypes.GET_TRIPS_SUCCESS,
-          payload: data.data,
+          payload: data,
         })
       },
       errorActionType: actionTypes.GET_TRIPS_FAILURE,
@@ -131,7 +131,7 @@ export const downloadTrips =
 
     const options = {
       method: "file",
-      url: API.DOWNLOAD_TRIPS,
+      url: params.url ?? API.DOWNLOAD_TRIPS,
       params: params,
       callback: () => {
         dispatch({

@@ -40,11 +40,13 @@ export const API = {
 
   // Trips
   GET_TRIPS: `${modules.trips}/getTrips`,
+  GET_TRIPS_BY_VEHICLE: `${modules.trips}/getTripsByVehicle`,
   ADD_TRIPS: `${modules.trips}/addTrips`,
   UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
   DOWNLOAD_TRIPS: `${modules.trips}/downloadTrips`,
+  DOWNLOAD_TRIPS_BY_VEHICLE: `${modules.trips}/downloadTripsByVehicle`,
 
   // VOUCHERS
   GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
