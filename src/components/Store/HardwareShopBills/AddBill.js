@@ -5,6 +5,7 @@ import LayoutAdd from "../../Layout/LayoutAdd"
 import {
   addBills,
   editBills,
+  getShops,
 } from "../../../containers/HardwareShopBills/action"
 import { ROUTES } from "../../../utils/constants"
 
@@ -18,13 +19,17 @@ const initialBill = {
 
 const Bill = (props) => {
   const [form, setForm] = useState(initialBill)
-  const { initialFields } = props
+  const { initialFields, getShops } = props
   const history = props.history
-  let { loading } = props.bills
+  let { loading, shops } = props.bills
 
   useEffect(() => {
     if (initialFields) setForm(initialFields)
   }, [initialFields])
+
+  useEffect(() => {
+    getShops()
+  }, [getShops])
 
   const inputFields = [
     {
@@ -41,7 +46,7 @@ const Bill = (props) => {
       label: "Shop Name",
       type: "customSelect",
       handleChange: (val) => setForm({ ...form, shopName: val }),
-      options: ["a", "b"],
+      options: shops ?? [],
     },
     { id: "remarks", label: "Remarks", required: true },
   ]
@@ -90,5 +95,5 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { addBills, editBills })(Bill)
+  connect(mapStateToProps, { addBills, editBills, getShops })(Bill)
 )

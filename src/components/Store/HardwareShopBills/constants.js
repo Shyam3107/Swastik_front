@@ -32,3 +32,7 @@ export const filterData = (data, search) => {
 }
 
 export const EDIT_URL = (id) => `${hostRoutes.HARDWARE_SHOP_BILL}/${id}/edit`
+export const VIEW_SHOP_URL = (id) =>
+  `${hostRoutes.HARDWARE_SHOP_BILL}/shop/${id}`
+export const VIEW_VEHICLE_URL = (id) =>
+  `${hostRoutes.HARDWARE_SHOP_BILL}/vehicle/${id}`

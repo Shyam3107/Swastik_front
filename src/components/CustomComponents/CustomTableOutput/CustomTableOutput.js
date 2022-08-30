@@ -73,7 +73,7 @@ const CustomTableOutput = ({
   }
 
   if (loading) return <CustomLoader />
-  else if (!loading && data.length === 0)
+  else if (!loading && data?.length === 0)
     return (
       <Box
         style={{
@@ -85,7 +85,7 @@ const CustomTableOutput = ({
         {mssg ? mssg : `No ${mssgTitle} Found`}
       </Box>
     )
-  else if (!loading && data.length > 0)
+  else if (!loading && data?.length > 0)
     return (
       <Box overflow="auto">
         <TableContainer

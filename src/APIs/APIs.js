@@ -64,11 +64,15 @@ export const API = {
 
   // DIESELS
   GET_DIESELS: `${modules.diesels}/getDiesels`,
+  GET_DIESELS_BY_VEHICLE: `${modules.diesels}/getDieselsByVehicle`,
+  GET_DIESELS_BY_SHOP: `${modules.diesels}/getDieselsByPump`,
   ADD_DIESELS: `${modules.diesels}/addDiesels`,
   UPLOAD_DIESELS: `${modules.diesels}/uploadDiesels`,
   EDIT_DIESELS: `${modules.diesels}/editDiesels`,
   DELETE_DIESELS: `${modules.diesels}/deleteDiesels`,
   DOWNLOAD_DIESELS: `${modules.diesels}/downloadDiesels`,
+  DOWNLOAD_DIESELS_BY_VEHICLE: `${modules.diesels}/downloadDieselsByVehicle`,
+  DOWNLOAD_DIESELS_BY_SHOP: `${modules.diesels}/downloadDieselsByPump`,
 
   // VEHICLE OWNER
   GET_VEHICLE_OWNER: `${modules.vehicleOwner}/getOwner`,
@@ -127,11 +131,16 @@ export const API = {
 
   // HARDWARE SHOP BILLS
   GET_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/getBills`,
+  GET_UNIQUE_SHOPS: `${modules.hardwareShopBill}/getUniqueShop`,
+  GET_BILLS_BY_VEHICLE: `${modules.hardwareShopBill}/getBillsByVehicle`,
+  GET_BILLS_BY_SHOP: `${modules.hardwareShopBill}/getBillsByShop`,
   ADD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/addBills`,
   EDIT_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/editBills`,
   UPLOAD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/uploadBills`,
   DELETE_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/deleteBills`,
   DOWNLOAD_HARDWARE_SHOPS_BILLS: `${modules.hardwareShopBill}/downloadBills`,
+  DOWNLOAD_BILLS_BY_VEHICLE: `${modules.hardwareShopBill}/downloadBillsByVehicle`,
+  DOWNLOAD_BILLS_BY_SHOP: `${modules.hardwareShopBill}/downloadBillsByShop`,
 
   // REPORTS
   GET_VEHICLES_REPORTS: `${modules.reports}/getVehiclesReport`,

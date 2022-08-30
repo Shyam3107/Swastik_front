@@ -6,20 +6,44 @@ export const getBills =
   (params = {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.GET_HARDWARE_SHOPS_BILLS_PENDING,
+      type: actionTypes.BILLS_PENDING,
     })
 
     const options = {
       method: "get",
-      url: API.GET_HARDWARE_SHOPS_BILLS,
+      url: params.url ?? API.GET_HARDWARE_SHOPS_BILLS,
       params: params,
       callback: (data) => {
         dispatch({
-          type: actionTypes.GET_HARDWARE_SHOPS_BILLS_SUCCESS,
+          type: actionTypes.BILLS_SUCCESS,
           payload: data,
         })
       },
-      errorActionType: actionTypes.GET_HARDWARE_SHOPS_BILLS_FAILURE,
+      errorActionType: actionTypes.BILLS_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }
+
+export const getShops =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_HARDWARE_SHOPS_NAME_PENDING,
+    })
+
+    const options = {
+      method: "get",
+      url: API.GET_UNIQUE_SHOPS,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.GET_HARDWARE_SHOPS_NAME_SUCCESS,
+          payload: data,
+        })
+      },
+      errorActionType: actionTypes.GET_HARDWARE_SHOPS_NAME_FAILURE,
       dispatch,
     }
 
@@ -131,7 +155,7 @@ export const downloadBills =
 
     const options = {
       method: "file",
-      url: API.DOWNLOAD_HARDWARE_SHOPS_BILLS,
+      url: params.url ?? API.DOWNLOAD_HARDWARE_SHOPS_BILLS,
       params: params,
       callback: () => {
         dispatch({

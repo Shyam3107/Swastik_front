@@ -3,6 +3,7 @@ import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import moment from "moment"
 import TableCell from "@mui/material/TableCell"
+import { Link } from "react-router-dom"
 
 import Layout from "../../Layout/Layout"
 import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
@@ -12,6 +13,8 @@ import {
   sampleData,
   EDIT_URL,
   filterData,
+  VIEW_SHOP_URL,
+  VIEW_VEHICLE_URL,
 } from "./constants"
 import {
   getBills,
@@ -90,7 +93,19 @@ const Bills = (props) => {
 
   const tableBodyFunc = (row) => {
     return headerKey.map((headVal, index) => {
-      return <TableCell key={index}>{row[headVal]}</TableCell>
+      return (
+        <TableCell key={index}>
+          {headVal === "shopName" ? (
+            <Link to={VIEW_SHOP_URL(row.shopName)}>{row[headVal]}</Link>
+          ) : headVal === "date" ? (
+            <Link to={EDIT_URL(row._id)}>{row[headVal]}</Link>
+          ) : headVal === "vehicleNo" ? (
+            <Link to={VIEW_VEHICLE_URL(row.vehicleNo)}>{row[headVal]}</Link>
+          ) : (
+            row[headVal]
+          )}
+        </TableCell>
+      )
     })
   }
 

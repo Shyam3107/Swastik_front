@@ -48,6 +48,8 @@ import ViewProduct from "../Store/Product/ViewProduct"
 import Bills from "../Store/HardwareShopBills/Bills"
 import AddBill from "../Store/HardwareShopBills/AddBill"
 import EditBill from "../Store/HardwareShopBills/EditBill"
+import ViewShopBills from "../Store/HardwareShopBills/ViewShopBills"
+import ViewVehicleBills from "../Store/HardwareShopBills/ViewVehicleBills"
 
 import Configuration from "../Configuration/Configuration"
 
@@ -250,6 +252,14 @@ const Routes = (props) => {
     {
       path: ROUTES.ADD_HARDWARE_SHOP_BILL,
       component: <AddBill />,
+    },
+    {
+      path: ROUTES.VIEW_HARDWARE_SHOP_BILL_BY_SHOP,
+      component: <ViewShopBills />,
+    },
+    {
+      path: ROUTES.VIEW_HARDWARE_SHOP_BILL_BY_VEHICLE,
+      component: <ViewVehicleBills />,
     },
 
     // CONFIGURATION
