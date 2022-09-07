@@ -2,7 +2,11 @@ import { useState, useEffect } from "react"
 import { connect } from "react-redux"
 import { withRouter } from "react-router"
 import LayoutAdd from "../../Layout/LayoutAdd"
-import { addDiesel, editDiesel } from "../../../containers/Diesels/action"
+import {
+  addDiesel,
+  editDiesel,
+  getDieselPumpNames,
+} from "../../../containers/Diesels/action"
 import { ROUTES } from "../../../utils/constants"
 
 const initialDiesel = {
@@ -17,13 +21,17 @@ const initialDiesel = {
 
 const AddDiesels = (props) => {
   const [diesel, setDiesel] = useState(initialDiesel)
-  const { initialFields } = props
+  const { initialFields, getDieselPumpNames } = props
   const history = props.history
-  const { loading } = props.diesels
+  const { loading, pumpNames } = props.diesels
 
   useEffect(() => {
     if (initialFields) setDiesel(initialFields)
   }, [initialFields])
+
+  useEffect(() => {
+    getDieselPumpNames()
+  }, [getDieselPumpNames])
 
   const inputFields = [
     {
@@ -46,7 +54,13 @@ const AddDiesels = (props) => {
         { label: "Petrol", value: "Petrol" },
       ],
     },
-    { id: "pumpName", label: "Pump Name", required: true },
+    {
+      id: "pumpName",
+      label: "Pump Name",
+      type: "customSelect",
+      handleChange: (val) => setDiesel({ ...diesel, pumpName: val }),
+      options: pumpNames ?? [],
+    },
     { id: "remarks", label: "Remarks" },
   ]
 
@@ -93,5 +107,7 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(
-  connect(mapStateToProps, { addDiesel, editDiesel })(AddDiesels)
+  connect(mapStateToProps, { addDiesel, editDiesel, getDieselPumpNames })(
+    AddDiesels
+  )
 )

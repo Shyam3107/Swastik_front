@@ -68,6 +68,7 @@ export const API = {
   GET_DIESELS: `${modules.diesels}/getDiesels`,
   GET_DIESELS_BY_VEHICLE: `${modules.diesels}/getDieselsByVehicle`,
   GET_DIESELS_BY_PUMP: `${modules.diesels}/getDieselsByPump`,
+  GET_DIESELS_PUMP_NAMES: `${modules.diesels}/getUniquePumpNames`,
   ADD_DIESELS: `${modules.diesels}/addDiesels`,
   UPLOAD_DIESELS: `${modules.diesels}/uploadDiesels`,
   EDIT_DIESELS: `${modules.diesels}/editDiesels`,

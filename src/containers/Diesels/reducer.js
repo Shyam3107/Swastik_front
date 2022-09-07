@@ -3,6 +3,7 @@ import * as actionTypes from "./actionTypes"
 const initialState = {
   loading: false,
   diesels: null,
+  pumpNames: null,
   error: null,
   downloadLoading: false,
 }
@@ -15,6 +16,14 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.GET_DIESEL_SUCCESS:
       return { ...state, loading: false, diesels: action.payload }
     case actionTypes.GET_DIESEL_FAILURE:
+      return { ...state, loading: false, error: action.payload }
+
+    // GET CASES
+    case actionTypes.GET_DIESEL_PUMP_NAME_PENDING:
+      return { ...state, loading: true }
+    case actionTypes.GET_DIESEL_PUMP_NAME_SUCCESS:
+      return { ...state, loading: false, pumpNames: action.payload }
+    case actionTypes.GET_DIESEL_PUMP_NAME_SUCCESS:
       return { ...state, loading: false, error: action.payload }
 
     // ADD CASES

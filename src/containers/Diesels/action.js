@@ -26,6 +26,30 @@ export const getDiesel =
     makeRequest(options)
   }
 
+export const getDieselPumpNames =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_DIESEL_PUMP_NAME_PENDING,
+    })
+
+    const options = {
+      method: "get",
+      url: API.GET_DIESELS_PUMP_NAMES,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.GET_DIESEL_PUMP_NAME_SUCCESS,
+          payload: data.data,
+        })
+      },
+      errorActionType: actionTypes.GET_DIESEL_PUMP_NAME_FAILURE,
+      dispatch,
+    }
+
+    makeRequest(options)
+  }
+
 export const addDiesel =
   (payload, cb = () => {}) =>
   (dispatch) => {
