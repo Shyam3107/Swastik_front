@@ -149,6 +149,7 @@ export const API = {
   GET_VEHICLES_REPORTS: `${modules.reports}/getVehiclesReport`,
   GET_DIESELS_REPORTS: `${modules.reports}/getDieselsReport`,
   GET_HARDWARE_SHOPS_REPORT: `${modules.reports}/getHardwareShopReport`,
+  GET_VEHICLES_DIESELS_REPORT: `${modules.reports}/getVehicleDieselReport`,
 }
 
 export const handleError = (dispatch = () => {}, action = {}, err = {}) => {

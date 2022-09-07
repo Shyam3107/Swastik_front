@@ -68,14 +68,14 @@ const Comp = (props) => {
     })
   }
 
-  const tableRow = header.map((headCell, index) => (
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal, index) => {
       return (
         <TableCell key={index}>
           {headVal === "diNo" ? (

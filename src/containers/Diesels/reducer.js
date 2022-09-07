@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action = {}) {
       return { ...state, loading: true }
     case actionTypes.GET_DIESEL_PUMP_NAME_SUCCESS:
       return { ...state, loading: false, pumpNames: action.payload }
-    case actionTypes.GET_DIESEL_PUMP_NAME_SUCCESS:
+    case actionTypes.GET_DIESEL_PUMP_NAME_FAILURE:
       return { ...state, loading: false, error: action.payload }
 
     // ADD CASES

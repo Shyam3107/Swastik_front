@@ -4,22 +4,20 @@ import { withRouter } from "react-router"
 import Box from "@mui/material/Box"
 import moment from "moment"
 
-import {
-  getVehiclesReport,
-  getDieselsReport,
-  getHardwareShopsReport,
-} from "../../containers/Reports/action"
+import { getReports } from "../../containers/Reports/action"
 import Layout from "../Layout/Layout"
 import { monthStart, currentDate } from "../../utils/constants"
+import { API } from "../../APIs/APIs"
 
 const Reports = (props) => {
   const [from, setFrom] = useState(monthStart)
   const [to, setTo] = useState(currentDate)
   const { loading } = props.reports
 
-  const handleClick = (cb) => {
+  const handleClick = (url) => {
     return () =>
-      cb({
+      props.getReports({
+        url,
         from: moment(from).toISOString(),
         to: moment(to).toISOString(),
       })
@@ -28,15 +26,19 @@ const Reports = (props) => {
   const fields = [
     {
       title: "Vehicle",
-      onClick: props.getVehiclesReport,
+      url: API.GET_VEHICLES_REPORTS,
     },
     {
-      title: "Diesel",
-      onClick: props.getDieselsReport,
+      title: "Diesel By Pump",
+      url: API.GET_DIESELS_REPORTS,
     },
     {
       title: "Store Bills",
-      onClick: props.getHardwareShopsReport,
+      url: API.GET_HARDWARE_SHOPS_REPORT,
+    },
+    {
+      title: "Vehicle Diesels",
+      url: API.GET_VEHICLES_DIESELS_REPORT,
     },
   ]
 
@@ -57,7 +59,7 @@ const Reports = (props) => {
               margin="2%"
               color="blue"
               style={{ cursor: "pointer" }}
-              onClick={handleClick(val.onClick)}
+              onClick={handleClick(val.url)}
             >
               Click here to Download {val.title} Report
             </Box>
@@ -76,8 +78,6 @@ const mapStateToProps = (state) => {
 
 export default withRouter(
   connect(mapStateToProps, {
-    getVehiclesReport,
-    getDieselsReport,
-    getHardwareShopsReport,
+    getReports,
   })(Reports)
 )
