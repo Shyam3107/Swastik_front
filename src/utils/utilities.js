@@ -27,12 +27,13 @@ export const access = {
 export const checkBoxCondition = (row) => {
   return (
     row?.addedBy?._id === user()?._id ||
-    user()?._id === user()?.companyAdminId?._id
+    row?.addedBy === user()?.location ||
+    isAdmin()
   )
 }
 
 export const isAdmin = () => {
-  return user() && user()._id === user().companyAdminId._id
+  return user()?._id === user()?.companyAdminId._id
 }
 
 export const isOperationAllowed = (acc, operation = false, data = false) => {

@@ -70,7 +70,6 @@ const Reports = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     reports: state.reports,
   }
 }

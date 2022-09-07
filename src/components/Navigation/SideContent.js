@@ -157,9 +157,7 @@ const SideContent = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  }
+  return {}
 }
 
 export default withRouter(connect(mapStateToProps)(SideContent))

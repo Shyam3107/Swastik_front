@@ -86,7 +86,6 @@ const ViewTrip = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     trips: state.trips,
   }
 }

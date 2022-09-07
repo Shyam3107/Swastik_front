@@ -2,6 +2,7 @@ import {
   formatDateInDDMMYYY,
   yearEnd,
   includesInArray,
+  hostRoutes,
 } from "../../../utils/constants"
 
 export const header = [
@@ -46,12 +47,12 @@ export const sampleData = [
   ],
 ]
 
-export const EXPIRED = "EXPIRED"
-export const ACTIVE = "ACTIVE"
+export const EXPIRED = "Expired"
+export const ACTIVE = "Active"
 export const daysLeft = (days) => `${days} Days`
 
-export const EDIT_URL = (id) => `/vehicles/documents/${id}/edit`
-export const VIEW_URL = (id) => `/vehicles/documents/${id}`
+export const EDIT_URL = (id) => `${hostRoutes.DOCUMENTS}/${id}/edit`
+export const VIEW_URL = (id) => `${hostRoutes.DOCUMENTS}/${id}`
 
 export const tableHeader = [
   "Vehicle No.",
@@ -76,9 +77,59 @@ export const tableHeaderKey = [
 export const filterData = (data, search) => {
   if (!data || !Array.isArray(data)) data = []
   return data.filter((val) => {
-    return includesInArray(
-      [val.vehicleNo, val?.addedBy?.location ?? ""],
-      search
-    )
+    search = search?.toLowerCase()
+    switch (search) {
+      // For Expired
+      case "tax expired":
+        return includesInArray([val?.taxStatus], EXPIRED)
+
+      case "insurance expired":
+        return includesInArray([val?.insurancetatus], EXPIRED)
+
+      case "permit expired":
+        return includesInArray([val?.permitStatus], EXPIRED)
+
+      case "pollution expired":
+        return includesInArray([val?.pollutionStatus], EXPIRED)
+
+      case "fitness expired":
+        return includesInArray([val?.fitnessStatus], EXPIRED)
+
+      case "national permit expired":
+        return includesInArray([val?.nationalPermitStatus], EXPIRED)
+
+      // For Active
+      case "tax active":
+        return includesInArray([val?.taxStatus], ACTIVE)
+
+      case "insurance active":
+        return includesInArray([val?.insurancetatus], ACTIVE)
+
+      case "permit active":
+        return includesInArray([val?.permitStatus], ACTIVE)
+
+      case "pollution active":
+        return includesInArray([val?.pollutionStatus], ACTIVE)
+
+      case "fitness active":
+        return includesInArray([val?.fitnessStatus], ACTIVE)
+
+      case "national permit active":
+        return includesInArray([val?.nationalPermitStatus], ACTIVE)
+
+      default:
+        return includesInArray(
+          [
+            val.vehicleNo,
+            val?.addedBy,
+            val?.taxStatus,
+            val?.insutanceStatus,
+            val?.fitnessStatus,
+            val?.pollutionStatus,
+            val?.permitStatus,
+          ],
+          search
+        )
+    }
   })
 }

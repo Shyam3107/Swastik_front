@@ -138,7 +138,6 @@ const Comp = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     bills: state.hardwareShopBills,
   }
 }

@@ -16,7 +16,7 @@ const Logistic = (props) => {
 
   if (logistics && Array.isArray(logistics)) logistics = null
   if (logistics)
-    logistics = { ...logistics, product: logistics?.product?._id ?? '' }
+    logistics = { ...logistics, product: logistics?.product?._id ?? "" }
 
   return <AddLogistic initialFields={logistics} />
 }
@@ -24,7 +24,6 @@ const Logistic = (props) => {
 const mapStateToProps = (state) => {
   return {
     logistics: state.logistics,
-    user: state.user,
   }
 }
 

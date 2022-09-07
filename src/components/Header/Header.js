@@ -1,17 +1,17 @@
-import { connect } from "react-redux";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import SettingsIcon from "@mui/icons-material/Settings";
-import { withRouter } from "react-router";
-import Tooltip from "@mui/material/Tooltip";
+import { connect } from "react-redux"
+import AppBar from "@mui/material/AppBar"
+import Toolbar from "@mui/material/Toolbar"
+import Typography from "@mui/material/Typography"
+import Button from "@mui/material/Button"
+import SettingsIcon from "@mui/icons-material/Settings"
+import { withRouter } from "react-router"
+import Tooltip from "@mui/material/Tooltip"
 
-import { ROUTES } from "../../utils/constants";
-import styles from "./styles.module.css";
+import { ROUTES } from "../../utils/constants"
+import styles from "./styles.module.css"
 
 const Header = (props) => {
-  const history = props.history;
+  const history = props.history
 
   return (
     <header className={styles.header}>
@@ -38,13 +38,11 @@ const Header = (props) => {
         </Toolbar>
       </AppBar>
     </header>
-  );
-};
+  )
+}
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  };
-};
+  return {}
+}
 
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps)(Header))

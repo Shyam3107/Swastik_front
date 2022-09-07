@@ -137,7 +137,6 @@ const Comp = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     diesels: state.diesels,
   }
 }

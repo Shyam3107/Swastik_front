@@ -187,7 +187,6 @@ const PrintVoucher = (props) => {
 const mapStateToProps = (state) => {
   return {
     vouchers: state.vouchers,
-    user: state.user,
   }
 }
 

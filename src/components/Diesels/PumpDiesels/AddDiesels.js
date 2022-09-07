@@ -89,7 +89,6 @@ const AddDiesels = (props) => {
 const mapStateToProps = (state) => {
   return {
     diesels: state.diesels,
-    user: state.user,
   }
 }
 

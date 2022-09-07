@@ -152,7 +152,6 @@ const Documents = (props) => {
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-    user: state.user,
   }
 }
 

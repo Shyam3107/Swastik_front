@@ -75,7 +75,6 @@ const Office = (props) => {
 const mapStateToProps = (state) => {
   return {
     officeExpense: state.officeExpense,
-    user: state.user,
   }
 }
 

@@ -227,7 +227,6 @@ const AddEmployeeAccount = (props) => {
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
-    user: state.user,
   }
 }
 

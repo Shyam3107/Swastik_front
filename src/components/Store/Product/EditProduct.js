@@ -22,7 +22,6 @@ const Product = (props) => {
 const mapStateToProps = (state) => {
   return {
     products: state.products,
-    user: state.user,
   }
 }
 

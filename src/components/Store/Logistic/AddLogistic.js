@@ -113,7 +113,6 @@ const mapStateToProps = (state) => {
   return {
     logistics: state.logistics,
     products: state.products,
-    user: state.user,
   }
 }
 

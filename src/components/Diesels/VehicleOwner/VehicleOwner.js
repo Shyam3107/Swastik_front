@@ -122,7 +122,6 @@ const Logistic = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     vehicleOwner: state.vehicleOwner,
   }
 }

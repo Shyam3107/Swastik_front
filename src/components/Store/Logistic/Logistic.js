@@ -141,7 +141,6 @@ const Logistic = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
     logistics: state.logistics,
   }
 }

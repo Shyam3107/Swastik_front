@@ -133,7 +133,6 @@ const Vehicles = (props) => {
 const mapStateToProps = (state) => {
   return {
     vehiclesExpense: state.vehiclesExpense,
-    user: state.user,
   }
 }
 

@@ -90,7 +90,6 @@ const Bill = (props) => {
 const mapStateToProps = (state) => {
   return {
     bills: state.hardwareShopBills,
-    user: state.user,
   }
 }
 

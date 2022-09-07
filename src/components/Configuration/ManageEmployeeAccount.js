@@ -20,7 +20,7 @@ const ManageEmployeeAccount = (props) => {
   const [search, setSearch] = useState("")
   const [accountData, setAccounData] = useState(null)
   const [dialog, setDialog] = useState(false)
-  
+
   let { accounts, loading, deleteLoading } = props.accounts
   if (!accounts || !Array.isArray(accounts)) accounts = []
   const { getAccount } = props
@@ -108,7 +108,6 @@ const ManageEmployeeAccount = (props) => {
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
-    user: state.user,
   }
 }
 

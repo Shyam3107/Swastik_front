@@ -78,7 +78,6 @@ const VehicleOwner = (props) => {
 const mapStateToProps = (state) => {
   return {
     vehicleOwner: state.vehicleOwner,
-    user: state.user,
   }
 }
 

@@ -116,7 +116,6 @@ const Office = (props) => {
 const mapStateToProps = (state) => {
   return {
     receipt: state.receipt,
-    user: state.user,
   }
 }
 

@@ -144,7 +144,6 @@ const Trips = (props) => {
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
-    user: state.user,
   }
 }
 

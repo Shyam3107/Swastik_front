@@ -22,9 +22,6 @@ const Route = lazy(() => import("../Routes/Route"))
 const Navigation = (props) => {
   const [toggled, setToggled] = useState(false)
   const isOnline = useNetworkStatus()
-  let user = props.user.user
-
-  if (!user) user = {}
 
   const handleToggleSidebar = () => {
     setToggled(!toggled)
@@ -80,9 +77,7 @@ const Navigation = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  }
+  return {}
 }
 
 export default withRouter(connect(mapStateToProps, { userLogout })(Navigation))

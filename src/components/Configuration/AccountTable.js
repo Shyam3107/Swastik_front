@@ -20,8 +20,8 @@ const AccountTable = (props) => {
     const searchIn = [
       val.userName,
       val.location,
-       val?.tptCode ?? "",
-     val?.companyName ?? "",
+      val?.tptCode ?? "",
+      val?.companyName ?? "",
     ]
     return includesInArray(searchIn, props.search)
   })
@@ -55,7 +55,10 @@ const AccountTable = (props) => {
               <TableCell>{row.location}</TableCell>
               <TableCell>
                 <Tooltip title="Delete">
-                  <IconButton onClick={() => props.handleDeleteIcon(row)} aria-label="delete">
+                  <IconButton
+                    onClick={() => props.handleDeleteIcon(row)}
+                    aria-label="delete"
+                  >
                     <DeleteIcon />
                   </IconButton>
                 </Tooltip>
@@ -71,7 +74,6 @@ const AccountTable = (props) => {
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
-    user: state.user,
   }
 }
 

@@ -38,9 +38,7 @@ const SideFooter = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-  }
+  return {}
 }
 
 export default withRouter(connect(mapStateToProps, { userLogout })(SideFooter))
