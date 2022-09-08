@@ -128,10 +128,13 @@ const Bills = (props) => {
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
-      handleFileSubmit={handleFileSubmit}
+      handleFileSubmit={
+        isOperationAllowed(access.STORE_BILLS, operations.CREATE) &&
+        handleFileSubmit
+      }
       handleDownload={handleDownload}
       handleAddButton={
-        isOperationAllowed(access.STORE_BILLS, operations.ADD) &&
+        isOperationAllowed(access.STORE_BILLS, operations.CREATE) &&
         handleAddButton
       }
       handleEditButton={

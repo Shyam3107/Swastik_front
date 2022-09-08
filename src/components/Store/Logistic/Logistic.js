@@ -123,10 +123,14 @@ const Logistic = (props) => {
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
-      handleFileSubmit={handleFileSubmit}
+      handleFileSubmit={
+        isOperationAllowed(access.PRODUCTS, operations.CREATE) &&
+        handleFileSubmit
+      }
       handleDownload={handleDownload}
       handleAddButton={
-        isOperationAllowed(access.PRODUCTS, operations.ADD) && handleAddButton
+        isOperationAllowed(access.PRODUCTS, operations.CREATE) &&
+        handleAddButton
       }
       handleEditButton={
         isOperationAllowed(access.PRODUCTS, operations.EDIT) && handleEditButton

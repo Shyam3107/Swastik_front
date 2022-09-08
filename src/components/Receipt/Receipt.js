@@ -99,7 +99,8 @@ const Office = (props) => {
       numSelected={selected}
       setNumSelected={setSelected}
       handleAddButton={
-        isOperationAllowed(access.RECEIPTS, operations.ADD) && handleAddButton
+        isOperationAllowed(access.RECEIPTS, operations.CREATE) &&
+        handleAddButton
       }
       handleEditButton={
         isOperationAllowed(access.RECEIPTS, operations.EDIT) && handleEditButton
