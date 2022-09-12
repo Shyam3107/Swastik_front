@@ -85,7 +85,7 @@ const Bills = (props) => {
 
   bills = filterData(bills, search)
 
-  const tableRow = header.map((headCell, index) => (
+  const tableRow = [...header, "Added By"].map((headCell, index) => (
     <TableCell style={{ fontWeight: "600" }} key={index}>
       {headCell}
     </TableCell>
