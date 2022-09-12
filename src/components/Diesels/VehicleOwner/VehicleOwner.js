@@ -67,16 +67,16 @@ const Logistic = (props) => {
 
   vehicleOwner = filterData(vehicleOwner, search)
 
-  const tableRow = header.map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = header.map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return headerKey.map((headVal) => {
       return (
-        <TableCell key={index}>
+        <TableCell key={headVal}>
           {headVal === "vehicleNo" ? (
             <Link to={EDIT_URL(row[headVal])}>{row[headVal]}</Link>
           ) : (

@@ -302,9 +302,9 @@ const Routes = (props) => {
       <Route exact path={ROUTES.LOGIN}>
         {loggedIn ? <Redirect to={ROUTES.HOME} /> : <Login />}
       </Route>
-      {privateRoutes.map((rout, index) => {
+      {privateRoutes.map((rout) => {
         return (
-          <PrivateRoute exact path={rout.path} key={index}>
+          <PrivateRoute exact path={rout.path} key={rout.path}>
             {rout.noShow ? <Redirect to={ROUTES.HOME} /> : rout.component}
           </PrivateRoute>
         )

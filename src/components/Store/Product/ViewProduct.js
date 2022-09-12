@@ -92,8 +92,8 @@ const ViewProduct = (props) => {
     })
   }
 
-  const tableRow = logisticHeader.map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = logisticHeader.map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
@@ -101,7 +101,7 @@ const ViewProduct = (props) => {
   const tableBodyFunc = (row) => {
     return logisticHeaderKey.map((headVal, index) => {
       return (
-        <TableCell key={index}>
+        <TableCell key={headVal}>
           {index === 0 ? (
             <Link to={EDIT_LOGISTIC_URL(row._id)}>{row[headVal]}</Link>
           ) : headVal === "product" ? (

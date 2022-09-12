@@ -52,7 +52,7 @@ const LayoutAdd = ({
         * Mandatory Fields
       </span>
       <Grid container style={{ padding: "20px", width: "100%" }} spacing={4}>
-        {inputFields.map((item, index) => {
+        {inputFields.map((item) => {
           const isTypeTextNumber = item.type ? item.type === "number" : true
 
           if (item.required && !(item.value || data[item.id]))
@@ -74,7 +74,7 @@ const LayoutAdd = ({
           }
 
           return (
-            <Grid item xs={12} sm={5} md={4} lg={3} key={index}>
+            <Grid item xs={12} sm={5} md={4} lg={3} key={item.label}>
               <Typography variant="h6">
                 {item.label}
                 {item.required && <span style={{ color: "red" }}>*</span>}

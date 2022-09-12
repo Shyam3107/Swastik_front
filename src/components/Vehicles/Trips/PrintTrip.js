@@ -11,12 +11,6 @@ const PrintTrip = (props) => {
   let user = props.user.user
   if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } }
 
-  // const rules = [
-  //   `a) I / We here by decalre that I/We have not taken the credit of Excise Duty Paid on inputs or capital goods or Service tax Credit on input services, used for providing the "Transport of Goods by Road" Service under the provision of Cenvat Credit Rules 2004.`,
-  //   `b) I/We hereby declare that We have not availed the benefit under norificotion of the Government of India in the Ministry of finance Department of Revenue No. 12/2003 Service Tax, dated the 20th June 2003 (G.S.R. 503(E) dated the 20th June 2003).`,
-  //   `c) I/We also agree to indemnify the company against any payment / liability lossof cridit/ damage caused to the company in case of our default for company with the said declaration.`,
-  // ];
-
   let consignor = trips.addedBy?.consignor
   let branch = trips.addedBy?.branch
 
@@ -141,19 +135,6 @@ const PrintTrip = (props) => {
         </Grid>
       </Grid>
       <Box marginTop="10px">
-        {/* {rules.map((rule, index) => {
-          return (
-            <h4 key={index} className={styles.rules}>
-              {rule}
-            </h4>
-          );
-        })}
-        <h4 className={styles.rules}>
-          We here by under take that we have into availed the credit on the duty
-          paid on input annd caprtal goods used for providing such taxble
-          service and have also not availed benefit under notification no
-          12/2003 dated 20/08/2003
-        </h4> */}
         <h3
           style={{ textAlign: "end", marginRight: "10px", marginTop: "7rem" }}
         >

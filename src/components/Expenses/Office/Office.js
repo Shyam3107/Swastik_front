@@ -77,15 +77,15 @@ const Office = (props) => {
 
   expenses = filterData(expenses, search)
 
-  const tableRow = [...header, "Added By"].map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = [...header, "Added By"].map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return [...headerKey, "addedBy"].map((headVal, index) => {
-      return <TableCell key={index}>{row[headVal]}</TableCell>
+    return [...headerKey, "addedBy"].map((headVal) => {
+      return <TableCell key={headVal}>{row[headVal]}</TableCell>
     })
   }
 

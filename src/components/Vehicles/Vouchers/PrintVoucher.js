@@ -141,7 +141,7 @@ const PrintVoucher = (props) => {
                   display: "flex",
                   alignItems: "center",
                 }}
-                key={index}
+                key={val.title}
               >
                 {val.title} : {val.value}
               </p>
@@ -154,9 +154,9 @@ const PrintVoucher = (props) => {
         >
           <h3 style={{ textAlign: "center" }}>Amount</h3>
           <table style={{ width: "100%", border: blackBorder }}>
-            {amount.map((am, index) => {
+            {amount.map((am) => {
               return (
-                <tbody key={index}>
+                <tbody key={am.title}>
                   <tr style={{ border: blackBorder, fontSize: "1.5rem" }}>
                     <td style={{ border: blackBorder, paddingLeft: "5px" }}>
                       {am.title}

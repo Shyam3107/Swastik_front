@@ -121,7 +121,7 @@ const AddEmployeeAccount = (props) => {
   return (
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
-        {inputFields.map((item, index) => {
+        {inputFields.map((item) => {
           const handleInputChange = (e) => {
             setForm({ ...form, [e.target.name]: e.target.value })
             if (item.required) handleValidate(e.target.name, e.target.value)
@@ -133,7 +133,7 @@ const AddEmployeeAccount = (props) => {
               sm={item.sm ? item.sm : 5}
               md={item.md ? item.md : 4}
               lg={item.lg ? item.lg : 3}
-              key={index}
+              key={item.label}
             >
               <Typography variant="h6">
                 {item.label}

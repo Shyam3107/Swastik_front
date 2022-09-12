@@ -40,8 +40,8 @@ const AccountTable = (props) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {accounts.map((row, index) => (
-            <TableRow key={index}>
+          {accounts.map((row) => (
+            <TableRow key={row.userName}>
               <TableCell
                 style={{
                   color: "blue",

@@ -32,10 +32,10 @@ const Configuration = () => {
   return (
     <Box paddingLeft="2%" backgroundColor="#C5E9EA" marginTop="-10px">
       <Grid container marginBottom="20px">
-        {titleBar.map((item, index) => {
+        {titleBar.map((item) => {
           return (
             <Grid
-              key={index}
+              key={item.title}
               item
               style={{
                 cursor: "pointer",

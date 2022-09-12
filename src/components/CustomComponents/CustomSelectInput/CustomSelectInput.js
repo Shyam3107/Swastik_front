@@ -11,9 +11,9 @@ const CustomSelectInput = ({ id, value, handleChange, menuItems, style }) => {
       style={{ width: "100%", ...style }}
       name={id}
     >
-      {menuItems.map((item, index) => {
+      {menuItems.map((item) => {
         return (
-          <MenuItem value={item.value} key={index}>
+          <MenuItem value={item.value} key={item.label}>
             {item.label}
           </MenuItem>
         )

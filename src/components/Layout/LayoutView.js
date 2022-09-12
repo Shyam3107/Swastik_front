@@ -72,14 +72,14 @@ const LayoutView = ({
       </Box>
 
       <Grid container style={{ padding: "20px", width: "100%" }} spacing={3}>
-        {viewFields.map((item, index) => {
+        {viewFields.map((item) => {
           return (
             <Grid
               item
               xs={6}
               sm={4}
               md={3}
-              key={index}
+              key={item.label}
               className={styles.gridItem}
             >
               <Typography variant="h6">{item.label}</Typography>

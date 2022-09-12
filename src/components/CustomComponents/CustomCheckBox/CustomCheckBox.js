@@ -9,9 +9,9 @@ export default function CustomCheckBox({ options, handleChange, value }) {
   }
   return (
     <Grid container>
-      {options.map((option, index) => {
+      {options.map((option) => {
         return (
-          <Grid item lg={2} md={3} sm={6} xs={12} key={index}>
+          <Grid item lg={2} md={3} sm={6} xs={12} key={option.label}>
             <FormControlLabel
               value={option.id}
               control={

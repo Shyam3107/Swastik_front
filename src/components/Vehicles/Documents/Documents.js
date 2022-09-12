@@ -69,24 +69,30 @@ const Documents = (props) => {
 
   documents = filterData(documents, search)
 
-  const tableRow = [...tableHeader, "Added By"].map((headCell, index) => (
-    <TableCell key={index} style={{ fontWeight: "600", textAlign: "center" }}>
+  const tableRow = [...tableHeader, "Added By"].map((headCell) => (
+    <TableCell
+      key={headCell}
+      style={{ fontWeight: "600", textAlign: "center" }}
+    >
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return [...tableHeaderKey, "addedBy"].map((headVal, index) => {
+    return [...tableHeaderKey, "addedBy"].map((headVal) => {
       if (headVal === "vehicleNo")
         return (
-          <TableCell key={index}>
+          <TableCell key={headVal}>
             <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
           </TableCell>
         )
       if (headVal === "addedBy")
-        return <TableCell key={index}>{row[headVal]}</TableCell>
+        return <TableCell key={headVal}>{row[headVal]}</TableCell>
       return (
-        <TableCell key={index} style={{ padding: "5px", textAlign: "center" }}>
+        <TableCell
+          key={headVal}
+          style={{ padding: "5px", textAlign: "center" }}
+        >
           <span
             style={{
               backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",

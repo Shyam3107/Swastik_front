@@ -117,19 +117,19 @@ const SideContent = (props) => {
   return (
     <SidebarContent>
       <Menu iconShape="circle">
-        {menuItems.map((item, index) => {
+        {menuItems.map((item) => {
           if (item.subMenu) {
             return (
               <SubMenu
                 title={item.title}
                 icon={item.icon}
-                key={index}
+                key={item.title}
                 active={item.active}
               >
                 {item.subMenu.map((sub, ind) => {
                   return (
                     <MenuItem
-                      key={ind}
+                      key={sub.title}
                       icon={sub.icon}
                       onClick={props.handleToggleSidebar}
                     >
@@ -143,7 +143,7 @@ const SideContent = (props) => {
             return (
               <MenuItem
                 icon={item.icon}
-                key={index}
+                key={item.title}
                 active={item.active}
                 onClick={props.handleToggleSidebar}
               >
@@ -156,8 +156,4 @@ const SideContent = (props) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {}
-}
-
-export default withRouter(connect(mapStateToProps)(SideContent))
+export default withRouter(connect(null)(SideContent))

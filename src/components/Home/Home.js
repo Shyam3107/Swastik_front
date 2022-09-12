@@ -72,10 +72,10 @@ const Home = (props) => {
   return (
     <Box margin="20px">
       <Grid container spacing={4} marginBottom="20px">
-        {pieCharts.map((chart, index) => {
+        {pieCharts.map((chart) => {
           const showChart = !chart.data.every((val) => !val)
           return (
-            <Grid item key={index} lg={4} md={6} sm={12}>
+            <Grid item key={chart.title} lg={4} md={6} sm={12}>
               <Paper
                 elevation={10}
                 style={{

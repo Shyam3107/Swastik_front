@@ -77,16 +77,16 @@ const Comp = (props) => {
     })
   }
 
-  const tableRow = header.map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = header.map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return headerKey.map((headVal, index) => {
+    return headerKey.map((headVal) => {
       return (
-        <TableCell key={index}>
+        <TableCell key={headVal}>
           {headVal === "shopName" ? (
             <Link to={VIEW_SHOP_URL(row.shopName)}>{row[headVal]}</Link>
           ) : headVal === "date" ? (

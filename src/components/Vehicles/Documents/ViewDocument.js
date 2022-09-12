@@ -96,9 +96,9 @@ const ViewDocument = (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((val, index) => {
+            {data.map((val) => {
               return (
-                <TableRow key={index}>
+                <TableRow key={val.title}>
                   <TableCell style={{ fontWeight: "600" }}>
                     {val.title}
                   </TableCell>

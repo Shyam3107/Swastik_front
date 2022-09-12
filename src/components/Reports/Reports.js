@@ -52,10 +52,10 @@ const Reports = (props) => {
         setSelectedFrom={setFrom}
         setSelectedTo={setTo}
       >
-        {fields.map((val, index) => {
+        {fields.map((val) => {
           return (
             <Box
-              key={index}
+              key={val.title}
               margin="2%"
               color="blue"
               style={{ cursor: "pointer" }}

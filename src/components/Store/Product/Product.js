@@ -64,8 +64,8 @@ const Product = (props) => {
 
   products = filterData(products, search)
 
-  const tableRow = header.map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = header.map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
@@ -73,7 +73,7 @@ const Product = (props) => {
   const tableBodyFunc = (row) => {
     return headerKey.map((headVal, index) => {
       return (
-        <TableCell key={index}>
+        <TableCell key={headVal}>
           {index === 0 ? (
             <Link to={VIEW_URL(row._id)}>{row[headVal]}</Link>
           ) : (

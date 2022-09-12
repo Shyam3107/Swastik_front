@@ -81,16 +81,16 @@ const Trips = (props) => {
 
   trips = filterData(trips, search)
 
-  const tableRow = [...header, "Added By"].map((headCell, index) => (
-    <TableCell style={{ fontWeight: "600" }} key={index}>
+  const tableRow = [...header, "Added By"].map((headCell) => (
+    <TableCell style={{ fontWeight: "600" }} key={headCell}>
       {headCell}
     </TableCell>
   ))
 
   const tableBodyFunc = (row) => {
-    return [...headerKey, "addedBy"].map((headVal, index) => {
+    return [...headerKey, "addedBy"].map((headVal) => {
       return (
-        <TableCell key={index}>
+        <TableCell key={headVal}>
           {headVal === "diNo" ? (
             <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
           ) : headVal === "vehicleNo" ? (

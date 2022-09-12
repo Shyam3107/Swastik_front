@@ -15,13 +15,13 @@ const CustomRadio = (props) => {
           onChange={props.handleChange}
           value={props.value}
         >
-          {props.options.map((val, index) => {
+          {props.options.map((val) => {
             return (
               <FormControlLabel
                 value={val.value}
                 control={<Radio />}
                 label={val.label}
-                key={index}
+                key={val.label}
               />
             )
           })}
