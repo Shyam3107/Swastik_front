@@ -84,7 +84,7 @@ export const filterData = (data, search) => {
         return includesInArray([val?.taxStatus], EXPIRED)
 
       case "insurance expired":
-        return includesInArray([val?.insurancetatus], EXPIRED)
+        return includesInArray([val?.insuranceStatus], EXPIRED)
 
       case "permit expired":
         return includesInArray([val?.permitStatus], EXPIRED)
