@@ -56,11 +56,11 @@ export default function reducer(state = initialState, action = {}) {
 
     // DOWNLOAD CASES
     case actionTypes.DOWNLOAD_DOCUMENTS_PENDING:
-      return { ...state, loading: true }
+      return { ...state, downloadLoading: true }
     case actionTypes.DOWNLOAD_DOCUMENTS_SUCCESS:
-      return { ...state, loading: false }
+      return { ...state, downloadLoading: false }
     case actionTypes.DOWNLOAD_DOCUMENTS_FAILURE:
-      return { ...state, loading: false }
+      return { ...state, downloadLoading: false }
 
     default:
       return state
