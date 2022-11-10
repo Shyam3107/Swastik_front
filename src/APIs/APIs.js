@@ -6,8 +6,10 @@ import { error, warn, success } from "../utils/constants"
 dotenv.config()
 
 const env = process.env.REACT_APP_ENV
-//let backendURL = "https://good-teal-millipede-gear.cyclic.app"
-let backendURL = "https://swastik-backend.herokuapp.com"
+
+let backendURL = "https://swastik-backend.onrender.com"
+
+//let backendURL = "https://swastik-backend.herokuapp.com"
 if (env && env === "DEV") backendURL = "http://localhost:9000"
 
 export { backendURL }
