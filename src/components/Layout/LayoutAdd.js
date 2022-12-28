@@ -6,10 +6,12 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import FormHelperText from "@mui/material/FormHelperText"
 
+import { InputTypes } from "../../utils/constants"
 import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
 import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePicker"
 import CustomSelectInput from "../CustomComponents/CustomSelectInput/CustomSelectInput"
 import useValidate from "../CustomComponents/CustomHooks/useValidate"
+import CustomSwitch from "../CustomComponents/CustomSwitch/CustomSwitch"
 import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete"
 import CustomAutoCompleteSelect from "../CustomComponents/CustomAutoCompleteSelect/CustomAutoCompleteSelect"
 
@@ -53,16 +55,17 @@ const LayoutAdd = ({
       </span>
       <Grid container style={{ padding: "20px", width: "100%" }} spacing={4}>
         {inputFields.map((item) => {
-          const isTypeTextNumber = item.type ? item.type === "number" : true
+          const isTypeTextNumber = item.type ? item.type === InputTypes.NUMBER : true
 
           if (item.required && !(item.value || data[item.id]))
             submitButtonDisable = true
 
           const handleInputChange = (event) => {
+            // If handle change define in item then use it else use custom one
             if (item.handleChange) item.handleChange(event)
             else handleValueChange(event)
 
-            if (item.type === "customSelect")
+            if (item.type === InputTypes.CUSTOM_SELECT)
               event = { target: { name: item.id, value: event } }
 
             if (item.required)
@@ -92,7 +95,7 @@ const LayoutAdd = ({
                   onBlur={handleInputChange}
                 />
               )}
-              {item.type === "date" && (
+              {item.type === InputTypes.DATE && (
                 <CustomDatePicker
                   selectedDate={item.value ? item.value : data[item.id]}
                   id={item.id}
@@ -100,7 +103,7 @@ const LayoutAdd = ({
                   maxDate={item.maxDate}
                 />
               )}
-              {item.type === "select" && (
+              {item.type === InputTypes.SELECT && (
                 <CustomSelectInput
                   id={item.id}
                   value={item.value ? item.value : data[item.id]}
@@ -108,7 +111,7 @@ const LayoutAdd = ({
                   menuItems={item.menuItems}
                 />
               )}
-              {item.type === "customSelect" && (
+              {item.type === InputTypes.CUSTOM_SELECT && (
                 <CustomAutoComplete
                   options={item.options}
                   id={item.id}
@@ -116,7 +119,7 @@ const LayoutAdd = ({
                   value={item.value ? item.value : data[item.id]}
                 />
               )}
-              {item.type === "selectAutoComplete" && (
+              {item.type === InputTypes.SELECT_AUTO_COMPLETE && (
                 <CustomAutoCompleteSelect
                   options={item.options}
                   id={item.id}
@@ -124,6 +127,12 @@ const LayoutAdd = ({
                   value={item.value ? item.value : data[item.id]}
                 />
               )}
+              {item.type === InputTypes.SWITCH &&
+                <CustomSwitch
+                  id={item.id}
+                  handleChange={handleInputChange}
+                  value={item.value ? item.value : data[item.id]}
+                />}
               <FormHelperText error={Boolean(error[item.id])}>
                 {error[item.id]}
               </FormHelperText>

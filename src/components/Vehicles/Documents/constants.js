@@ -13,6 +13,7 @@ export const header = [
   "Pollution Paid Upto",
   "Permit Paid Upto",
   "National Permit Paid Upto",
+  "Is National Permit"
 ]
 
 export const headerKey = [
@@ -23,6 +24,7 @@ export const headerKey = [
   "pollutionPaidUpto",
   "permitPaidUpto",
   "nationalPermitPaidUpto",
+  "isNationalPermit"
 ]
 
 export const sampleData = [
@@ -35,6 +37,7 @@ export const sampleData = [
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(yearEnd),
+    "YES"
   ],
   [
     "CG04MH5676",
@@ -44,6 +47,7 @@ export const sampleData = [
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(yearEnd),
     formatDateInDDMMYYY(yearEnd),
+    "NO"
   ],
 ]
 
@@ -62,6 +66,7 @@ export const tableHeader = [
   "Pollution",
   "Permit",
   "National Permit",
+  "Is National Permit"
 ]
 
 export const tableHeaderKey = [
@@ -72,6 +77,7 @@ export const tableHeaderKey = [
   "pollutionStatus",
   "permitStatus",
   "nationalPermitStatus",
+  "isNationalPermit"
 ]
 
 export const filterData = (data, search) => {
@@ -127,6 +133,7 @@ export const filterData = (data, search) => {
             val?.fitnessStatus,
             val?.pollutionStatus,
             val?.permitStatus,
+            val?.isNationalPermit
           ],
           search
         )

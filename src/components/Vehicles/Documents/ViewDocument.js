@@ -65,6 +65,10 @@ const ViewDocument = (props) => {
       title: "National Permit",
       value: formatDate(documents.nationalPermitPaidUpto),
     },
+    {
+      title: "Is National Permit",
+      value: documents?.isNationalPermit ? "YES" : "NO"
+    }
   ]
 
   return (

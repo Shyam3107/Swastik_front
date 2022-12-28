@@ -15,6 +15,7 @@ import { ROUTES, validateUrlValid } from "../../../utils/constants"
 import {
   sampleData,
   EXPIRED,
+  ACTIVE,
   EDIT_URL,
   VIEW_URL,
   tableHeaderKey,
@@ -80,14 +81,17 @@ const Documents = (props) => {
 
   const tableBodyFunc = (row) => {
     return [...tableHeaderKey, "addedBy"].map((headVal) => {
+
+      const rowValue=  row[headVal]
+
       if (headVal === "vehicleNo")
         return (
           <TableCell key={headVal}>
-            <Link to={VIEW_URL(row[headVal])}>{row[headVal]}</Link>
+            <Link to={VIEW_URL(rowValue)}>{rowValue}</Link>
           </TableCell>
         )
       if (headVal === "addedBy")
-        return <TableCell key={headVal}>{row[headVal]}</TableCell>
+        return <TableCell key={headVal}>{rowValue}</TableCell>
       return (
         <TableCell
           key={headVal}
@@ -95,7 +99,8 @@ const Documents = (props) => {
         >
           <span
             style={{
-              backgroundColor: row[headVal] === EXPIRED ? "#8b0000" : "green",
+              backgroundColor: rowValue === EXPIRED || rowValue ==="NO" ? "#8b0000" :
+                rowValue === ACTIVE || rowValue ==="YES" ? "green" : "#FFDF00",
               padding: "10px",
               color: "white",
               borderRadius: "10%",

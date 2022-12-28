@@ -16,6 +16,7 @@ const initialDocument = {
   pollutionPaidUpto: formatInDayEnd(),
   permitPaidUpto: formatInDayEnd(),
   nationalPermitPaidUpto: formatInDayEnd(),
+  isNationalPermit: false
 }
 
 const AddDocument = (props) => {
@@ -83,6 +84,16 @@ const AddDocument = (props) => {
           nationalPermitPaidUpto: formatInDayEnd(date),
         }),
       label: "National Permit Paid Upto",
+    },
+    {
+      id: "isNationalPermit",
+      type: "switch",
+      handleChange: (val) =>
+        setDocument({
+          ...document,
+          isNationalPermit: val,
+        }),
+      label: "Is National Permit",
     },
   ]
 

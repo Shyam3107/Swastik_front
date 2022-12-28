@@ -155,3 +155,13 @@ export const validateUrlValid = (userInput) => {
   let res = userInput.match(expression)
   return res ? true : false
 }
+
+export const InputTypes = {
+  TEXT: "text",
+  NUMBER: "number",
+  DATE: "date",
+  SWITCH: "switch",
+  SELECT_AUTO_COMPLETE: "selectAutoComplete",
+  SELECT: "select",
+  CUSTOM_SELECT: "customSelect",
+}
