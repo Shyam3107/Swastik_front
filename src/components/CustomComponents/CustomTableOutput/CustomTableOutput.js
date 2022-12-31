@@ -26,13 +26,14 @@ const CustomTableOutput = ({
   checkBoxCondition,
   selectedFrom,
   selectedTo,
+  search = "",
 }) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(5)
 
   useEffect(() => {
     setPage(0)
-  }, [selectedFrom, selectedTo, data])
+  }, [selectedFrom, selectedTo, search])
 
   const emptyRows =
     page > 0 ? Math.min(3, (1 + page) * rowsPerPage - data.length) : 0

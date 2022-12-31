@@ -60,6 +60,7 @@ const ViewDocument = (props) => {
     { title: "Tax", value: formatDate(documents.taxPaidUpto) },
     { title: "Insurance", value: formatDate(documents.insurancePaidUpto) },
     { title: "Fitness", value: formatDate(documents.fitnessPaidUpto) },
+    { title: "Pollution", value: formatDate(documents.pollutionPaidUpto) },
     { title: "Permit", value: formatDate(documents.permitPaidUpto) },
     {
       title: "National Permit",

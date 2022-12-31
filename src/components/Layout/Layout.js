@@ -90,6 +90,7 @@ const Layout = ({
           checkBoxCondition={checkBoxCondition}
           selectedFrom={selectedFrom}
           selectedTo={selectedTo}
+          search={search}
         />
       ) : (
         children

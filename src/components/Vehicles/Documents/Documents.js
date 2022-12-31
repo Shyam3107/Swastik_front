@@ -82,7 +82,7 @@ const Documents = (props) => {
   const tableBodyFunc = (row) => {
     return [...tableHeaderKey, "addedBy"].map((headVal) => {
 
-      const rowValue=  row[headVal]
+      const rowValue = row[headVal]
 
       if (headVal === "vehicleNo")
         return (
@@ -92,6 +92,39 @@ const Documents = (props) => {
         )
       if (headVal === "addedBy")
         return <TableCell key={headVal}>{rowValue}</TableCell>
+
+      let bgColor = "white"
+      let fontColor = "black"
+      const isNationalPermit = row["isNationalPermit"]
+
+      if (headVal !== "nationalPermitStatus" && headVal !== "isNationalPermit") {
+        switch (rowValue) {
+          case EXPIRED: bgColor = "#8b0000"
+            break
+          case ACTIVE: bgColor = "green"
+            break
+          default: bgColor = "#FFDF00"
+        }
+
+        fontColor = "white"
+      }
+      else {
+        // National Permit part
+        if (headVal === "nationalPermitStatus" && isNationalPermit === "YES") {
+          switch (rowValue) {
+            case EXPIRED: bgColor = "#8b0000"
+              break
+            case ACTIVE: bgColor = "green"
+              break
+            default: bgColor = "#FFDF00"
+          }
+          fontColor = "white"
+        }
+        else if (headVal === "nationalPermitStatus" && isNationalPermit === "NO") {
+          fontColor = "white"
+        }
+      }
+
       return (
         <TableCell
           key={headVal}
@@ -99,10 +132,9 @@ const Documents = (props) => {
         >
           <span
             style={{
-              backgroundColor: rowValue === EXPIRED || rowValue ==="NO" ? "#8b0000" :
-                rowValue === ACTIVE || rowValue ==="YES" ? "green" : "#FFDF00",
+              backgroundColor: bgColor,
               padding: "10px",
-              color: "white",
+              color: fontColor,
               borderRadius: "10%",
             }}
           >
