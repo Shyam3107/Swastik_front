@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react"
+import React, { useState, useEffect, Fragment } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
@@ -198,11 +198,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default withRouter(
+export default React.memo(withRouter(
   connect(mapStateToProps, {
     getDocuments,
     deleteDocuments,
     uploadDocuments,
     downloadDocuments,
   })(Documents)
-)
+))

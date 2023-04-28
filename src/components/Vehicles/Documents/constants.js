@@ -4,27 +4,28 @@ import {
   includesInArray,
   hostRoutes,
 } from "../../../utils/constants"
+import { VEHICLE_NO, TAX_PAID_UPTO, INSURANCE_PAID_UPTO, FITNESS_PAID_UPTO, PERMIT_PAID_UPTO, POLLUTION_PAID_UPTO, NATIONAL_PERMIT_PAID_UPTO, IS_NATIONAL_PERMIT } from "../../../utils/Keywords"
 
 export const header = [
-  "Vehicle No.",
-  "Tax Paid Upto",
-  "Insurance Paid Upto",
-  "Fitness Paid Upto",
-  "Pollution Paid Upto",
-  "Permit Paid Upto",
-  "National Permit Paid Upto",
-  "Is National Permit"
+  VEHICLE_NO.key,
+  TAX_PAID_UPTO.key,
+  INSURANCE_PAID_UPTO.key,
+  FITNESS_PAID_UPTO.key,
+  POLLUTION_PAID_UPTO.key,
+  PERMIT_PAID_UPTO.key,
+  NATIONAL_PERMIT_PAID_UPTO.key,
+  IS_NATIONAL_PERMIT.key
 ]
 
 export const headerKey = [
-  "vehicleNo",
-  "taxPaidUpto",
-  "insurancePaidUpto",
-  "fitnessPaidUpto",
-  "pollutionPaidUpto",
-  "permitPaidUpto",
-  "nationalPermitPaidUpto",
-  "isNationalPermit"
+  VEHICLE_NO.value,
+  TAX_PAID_UPTO.value,
+  INSURANCE_PAID_UPTO.value,
+  FITNESS_PAID_UPTO.value,
+  POLLUTION_PAID_UPTO.value,
+  PERMIT_PAID_UPTO.value,
+  NATIONAL_PERMIT_PAID_UPTO.value,
+  IS_NATIONAL_PERMIT.value
 ]
 
 export const sampleData = [

@@ -5,6 +5,7 @@ import toastMessage from "../components/CustomComponents/ToastMessage/toastMessa
 import { error } from "./constants"
 import { makeRequest } from "../APIs/APIs"
 
+// Convert Array of Arrays to Arrays of Objects with first row as Key
 export const arrayToObj = (data) => {
   let arr = []
   let header = data[0]
@@ -23,15 +24,18 @@ export const arrayToObj = (data) => {
 const convertCSVToJson = async (file, options) => {
   const extension = file.name.substr(file.name.length - 3, 3)
 
+  // Parse CSV File in array of Objects
   if (extension === "csv") {
     Papa.parse(file, {
       complete: (result) => {
         const { data, errors } = result
+        console.log(errors)
         if (errors && errors[0]) return toastMessage(errors[0].message, error)
         makeRequest({ ...options, payload: { data: arrayToObj(data) } })
       },
     })
   } else {
+    // Parse Excel File in Array of objects
     readXlsxFile(file).then((data) => {
       makeRequest({ ...options, payload: { data: arrayToObj(data) } })
     })

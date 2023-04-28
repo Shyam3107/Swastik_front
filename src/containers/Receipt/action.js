@@ -1,5 +1,6 @@
 import * as actionTypes from "./actionTypes"
 import { API, makeRequest } from "../../APIs/APIs"
+import convertCSVToJson from "../../utils/convertCSVtoJSON"
 
 export const getReceipt =
   (params = {}) =>
@@ -47,6 +48,28 @@ export const addReceipt =
     }
 
     makeRequest(options)
+  }
+
+  export const uploadReceipt =
+  (payload, cb = () => {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.UPLOAD_RECEIPT_PENDING,
+    })
+
+    const options = {
+      method: "post",
+      url: API.UPLOAD_RECEIPT,
+      callback: () => {
+        dispatch({
+          type: actionTypes.UPLOAD_RECEIPT_SUCCESS,
+        })
+        cb()
+      },
+      errorActionType: actionTypes.UPLOAD_RECEIPT_FAILURE,
+      dispatch,
+    }
+    convertCSVToJson(payload, options)
   }
 
 export const editReceipt =

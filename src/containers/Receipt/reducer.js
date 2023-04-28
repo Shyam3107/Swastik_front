@@ -9,6 +9,8 @@ const initialState = {
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
+
+    // GET CASES
     case actionTypes.GET_RECEIPT_PENDING:
       return { ...initialState, loading: true }
     case actionTypes.GET_RECEIPT_SUCCESS:
@@ -16,6 +18,7 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.GET_RECEIPT_FAILURE:
       return { ...initialState, error: action.payload }
 
+    // ADD CASES
     case actionTypes.ADD_RECEIPT_PENDING:
       return { ...state, loading: true }
     case actionTypes.ADD_RECEIPT_SUCCESS:
@@ -23,6 +26,7 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.ADD_RECEIPT_FAILURE:
       return { ...state, loading: false }
 
+    // UPLOAD CASES
     case actionTypes.UPLOAD_RECEIPT_PENDING:
       return { ...state, loading: true }
     case actionTypes.UPLOAD_RECEIPT_SUCCESS:
@@ -30,6 +34,7 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.UPLOAD_RECEIPT_FAILURE:
       return { ...state, loading: false }
 
+    // EDIT CASES
     case actionTypes.EDIT_RECEIPT_PENDING:
       return { ...state, loading: true }
     case actionTypes.EDIT_RECEIPT_SUCCESS:
@@ -37,6 +42,7 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.EDIT_RECEIPT_FAILURE:
       return { ...state, loading: false }
 
+    // DELETE CASES
     case actionTypes.DELETE_RECEIPT_PENDING:
       return { ...state, loading: true }
     case actionTypes.DELETE_RECEIPT_SUCCESS:
@@ -44,6 +50,7 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.DELETE_RECEIPT_FAILURE:
       return { ...state, loading: false }
 
+    // DOWNLOAD CASES
     case actionTypes.DOWNLOAD_RECEIPT_PENDING:
       return { ...state, downloadLoading: true }
     case actionTypes.DOWNLOAD_RECEIPT_SUCCESS:

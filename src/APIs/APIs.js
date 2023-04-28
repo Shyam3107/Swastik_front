@@ -113,6 +113,7 @@ export const API = {
   // RECEIPTS
   GET_RECEIPT: `${modules.receipts}/getReceipt`,
   ADD_RECEIPT: `${modules.receipts}/addReceipt`,
+  UPLOAD_RECEIPT: `${modules.receipts}/uploadReceipt`,
   EDIT_RECEIPT: `${modules.receipts}/editReceipt`,
   DELETE_RECEIPT: `${modules.receipts}/deleteReceipt`,
   DOWNLOAD_RECEIPT: `${modules.receipts}/downloadReceipt`,
@@ -155,14 +156,14 @@ export const API = {
   GET_VEHICLES_DIESELS_REPORT: `${modules.reports}/getVehicleDieselReport`,
 }
 
-export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
+export const handleError = (dispatch = () => { }, action = {}, err = {}) => {
   dispatch(action)
   if (!navigator.onLine) return toastMessage("You Are Offline", warn)
   let errMssg = err.response
     ? err?.response?.data?.errors
     : err.message
-    ? err.message
-    : "Some Error Occured"
+      ? err.message
+      : "Some Error Occured"
 
   if (!errMssg) errMssg = "Some Error Occured"
   return toastMessage(errMssg, error)

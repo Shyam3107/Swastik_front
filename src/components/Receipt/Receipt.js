@@ -15,6 +15,7 @@ import {
 } from "./constants"
 import {
   getReceipt,
+  uploadReceipt,
   deleteReceipt,
   downloadReceipt,
 } from "../../containers/Receipt/action"
@@ -47,6 +48,10 @@ const Office = (props) => {
       setSelected([])
     }
     props.deleteReceipt(selected, cb)
+  }
+
+  const handleFileSubmit = (file) => {
+    props.uploadReceipt(file, getReceipt)
   }
 
   const handleAddButton = () => {
@@ -89,6 +94,10 @@ const Office = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={receipts}
+      handleFileSubmit={
+        isOperationAllowed(access.RECEIPTS, operations.CREATE) &&
+        handleFileSubmit
+      }
       handleDeleteAgree={
         isOperationAllowed(access.RECEIPTS, operations.DELETE) &&
         handleDeleteAgree
@@ -124,6 +133,7 @@ export default withRouter(
   connect(mapStateToProps, {
     getReceipt,
     deleteReceipt,
+    uploadReceipt,
     downloadReceipt,
   })(Office)
 )
