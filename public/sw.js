@@ -1,4 +1,4 @@
-const version = 26
+const version = 27
 const STATIC_CACHE = "static_cache_v" + version
 const DYNAMIC_CACHE = "dynamic-cache_v" + version
 
@@ -52,10 +52,10 @@ self.addEventListener("fetch", function (event) {
     (async () => {
       try {
         // If exist in Static files return it
-        const urlPath = new URL(event.request.url)
-        if (staticFiles.includes(urlPath.pathname)) {
-          return caches.match(event.request.url)
-        }
+        // const urlPath = new URL(event.request.url)
+        // if (staticFiles.includes(urlPath.pathname)) {
+        //   return caches.match(event.request.url)
+        // }
 
         // fetch from url, store in cache and return it
         const res = await fetch(event.request)
