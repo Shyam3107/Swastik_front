@@ -20,7 +20,7 @@ const LayoutAdd = ({
   title,
   edit,
   inputFields = [],
-  handleValueChange,
+  handleValueChange, // User defined handle change
   handleCancel,
   handleReset,
   handleSubmit,

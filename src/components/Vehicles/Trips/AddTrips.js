@@ -15,6 +15,7 @@ const initialTrip = {
   material: "Cement",
   vehicleNo: "",
   quantity: 0,
+  bags: undefined,
   driverName: "",
   driverPhone: "",
   diesel: "",
@@ -58,6 +59,7 @@ const AddTrips = (props) => {
     { id: "location", label: "Location", required: true },
     { id: "vehicleNo", label: "Vehicle No.", required: true },
     { id: "quantity", type: "number", label: "Quantity", required: true },
+    { id: "bags", type: "number", label: "Bags",},
     {
       id: "material",
       label: "Material",

@@ -102,6 +102,7 @@ const PrintTrip = (props) => {
           >
             <h5>PSC/PPC</h5>
             <h5>Material : {trips.material}</h5>
+            <h5>Bags : {trips.bags}</h5>
           </Box>
           <Box className={styles.borderRight} height="67%" padding="20px 5px">
             <h5>Party Phone No. : </h5>
