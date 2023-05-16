@@ -18,6 +18,7 @@ const Configuration = () => {
   if (isOperationAllowed(access.ACCOUNTS))
     titleBar.push({ title: "Manage Employee Accounts" })
 
+  // For switching between Own account and Employee Account
   const SwitchFunc = () => {
     switch (title) {
       case "Your Account":

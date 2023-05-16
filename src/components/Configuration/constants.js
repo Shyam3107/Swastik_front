@@ -4,6 +4,7 @@ export const initialForm = {
   userName: "",
   password: "",
   phone: "",
+  phone2:"",
   companyName: "",
   tptCode: "",
   documentsLink: "",

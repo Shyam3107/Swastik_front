@@ -38,7 +38,12 @@ const PrintTrip = (props) => {
         <Grid item style={{ textAlign: "center", width: "40%" }}>
           <Box borderRadius="10px" className={styles.border} padding="5px">
             <h3>
-              (Mob) 7415844010, 9977115338 {user.phone ? `, ${user.phone}` : ""}
+              (Mob) {" "}
+              {/* User Phone else Admin Phone */}
+              {user?.phone ?? user?.companyAdminId?.phone} {", "}
+              {/* User Phone 2 else Admin Phone 2 */}
+              {user?.phone2 ?? user?.companyAdminId?.phone2} {", "}
+              9977115338
             </h3>
             <h3>H.O : Gandhi Chowk, Neora</h3>
             <h3>Distt. Raipur (C.G)</h3>
@@ -143,8 +148,8 @@ const PrintTrip = (props) => {
           {user.companyName
             ? user.companyName
             : user.companyAdminId.companyName
-            ? user.companyAdminId.companyName
-            : "SWASTIK MINERALS"}
+              ? user.companyAdminId.companyName
+              : "SWASTIK MINERALS"}
         </h3>
       </Box>
     </div>

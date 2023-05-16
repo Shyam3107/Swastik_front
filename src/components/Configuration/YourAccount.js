@@ -50,6 +50,7 @@ const YourAccount = (props) => {
     { label: "Consignor", id: "consignor" },
     { label: "Branch", id: "branch" },
     { label: "Phone No.", id: "phone" },
+    { label: "Phone No. 2", id: "phone2" },
     { label: "Company Name", id: "companyName" },
     { label: "T.P.T Code", id: "tptCode" },
   ]
