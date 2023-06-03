@@ -57,3 +57,8 @@ export const isOperationAllowed = (acc, operation = false, data = false) => {
 
   return accessGiven && operationGiven && isCreator
 }
+
+// Return an object with id, label and value
+export const getLabelIdValue = (label = "", id = "", value = null) => {
+  return { label, id, value }
+}

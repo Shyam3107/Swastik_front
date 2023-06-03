@@ -61,6 +61,8 @@ import AddReceipt from "../Receipt/AddReceipt"
 import EditReceipt from "../Receipt/EditReceipt"
 
 import Reports from "../Reports/Reports"
+import SiteReport from "../Reports/SiteReport"
+import AllSiteReport from "../Reports/AllSite"
 
 const Routes = (props) => {
   const loggedIn = !props.user.loading && props.user.loggedIn
@@ -287,6 +289,14 @@ const Routes = (props) => {
     {
       path: ROUTES.REPORTS,
       component: <Reports />,
+    },
+    {
+      path: ROUTES.VIEW_OWN_REPORT,
+      component: <SiteReport />,
+    },
+    {
+      path: ROUTES.VIEW_ALL_SITE_REPORT,
+      component: <AllSiteReport />,
     },
   ]
 

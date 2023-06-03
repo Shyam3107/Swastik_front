@@ -33,10 +33,6 @@ const YourAccount = (props) => {
     if (accounts && accounts.userName) setForm(accounts)
   }, [accounts])
 
-  const handleInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value })
-    handleValidate(e.target.name, e.target.value)
-  }
 
   const handleSaveButton = () => {
     const cb = () => getAccount({ accountId })
@@ -62,6 +58,12 @@ const YourAccount = (props) => {
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
         {inputFields.map((item) => {
+
+          const handleInputChange = (e) => {
+            setForm({ ...form, [e.target.name]: e.target.value })
+            if (item.required) handleValidate(e.target.name, e.target.value)
+          }
+
           return (
             <Grid item xs={12} sm={5} md={4} lg={3} key={item.label}>
               <Typography variant="h6">

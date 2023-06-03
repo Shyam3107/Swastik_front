@@ -12,8 +12,8 @@ import styles from "./styles.module.css"
 const LayoutView = ({
   loading,
   title,
-  viewFields = [],
-  data,
+  viewFields = [], // Array of {title, id, value} if value is null then value = data[id]
+  data = {},
   handleBack,
   handleDeleteAgree,
   handleEditButton,
@@ -83,7 +83,7 @@ const LayoutView = ({
               className={styles.gridItem}
             >
               <Typography variant="h6">{item.label}</Typography>
-              <Typography>{item.value ? item.value : data[item.id]}</Typography>
+              <Typography>{item.value ? item.value : data?.[item.id]}</Typography>
             </Grid>
           )
         })}

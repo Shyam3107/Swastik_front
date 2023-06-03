@@ -24,6 +24,7 @@ export const hostRoutes = {
   PRODUCTS: "/stores/products",
   LOGISTICS: "/stores/logistics",
   HARDWARE_SHOP_BILL: "/store/hardwareShopBill",
+  REPORTS: "/reports"
 }
 
 export const ROUTES = {
@@ -112,6 +113,8 @@ export const ROUTES = {
 
   // REPORTS
   REPORTS: "/reports",
+  VIEW_OWN_REPORT: hostRoutes.REPORTS + "/site/:siteId",
+  VIEW_ALL_SITE_REPORT: hostRoutes.REPORTS + "/allSites"
 }
 
 export const formatDate = (date, time = false) => {

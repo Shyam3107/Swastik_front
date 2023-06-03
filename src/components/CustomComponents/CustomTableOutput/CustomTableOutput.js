@@ -27,9 +27,10 @@ const CustomTableOutput = ({
   selectedFrom,
   selectedTo,
   search = "",
+  defaultRowsPerPage = 5
 }) => {
   const [page, setPage] = useState(0)
-  const [rowsPerPage, setRowsPerPage] = useState(5)
+  const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage)
 
   useEffect(() => {
     setPage(0)
@@ -64,16 +65,17 @@ const CustomTableOutput = ({
       return toastMessage("You can't select Others Data", error)
     const selectedIndex = numSelected.indexOf(row._id)
     let newSelected = []
+    // If not selected already then select
     if (selectedIndex < 0) {
       newSelected = [...numSelected, row._id]
-    } else {
+    } else { // Remove from Selection
       newSelected = [...numSelected]
       newSelected.splice(selectedIndex, 1)
     }
     setNumSelected(newSelected)
   }
 
-  if (loading) return <CustomLoader />
+  if (loading || !data) return <CustomLoader />
   else if (!loading && data?.length === 0)
     return (
       <Box
@@ -147,7 +149,7 @@ const CustomTableOutput = ({
         </TableContainer>
 
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50]}
+          rowsPerPageOptions={[5, 10, 25, 50, 100]}
           component="div"
           count={data.length}
           rowsPerPage={rowsPerPage}

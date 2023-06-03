@@ -21,7 +21,7 @@ import {
 } from "../../containers/Receipt/action"
 import { access, isOperationAllowed, operations } from "../../utils/utilities"
 
-const Office = (props) => {
+const Receipt = (props) => {
   let { getReceipt } = props
   const [search, setSearch] = useState("")
   const [selected, setSelected] = useState([])
@@ -135,5 +135,5 @@ export default withRouter(
     deleteReceipt,
     uploadReceipt,
     downloadReceipt,
-  })(Office)
+  })(Receipt)
 )

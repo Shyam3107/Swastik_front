@@ -34,6 +34,7 @@ const Layout = ({
   selectedTo,
   downloadLoading,
   checkBoxCondition,
+  defaultRowsPerPage
 }) => {
   // Show Loader in case loading during add, get, edit or delete
   if (loading) return <CustomLoader style={{ height: "80%" }} />
@@ -91,6 +92,7 @@ const Layout = ({
           selectedFrom={selectedFrom}
           selectedTo={selectedTo}
           search={search}
+          defaultRowsPerPage={defaultRowsPerPage}
         />
       ) : (
         children
