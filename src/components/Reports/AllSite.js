@@ -40,6 +40,10 @@ const AllSite = (props) => {
         })
     }
 
+    let data = report
+    // If loading is false, and report has not been updated yet
+    if (!loading && !Array.isArray(report)) data = []
+
     return (
         <Layout
             title="All Site Report"
@@ -47,7 +51,7 @@ const AllSite = (props) => {
             loading={loading}
             selectedFrom={from}
             selectedTo={to}
-            data={report}
+            data={data}
             tableRow={tableRow}
             tableBodyFunc={tableBodyFunc}
             setSelectedFrom={setFrom}

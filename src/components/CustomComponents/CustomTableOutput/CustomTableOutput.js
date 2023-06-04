@@ -159,6 +159,16 @@ const CustomTableOutput = ({
         />
       </Box>
     )
+  else
+    return <Box
+      style={{
+        textAlign: "center",
+        padding: "20px 0",
+        fontWeight: "600",
+      }}
+    >
+      Failed to load the Data. Kindly, Refresh the Page.
+    </Box>
 }
 
 export default CustomTableOutput
