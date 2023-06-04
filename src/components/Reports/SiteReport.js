@@ -60,7 +60,8 @@ const SiteReport = (props) => {
     }, [siteId, from, to, getReports])
 
     const handleBack = () => {
-        history.push(ROUTES.REPORTS)
+        if (history.length) history.goBack()
+        else history.push(ROUTES.REPORTS)
     }
 
     const handleDownload = () => {

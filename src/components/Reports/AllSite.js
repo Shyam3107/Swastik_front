@@ -3,10 +3,12 @@ import { withRouter } from "react-router"
 import { connect } from "react-redux"
 import moment from "moment"
 import TableCell from "@mui/material/TableCell"
+import { Link } from "react-router-dom"
 
 import Layout from "../Layout/Layout"
 import { monthStart, currentDate } from "../../utils/constants"
 import {
+    VIEW_OWN_REPORT,
     headerAllSite as header,
     headerKeyAllSite as headerKey,
 } from "./constants"
@@ -36,7 +38,11 @@ const AllSite = (props) => {
 
     const tableBodyFunc = (row) => {
         return headerKey.map((headVal) => {
-            return <TableCell key={headVal}>{row[headVal]}</TableCell>
+            return <TableCell key={headVal}>
+                {headVal === "location" ?
+                    <Link to={VIEW_OWN_REPORT(row._id)}>{row[headVal]}</Link> :
+                    row[headVal]}
+            </TableCell>
         })
     }
 
