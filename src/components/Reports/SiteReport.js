@@ -32,7 +32,7 @@ const SiteReport = (props) => {
     const { siteId } = params
     let { loading, report, downloadLoading } = props.reports
     const { getReports } = props
-    const user = props?.user?.user
+    //const user = props?.user?.user
     let tableData = filterData(report?.records, search)
 
     let fields = []
