@@ -91,7 +91,7 @@ const SiteReport = (props) => {
 
     return (
         <LayoutView
-            title={user?.branch ?? siteId}
+            title={report?.siteName ?? siteId}
             loading={loading}
             data={report}
             viewFields={fields}
