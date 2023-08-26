@@ -113,6 +113,7 @@ const SiteReport = (props) => {
                 loading={loading}
                 tableRow={tableRow}
                 tableBodyFunc={tableBodyFunc}
+                //tableStyle={{ tableLayout: "fixed", wordWrap: "break-word" }}
                 //numSelected={numSelected}
                 //setNumSelected={setNumSelected}
                 checkBoxCondition={checkBoxCondition}

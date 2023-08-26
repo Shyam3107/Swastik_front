@@ -27,7 +27,8 @@ const CustomTableOutput = ({
   selectedFrom,
   selectedTo,
   search = "",
-  defaultRowsPerPage = 5
+  defaultRowsPerPage = 5,
+  tableStyle = {}
 }) => {
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage)
@@ -95,7 +96,7 @@ const CustomTableOutput = ({
           component={Paper}
           style={{ marginTop: "10px", overflowX: "auto" }}
         >
-          <Table sx={{ maxWidth: "100%" }}>
+          <Table sx={{ maxWidth: "100%" }} style={tableStyle} >
             <TableHead>
               <TableRow>
                 {setNumSelected && (
