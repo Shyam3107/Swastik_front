@@ -10,7 +10,7 @@ const env = process.env.REACT_APP_ENV
 let backendURL = "https://swastik-backend.onrender.com"
 
 //let backendURL = "http://localhost:9000"
-if (env && env === "DEV") backendURL = "http://localhost:9000"
+//if (env && env === "DEV") backendURL = "http://localhost:9000"
 
 export { backendURL }
 
