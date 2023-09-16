@@ -43,7 +43,7 @@ const Layout = ({
     <React.Fragment>
       <Box display="flex">
         <Grid container spacing={2}>
-          <Grid item xs={12} md={3}>
+          <Grid item xs={12} md={2} lg={2}>
             <Typography
               sx={{ flex: "1 1 100%" }}
               variant="h5"
@@ -54,9 +54,10 @@ const Layout = ({
           </Grid>
           <Grid
             item
+            container justifyContent="flex-end"
             xs={12}
-            md={9}
-            style={{ display: "flex", justifyContent: "flex-end" }}
+            md={10}
+            lg={10}
           >
             <CustomCrudIcons
               handleDeleteAgree={handleDeleteAgree}
