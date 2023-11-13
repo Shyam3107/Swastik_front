@@ -37,18 +37,20 @@ const CustomCrudIcons = ({
   numSelected = [],
   downloadLoading,
   print = false,
+  handleGo,
 }) => {
   return (
     <React.Fragment>
       <Grid
         item
-        lg={4.5}
-        md={4.5}
-        sm={4.5}
-        xs={9.5}
+        lg={5}
+        md={5}
+        sm={5}
+        xs={12}
         display="flex"
         justifyContent="flex-end"
-        marginRight="10px"
+        flexWrap="wrap"
+        paddingRight="10px"
       >
         {setSelectedFrom && (
           <CustomDatePicker
@@ -57,7 +59,7 @@ const CustomCrudIcons = ({
             maxDate={new Date()}
             id="From"
             label="From"
-            style={{ width: "100px", marginTop: "-5px" }}
+            style={{ width: "100px" }}
           />
         )}
         {setSelectedTo && (
@@ -67,14 +69,14 @@ const CustomCrudIcons = ({
             maxDate={new Date()}
             id="To"
             label="To"
-            style={{ width: "100px", marginTop: "-5px" }}
+            style={{ width: "100px" }}
           />
         )}
-        <Grid item sm={2} md={2} lg={1}>
-          <Button variant="contained" style={{ marginLeft: "5px", marginTop: "7px", cursor: 'pointer' }} color="secondary" size="string">
+        {handleGo && <Grid item sm={2} md={2} lg={1}>
+          <Button onClick={handleGo} variant="contained" style={{ marginLeft: "5px", marginTop: "7px", cursor: 'pointer' }} size="string">
             Go
           </Button>
-        </Grid>
+        </Grid>}
       </Grid>
 
       <Grid
@@ -85,6 +87,7 @@ const CustomCrudIcons = ({
         xs={12}
         paddingTop="5px"
         display="flex"
+        flexWrap="wrap"
         justifyContent="flex-end"
       >
         {print && (

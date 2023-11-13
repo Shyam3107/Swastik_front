@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
-import moment from "moment"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import TableCell from "@mui/material/TableCell"
@@ -12,7 +11,7 @@ import {
   downloadTrips,
 } from "../../../containers/Trips/action"
 import Layout from "../../Layout/Layout"
-import { ROUTES, currentDate } from "../../../utils/constants"
+import { ROUTES, currentDate, fromToPayload } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -38,32 +37,26 @@ const Trips = (props) => {
   let { loading, trips, downloadLoading } = props.trips
   const history = props.history
 
+
+  const handleGo = () => {
+    getTrips(fromToPayload(from, to))
+  }
+
   useEffect(() => {
-    getTrips({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getTrips, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleFileSubmit = (file) => {
-    props.uploadTrips(file, getTrips)
+    props.uploadTrips(file, handleGo)
   }
 
   const handleDownload = () => {
-    props.downloadTrips({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadTrips(fromToPayload(from, to))
   }
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(currentDate)
-      setTo(currentDate)
-      getTrips({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
+      handleGo()
       setSelected([])
     }
     props.deleteTrips(selected, cb)
@@ -112,6 +105,7 @@ const Trips = (props) => {
       handleFileSubmit={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleFileSubmit
       }
+      handleGo={handleGo}
       search={search}
       setSearch={setSearch}
       data={trips}

@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 
 import Layout from "../../Layout/Layout"
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -35,32 +34,26 @@ const Office = (props) => {
   let { loading, expenses, downloadLoading } = props.officeExpense
   const history = props.history
 
+  const handleGo = () => {
+    getExpense(fromToPayload(from,to))
+  }
+
   useEffect(() => {
-    getExpense({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getExpense, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
+
 
   const handleFileSubmit = (file) => {
-    props.uploadExpense(file, getExpense)
+    props.uploadExpense(file, handleGo)
   }
 
   const handleDownload = () => {
-    props.downloadExpense({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadExpense(fromToPayload(from,to))
   }
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      props.getExpense({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
+      handleGo()
       setSelected([])
     }
     props.deleteExpense(selected, cb)
@@ -109,6 +102,7 @@ const Office = (props) => {
       sampleData={sampleData}
       downloadLoading={downloadLoading}
       checkBoxCondition={checkBoxCondition}
+      handleGo={handleGo}
       handleDeleteAgree={
         isOperationAllowed(access.OFFICE_EXPENSES, operations.DELETE) &&
         handleDeleteAgree

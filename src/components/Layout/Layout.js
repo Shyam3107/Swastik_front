@@ -34,7 +34,8 @@ const Layout = ({
   selectedTo,
   downloadLoading,
   checkBoxCondition,
-  defaultRowsPerPage
+  defaultRowsPerPage,
+  handleGo
 }) => {
   // Show Loader in case loading during add, get, edit or delete
   if (loading) return <CustomLoader style={{ height: "80%" }} />
@@ -43,7 +44,7 @@ const Layout = ({
     <React.Fragment>
       <Box display="flex">
         <Grid container spacing={2}>
-          <Grid item xs={12} md={2} lg={2}>
+          <Grid item xs={12} md={3} lg={3}>
             <Typography
               sx={{ flex: "1 1 100%" }}
               variant="h5"
@@ -56,8 +57,8 @@ const Layout = ({
             item
             container justifyContent="flex-end"
             xs={12}
-            md={10}
-            lg={10}
+            md={9}
+            lg={9}
           >
             <CustomCrudIcons
               handleDeleteAgree={handleDeleteAgree}
@@ -75,6 +76,7 @@ const Layout = ({
               selectedTo={selectedTo}
               numSelected={numSelected}
               downloadLoading={downloadLoading}
+              handleGo={handleGo}
             />
           </Grid>
         </Grid>

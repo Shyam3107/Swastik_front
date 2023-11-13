@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 import { Link } from "react-router-dom"
 
 import Layout from "../../Layout/Layout"
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -37,21 +36,18 @@ const Bills = (props) => {
   let { loading, bills, downloadLoading } = props.bills
   const history = props.history
 
+  const handleGo = () => {
+    getBills(fromToPayload(from, to))
+  }
+
   useEffect(() => {
-    getBills({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getBills, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
+
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      getBills({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
+      handleGo()
       setSelected([])
     }
     props.deleteBills(selected, cb)
@@ -67,20 +63,11 @@ const Bills = (props) => {
   }
 
   const handleDownload = () => {
-    props.downloadBills({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadBills(fromToPayload, to)
   }
 
   const handleFileSubmit = (file) => {
-    const cb = () => {
-      getBills({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
-    }
-    props.uploadBills(file, cb)
+    props.uploadBills(file, handleGo)
   }
 
   bills = filterData(bills, search)
@@ -128,6 +115,7 @@ const Bills = (props) => {
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
+      handleGo={handleGo}
       handleFileSubmit={
         isOperationAllowed(access.STORE_BILLS, operations.CREATE) &&
         handleFileSubmit

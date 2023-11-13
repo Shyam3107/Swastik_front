@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import { Link } from "react-router-dom"
 import TableCell from "@mui/material/TableCell"
 
 import Layout from "../../Layout/Layout"
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -36,21 +35,17 @@ const Logistic = (props) => {
   let { loading, logistics, downloadLoading } = props.logistics
   const history = props.history
 
+  const handleGo = () => {
+    getLogistics(fromToPayload(from, to))
+  }
+
   useEffect(() => {
-    getLogistics({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getLogistics, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      getLogistics({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
+      handleGo()
       setSelected([])
     }
     props.deleteLogistics(selected, cb)
@@ -66,20 +61,11 @@ const Logistic = (props) => {
   }
 
   const handleDownload = () => {
-    props.downloadLogistics({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadLogistics(fromToPayload(from, to))
   }
 
   const handleFileSubmit = (file) => {
-    const cb = () => {
-      getLogistics({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
-    }
-    props.uploadLogistics(file, cb)
+    props.uploadLogistics(file, handleGo)
   }
 
   logistics = filterData(logistics, search)
@@ -123,6 +109,7 @@ const Logistic = (props) => {
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
+      handleGo={handleGo}
       handleFileSubmit={
         isOperationAllowed(access.PRODUCTS, operations.CREATE) &&
         handleFileSubmit

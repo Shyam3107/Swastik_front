@@ -8,6 +8,12 @@ export const monthStart = moment().startOf("month")
 export const monthEnd = moment().endOf("month")
 export const yearEnd = moment().endOf("year")
 export const currentDate = moment().endOf("day")
+export const fromToPayload = (from, to) => {
+  return {
+    from: moment(from).toISOString(),
+    to: moment(to).toISOString(),
+  }
+}
 
 export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"]
 

@@ -5,6 +5,7 @@ import { error, warn, success } from "../utils/constants"
 
 dotenv.config()
 
+// eslint-disable-next-line
 const env = process.env.REACT_APP_ENV
 
 let backendURL = "https://swastik-backend.onrender.com"

@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 import { Link } from "react-router-dom"
 
 import Layout from "../../Layout/Layout"
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import {
   header,
   headerKey,
@@ -38,29 +37,25 @@ const Office = (props) => {
   let { loading, diesels, downloadLoading } = props.diesels
   const history = props.history
 
+  const handleGo = () => {
+    getDiesel(fromToPayload(from, to))
+  }
+
   useEffect(() => {
-    getDiesel({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getDiesel, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleFileSubmit = (file) => {
-    props.uploadDiesel(file, getDiesel)
+    props.uploadDiesel(file, handleGo)
   }
 
   const handleDownload = () => {
-    props.downloadDiesel({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadDiesel(fromToPayload(from, to))
   }
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      props.getDiesel()
+      handleGo()
       setSelected([])
     }
     props.deleteDiesel(selected, cb)
@@ -111,6 +106,7 @@ const Office = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={diesels}
+      handleGo={handleGo}
       handleDeleteAgree={
         isOperationAllowed(access.DIESELS, operations.DELETE) &&
         handleDeleteAgree

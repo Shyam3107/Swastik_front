@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 
 import Layout from "../Layout/Layout"
-import { ROUTES, monthStart, currentDate } from "../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../utils/constants"
 import {
   header,
   headerKey,
@@ -30,28 +29,24 @@ const Receipt = (props) => {
   let { loading, receipts, downloadLoading } = props.receipt
   const history = props.history
 
+  const handleGo = () => {
+    getReceipt(fromToPayload(from,to))
+  }
+  
   useEffect(() => {
-    getReceipt({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
-  }, [getReceipt, from, to])
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      setFrom(monthStart)
-      setTo(currentDate)
-      props.getReceipt({
-        from: moment(from).toISOString(),
-        to: moment(to).toISOString(),
-      })
+      handleGo()
       setSelected([])
     }
     props.deleteReceipt(selected, cb)
   }
 
   const handleFileSubmit = (file) => {
-    props.uploadReceipt(file, getReceipt)
+    props.uploadReceipt(file, handleGo)
   }
 
   const handleAddButton = () => {
@@ -64,10 +59,7 @@ const Receipt = (props) => {
   }
 
   const handleDownload = () => {
-    props.downloadReceipt({
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
-    })
+    props.downloadReceipt(fromToPayload(from,to))
   }
 
   receipts = filterData(receipts, search)
@@ -94,6 +86,7 @@ const Receipt = (props) => {
       selectedFrom={from}
       selectedTo={to}
       data={receipts}
+      handleGo={handleGo}
       handleFileSubmit={
         isOperationAllowed(access.RECEIPTS, operations.CREATE) &&
         handleFileSubmit
