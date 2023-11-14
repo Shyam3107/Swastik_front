@@ -98,7 +98,7 @@ const CustomTableOutput = ({
         >
           <Table sx={{ maxWidth: "100%" }} style={tableStyle} >
             <TableHead>
-              <TableRow>
+              <TableRow id="CustomTableOutputTableRow">
                 {setNumSelected && (
                   <TableCell padding="checkbox">
                     <Checkbox
@@ -148,16 +148,17 @@ const CustomTableOutput = ({
             </TableBody>
           </Table>
         </TableContainer>
-
-        <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 50, 100]}
-          component="div"
-          count={data.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={(e, p) => setPage(p)}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        <a href="#CustomTableOutputTableRow">
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25, 50, 100]}
+            component="div"
+            count={data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            onPageChange={(e, p) => setPage(p)}
+            onRowsPerPageChange={handleChangeRowsPerPage}
+          />
+        </a>
       </Box>
     )
   else
