@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react"
 import { withRouter } from "react-router"
 import { connect } from "react-redux"
-import moment from "moment"
 import TableCell from "@mui/material/TableCell"
 import { Link } from "react-router-dom"
 
 import Layout from "../Layout/Layout"
-import { monthStart, currentDate } from "../../utils/constants"
+import { monthStart, currentDate, fromToPayload } from "../../utils/constants"
 import {
     VIEW_OWN_REPORT,
     headerAllSite as header,
@@ -21,13 +20,16 @@ const AllSite = (props) => {
     const [to, setTo] = useState(currentDate)
     let { loading, report } = props.reports
 
-    useEffect(() => {
+    const handleGo = () => {
         getReports({
             url: API.GET_ALL_SITE_REPORT,
-            from: moment(from).toISOString(),
-            to: moment(to).toISOString(),
+            ...fromToPayload(from, to)
         })
-    }, [getReports, from, to])
+    }
+
+    useEffect(() => {
+        handleGo()
+    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
 
     const tableRow = header.map((headCell) => (
@@ -58,6 +60,7 @@ const AllSite = (props) => {
             selectedFrom={from}
             selectedTo={to}
             data={data}
+            handleGo={handleGo}
             tableRow={tableRow}
             tableBodyFunc={tableBodyFunc}
             setSelectedFrom={setFrom}

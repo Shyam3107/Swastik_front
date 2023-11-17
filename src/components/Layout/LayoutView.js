@@ -30,6 +30,7 @@ const LayoutView = ({
   setSelectedTo,
   search,
   setSearch,
+  handleGo
 }) => {
   if (loading) return <CustomLoader style={{ height: "80%" }} />
 
@@ -66,6 +67,7 @@ const LayoutView = ({
               setSelectedTo={setSelectedTo}
               selectedFrom={selectedFrom}
               selectedTo={selectedTo}
+              handleGo={handleGo}
             />
           </Grid>
         </Grid>

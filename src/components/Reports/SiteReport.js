@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react"
-import moment from "moment"
 import { connect } from "react-redux"
 import { useParams } from "react-router"
 import { withRouter } from "react-router"
 import TableCell from "@mui/material/TableCell"
 
-import { ROUTES, monthStart, currentDate } from "../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../utils/constants"
 import {
     getReports,
     downloadReports
@@ -50,14 +49,17 @@ const SiteReport = (props) => {
         getLabelIdValue("No. Of Trips", "noOfTrips"),
     ]
 
-    useEffect(() => {
+    const handleGo = () => {
         getReports({
             siteId,
             url: API.GET_SITE_REPORT,
-            from: moment(from).toISOString(),
-            to: moment(to).toISOString(),
+            ...fromToPayload(from, to)
         })
-    }, [siteId, from, to, getReports])
+    }
+
+    useEffect(() => {
+        handleGo()
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleBack = () => {
         if (history.length) history.goBack()
@@ -68,8 +70,7 @@ const SiteReport = (props) => {
         props.downloadReports({
             siteId,
             url: API.DOWNLOAD_SITE_REPORT,
-            from: moment(from).toISOString(),
-            to: moment(to).toISOString(),
+            ...fromToPayload(from, to)
         })
     }
 
@@ -99,6 +100,7 @@ const SiteReport = (props) => {
             setSearch={setSearch}
             selectedFrom={from}
             setSelectedFrom={setFrom}
+            handleGo={handleGo}
             selectedTo={to}
             setSelectedTo={setTo}
             handleBack={handleBack}

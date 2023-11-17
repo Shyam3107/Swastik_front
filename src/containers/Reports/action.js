@@ -18,7 +18,7 @@ export const getReports =
             payload: data.data
           })
         },
-        errorActionType: actionTypes.DOWNLOAD_REPORTS_FAILURE,
+        errorActionType: actionTypes.GET_REPORTS_FAILURE,
         dispatch,
       }
 
@@ -41,7 +41,7 @@ export const downloadReports =
             type: actionTypes.DOWNLOAD_REPORTS_SUCCESS,
           })
         },
-        errorActionType: actionTypes.GET_REPORTS_FAILURE,
+        errorActionType: actionTypes.DOWNLOAD_REPORTS_FAILURE,
         dispatch,
       }
 
