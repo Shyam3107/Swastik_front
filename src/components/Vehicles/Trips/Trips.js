@@ -117,7 +117,7 @@ const Trips = (props) => {
       numSelected={selected}
       setNumSelected={setSelected}
       checkBoxCondition={checkBoxCondition}
-      sampleName="tripSample"
+      sampleName="Trip Sample"
       handleAddButton={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
       }

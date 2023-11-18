@@ -19,7 +19,7 @@ import DownloadExcel from "../DownloadExcel/DownloadExcel"
 export default function UploadFile({
   onFileUpload,
   sampleData,
-  sampleName = "sampleFile",
+  sampleName = "Sample File",
   styleButton,
 }) {
   const [anchorEl, setAnchorEl] = useState(null)

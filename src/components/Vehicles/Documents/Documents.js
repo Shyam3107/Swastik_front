@@ -175,7 +175,7 @@ const Documents = (props) => {
         loading={loading}
         tableRow={tableRow}
         numSelected={selected}
-        sampleName="documentSample"
+        sampleName="Document  Sample"
         sampleData={sampleData}
         downloadLoading={downloadLoading}
         handleDownload={handleDownload}
