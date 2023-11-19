@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState, useRef, useMemo } from "react"
 import {
   Paper,
   Typography,
@@ -41,7 +41,7 @@ export default function UploadFile({
 
   const open = Boolean(anchorEl)
 
-  let sampleDataExcel = arrayToObj(sampleData)
+  const sampleDataExcel = useMemo(() => arrayToObj(sampleData), [sampleData])
 
   let column = sampleData[0]
 
