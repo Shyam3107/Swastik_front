@@ -41,7 +41,7 @@ const Reports = (props) => {
     url: API.GET_VEHICLES_REPORTS,
   },
   {
-    title: "Diesel By Pump",
+    title: "Diesel By Pump", // NOT REQ
     url: API.GET_DIESELS_REPORTS,
   },
   {
@@ -49,7 +49,12 @@ const Reports = (props) => {
     url: API.GET_HARDWARE_SHOPS_REPORT,
   },
   {
-    title: "Vehicle Diesels",
+    title: "All Vehicle Wise",
+    url: API.DOWNLOAD_ALL_VEHICLE_WISE_REPORT,
+    display: isAdmin() ? "visible" : "none"
+  },
+  {
+    title: "Vehicle Diesels", // NOT REQ
     url: API.GET_VEHICLES_DIESELS_REPORT,
   },
   ]

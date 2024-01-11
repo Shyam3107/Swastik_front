@@ -11,7 +11,8 @@ const env = process.env.REACT_APP_ENV
 let backendURL = "https://swastik-backend.onrender.com"
 
 //let backendURL = "http://localhost:9000"
-//if (env && env === "DEV") backendURL = "http://localhost:9000"
+console.log("ENV is ", env)
+if (env && env === "DEV") backendURL = "http://localhost:9000"
 
 export { backendURL }
 
@@ -157,6 +158,7 @@ export const API = {
   GET_VEHICLES_DIESELS_REPORT: `${modules.reports}/getVehicleDieselReport`,
   GET_SITE_REPORT: `${modules.reports}/getSiteReport`,
   GET_ALL_SITE_REPORT: `${modules.reports}/getAllSiteReport`,
+  DOWNLOAD_ALL_VEHICLE_WISE_REPORT: `${modules.reports}/downloadAllVehicleWiseReport`,
   DOWNLOAD_SITE_REPORT: `${modules.reports}/downloadSiteReport`
 }
 
@@ -266,13 +268,15 @@ export const makeRequest = (options = {}) => {
           responseType: "blob",
           params: params ? params : {},
         })
-        .then(({ status, data }) => {
+        .then(({ status, data, headers }) => {
           if (status !== 200)
             throw new Error("Failed to Download Report, Please try again")
           const blob = new Blob([data])
           const link = document.createElement("a")
           link.href = window.URL.createObjectURL(blob)
-          link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
+          if (headers && headers["content-type"] === "application/zip")
+            link.download = `${params?.filename ?? new Date().getTime()}.zip`
+          else link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
           link.click()
           link.remove()
           callback()
