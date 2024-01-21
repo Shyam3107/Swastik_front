@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react"
-import moment from "moment"
 import { connect } from "react-redux"
 import { useParams } from "react-router"
 import { withRouter } from "react-router"
 import TableCell from "@mui/material/TableCell"
 import { Link } from "react-router-dom"
 
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import { getTrips, downloadTrips } from "../../../containers/Trips/action"
 import LayoutView from "../../Layout/LayoutView"
 import { header, headerKey, filterData, EDIT_URL } from "./constants"
@@ -42,14 +41,17 @@ const Comp = (props) => {
     }
   })
 
-  useEffect(() => {
+  const handleGo = () => {
     getTrips({
       url: API.GET_TRIPS_BY_VEHICLE,
       vehicleNo,
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
+      ...fromToPayload(from, to)
     })
-  }, [getTrips, from, to, vehicleNo])
+  }
+
+  useEffect(() => {
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleBack = () => {
     history.push(ROUTES.TRIPS)
@@ -63,8 +65,7 @@ const Comp = (props) => {
     props.downloadTrips({
       url: API.DOWNLOAD_TRIPS_BY_VEHICLE,
       vehicleNo,
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
+      ...fromToPayload(from, to)
     })
   }
 
@@ -101,6 +102,7 @@ const Comp = (props) => {
       selectedTo={to}
       setSelectedTo={setTo}
       handleBack={handleBack}
+      handleGo={handleGo}
       handleAddButton={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
       }
