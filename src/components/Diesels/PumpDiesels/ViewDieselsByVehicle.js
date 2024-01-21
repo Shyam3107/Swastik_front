@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react"
-import moment from "moment"
 import { connect } from "react-redux"
 import { useParams } from "react-router"
 import { withRouter } from "react-router"
 import TableCell from "@mui/material/TableCell"
 import { Link } from "react-router-dom"
 
-import { ROUTES, monthStart, currentDate } from "../../../utils/constants"
+import { ROUTES, monthStart, currentDate, fromToPayload } from "../../../utils/constants"
 import { getDiesel, downloadDiesel } from "../../../containers/Diesels/action"
 import LayoutView from "../../Layout/LayoutView"
 import {
@@ -51,14 +50,17 @@ const Comp = (props) => {
     }
   })
 
-  useEffect(() => {
+  const handleGo = () => {
     getDiesel({
       url: API.GET_DIESELS_BY_VEHICLE,
       vehicleNo,
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
+      ...fromToPayload(from, to)
     })
-  }, [getDiesel, from, to, vehicleNo])
+  }
+
+  useEffect(() => {
+    handleGo()
+  }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
   const handleBack = () => {
     history.push(ROUTES.DIESELS)
@@ -72,8 +74,7 @@ const Comp = (props) => {
     props.downloadBills({
       url: API.DOWNLOAD_DIESELS_BY_VEHICLE,
       vehicleNo,
-      from: moment(from).toISOString(),
-      to: moment(to).toISOString(),
+      ...fromToPayload(from, to)
     })
   }
 
@@ -112,6 +113,7 @@ const Comp = (props) => {
       selectedTo={to}
       setSelectedTo={setTo}
       handleBack={handleBack}
+      handleGo={handleGo}
       handleAddButton={
         isOperationAllowed(access.DIESELS, operations.CREATE) && handleAddButton
       }
