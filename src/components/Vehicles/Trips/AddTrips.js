@@ -13,6 +13,8 @@ const initialTrip = {
   partyName: "",
   location: "",
   material: "Cement",
+  shortage:undefined,
+  shortageAmount:undefined,
   vehicleNo: "",
   quantity: 0,
   bags: undefined,
@@ -38,7 +40,7 @@ const AddTrips = (props) => {
   }, [initialFields])
 
   const inputFields = [
-    { id: "diNo", type: "number", label: "DI No.", required: true },
+    { id: "diNo", label: "DI No.", required: true },
     { id: "lrNo", label: "LR No.", required: true },
     {
       id: "date",
@@ -68,6 +70,8 @@ const AddTrips = (props) => {
       options: ["Cement", "Coal", "Clinker", "Fly Ash"],
       required: true,
     },
+    { id: "shortage", label: "Shortage",},
+    { id: "shortageAmount", type: "number", label: "Shortage Amount",},
     { id: "driverName", label: "Driver Name", required: true },
     {
       id: "driverPhone",

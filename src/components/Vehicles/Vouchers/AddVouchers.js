@@ -37,7 +37,7 @@ const AddVouchers = (props) => {
       label: "Date",
       maxDate: new Date().toISOString(),
     },
-    { id: "diNo", type: "number", label: "DI No.", required: true },
+    { id: "diNo", label: "DI No.", required: true },
     { id: "paidTo", label: "Paid To", required: true },
     { id: "accountNo", label: "Account No.", required: true },
     { id: "ifsc", label: "IFSC" },
