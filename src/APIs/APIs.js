@@ -11,8 +11,8 @@ const env = process.env.REACT_APP_ENV
 let backendURL = "https://swastik-backend.onrender.com"
 
 //let backendURL = "http://localhost:9000"
-console.log("ENV is ", env)
-if (env && env === "DEV") backendURL = "http://localhost:9000"
+
+//if (env && env === "DEV") backendURL = "http://localhost:9000"
 
 export { backendURL }
 
@@ -48,6 +48,7 @@ export const API = {
   GET_TRIPS_BY_VEHICLE: `${modules.trips}/getTripsByVehicle`,
   ADD_TRIPS: `${modules.trips}/addTrips`,
   UPLOAD_TRIPS: `${modules.trips}/uploadTrips`,
+  UPLOAD_TRIPS_RATES: `${modules.trips}/uploadRates`,
   EDIT_TRIPS: `${modules.trips}/editTrips`,
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
   DOWNLOAD_TRIPS: `${modules.trips}/downloadTrips`,
@@ -281,6 +282,36 @@ export const makeRequest = (options = {}) => {
           link.remove()
           callback()
           return
+        })
+        .catch((err) => {
+          return handleError(
+            dispatch,
+            {
+              type: errorActionType,
+              err: err,
+            },
+            err
+          )
+        })
+      return
+
+    // Upload the file and get file in response
+    case "postFile":
+      axios
+        .put(url, payload)
+        .then(({ status, data, headers }) => {
+          if (status !== 200)
+            throw new Error("Failed to Download, Please try again")
+          const blob = new Blob([data])
+          const link = document.createElement("a")
+          link.href = window.URL.createObjectURL(blob)
+          if (headers && headers["content-type"] === "application/zip")
+            link.download = `${params?.filename ?? new Date().getTime()}.zip`
+          else link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
+          link.click()
+          link.remove()
+          callback()
+          return 
         })
         .catch((err) => {
           return handleError(

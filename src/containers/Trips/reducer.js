@@ -33,6 +33,14 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.UPLOAD_TRIPS_FAILURE:
       return { ...state, loading: false }
 
+    // UPLOAD RATE CASES
+    case actionTypes.UPLOAD_RATES_PENDING:
+      return { ...state, loading: true }
+    case actionTypes.UPLOAD_RATES_SUCCESS:
+      return { ...state, loading: false }
+    case actionTypes.UPLOAD_RATES_FAILURE:
+      return { ...state, loading: false }
+
     // EDIT CASES
     case actionTypes.EDIT_TRIPS_PENDING:
       return { ...state, loading: true }

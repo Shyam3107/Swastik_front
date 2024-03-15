@@ -13,6 +13,7 @@ const Layout = ({
   title,
   handleDeleteAgree,
   handleFileSubmit,
+  handleFile2Submit,
   handleEditButton,
   handleDownload,
   search,
@@ -28,6 +29,9 @@ const Layout = ({
   handleAddButton,
   sampleData,
   sampleName,
+  sampleData2,
+  sampleName2,
+  upload2ToolTip,
   setSelectedFrom,
   setSelectedTo,
   selectedFrom,
@@ -63,6 +67,7 @@ const Layout = ({
             <CustomCrudIcons
               handleDeleteAgree={handleDeleteAgree}
               handleFileSubmit={handleFileSubmit}
+              handleFile2Submit={handleFile2Submit}
               handleEditButton={handleEditButton}
               handleDownload={handleDownload}
               handleAddButton={handleAddButton}
@@ -70,6 +75,9 @@ const Layout = ({
               setSearch={setSearch}
               sampleName={sampleName}
               sampleData={sampleData}
+              sampleName2={sampleName2}
+              sampleData2={sampleData2}
+              upload2ToolTip={upload2ToolTip}
               setSelectedFrom={setSelectedFrom}
               setSelectedTo={setSelectedTo}
               selectedFrom={selectedFrom}

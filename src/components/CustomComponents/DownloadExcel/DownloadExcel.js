@@ -12,7 +12,7 @@ export default function DownloadExcel(props) {
       element={props.element ? props.element : "Excel"}
     >
       <ExcelSheet data={props.data} name={props.filename}>
-        {props.column.map((col) => {
+        {props.column?.map((col) => {
           return <ExcelColumn key={col} label={col} value={(row) => row[col]} />
         })}
       </ExcelSheet>

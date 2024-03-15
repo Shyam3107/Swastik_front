@@ -27,8 +27,12 @@ const CustomCrudIcons = ({
   selectedTo,
   sampleName,
   sampleData = [],
+  sampleName2,
+  sampleData2 = [],
+  upload2ToolTip,
   handleDeleteAgree,
   handleFileSubmit,
+  handleFile2Submit,
   handleDownload,
   search,
   setSearch,
@@ -140,6 +144,17 @@ const CustomCrudIcons = ({
             sampleName={sampleName}
           />
         )}
+
+        {handleFile2Submit && (
+          <UploadFile
+            onFileUpload={handleFile2Submit}
+            sampleData={sampleData2}
+            styleButton={styleButton}
+            sampleName={sampleName2}
+            toolTip={upload2ToolTip}
+          />
+        )}
+
 
         {handleDownload && (
           <DownloadFile

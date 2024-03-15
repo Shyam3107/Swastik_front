@@ -18,9 +18,10 @@ import DownloadExcel from "../DownloadExcel/DownloadExcel"
 
 export default function UploadFile({
   onFileUpload,
-  sampleData,
+  sampleData = [[]],
   sampleName = "Sample File",
   styleButton,
+  toolTip
 }) {
   const [anchorEl, setAnchorEl] = useState(null)
   const [file, setFile] = useState(null)
@@ -47,7 +48,7 @@ export default function UploadFile({
 
   return (
     <React.Fragment>
-      <Tooltip title="Upload">
+      <Tooltip title={toolTip ?? "Upload"}>
         <IconButton style={styleButton} onClick={handleClick} aria-label="fileUpload">
           <FileUploadOutlinedIcon />
         </IconButton>
@@ -55,7 +56,7 @@ export default function UploadFile({
       <Popper open={open} anchorEl={anchorEl}>
         <Paper style={{ padding: "10px" }}>
           <Typography style={{ fontWeight: 600, textAlign: "center" }}>
-            Upload
+            {toolTip ?? "Upload"}
           </Typography>
           <MenuList>
             <MenuItem style={{ justifyContent: "center" }}>

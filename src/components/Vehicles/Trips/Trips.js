@@ -8,6 +8,7 @@ import {
   getTrips,
   deleteTrips,
   uploadTrips,
+  uploadRates,
   downloadTrips,
 } from "../../../containers/Trips/action"
 import Layout from "../../Layout/Layout"
@@ -16,6 +17,7 @@ import {
   header,
   headerKey,
   sampleData,
+  sampleData2,
   EDIT_URL,
   VIEW_URL,
   VIEW_VEHICLE_URL,
@@ -26,6 +28,7 @@ import {
   access,
   operations,
   checkBoxCondition,
+  isAdmin,
 } from "../../../utils/utilities"
 
 const Trips = (props) => {
@@ -48,6 +51,10 @@ const Trips = (props) => {
 
   const handleFileSubmit = (file) => {
     props.uploadTrips(file, handleGo)
+  }
+
+  const handleFile2Submit = (file) => {
+    props.uploadRates(file, handleGo)
   }
 
   const handleDownload = () => {
@@ -105,6 +112,9 @@ const Trips = (props) => {
       handleFileSubmit={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleFileSubmit
       }
+      handleFile2Submit={
+        isAdmin() && handleFile2Submit
+      }
       handleGo={handleGo}
       search={search}
       setSearch={setSearch}
@@ -118,6 +128,8 @@ const Trips = (props) => {
       setNumSelected={setSelected}
       checkBoxCondition={checkBoxCondition}
       sampleName="Trip Sample"
+      sampleName2="Rate Sample"
+      upload2ToolTip="Upload Rates"
       handleAddButton={
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleAddButton
       }
@@ -129,6 +141,7 @@ const Trips = (props) => {
       selectedFrom={from}
       selectedTo={to}
       sampleData={sampleData}
+      sampleData2={sampleData2}
       downloadLoading={downloadLoading}
       handleDownload={handleDownload}
     />
@@ -146,6 +159,7 @@ export default withRouter(
     getTrips,
     deleteTrips,
     uploadTrips,
+    uploadRates,
     downloadTrips,
   })(Trips)
 )

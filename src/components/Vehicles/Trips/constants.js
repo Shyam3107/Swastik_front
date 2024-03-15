@@ -146,6 +146,30 @@ export const sampleData = [
   ],
 ]
 
+export const sampleData2 = [
+  [
+    "DI No.",
+    "Date",
+    "Vehicle No.",
+    "Billing Rate",
+    "Rate"
+  ],
+  [
+    "67282892822",
+    formatDateInDDMMYYY(),
+    "CG04PD1281",
+    1400,
+    1450
+  ],
+  [
+    "672824520001",
+    formatDateInDDMMYYY(),
+    "CG04NH9534",
+    818,
+    858
+  ]
+]
+
 export const filterData = (data, search) => {
   if (!data || !Array.isArray(data)) data = []
   return data.filter((val) => {
