@@ -296,9 +296,13 @@ export const makeRequest = (options = {}) => {
       return
 
     // Upload the file and get file in response
+    // We want file in reposne thats why get request
     case "postFile":
       axios
-        .put(url, payload)
+        .get(url, {
+          responseType: "blob",
+          params: payload ? payload : [],
+        })
         .then(({ status, data, headers }) => {
           if (status !== 200)
             throw new Error("Failed to Download, Please try again")
@@ -311,7 +315,7 @@ export const makeRequest = (options = {}) => {
           link.click()
           link.remove()
           callback()
-          return 
+          return toastMessage("File uploaded Successfully, See downloaded Excel file for failed one", success)
         })
         .catch((err) => {
           return handleError(
