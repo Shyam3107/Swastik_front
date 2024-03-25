@@ -14,7 +14,7 @@ export const filterData = (data = [], search = "") => {
   if (!data || !Array.isArray(data)) data = []
   return data.filter((val) => {
     return includesInArray(
-      [val.remarks, val?.addedBy?.location ?? "", val.amount],
+      [val.remarks, val?.addedBy ?? "", val.amount],
       search
     )
   })

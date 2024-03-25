@@ -61,7 +61,7 @@ export const filterData = (data = [], search = "") => {
         val?.dieselFor ?? "",
         val.driverName,
         val.vehicleNo,
-        val?.addedBy?.location ?? "",
+        val?.addedBy ?? "",
       ],
       search
     )

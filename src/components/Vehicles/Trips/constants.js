@@ -184,7 +184,9 @@ export const filterData = (data, search) => {
         val.driverName,
         val?.pumpName ?? "",
         val.loadingPoint,
-        val?.addedBy?.location ?? "",
+        val?.shortage ?? "",
+        val?.shortageAmount ?? "",
+        val?.addedBy ?? "",
       ],
       search
     )
