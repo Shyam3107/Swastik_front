@@ -151,6 +151,7 @@ export const sampleData2 = [
     "DI No.",
     "Date",
     "Vehicle No.",
+    "Quantity",
     "Billing Rate",
     "Rate"
   ],
@@ -158,6 +159,7 @@ export const sampleData2 = [
     "67282892822",
     formatDateInDDMMYYY(),
     "CG04PD1281",
+    35,
     1400,
     1450
   ],
@@ -165,6 +167,7 @@ export const sampleData2 = [
     "672824520001",
     formatDateInDDMMYYY(),
     "CG04NH9534",
+    31,
     818,
     858
   ]

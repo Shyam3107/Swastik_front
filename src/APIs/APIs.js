@@ -299,9 +299,9 @@ export const makeRequest = (options = {}) => {
     // We want file in reposne thats why get request
     case "postFile":
       axios
-        .get(url, {
+        .post(url, {
           responseType: "blob",
-          params: payload ? payload : [],
+          ...payload,
         })
         .then(({ status, data, headers }) => {
           if (status !== 200)
