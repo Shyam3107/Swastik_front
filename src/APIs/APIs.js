@@ -296,12 +296,12 @@ export const makeRequest = (options = {}) => {
       return
 
     // Upload the file and get file in response
-    // We want file in reposne thats why get request
+    // We need to send file and receive file thas why using delete request
     case "postFile":
       axios
-        .post(url, {
+        .delete(url, {
           responseType: "blob",
-          ...payload,
+          data:payload,
         })
         .then(({ status, data, headers }) => {
           if (status !== 200)
