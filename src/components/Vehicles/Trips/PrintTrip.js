@@ -14,6 +14,8 @@ const PrintTrip = (props) => {
   let consignor = trips.addedBy?.consignor
   let branch = trips.addedBy?.branch
 
+  const companyName = user?.companyName ?? user?.companyAdminId?.companyName ?? "SWASTIK MINERALS"
+
   return (
     <div className={styles.printDiv}>
       <Grid container>
@@ -27,9 +29,7 @@ const PrintTrip = (props) => {
               alt="Swastik Logo"
             />
             M/S.{" "}
-            {user?.companyName?.toUpperCase() ??
-              user?.companyAdminId?.companyName?.toUpperCase() ??
-              "SWASTIK MINERALS"}
+            {companyName.toUpperCase()}
           </h1>
           <h3>FLEET OWNERS AND TRANSPORT CONTRACTOR</h3>
           <h3>Authorised Transport Contractor</h3>
@@ -45,7 +45,7 @@ const PrintTrip = (props) => {
               {user?.phone2 ?? user?.companyAdminId?.phone2} {", "}
               9977115338
             </h3>
-            <h3>H.O : Gandhi Chowk, Neora</h3>
+            <h3>Singhania Office, Kohka, Tilda</h3>
             <h3>Distt. Raipur (C.G)</h3>
           </Box>
           <h3 style={{ marginTop: "15px" }}>
@@ -56,10 +56,10 @@ const PrintTrip = (props) => {
       </Grid>
       <Grid container>
         <Grid item style={{ width: "25%" }}>
-          <h5>Branch: {branch ? branch : ""}</h5>
+          <h4>Branch: {branch ? branch : ""}</h4>
         </Grid>
         <Grid style={{ width: "25%" }}>
-          <h5>LR No. : {trips.lrNo}</h5>
+          <h4>LR No. : {trips.lrNo}</h4>
         </Grid>
       </Grid>
       <Grid container>
@@ -68,24 +68,24 @@ const PrintTrip = (props) => {
           className={styles.border}
           style={{ padding: "10px", width: "50%" }}
         >
-          <h5>Consignor : {consignor ? consignor + " LTD." : ""}</h5>
-          <h5>Form : {branch ? branch : ""}</h5>
+          <h4>Consignor : {consignor ? consignor + " LTD." : ""}</h4>
+          <h4>From : {branch ? branch : ""}</h4>
         </Grid>
         <Grid
           item
           style={{ padding: "10px", width: "50%" }}
           className={`${styles.borderRight} ${styles.borderTop} ${styles.borderBottom}`}
         >
-          <h5>Consignee</h5>
+          <h4>Consignee</h4>
           <Grid container spacing={3}>
             <Grid item style={{ width: "50%" }}>
-              <h5 style={{ height: "100%" }}>To: {trips.partyName}</h5>
+              <h4 style={{ height: "100%" }}>To: {trips.partyName}</h4>
             </Grid>
             <Grid item style={{ width: "50%" }}>
-              <h5>Date: {formatDateInDDMMYYY(trips.date)}</h5>
+              <h4>Date: {formatDateInDDMMYYY(trips.date)}</h4>
             </Grid>
             <Grid item style={{ width: "50%", paddingTop: 0 }}>
-              <h5>Location: {trips.location}</h5>
+              <h4>Location: {trips.location}</h4>
             </Grid>
           </Grid>
         </Grid>
@@ -105,14 +105,14 @@ const PrintTrip = (props) => {
             className={`${styles.borderRight} ${styles.borderBottom}`}
             padding="5px"
           >
-            <h5>PSC/PPC</h5>
-            <h5>Material : {trips.material}</h5>
-            <h5>Bags : {trips.bags}</h5>
+            <h4>PSC/PPC</h4>
+            <h4>Material : {trips.material}</h4>
+            <h4>Bags : {trips.bags}</h4>
           </Box>
           <Box className={styles.borderRight} height="67%" padding="20px 5px">
-            <h5>Party Phone No. : </h5>
-            <h5>Driver Name : {trips.driverName}</h5>
-            <h5>Driver Phone No. : {trips.driverPhone}</h5>
+            <h4>Party Phone No. : </h4>
+            <h4>Driver Name : {trips.driverName}</h4>
+            <h4>Driver Phone No. : {trips.driverPhone}</h4>
           </Box>
         </Grid>
         <Grid container item md={6} sm={6} style={{ width: "50%" }}>
@@ -125,31 +125,30 @@ const PrintTrip = (props) => {
             </h4>
           </Grid>
           <Grid item style={{ width: "80%" }} className={styles.borderLeft}>
-            <h5
+            <h4
               style={{ textAlign: "center", padding: "10px" }}
               className={styles.borderBottom}
             >
               Remarks
-            </h5>
+            </h4>
             <Box style={{ padding: "5px" }}>
-              <h5>Truck No. : {trips.vehicleNo}</h5>
-              <h5>Gate Pass No.</h5>
-              <h5>Date : {formatDateInDDMMYYY(trips.date)}</h5>
-              <h5>D.I NO. : {trips.diNo}</h5>
+              <h4>Vehicle No. : {trips.vehicleNo}</h4>
+              <h4>Gate Pass No.</h4>
+              <h4>Date : {formatDateInDDMMYYY(trips.date)}</h4>
+              <h4>D.I No. : {trips.diNo}</h4>
+              <h4>Amount : {trips?.amount}</h4>
+              <h4>Diesel : {trips?.diesel}{" "}{trips.dieselIn === "Litre" ? "Ltr" : ""}</h4>
             </Box>
           </Grid>
         </Grid>
       </Grid>
       <Box marginTop="10px">
+        <h4>1. We hereby declare that input tax credit of capital goods and input services used for providing transportation service has not been taken by us.</h4>
         <h3
-          style={{ textAlign: "end", marginRight: "10px", marginTop: "7rem" }}
+          style={{ textAlign: "end", marginRight: "10px", marginTop: "6rem" }}
         >
           For,{" "}
-          {user.companyName
-            ? user.companyName
-            : user.companyAdminId.companyName
-              ? user.companyAdminId.companyName
-              : "SWASTIK MINERALS"}
+          {companyName}
         </h3>
       </Box>
     </div>

@@ -24,6 +24,8 @@ const LayoutAdd = ({
   handleCancel,
   handleReset,
   handleSubmit,
+  handle4thButton,
+  button4thName,
   data,
 }) => {
   const [error, handleValidate] = useValidate()
@@ -166,6 +168,18 @@ const LayoutAdd = ({
             Submit
           </Button>
         </Grid>
+        {/* Optional 4th Button */
+          button4thName && <Grid item sm={3} md={3} lg={1}>
+            <Button
+              variant="contained"
+              disabled={
+                submitButtonDisable || loading || Object.keys(error).length !== 0
+              }
+              onClick={handle4thButton}
+            >
+              {button4thName}
+            </Button>
+          </Grid>}
       </Grid>
     </React.Fragment>
   )

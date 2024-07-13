@@ -4,6 +4,7 @@ import { withRouter } from "react-router"
 import LayoutAdd from "../../Layout/LayoutAdd"
 import { ROUTES, pumpNames } from "../../../utils/constants"
 import { addTrips, editTrips } from "../../../containers/Trips/action"
+import { VIEW_URL } from "./constants"
 
 const initialTrip = {
   diNo: "",
@@ -119,12 +120,17 @@ const AddTrips = (props) => {
     else setTrip(initialTrip)
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (view = false) => {
     const cb = () => {
-      history.push(ROUTES.TRIPS)
+      if (view) history.push(VIEW_URL(trip.diNo))
+      else history.push(ROUTES.TRIPS)
     }
     if (initialFields) props.editTrips(trip, cb)
     else props.addTrips(trip, cb)
+  }
+
+  const handleSaveAndView = () => {
+    handleSubmit(true)
   }
 
   return (
@@ -135,6 +141,8 @@ const AddTrips = (props) => {
       handleCancel={handleCancel}
       handleReset={handleReset}
       handleSubmit={handleSubmit}
+      handle4thButton={handleSaveAndView}
+      button4thName={"Submit+View"}
       data={trip}
       loading={loading}
       edit={initialFields ? true : false}
