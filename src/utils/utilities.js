@@ -1,4 +1,4 @@
-const user = () => {
+export const user = () => {
   return JSON.parse(sessionStorage.getItem("user"))
 }
 

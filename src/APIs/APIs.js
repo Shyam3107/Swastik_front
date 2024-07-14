@@ -20,11 +20,11 @@ const modules = {
   user: "/user",
   home: "/home",
   trips: "/vehicles/trips",
+  drivers: "/vehicles/drivers",
   documents: "/vehicles/documents",
   vouchers: "/vehicles/vouchers",
   diesels: "/diesels/pumpDiesel",
   vehicleOwner: "/diesels/vehicles",
-  driverExpenses: "/expenses/driver",
   officeExpenses: "/expenses/office",
   vehiclesExpenses: "/expenses/vehicles",
   configureAccounts: "/configure/accounts",
@@ -53,6 +53,9 @@ export const API = {
   DELETE_TRIPS: `${modules.trips}/deleteTrips`,
   DOWNLOAD_TRIPS: `${modules.trips}/downloadTrips`,
   DOWNLOAD_TRIPS_BY_VEHICLE: `${modules.trips}/downloadTripsByVehicle`,
+
+  //DRIVERS
+  GET_DRIVERS: `${modules.drivers}/getDrivers`,
 
   // VOUCHERS
   GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
@@ -301,7 +304,7 @@ export const makeRequest = (options = {}) => {
       axios
         .delete(url, {
           responseType: "blob",
-          data:payload,
+          data: payload,
         })
         .then(({ status, data, headers }) => {
           if (status !== 200)

@@ -13,12 +13,14 @@ import productReducer from "./Products/reducer"
 import logisticReducer from "./Logistics/reducer"
 import vehicleOwnerReducer from "./VehicleOwner/reducer"
 import hardwareShopBillsReducer from "./HardwareShopBills/reducer"
+import driverReducer from "./Drivers/reducer"
 
 const rootReducer = {
   user: loginReducer,
   home: homeReducer,
   documents: documentsReducer,
   trips: tripsReducer,
+  drivers: driverReducer,
   officeExpense: officeExpenseReducer,
   vehiclesExpense: vehiclesExpenseReducer,
   accounts: accountReducer,

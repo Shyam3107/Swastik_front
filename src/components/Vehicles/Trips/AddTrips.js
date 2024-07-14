@@ -4,27 +4,29 @@ import { withRouter } from "react-router"
 import LayoutAdd from "../../Layout/LayoutAdd"
 import { ROUTES, pumpNames } from "../../../utils/constants"
 import { addTrips, editTrips } from "../../../containers/Trips/action"
+import { getDrivers } from "../../../containers/Drivers/action"
 import { VIEW_URL } from "./constants"
+import { user } from "../../../utils/utilities"
 
 const initialTrip = {
   diNo: "",
   lrNo: "",
   date: new Date().toISOString(),
-  loadingPoint: "",
+  loadingPoint: user()?.branch ?? "",
   partyName: "",
   location: "",
   material: "Cement",
-  shortage: undefined,
-  shortageAmount: undefined,
+  shortage: 0,
+  shortageAmount: 0,
   vehicleNo: "",
   quantity: 0,
-  bags: undefined,
+  bags: 0,
   driverName: "",
   driverPhone: "",
-  diesel: "",
+  diesel: 0,
   dieselIn: "",
   pumpName: "",
-  cash: undefined,
+  cash: 0,
   remarks: "",
   bilingRate: 0,
   rate: 0,
@@ -32,13 +34,18 @@ const initialTrip = {
 
 const AddTrips = (props) => {
   const [trip, setTrip] = useState(initialTrip)
-  const { initialFields } = props
+  const { initialFields, getDrivers } = props
   const history = props.history
   const { loading } = props.trips
+  const drivers = props.drivers.drivers
 
   useEffect(() => {
     if (initialFields) setTrip(initialFields)
   }, [initialFields])
+
+  useEffect(() => {
+    getDrivers()
+  }, [getDrivers])
 
   const inputFields = [
     { id: "diNo", label: "DI No.", required: true },
@@ -60,7 +67,12 @@ const AddTrips = (props) => {
     },
     { id: "partyName", label: "Party Name", required: true },
     { id: "location", label: "Location", required: true },
-    { id: "vehicleNo", label: "Vehicle No.", required: true },
+    {
+      id: "vehicleNo", label: "Vehicle No.", type: "customSelect",
+      handleChange: (val) => handleVehicleNoChange(val),
+      options: drivers.map(d => d?.vehicleNo),
+      required: true
+    },
     { id: "quantity", type: "number", label: "Quantity", required: true },
     { id: "bags", type: "number", label: "Bags", },
     {
@@ -106,9 +118,20 @@ const AddTrips = (props) => {
   ]
 
   const handleValueChange = (e) => {
-    if (e.target.name === "vehicleNo")
-      e.target.value = e.target.value.toUpperCase()
     setTrip({ ...trip, [e.target.name]: e.target.value })
+  }
+
+  const handleVehicleNoChange = (val) => {
+    let driverName = trip.driverName
+    let driverPhone = trip.driverPhone
+    val = val.toUpperCase()
+    for (let i = 0; i < drivers.length; i++) {
+      if (drivers[i].vehicleNo === val) {
+        driverName = drivers[i].driverName
+        driverPhone = drivers[i].driverPhone
+      }
+    }
+    setTrip({ ...trip, vehicleNo: val, driverName, driverPhone })
   }
 
   const handleCancel = () => {
@@ -153,9 +176,10 @@ const AddTrips = (props) => {
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
+    drivers: state.drivers,
   }
 }
 
 export default withRouter(
-  connect(mapStateToProps, { addTrips, editTrips })(AddTrips)
+  connect(mapStateToProps, { addTrips, editTrips, getDrivers })(AddTrips)
 )
