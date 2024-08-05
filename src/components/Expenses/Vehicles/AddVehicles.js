@@ -6,6 +6,7 @@ import {
   addExpense,
   editExpense,
 } from "../../../containers/VehicleExpense/action"
+import { getDrivers } from "../../../containers/Drivers/action"
 import { ROUTES, pumpNames } from "../../../utils/constants"
 
 const initialExpense = {
@@ -22,13 +23,18 @@ const initialExpense = {
 
 const Vehicles = (props) => {
   const [expense, setExpense] = useState(initialExpense)
-  const { initialFields } = props
+  const { initialFields, getDrivers } = props
   const history = props.history
   const { loading } = props.vehiclesExpense
+  const drivers = props.drivers.drivers
 
   useEffect(() => {
     if (initialFields) setExpense(initialFields)
   }, [initialFields])
+
+  useEffect(() => {
+    getDrivers()
+  }, [getDrivers])
 
   const inputFields = [
     {
@@ -38,7 +44,12 @@ const Vehicles = (props) => {
       label: "Date",
       maxDate: new Date().toISOString(),
     },
-    { id: "vehicleNo", label: "Vehicle No.", required: true },
+    {
+      id: "vehicleNo", label: "Vehicle No.", type: "customSelect",
+      handleChange: (val) => handleVehicleNoChange(val),
+      options: drivers.map(d => d?.vehicleNo),
+      required: true
+    },
     { id: "driverName", label: "Driver Name", required: true },
     { id: "amount", type: "number", label: "Amount", required: true },
     { id: "remarks", label: "Remarks", required: true },
@@ -73,6 +84,20 @@ const Vehicles = (props) => {
 
   const handleValueChange = (e) => {
     setExpense({ ...expense, [e.target.name]: e.target.value })
+  }
+
+  const handleVehicleNoChange = (val) => {
+    let driverName = expense.driverName
+    let driverPhone = expense.driverPhone ?? "9999999999"
+    val = val.toUpperCase()
+    for (let i = 0; i < drivers.length; i++) {
+      if (drivers[i].vehicleNo === val) {
+        driverName = drivers[i].driverName
+        driverPhone = drivers[i].driverPhone
+        break
+      }
+    }
+    setExpense({ ...expense, vehicleNo: val, driverName, driverPhone })
   }
 
   const handleCancel = () => {
@@ -110,9 +135,10 @@ const Vehicles = (props) => {
 const mapStateToProps = (state) => {
   return {
     vehiclesExpense: state.vehiclesExpense,
+    drivers: state.drivers,
   }
 }
 
 export default withRouter(
-  connect(mapStateToProps, { addExpense, editExpense })(Vehicles)
+  connect(mapStateToProps, { addExpense, editExpense, getDrivers })(Vehicles)
 )

@@ -129,6 +129,7 @@ const AddTrips = (props) => {
       if (drivers[i].vehicleNo === val) {
         driverName = drivers[i].driverName
         driverPhone = drivers[i].driverPhone
+        break
       }
     }
     setTrip({ ...trip, vehicleNo: val, driverName, driverPhone })
