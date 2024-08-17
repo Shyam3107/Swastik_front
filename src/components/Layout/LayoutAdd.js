@@ -118,6 +118,7 @@ const LayoutAdd = ({
                   options={item.options}
                   id={item.id}
                   handleChange={handleInputChange}
+                  disabled={item.disabled}
                   value={item.value ? item.value : data[item.id]}
                 />
               )}

@@ -6,7 +6,7 @@ import { ROUTES, pumpNames } from "../../../utils/constants"
 import { addTrips, editTrips } from "../../../containers/Trips/action"
 import { getDrivers } from "../../../containers/Drivers/action"
 import { VIEW_URL } from "./constants"
-import { user } from "../../../utils/utilities"
+import { isAdmin, user } from "../../../utils/utilities"
 
 const initialTrip = {
   diNo: "",
@@ -62,8 +62,9 @@ const AddTrips = (props) => {
       label: "Loading Point",
       type: "customSelect",
       handleChange: (val) => setTrip({ ...trip, loadingPoint: val }),
-      options: ["Hirmi", "Tilda", "Grasim", "Shree Cement", "Ambuja"],
+      options: ["Hirmi", "Tilda", "Grasim", "Shree Cement", "Ambuja", "Century"],
       required: true,
+      disabled: !isAdmin()
     },
     { id: "partyName", label: "Party Name", required: true },
     { id: "location", label: "Location", required: true },

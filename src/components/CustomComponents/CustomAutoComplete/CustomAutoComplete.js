@@ -8,6 +8,7 @@ const CustomAutoComplete = ({
   handleChange,
   id = "autoComplete",
   value,
+  disabled,
   style = {},
 }) => {
   // options is array of ["option1","option2","option3"]
@@ -27,6 +28,7 @@ const CustomAutoComplete = ({
       isOptionEqualToValue={(option, val) => option !== val}
       groupBy={(val) => val && val[0]}
       style={style}
+      disabled={disabled ?? false}
     />
   )
 }
