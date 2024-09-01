@@ -26,6 +26,7 @@ export const header = [
   "Remarks",
   "Billing Rate",
   "Rate",
+  "Party Name 2"
 ]
 
 export const headerKey = [
@@ -50,6 +51,7 @@ export const headerKey = [
   "remarks",
   "billingRate",
   "rate",
+  "partyName2"
 ]
 
 export const sampleData = [
@@ -76,6 +78,7 @@ export const sampleData = [
     "Saudimini Fuels",
     "1000",
     "Advance",
+    "Mahi Hardware"
   ],
   [
     "6123547890",
@@ -99,6 +102,7 @@ export const sampleData = [
     "Food",
     "1000",
     "970",
+    ""
   ],
   [
     "4523547890",
@@ -120,6 +124,7 @@ export const sampleData = [
     "",
     "2000",
     "Food",
+    ""
   ],
   [
     "5896547890",
@@ -143,6 +148,7 @@ export const sampleData = [
     "",
     "1190",
     "1100",
+    ""
   ],
 ]
 

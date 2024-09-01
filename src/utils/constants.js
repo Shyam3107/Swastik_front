@@ -15,7 +15,7 @@ export const fromToPayload = (from, to) => {
   }
 }
 
-export const pumpNames = ["Saurabh Fuels", "Saudimini Fuels", "Lal Fuels"]
+export const pumpNames = ["Lal Fuels", "H H Fuels", "Mangalam Fuels", "Raja Petrol Pump", "ChampaDevi Fuels", "Ajay Filing Station", "Balaji Fuels", "City Fuels", "Sharda Petroleum"]
 
 export const hostRoutes = {
   TRIPS: "/vehicles/trips",

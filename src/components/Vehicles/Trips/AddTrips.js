@@ -30,6 +30,7 @@ const initialTrip = {
   remarks: "",
   bilingRate: 0,
   rate: 0,
+  partyName2: ""
 }
 
 const AddTrips = (props) => {
@@ -116,6 +117,7 @@ const AddTrips = (props) => {
     { id: "remarks", label: "Remarks" },
     { id: "billingRate", type: "number", label: "Billing Rate" },
     { id: "rate", type: "number", label: "Rate" },
+    { id: "partyName2", label: "Party Name 2" }
   ]
 
   const handleValueChange = (e) => {

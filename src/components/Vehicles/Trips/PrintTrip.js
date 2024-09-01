@@ -40,9 +40,9 @@ const PrintTrip = (props) => {
             <h3>
               (Mob) {" "}
               {/* User Phone else Admin Phone */}
-              {user?.phone ?? user?.companyAdminId?.phone} {", "}
+              {trips?.addedBy?.phone ?? user?.companyAdminId?.phone} {", "}
               {/* User Phone 2 else Admin Phone 2 */}
-              {user?.phone2 ?? user?.companyAdminId?.phone2} {", "}
+              {trips?.addedBy?.phone2 ?? user?.companyAdminId?.phone2} {", "}
               9977115338
             </h3>
             <h3>Singhania Office, Kohka, Tilda</h3>
@@ -50,7 +50,7 @@ const PrintTrip = (props) => {
           </Box>
           <h3 style={{ marginTop: "15px" }}>
             T.P.T Code:{" "}
-            {user.tptCode ? user.tptCode : user.companyAdminId.tptCode}
+            {trips?.addedBy?.tptCode ?? user?.companyAdminId?.tptCode ?? ""}
           </h3>
         </Grid>
       </Grid>
@@ -87,6 +87,9 @@ const PrintTrip = (props) => {
             <Grid item style={{ width: "50%", paddingTop: 0 }}>
               <h4>Location: {trips.location}</h4>
             </Grid>
+            {trips?.partyName2 && <Grid item style={{ width: "50%", paddingTop: 0 }}>
+              <h4>Party Name: {trips.partyName2}</h4>
+            </Grid>}
           </Grid>
         </Grid>
       </Grid>
@@ -110,7 +113,6 @@ const PrintTrip = (props) => {
             <h4>Bags : {trips.bags}</h4>
           </Box>
           <Box className={styles.borderRight} height="67%" padding="20px 5px">
-            <h4>Party Phone No. : </h4>
             <h4>Driver Name : {trips.driverName}</h4>
             <h4>Driver Phone No. : {trips.driverPhone}</h4>
           </Box>
@@ -136,7 +138,7 @@ const PrintTrip = (props) => {
               <h4>Gate Pass No.</h4>
               <h4>Date : {formatDateInDDMMYYY(trips.date)}</h4>
               <h4>D.I No. : {trips.diNo}</h4>
-              <h4>Amount : {trips?.amount}</h4>
+              <h4>Amount : {trips?.cash}</h4>
               <h4>Diesel : {trips?.diesel}{" "}{trips.dieselIn === "Litre" ? "Ltr" : ""}</h4>
             </Box>
           </Grid>
