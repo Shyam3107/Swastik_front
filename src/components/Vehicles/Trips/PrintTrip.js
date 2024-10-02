@@ -135,7 +135,6 @@ const PrintTrip = (props) => {
             </h4>
             <Box style={{ padding: "5px" }}>
               <h4>Vehicle No. : {trips.vehicleNo}</h4>
-              <h4>Gate Pass No.</h4>
               <h4>Date : {formatDateInDDMMYYY(trips.date)}</h4>
               <h4>D.I No. : {trips.diNo}</h4>
               <h4>Amount : {trips?.cash}</h4>

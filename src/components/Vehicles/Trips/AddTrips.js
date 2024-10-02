@@ -65,7 +65,7 @@ const AddTrips = (props) => {
       handleChange: (val) => setTrip({ ...trip, loadingPoint: val }),
       options: ["Hirmi", "Tilda", "Grasim", "Shree Cement", "Ambuja", "Century"],
       required: true,
-      disabled: !isAdmin()
+      //disabled: !isAdmin()
     },
     { id: "partyName", label: "Party Name", required: true },
     { id: "location", label: "Location", required: true },
