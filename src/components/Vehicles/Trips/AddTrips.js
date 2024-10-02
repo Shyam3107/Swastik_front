@@ -147,7 +147,7 @@ const AddTrips = (props) => {
     else setTrip(initialTrip)
   }
 
-  const handleSubmit = (view = false) => {
+  const handleSubmit = (event, view) => {
     const cb = () => {
       if (view) history.push(VIEW_URL(trip.diNo))
       else history.push(ROUTES.TRIPS)
@@ -156,8 +156,8 @@ const AddTrips = (props) => {
     else props.addTrips(trip, cb)
   }
 
-  const handleSaveAndView = () => {
-    handleSubmit(true)
+  const handleSaveAndView = (event) => {
+    handleSubmit(event, true)
   }
 
   return (
