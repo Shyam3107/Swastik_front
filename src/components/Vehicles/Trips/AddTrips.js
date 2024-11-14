@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react"
-import { connect } from "react-redux"
-import { withRouter } from "react-router"
-import LayoutAdd from "../../Layout/LayoutAdd"
-import { ROUTES, pumpNames } from "../../../utils/constants"
-import { addTrips, editTrips } from "../../../containers/Trips/action"
-import { getDrivers } from "../../../containers/Drivers/action"
-import { VIEW_URL } from "./constants"
-import { isAdmin, user } from "../../../utils/utilities"
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
+import LayoutAdd from "../../Layout/LayoutAdd";
+import { ROUTES, pumpNames } from "../../../utils/constants";
+import { addTrips, editTrips } from "../../../containers/Trips/action";
+import { getDrivers } from "../../../containers/Drivers/action";
+import { VIEW_URL } from "./constants";
+import { isAdmin, user } from "../../../utils/utilities";
 
 const initialTrip = {
   diNo: "",
@@ -30,23 +30,23 @@ const initialTrip = {
   remarks: "",
   bilingRate: 0,
   rate: 0,
-  partyName2: ""
-}
+  partyName2: "",
+};
 
 const AddTrips = (props) => {
-  const [trip, setTrip] = useState(initialTrip)
-  const { initialFields, getDrivers } = props
-  const history = props.history
-  const { loading } = props.trips
-  const drivers = props.drivers.drivers
+  const [trip, setTrip] = useState(initialTrip);
+  const { initialFields, getDrivers } = props;
+  const history = props.history;
+  const { loading } = props.trips;
+  const drivers = props.drivers.drivers;
 
   useEffect(() => {
-    if (initialFields) setTrip(initialFields)
-  }, [initialFields])
+    if (initialFields) setTrip(initialFields);
+  }, [initialFields]);
 
   useEffect(() => {
-    getDrivers()
-  }, [getDrivers])
+    getDrivers();
+  }, [getDrivers]);
 
   const inputFields = [
     { id: "diNo", label: "DI No.", required: true },
@@ -63,20 +63,42 @@ const AddTrips = (props) => {
       label: "Loading Point",
       type: "customSelect",
       handleChange: (val) => setTrip({ ...trip, loadingPoint: val }),
-      options: ["Hirmi", "Tilda", "Grasim", "Shree Cement", "Ambuja", "Century"],
+      options: [
+        "Hirmi",
+        "Tilda",
+        "Grasim",
+        "Shree Cement",
+        "Ambuja",
+        "Century",
+      ],
       required: true,
       //disabled: !isAdmin()
     },
     { id: "partyName", label: "Party Name", required: true },
     { id: "location", label: "Location", required: true },
     {
-      id: "vehicleNo", label: "Vehicle No.", type: "customSelect",
+      id: "vehicleNo",
+      label: "Vehicle No.",
+      type: "customSelect",
       handleChange: (val) => handleVehicleNoChange(val),
-      options: drivers.map(d => d?.vehicleNo),
-      required: true
+      options: drivers.map((d) => d?.vehicleNo),
+      required: true,
     },
-    { id: "quantity", type: "number", label: "Quantity", required: true },
-    { id: "bags", type: "number", label: "Bags", },
+    {
+      id: "quantity",
+      type: "number",
+      label: "Quantity",
+      required: true,
+      handleChange: (e) => {
+        const val = e.target.value;
+        return setTrip({
+          ...trip,
+          quantity: val,
+          bags: ((val ?? 0) * 20).toFixed(0),
+        });
+      },
+    },
+    { id: "bags", type: "number", label: "Bags" },
     {
       id: "material",
       label: "Material",
@@ -85,8 +107,8 @@ const AddTrips = (props) => {
       options: ["Cement", "Coal", "Clinker", "Fly Ash"],
       required: true,
     },
-    { id: "shortage", type: "number", label: "Shortage", },
-    { id: "shortageAmount", type: "number", label: "Shortage Amount", },
+    { id: "shortage", type: "number", label: "Shortage" },
+    { id: "shortageAmount", type: "number", label: "Shortage Amount" },
     { id: "driverName", label: "Driver Name", required: true },
     {
       id: "driverPhone",
@@ -117,48 +139,48 @@ const AddTrips = (props) => {
     { id: "remarks", label: "Remarks" },
     { id: "billingRate", type: "number", label: "Billing Rate" },
     { id: "rate", type: "number", label: "Rate" },
-    { id: "partyName2", label: "Party Name 2" }
-  ]
+    { id: "partyName2", label: "Party Name 2" },
+  ];
 
   const handleValueChange = (e) => {
-    setTrip({ ...trip, [e.target.name]: e.target.value })
-  }
+    setTrip({ ...trip, [e.target.name]: e.target.value });
+  };
 
   const handleVehicleNoChange = (val) => {
-    let driverName = trip.driverName
-    let driverPhone = trip.driverPhone
-    val = val.toUpperCase()
+    let driverName = trip.driverName;
+    let driverPhone = trip.driverPhone;
+    val = val.toUpperCase();
     for (let i = 0; i < drivers.length; i++) {
       if (drivers[i].vehicleNo === val) {
-        driverName = drivers[i].driverName
-        driverPhone = drivers[i].driverPhone
-        break
+        driverName = drivers[i].driverName;
+        driverPhone = drivers[i].driverPhone;
+        break;
       }
     }
-    setTrip({ ...trip, vehicleNo: val, driverName, driverPhone })
-  }
+    setTrip({ ...trip, vehicleNo: val, driverName, driverPhone });
+  };
 
   const handleCancel = () => {
-    history.push(ROUTES.TRIPS)
-  }
+    history.push(ROUTES.TRIPS);
+  };
 
   const handleReset = () => {
-    if (initialFields) setTrip(initialFields)
-    else setTrip(initialTrip)
-  }
+    if (initialFields) setTrip(initialFields);
+    else setTrip(initialTrip);
+  };
 
   const handleSubmit = (event, view) => {
     const cb = () => {
-      if (view) history.push(VIEW_URL(trip.diNo))
-      else history.push(ROUTES.TRIPS)
-    }
-    if (initialFields) props.editTrips(trip, cb)
-    else props.addTrips(trip, cb)
-  }
+      if (view) history.push(VIEW_URL(trip.diNo));
+      else history.push(ROUTES.TRIPS);
+    };
+    if (initialFields) props.editTrips(trip, cb);
+    else props.addTrips(trip, cb);
+  };
 
   const handleSaveAndView = (event) => {
-    handleSubmit(event, true)
-  }
+    handleSubmit(event, true);
+  };
 
   return (
     <LayoutAdd
@@ -174,16 +196,16 @@ const AddTrips = (props) => {
       loading={loading}
       edit={initialFields ? true : false}
     />
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
     drivers: state.drivers,
-  }
-}
+  };
+};
 
 export default withRouter(
   connect(mapStateToProps, { addTrips, editTrips, getDrivers })(AddTrips)
-)
+);
