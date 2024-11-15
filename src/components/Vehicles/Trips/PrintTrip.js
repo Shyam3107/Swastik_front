@@ -1,20 +1,23 @@
-import React from "react"
-import { connect } from "react-redux"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
+import React from "react";
+import { connect } from "react-redux";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
-import styles from "./styles.module.css"
-import { formatDateInDDMMYYY } from "../../../utils/constants"
+import styles from "./styles.module.css";
+import { formatDateInDDMMYYY } from "../../../utils/constants";
 
 const PrintTrip = (props) => {
-  let { trips } = props.trips
-  let user = props.user.user
-  if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } }
+  let { trips } = props.trips;
+  let user = props.user.user;
+  if (!trips || Array.isArray(trips)) trips = { addedBy: { location: "" } };
 
-  let consignor = trips.addedBy?.consignor
-  let branch = trips.addedBy?.branch
+  let consignor = trips.addedBy?.consignor;
+  let branch = trips.addedBy?.branch;
 
-  const companyName = user?.companyName ?? user?.companyAdminId?.companyName ?? "SWASTIK MINERALS"
+  const companyName =
+    user?.companyName ??
+    user?.companyAdminId?.companyName ??
+    "SWASTIK MINERALS";
 
   return (
     <div className={styles.printDiv}>
@@ -28,8 +31,7 @@ const PrintTrip = (props) => {
               style={{ marginRight: "20px", marginBottom: "10px" }}
               alt="Swastik Logo"
             />
-            M/S.{" "}
-            {companyName.toUpperCase()}
+            M/S. {companyName.toUpperCase()}
           </h1>
           <h3>FLEET OWNERS AND TRANSPORT CONTRACTOR</h3>
           <h3>Authorised Transport Contractor</h3>
@@ -38,8 +40,7 @@ const PrintTrip = (props) => {
         <Grid item style={{ textAlign: "center", width: "40%" }}>
           <Box borderRadius="10px" className={styles.border} padding="5px">
             <h3>
-              (Mob) {" "}
-              {/* User Phone else Admin Phone */}
+              (Mob) {/* User Phone else Admin Phone */}
               {trips?.addedBy?.phone ?? user?.companyAdminId?.phone} {", "}
               {/* User Phone 2 else Admin Phone 2 */}
               {trips?.addedBy?.phone2 ?? user?.companyAdminId?.phone2} {", "}
@@ -87,9 +88,11 @@ const PrintTrip = (props) => {
             <Grid item style={{ width: "50%", paddingTop: 0 }}>
               <h4>Location: {trips.location}</h4>
             </Grid>
-            {trips?.partyName2 && <Grid item style={{ width: "50%", paddingTop: 0 }}>
-              <h4>Party Name: {trips.partyName2}</h4>
-            </Grid>}
+            {trips?.partyName2 && (
+              <Grid item style={{ width: "50%", paddingTop: 0 }}>
+                <h4>Party Name: {trips.partyName2}</h4>
+              </Grid>
+            )}
           </Grid>
         </Grid>
       </Grid>
@@ -137,30 +140,38 @@ const PrintTrip = (props) => {
               <h4>Vehicle No. : {trips.vehicleNo}</h4>
               <h4>Date : {formatDateInDDMMYYY(trips.date)}</h4>
               <h4>D.I No. : {trips.diNo}</h4>
-              <h4>Amount : {trips?.cash}</h4>
-              <h4>Diesel : {trips?.diesel}{" "}{trips.dieselIn === "Litre" ? "Ltr" : ""}</h4>
+              <h4>Amount : {trips?.cash === 0 ? 0 : trips.cash + "/-"}</h4>
+              <h4>
+                Diesel :{" "}
+                {trips?.diesel === 0
+                  ? 0
+                  : trips.diesel + (trips.dieselIn === "Litre" ? " Ltr" : "/-")}
+              </h4>
             </Box>
           </Grid>
         </Grid>
       </Grid>
       <Box marginTop="10px">
-        <h4>1. We hereby declare that input tax credit of capital goods and input services used for providing transportation service has not been taken by us.</h4>
+        <h4>
+          1. We hereby declare that input tax credit of capital goods and input
+          services used for providing transportation service has not been taken
+          by us.
+        </h4>
         <h3
           style={{ textAlign: "end", marginRight: "10px", marginTop: "6rem" }}
         >
-          For,{" "}
-          {companyName}
+          For, {companyName}
         </h3>
       </Box>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
     user: state.user,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(PrintTrip)
+export default connect(mapStateToProps)(PrintTrip);
