@@ -1,21 +1,21 @@
-import axios from "axios"
-import dotenv from "dotenv"
-import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage"
-import { error, warn, success } from "../utils/constants"
+import axios from "axios";
+import dotenv from "dotenv";
+import toastMessage from "../components/CustomComponents/ToastMessage/toastMessage";
+import { error, warn, success } from "../utils/constants";
 
-dotenv.config()
+dotenv.config();
 
 // eslint-disable-next-line
-const env = process.env.REACT_APP_ENV
+const env = process.env.REACT_APP_ENV;
 
-let backendURL = "https://swastik-backend.onrender.com"
+let backendURL = "https://swastik-backend.onrender.com";
 
 //let backendURL = "http://localhost:9000"
 //let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
 
-export { backendURL }
+export { backendURL };
 
 const modules = {
   user: "/user",
@@ -34,7 +34,7 @@ const modules = {
   products: "/store/product",
   logistics: "/store/logistic",
   hardwareShopBill: "/store/hardwareshops",
-}
+};
 
 export const API = {
   // LOGIN
@@ -164,33 +164,33 @@ export const API = {
   GET_SITE_REPORT: `${modules.reports}/getSiteReport`,
   GET_ALL_SITE_REPORT: `${modules.reports}/getAllSiteReport`,
   DOWNLOAD_ALL_VEHICLE_WISE_REPORT: `${modules.reports}/downloadAllVehicleWiseReport`,
-  DOWNLOAD_SITE_REPORT: `${modules.reports}/downloadSiteReport`
-}
+  DOWNLOAD_SITE_REPORT: `${modules.reports}/downloadSiteReport`,
+};
 
-export const handleError = (dispatch = () => { }, action = {}, err = {}) => {
-  dispatch(action)
-  if (!navigator.onLine) return toastMessage("You Are Offline", warn)
+export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
+  dispatch(action);
+  if (!navigator.onLine) return toastMessage("You Are Offline", warn);
   let errMssg = err.response
     ? err?.response?.data?.errors
     : err.message
-      ? err.message
-      : "Some Error Occured"
+    ? err.message
+    : "Some Error Occured";
 
-  if (!errMssg) errMssg = "Some Error Occured"
-  return toastMessage(errMssg, error)
-}
+  if (!errMssg) errMssg = "Some Error Occured";
+  return toastMessage(errMssg, error);
+};
 
 export const makeRequest = (options = {}) => {
   const { url, params, method, callback, errorActionType, payload, dispatch } =
-    options
+    options;
 
   switch (method) {
     case "get":
       axios
         .get(url, { params: params ? params : {} })
         .then(({ status, data }) => {
-          if (status === 200) callback(data)
-          return
+          if (status === 200) callback(data);
+          return;
         })
         .catch((err) => {
           return handleError(
@@ -200,17 +200,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     case "post":
       axios
         .post(url, payload)
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data)
-            return toastMessage(data.message, success)
+            callback(data);
+            return toastMessage(data.message, success);
           }
         })
         .catch((err) => {
@@ -221,17 +221,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     case "put":
       axios
         .put(url, payload)
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data)
-            return toastMessage(data.message, success)
+            callback(data);
+            return toastMessage(data.message, success);
           }
         })
         .catch((err) => {
@@ -242,17 +242,17 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     case "delete":
       axios
         .delete(url, { data: payload })
         .then(({ status, data }) => {
           if (status === 200) {
-            callback(data)
-            return toastMessage(data.message, success)
+            callback(data);
+            return toastMessage(data.message, success);
           }
         })
         .catch((err) => {
@@ -263,9 +263,9 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     case "file":
       axios
@@ -275,17 +275,18 @@ export const makeRequest = (options = {}) => {
         })
         .then(({ status, data, headers }) => {
           if (status !== 200)
-            throw new Error("Failed to Download Report, Please try again")
-          const blob = new Blob([data])
-          const link = document.createElement("a")
-          link.href = window.URL.createObjectURL(blob)
+            throw new Error("Failed to Download Report, Please try again");
+          const blob = new Blob([data]);
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
           if (headers && headers["content-type"] === "application/zip")
-            link.download = `${params?.filename ?? new Date().getTime()}.zip`
-          else link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
-          link.click()
-          link.remove()
-          callback()
-          return
+            link.download = `${params?.filename ?? new Date().getTime()}.zip`;
+          else
+            link.download = `${params?.filename ?? new Date().getTime()}.xlsx`;
+          link.click();
+          link.remove();
+          callback();
+          return;
         })
         .catch((err) => {
           return handleError(
@@ -295,9 +296,9 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     // Upload the file and get file in response
     // We need to send file and receive file thas why using delete request
@@ -309,17 +310,21 @@ export const makeRequest = (options = {}) => {
         })
         .then(({ status, data, headers }) => {
           if (status !== 200)
-            throw new Error("Failed to Download, Please try again")
-          const blob = new Blob([data])
-          const link = document.createElement("a")
-          link.href = window.URL.createObjectURL(blob)
+            throw new Error("Failed to Download, Please try again");
+          const blob = new Blob([data]);
+          const link = document.createElement("a");
+          link.href = window.URL.createObjectURL(blob);
           if (headers && headers["content-type"] === "application/zip")
-            link.download = `${params?.filename ?? new Date().getTime()}.zip`
-          else link.download = `${params?.filename ?? new Date().getTime()}.xlsx`
-          link.click()
-          link.remove()
-          callback()
-          return toastMessage("File uploaded Successfully, See downloaded Excel file for failed one", success)
+            link.download = `${params?.filename ?? new Date().getTime()}.zip`;
+          else
+            link.download = `${params?.filename ?? new Date().getTime()}.xlsx`;
+          link.click();
+          link.remove();
+          callback();
+          return toastMessage(
+            "File uploaded Successfully, See downloaded Excel file for failed one",
+            success
+          );
         })
         .catch((err) => {
           return handleError(
@@ -329,11 +334,11 @@ export const makeRequest = (options = {}) => {
               err: err,
             },
             err
-          )
-        })
-      return
+          );
+        });
+      return;
 
     default:
-      return
+      return;
   }
-}
+};
