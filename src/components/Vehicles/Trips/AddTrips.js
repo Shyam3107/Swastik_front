@@ -49,7 +49,12 @@ const AddTrips = (props) => {
   }, [getDrivers]);
 
   const inputFields = [
-    { id: "diNo", label: "DI No.", required: true },
+    {
+      id: "diNo",
+      label: "DI No.",
+      required: true,
+      customValidate: [{ type: "DINO" }],
+    },
     { id: "lrNo", label: "LR No.", required: true },
     {
       id: "date",
