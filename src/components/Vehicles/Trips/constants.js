@@ -2,7 +2,7 @@ import {
   formatDateInDDMMYYY,
   hostRoutes,
   includesInArray,
-} from "../../../utils/constants"
+} from "../../../utils/constants";
 
 export const header = [
   "DI No.",
@@ -26,8 +26,8 @@ export const header = [
   "Remarks",
   "Billing Rate",
   "Rate",
-  "Party Name 2"
-]
+  "Party Name 2",
+];
 
 export const headerKey = [
   "diNo",
@@ -51,13 +51,11 @@ export const headerKey = [
   "remarks",
   "billingRate",
   "rate",
-  "partyName2"
-]
+  "partyName2",
+];
 
 export const sampleData = [
-  [
-    ...header
-  ],
+  [...header],
   [
     "6123457890",
     "1452369874",
@@ -78,7 +76,7 @@ export const sampleData = [
     "Saudimini Fuels",
     "1000",
     "Advance",
-    "Mahi Hardware"
+    "Mahi Hardware",
   ],
   [
     "6123547890",
@@ -102,7 +100,7 @@ export const sampleData = [
     "Food",
     "1000",
     "970",
-    ""
+    "",
   ],
   [
     "4523547890",
@@ -124,7 +122,7 @@ export const sampleData = [
     "",
     "2000",
     "Food",
-    ""
+    "",
   ],
   [
     "5896547890",
@@ -148,39 +146,18 @@ export const sampleData = [
     "",
     "1190",
     "1100",
-    ""
+    "",
   ],
-]
+];
 
 export const sampleData2 = [
-  [
-    "DI No.",
-    "Date",
-    "Vehicle No.",
-    "Quantity",
-    "Billing Rate",
-    "Rate"
-  ],
-  [
-    "67282892822",
-    formatDateInDDMMYYY(),
-    "CG04PD1281",
-    35,
-    1400,
-    1450
-  ],
-  [
-    "672824520001",
-    formatDateInDDMMYYY(),
-    "CG04NH9534",
-    31,
-    818,
-    858
-  ]
-]
+  ["DI No.", "Date", "Vehicle No.", "Quantity", "Billing Rate", "Rate"],
+  ["67282892822", formatDateInDDMMYYY(), "CG04PD1281", 35, 1400, 1450],
+  ["672824520001", formatDateInDDMMYYY(), "CG04NH9534", 31, 818, 858],
+];
 
 export const filterData = (data, search) => {
-  if (!data || !Array.isArray(data)) data = []
+  if (!data || !Array.isArray(data)) data = [];
   return data.filter((val) => {
     return includesInArray(
       [
@@ -196,12 +173,13 @@ export const filterData = (data, search) => {
         val?.shortage ?? "",
         val?.shortageAmount ?? "",
         val?.addedBy ?? "",
+        val?.remarks ?? "",
       ],
       search
-    )
-  })
-}
+    );
+  });
+};
 
-export const EDIT_URL = (id) => `${hostRoutes.TRIPS}/${id}/edit`
-export const VIEW_URL = (id) => `${hostRoutes.TRIPS}/${id}`
-export const VIEW_VEHICLE_URL = (id) => `${hostRoutes.TRIPS}/vehicle/${id}`
+export const EDIT_URL = (id) => `${hostRoutes.TRIPS}/${id}/edit`;
+export const VIEW_URL = (id) => `${hostRoutes.TRIPS}/${id}`;
+export const VIEW_VEHICLE_URL = (id) => `${hostRoutes.TRIPS}/vehicle/${id}`;

@@ -19,6 +19,14 @@ const PrintTrip = (props) => {
     user?.companyAdminId?.companyName ??
     "SWASTIK MINERALS";
 
+  if (!trips?.diesel) {
+    trips.diesel = 0;
+  }
+
+  if (!trips?.cash) {
+    trips.cash = 0;
+  }
+
   return (
     <div className={styles.printDiv}>
       <Grid container>
@@ -140,12 +148,15 @@ const PrintTrip = (props) => {
               <h4>Vehicle No. : {trips.vehicleNo}</h4>
               <h4>Date : {formatDateInDDMMYYY(trips.date)}</h4>
               <h4>D.I No. : {trips.diNo}</h4>
-              <h4>Amount : {trips?.cash === 0 ? 0 : trips.cash + "/-"}</h4>
+              <h4>
+                Amount : {trips?.cash === 0 ? 0 : trips.cash?.toFixed(0) + "/-"}
+              </h4>
               <h4>
                 Diesel :{" "}
                 {trips?.diesel === 0
                   ? 0
-                  : trips.diesel + (trips.dieselIn === "Litre" ? " Ltr" : "/-")}
+                  : trips.diesel?.toFixed(2) +
+                    (trips.dieselIn === "Litre" ? " Ltr" : "/-")}
               </h4>
             </Box>
           </Grid>
