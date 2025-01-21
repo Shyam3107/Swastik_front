@@ -1,49 +1,50 @@
-import { useEffect, useState } from "react"
-import { connect } from "react-redux"
-import Grid from "@mui/material/Grid"
-import Typography from "@mui/material/Typography"
-import Box from "@mui/material/Box"
-import TextField from "@mui/material/TextField"
-import FormHelperText from "@mui/material/FormHelperText"
-import Button from "@mui/material/Button"
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import FormHelperText from "@mui/material/FormHelperText";
+import Button from "@mui/material/Button";
 
-import useValidate from "../CustomComponents/CustomHooks/useValidate"
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
-import { editAccount, addAccount } from "../../containers/Accounts/action"
+import useValidate from "../CustomComponents/CustomHooks/useValidate";
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
+import { editAccount, addAccount } from "../../containers/Accounts/action";
 import {
   accessOptions,
   initialForm,
   operationsOptions,
   showTripsOptions,
-} from "./constants"
-import CustomCheckBox from "../CustomComponents/CustomCheckBox/CustomCheckBox"
-import CustomRadio from "../CustomComponents/CustomRadio/CustomRadio"
+} from "./constants";
+import CustomCheckBox from "../CustomComponents/CustomCheckBox/CustomCheckBox";
+import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePicker";
+import CustomRadio from "../CustomComponents/CustomRadio/CustomRadio";
 
 const AddEmployeeAccount = (props) => {
-  const [form, setForm] = useState(initialForm)
-  const [error, handleValidate] = useValidate()
+  const [form, setForm] = useState(initialForm);
+  const [error, handleValidate] = useValidate();
 
-  const { initialFields } = props
-  const { loading } = props.accounts
+  const { initialFields } = props;
+  const { loading } = props.accounts;
 
   useEffect(() => {
     if (initialFields)
-      setForm({ ...initialForm, ...initialFields, password: "" })
-  }, [initialFields, setForm])
+      setForm({ ...initialForm, ...initialFields, password: "" });
+  }, [initialFields, setForm]);
 
   const handleCheckBox = (field, value, checked) => {
-    let temp = [...form[field]]
+    let temp = [...form[field]];
     if (checked) {
-      temp = [...form[field], value]
-      setForm({ ...form, [field]: temp })
+      temp = [...form[field], value];
+      setForm({ ...form, [field]: temp });
     } else {
-      const index = form[field].indexOf(value)
+      const index = form[field].indexOf(value);
       if (index !== -1) {
-        temp.splice(index, 1)
-        setForm({ ...form, [field]: temp })
+        temp.splice(index, 1);
+        setForm({ ...form, [field]: temp });
       }
     }
-  }
+  };
 
   let inputFields = [
     { label: "User Name", id: "userName", required: true },
@@ -64,7 +65,7 @@ const AddEmployeeAccount = (props) => {
       type: "CHECKBOX",
       options: accessOptions,
       handleChange: (value, checked) => {
-        handleCheckBox("access", value, checked)
+        handleCheckBox("access", value, checked);
       },
       lg: 12,
       md: 12,
@@ -77,7 +78,7 @@ const AddEmployeeAccount = (props) => {
       type: "CHECKBOX",
       options: operationsOptions,
       handleChange: (value, checked) => {
-        handleCheckBox("operations", value, checked)
+        handleCheckBox("operations", value, checked);
       },
       lg: 12,
       md: 12,
@@ -90,43 +91,52 @@ const AddEmployeeAccount = (props) => {
       type: "RADIO",
       options: showTripsOptions,
       handleChange: (value) => {
-        setForm({ ...form, showTrips: value.target.value })
+        setForm({ ...form, showTrips: value.target.value });
       },
       ld: 6,
       md: 5,
       sm: 6,
       value: form.showTrips,
     },
-  ]
+    {
+      label: "Entries Last Checked",
+      id: "entriesLastChecked",
+      type: "DATE",
+      handleChange: (value) => {
+        setForm({ ...form, entriesLastChecked: value });
+      },
+      value: form.entriesLastChecked,
+    },
+  ];
 
   const handleSubmit = () => {
     const cb = () => {
-      props.setState("Manage")
-      props.setAccountData(null)
-    }
-    if (initialFields) props.editAccount(form, cb)
-    else props.addAccount(form, cb)
-  }
+      props.setState("Manage");
+      props.setAccountData(null);
+    };
+    if (initialFields) props.editAccount(form, cb);
+    else props.addAccount(form, cb);
+  };
 
   const handleReset = () => {
     if (initialFields)
-      setForm({ ...initialForm, ...initialFields, password: "" })
-    else setForm(initialForm)
-  }
+      setForm({ ...initialForm, ...initialFields, password: "" });
+    else setForm(initialForm);
+  };
 
   const handleCancel = () => {
-    props.setState("Manage")
-    props.setAccountData(null)
-  }
+    props.setState("Manage");
+    props.setAccountData(null);
+  };
 
   return (
     <Box>
       <Grid container style={{ width: "100%" }} spacing={4}>
         {inputFields.map((item) => {
           const handleInputChange = (e) => {
-            setForm({ ...form, [e.target.name]: e.target.value })
-            if (item.required) handleValidate(e.target.name, e.target.value)
-          }
+            setForm({ ...form, [e.target.name]: e.target.value });
+            if (item.required) handleValidate(e.target.name, e.target.value);
+          };
           return (
             <Grid
               item
@@ -158,6 +168,18 @@ const AddEmployeeAccount = (props) => {
                   sm={item.sm}
                 />
               )}
+              {item.type === "DATE" && (
+                <Grid container>
+                  <CustomDatePicker
+                    selectedDate={
+                      item.value ? item.value : new Date("2000-01-01")
+                    }
+                    id={item.id}
+                    setSelectedDate={item.handleChange}
+                    maxDate={new Date()}
+                  />
+                </Grid>
+              )}
               {item.type == null && (
                 <TextField
                   id={item.id}
@@ -175,7 +197,7 @@ const AddEmployeeAccount = (props) => {
                 {error[item.id]}
               </FormHelperText>
             </Grid>
-          )
+          );
         })}
       </Grid>
       <Grid
@@ -222,15 +244,15 @@ const AddEmployeeAccount = (props) => {
         </Grid>
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     accounts: state.accounts,
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, { addAccount, editAccount })(
   AddEmployeeAccount
-)
+);
