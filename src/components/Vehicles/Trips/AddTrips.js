@@ -31,6 +31,8 @@ const initialTrip = {
   bilingRate: 0,
   rate: 0,
   partyName2: "",
+  eWayBillNo: "",
+  eWayBillExpiry: new Date().toISOString(),
 };
 
 const AddTrips = (props) => {
@@ -145,6 +147,13 @@ const AddTrips = (props) => {
     { id: "billingRate", type: "number", label: "Billing Rate" },
     { id: "rate", type: "number", label: "Rate" },
     { id: "partyName2", label: "Party Name 2" },
+    { id: "eWayBillNo", label: "E-Way Bill No." },
+    {
+      id: "eWayBillExpiry",
+      type: "date",
+      handleChange: (eWayBillExpiry) => setTrip({ ...trip, eWayBillExpiry }),
+      label: "E-Way Bill Expiry",
+    },
   ];
 
   const handleValueChange = (e) => {

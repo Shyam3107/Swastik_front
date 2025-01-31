@@ -324,7 +324,7 @@ export const makeRequest = (options = {}) => {
           link.remove();
           callback();
           return toastMessage(
-            "File uploaded Successfully, See downloaded Excel file for failed one",
+            "File uploaded Successfully, See downloaded File for more Detail",
             success
           );
         })

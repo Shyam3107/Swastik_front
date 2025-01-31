@@ -27,6 +27,8 @@ export const header = [
   "Billing Rate",
   "Rate",
   "Party Name 2",
+  "E-Way Bill No.",
+  "E-Way Bill Expiry",
 ];
 
 export const headerKey = [
@@ -52,6 +54,8 @@ export const headerKey = [
   "billingRate",
   "rate",
   "partyName2",
+  "eWayBillNo",
+  "eWayBillExpiry",
 ];
 
 export const sampleData = [
