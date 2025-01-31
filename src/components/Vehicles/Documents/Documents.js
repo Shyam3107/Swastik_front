@@ -1,19 +1,22 @@
-import React, { useState, useEffect, Fragment } from "react"
-import { withRouter } from "react-router"
-import { connect } from "react-redux"
-import { Link } from "react-router-dom"
-import TableCell from "@mui/material/TableCell"
+import React, { useState, useEffect, Fragment } from "react";
+import { withRouter } from "react-router";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import TableCell from "@mui/material/TableCell";
 
 import {
   getDocuments,
   deleteDocuments,
   uploadDocuments,
   downloadDocuments,
-} from "../../../containers/Documents/action"
-import Layout from "../../Layout/Layout"
-import { ROUTES, validateUrlValid } from "../../../utils/constants"
+  downloadMissingDocuments,
+  completeVehicleNum,
+} from "../../../containers/Documents/action";
+import Layout from "../../Layout/Layout";
+import { ROUTES, validateUrlValid } from "../../../utils/constants";
 import {
   sampleData,
+  sampleData2,
   EXPIRED,
   ACTIVE,
   EDIT_URL,
@@ -21,54 +24,63 @@ import {
   tableHeaderKey,
   tableHeader,
   filterData,
-} from "./constants"
+} from "./constants";
 import {
+  isAdmin,
   access,
   isOperationAllowed,
   operations,
   checkBoxCondition,
-} from "../../../utils/utilities"
+} from "../../../utils/utilities";
 
 const Documents = (props) => {
-  let { getDocuments } = props
-  const [search, setSearch] = useState("")
-  const [selected, setSelected] = useState([])
-  let { loading, documents, documentsLink, downloadLoading } = props.documents
-  const history = props.history
+  let { getDocuments } = props;
+  const [search, setSearch] = useState("");
+  const [selected, setSelected] = useState([]);
+  let { loading, documents, documentsLink, downloadLoading } = props.documents;
+  const history = props.history;
 
   useEffect(() => {
-    getDocuments()
-  }, [getDocuments])
+    getDocuments();
+  }, [getDocuments]);
 
   const handleFileSubmit = (file) => {
-    props.uploadDocuments(file, getDocuments)
-  }
+    props.uploadDocuments(file, getDocuments);
+  };
 
   const handleDownload = () => {
-    props.downloadDocuments()
-  }
+    props.downloadDocuments();
+  };
+
+  const handleDownload2 = () => {
+    props.downloadMissingDocuments();
+  };
+
+  const handleFile2Submit = (file) => {
+    props.completeVehicleNum(file, () => {});
+  };
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      props.getDocuments()
-      setSelected([])
-    }
-    props.deleteDocuments(selected, cb)
-  }
+      props.getDocuments();
+      setSelected([]);
+    };
+    props.deleteDocuments(selected, cb);
+  };
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_DOCUMENT)
-  }
+    history.push(ROUTES.ADD_DOCUMENT);
+  };
 
   const handleEditButton = () => {
-    const vehicleId = selected[0]
-    const searchId = documents.filter((val) => val._id === vehicleId)
-    history.push(EDIT_URL(searchId[0].vehicleNo))
-  }
+    const vehicleId = selected[0];
+    const searchId = documents.filter((val) => val._id === vehicleId);
+    history.push(EDIT_URL(searchId[0].vehicleNo));
+  };
 
-  if (!documents || !Array.isArray(documents)) documents = []
+  if (!documents || !Array.isArray(documents)) documents = [];
 
-  documents = filterData(documents, search)
+  documents = filterData(documents, search);
 
   const tableRow = [...tableHeader, "Added By"].map((headCell) => (
     <TableCell
@@ -77,51 +89,60 @@ const Documents = (props) => {
     >
       {headCell}
     </TableCell>
-  ))
+  ));
 
   const tableBodyFunc = (row) => {
     return [...tableHeaderKey, "addedBy"].map((headVal) => {
-
-      const rowValue = row[headVal]
+      const rowValue = row[headVal];
 
       if (headVal === "vehicleNo")
         return (
           <TableCell key={headVal}>
             <Link to={VIEW_URL(rowValue)}>{rowValue}</Link>
           </TableCell>
-        )
+        );
       if (headVal === "addedBy")
-        return <TableCell key={headVal}>{rowValue}</TableCell>
+        return <TableCell key={headVal}>{rowValue}</TableCell>;
 
-      let bgColor = "white"
-      let fontColor = "black"
-      const isNationalPermit = row["isNationalPermit"]
+      let bgColor = "white";
+      let fontColor = "black";
+      const isNationalPermit = row["isNationalPermit"];
 
-      if (headVal !== "nationalPermitStatus" && headVal !== "isNationalPermit") {
+      if (
+        headVal !== "nationalPermitStatus" &&
+        headVal !== "isNationalPermit"
+      ) {
         switch (rowValue) {
-          case EXPIRED: bgColor = "#8b0000"
-            break
-          case ACTIVE: bgColor = "green"
-            break
-          default: bgColor = "#FFDF00"
+          case EXPIRED:
+            bgColor = "#8b0000";
+            break;
+          case ACTIVE:
+            bgColor = "green";
+            break;
+          default:
+            bgColor = "#FFDF00";
         }
 
-        fontColor = "white"
-      }
-      else {
+        fontColor = "white";
+      } else {
         // National Permit part
         if (headVal === "nationalPermitStatus" && isNationalPermit === "YES") {
           switch (rowValue) {
-            case EXPIRED: bgColor = "#8b0000"
-              break
-            case ACTIVE: bgColor = "green"
-              break
-            default: bgColor = "#FFDF00"
+            case EXPIRED:
+              bgColor = "#8b0000";
+              break;
+            case ACTIVE:
+              bgColor = "green";
+              break;
+            default:
+              bgColor = "#FFDF00";
           }
-          fontColor = "white"
-        }
-        else if (headVal === "nationalPermitStatus" && isNationalPermit === "NO") {
-          fontColor = "white"
+          fontColor = "white";
+        } else if (
+          headVal === "nationalPermitStatus" &&
+          isNationalPermit === "NO"
+        ) {
+          fontColor = "white";
         }
       }
 
@@ -141,9 +162,9 @@ const Documents = (props) => {
             {row[headVal]}
           </span>
         </TableCell>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <Fragment>
@@ -179,6 +200,12 @@ const Documents = (props) => {
         sampleData={sampleData}
         downloadLoading={downloadLoading}
         handleDownload={handleDownload}
+        handleDownload2={isAdmin() && handleDownload2}
+        download2ToolTip="Download Missing Docs"
+        sampleName2="Vehicle Number Sample"
+        upload2ToolTip="Complete the Vehicle No."
+        handleFile2Submit={isAdmin() && handleFile2Submit}
+        sampleData2={sampleData2}
       />
       {validateUrlValid(documentsLink) && (
         <p style={{ marginLeft: "10px" }}>
@@ -189,20 +216,24 @@ const Documents = (props) => {
         </p>
       )}
     </Fragment>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     documents: state.documents,
-  }
-}
+  };
+};
 
-export default React.memo(withRouter(
-  connect(mapStateToProps, {
-    getDocuments,
-    deleteDocuments,
-    uploadDocuments,
-    downloadDocuments,
-  })(Documents)
-))
+export default React.memo(
+  withRouter(
+    connect(mapStateToProps, {
+      getDocuments,
+      deleteDocuments,
+      uploadDocuments,
+      downloadDocuments,
+      downloadMissingDocuments,
+      completeVehicleNum,
+    })(Documents)
+  )
+);

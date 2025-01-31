@@ -1,24 +1,24 @@
-import React from "react"
-import CustomDeleteIcon from "../CustomDeleteIcon/CustomDeleteIcon"
-import UploadFile from "../UploadFile/UploadFile"
-import DownloadFile from "../DownloadFile/DownloadFile"
-import CustomDatePicker from "../CustomDatePicker/CustomDatePicker"
-import AddOutlinedIcon from "@mui/icons-material/AddOutlined"
-import IconButton from "@mui/material/IconButton"
-import SearchIcon from "@mui/icons-material/Search"
-import EditIcon from "@mui/icons-material/Edit"
-import TextField from "@mui/material/TextField"
-import InputAdornment from "@mui/material/InputAdornment"
-import Tooltip from "@mui/material/Tooltip"
-import Grid from "@mui/material/Grid"
-import PrintIcon from "@mui/icons-material/Print"
-import { Button } from "@mui/material"
+import React from "react";
+import CustomDeleteIcon from "../CustomDeleteIcon/CustomDeleteIcon";
+import UploadFile from "../UploadFile/UploadFile";
+import DownloadFile from "../DownloadFile/DownloadFile";
+import CustomDatePicker from "../CustomDatePicker/CustomDatePicker";
+import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
+import EditIcon from "@mui/icons-material/Edit";
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import Tooltip from "@mui/material/Tooltip";
+import Grid from "@mui/material/Grid";
+import PrintIcon from "@mui/icons-material/Print";
+import { Button } from "@mui/material";
 
 const styleButton = {
   color: "black",
   height: "40px",
   width: "40px",
-}
+};
 
 const CustomCrudIcons = ({
   setSelectedFrom,
@@ -42,6 +42,8 @@ const CustomCrudIcons = ({
   downloadLoading,
   print = false,
   handleGo,
+  handleDownload2,
+  download2ToolTip,
 }) => {
   return (
     <React.Fragment>
@@ -76,11 +78,18 @@ const CustomCrudIcons = ({
             style={{ width: "100px" }}
           />
         )}
-        {handleGo && <Grid item sm={2} md={2} lg={1}>
-          <Button onClick={handleGo} variant="contained" style={{ marginLeft: "5px", marginTop: "7px", cursor: 'pointer' }} size="string">
-            Go
-          </Button>
-        </Grid>}
+        {handleGo && (
+          <Grid item sm={2} md={2} lg={1}>
+            <Button
+              onClick={handleGo}
+              variant="contained"
+              style={{ marginLeft: "5px", marginTop: "7px", cursor: "pointer" }}
+              size="string"
+            >
+              Go
+            </Button>
+          </Grid>
+        )}
       </Grid>
 
       <Grid
@@ -155,6 +164,14 @@ const CustomCrudIcons = ({
           />
         )}
 
+        {handleDownload2 && (
+          <DownloadFile
+            styleButton={styleButton}
+            loading={downloadLoading}
+            handleDownload={handleDownload2}
+            toolTip={download2ToolTip}
+          />
+        )}
 
         {handleDownload && (
           <DownloadFile
@@ -183,7 +200,7 @@ const CustomCrudIcons = ({
         )}
       </Grid>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default CustomCrudIcons
+export default CustomCrudIcons;

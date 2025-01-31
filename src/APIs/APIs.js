@@ -10,7 +10,7 @@ const env = process.env.REACT_APP_ENV;
 
 let backendURL = "https://swastik-backend.onrender.com";
 
-//let backendURL = "http://localhost:9000"
+//let backendURL = "http://localhost:9001";
 //let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
@@ -73,6 +73,8 @@ export const API = {
   EDIT_DOCUMENTS: `${modules.documents}/editDocuments`,
   DELETE_DOCUMENTS: `${modules.documents}/deleteDocuments`,
   DOWNLOAD_DOCUMENTS: `${modules.documents}/downloadDocuments`,
+  DOWNLOAD_MISSING_DOCUMENTS: `${modules.documents}/downloadMissingDocuments`,
+  COMPLETE_VEHICLE_NUMBER: `${modules.documents}/completeVehicleNum`,
 
   // DIESELS
   GET_DIESELS: `${modules.diesels}/getDiesels`,

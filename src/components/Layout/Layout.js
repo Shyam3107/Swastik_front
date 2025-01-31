@@ -1,12 +1,12 @@
-import React from "react"
-import { connect } from "react-redux"
-import Typography from "@mui/material/Typography"
-import Grid from "@mui/material/Grid"
-import Box from "@mui/material/Box"
+import React from "react";
+import { connect } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
 
-import CustomTableOutput from "../CustomComponents/CustomTableOutput/CustomTableOutput"
-import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons"
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
+import CustomTableOutput from "../CustomComponents/CustomTableOutput/CustomTableOutput";
+import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons";
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
 
 const Layout = ({
   children,
@@ -39,10 +39,12 @@ const Layout = ({
   downloadLoading,
   checkBoxCondition,
   defaultRowsPerPage,
-  handleGo
+  handleGo,
+  handleDownload2,
+  download2ToolTip,
 }) => {
   // Show Loader in case loading during add, get, edit or delete
-  if (loading) return <CustomLoader style={{ height: "80%" }} />
+  if (loading) return <CustomLoader style={{ height: "80%" }} />;
 
   return (
     <React.Fragment>
@@ -57,13 +59,7 @@ const Layout = ({
               {title}
             </Typography>
           </Grid>
-          <Grid
-            item
-            container justifyContent="flex-end"
-            xs={12}
-            md={9}
-            lg={9}
-          >
+          <Grid item container justifyContent="flex-end" xs={12} md={9} lg={9}>
             <CustomCrudIcons
               handleDeleteAgree={handleDeleteAgree}
               handleFileSubmit={handleFileSubmit}
@@ -85,6 +81,8 @@ const Layout = ({
               numSelected={numSelected}
               downloadLoading={downloadLoading}
               handleGo={handleGo}
+              handleDownload2={handleDownload2}
+              download2ToolTip={download2ToolTip}
             />
           </Grid>
         </Grid>
@@ -109,7 +107,7 @@ const Layout = ({
         children
       )}
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default connect(null, null)(Layout)
+export default connect(null, null)(Layout);

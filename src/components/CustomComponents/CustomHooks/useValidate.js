@@ -29,8 +29,13 @@ const useValidate = () => {
           if (!validateUrlValid(fieldValue))
             errMssg = mssg || "Enter Valid URL";
         } else if (type === "DINO") {
-          if (fieldValue?.includes("?") || fieldValue?.includes("/"))
-            errMssg = mssg || "?,/ characters are not alowed";
+          if (
+            fieldValue?.includes("?") ||
+            fieldValue?.includes("/") ||
+            fieldValue?.includes("=") ||
+            fieldValue?.includes("#")
+          )
+            errMssg = mssg || "?,/,=,# characters are not alowed";
         }
       });
       if (errMssg) newError[fieldId] = errMssg;

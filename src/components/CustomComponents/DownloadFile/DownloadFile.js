@@ -1,27 +1,28 @@
-import React, { useState } from "react"
-import { Paper, Popper, Button, Typography } from "@mui/material"
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined"
-import IconButton from "@mui/material/IconButton"
-import Tooltip from "@mui/material/Tooltip"
+import React, { useState } from "react";
+import { Paper, Popper, Button, Typography } from "@mui/material";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import IconButton from "@mui/material/IconButton";
+import Tooltip from "@mui/material/Tooltip";
 
-import styles from "./styles.module.css"
+import styles from "./styles.module.css";
 
 export default function CustomDrop({
   styleButton,
   handleDownload,
   loading = false,
+  toolTip,
 }) {
-  const [anchorEl, setAnchorEl] = useState(null)
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
-    setAnchorEl(anchorEl ? null : event.currentTarget)
-  }
+    setAnchorEl(anchorEl ? null : event.currentTarget);
+  };
 
-  const open = Boolean(anchorEl)
+  const open = Boolean(anchorEl);
 
   return (
     <React.Fragment>
-      <Tooltip title="Download">
+      <Tooltip title={toolTip ?? "Download"}>
         <IconButton
           style={styleButton}
           disabled={loading}
@@ -45,5 +46,5 @@ export default function CustomDrop({
         </Paper>
       </Popper>
     </React.Fragment>
-  )
+  );
 }

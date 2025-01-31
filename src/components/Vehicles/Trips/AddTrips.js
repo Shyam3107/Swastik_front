@@ -6,7 +6,7 @@ import { ROUTES, pumpNames } from "../../../utils/constants";
 import { addTrips, editTrips } from "../../../containers/Trips/action";
 import { getDrivers } from "../../../containers/Drivers/action";
 import { VIEW_URL } from "./constants";
-import { isAdmin, user } from "../../../utils/utilities";
+import { user } from "../../../utils/utilities";
 
 const initialTrip = {
   diNo: "",
