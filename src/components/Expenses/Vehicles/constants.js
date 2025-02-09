@@ -4,50 +4,41 @@ export const header = [
   "Date",
   "Vehicle No.",
   "Driver Name",
+  "Driver Phone",
   "Amount",
   "Remarks",
-  "Pump Name",
-  "Diesel",
-  "Diesel In",
-  "Diesel For",
+  "Expense For",
 ];
 
 export const headerKey = [
   "date",
   "vehicleNo",
   "driverName",
+  "driverPhone",
   "amount",
   "remarks",
-  "pumpName",
-  "diesel",
-  "dieselIn",
-  "dieselFor",
+  "expenseFor",
 ];
 
 export const sampleData = [
   header,
-  [formatDateInDDMMYYY(), "CG04KR5617", "Ashok", "5123", "Advance"],
+  [
+    formatDateInDDMMYYY(),
+    "CG04KR5617",
+    "Ashok",
+    "9856321458",
+    "5123",
+    "Advance",
+    "Driver",
+  ],
   [
     formatDateInDDMMYYY(),
     "CG04JD1234",
     "Anwar",
-    "0",
-    "diesel",
-    "Saurabh Fuels",
+    "8745621035",
     "5000",
     "Amount",
     "Vehicle",
-  ],
-  [
-    formatDateInDDMMYYY(),
-    "CG04JD3456",
-    "Ali",
-    "0",
-    "diesel",
-    "Saurabh Fuels",
-    "50",
-    "Litre",
-    "Driver",
   ],
 ];
 
@@ -57,10 +48,9 @@ export const filterData = (data = [], search = "") => {
     return includesInArray(
       [
         val.remarks,
-        val?.pumpName ?? "",
-        val?.dieselFor ?? "",
         val.driverName,
         val.vehicleNo,
+        val.amount,
         val?.addedBy ?? "",
       ],
       search
