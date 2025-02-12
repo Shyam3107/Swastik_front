@@ -167,6 +167,7 @@ export const API = {
   GET_ALL_SITE_REPORT: `${modules.reports}/getAllSiteReport`,
   DOWNLOAD_ALL_VEHICLE_WISE_REPORT: `${modules.reports}/downloadAllVehicleWiseReport`,
   DOWNLOAD_SITE_REPORT: `${modules.reports}/downloadSiteReport`,
+  DOWNLOAD_ALL_SITES_ROKAR: `${modules.reports}/downloadAllSitesRokar`,
 };
 
 export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
