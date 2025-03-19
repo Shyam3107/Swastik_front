@@ -8,7 +8,8 @@ dotenv.config();
 // eslint-disable-next-line
 const env = process.env.REACT_APP_ENV;
 
-let backendURL = "https://swastik-backend.onrender.com";
+//let backendURL = "https://swastik-backend.onrender.com";
+let backendURL = "https://swastik-back-new.onrender.com";
 
 //let backendURL = "http://localhost:9001";
 //let backendURL = "https://swastik-back.vercel.app"
