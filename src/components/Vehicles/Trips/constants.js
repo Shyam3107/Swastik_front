@@ -80,6 +80,8 @@ export const sampleData = [
     "Saudimini Fuels",
     "1000",
     "Advance",
+    "",
+    "",
     "Mahi Hardware",
   ],
   [
