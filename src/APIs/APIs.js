@@ -8,10 +8,12 @@ dotenv.config();
 // eslint-disable-next-line
 const env = process.env.REACT_APP_ENV;
 
-//let backendURL = "https://swastik-backend.onrender.com";
-let backendURL = "https://swastik-back-new.onrender.com";
+let backendURL;
 
-//let backendURL = "http://localhost:9001";
+//backendURL = "https://swastik-backend.onrender.com";
+//backendURL = "https://swastik-back-new.onrender.com";
+
+backendURL = "http://localhost:9001";
 //let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
@@ -35,6 +37,7 @@ const modules = {
   products: "/store/product",
   logistics: "/store/logistic",
   hardwareShopBill: "/store/hardwareshops",
+  fleets: "/fleets",
 };
 
 export const API = {
@@ -119,6 +122,14 @@ export const API = {
   ADD_ACCOUNTS: `${modules.configureAccounts}/addAccount`,
   EDIT_ACCOUNTS: `${modules.configureAccounts}/editAccount`,
   DELETE_ACCOUNTS: `${modules.configureAccounts}/deleteAccount`,
+
+  // FLEETS
+  GET_FLEET: `${modules.fleets}/getFleet`,
+  ADD_FLEET: `${modules.fleets}/addFleet`,
+  UPLOAD_FLEET: `${modules.fleets}/uploadFleet`,
+  EDIT_FLEET: `${modules.fleets}/editFleet`,
+  DELETE_FLEET: `${modules.fleets}/deleteFleet`,
+  DOWNLOAD_FLEET: `${modules.fleets}/downloadFleet`,
 
   // RECEIPTS
   GET_RECEIPT: `${modules.receipts}/getReceipt`,

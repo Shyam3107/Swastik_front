@@ -95,6 +95,7 @@ const LayoutAdd = ({
                   name={item.id}
                   error={Boolean(error[item.id])}
                   onBlur={handleInputChange}
+                  disabled={item.disabled ?? false}
                 />
               )}
               {item.type === InputTypes.DATE && (

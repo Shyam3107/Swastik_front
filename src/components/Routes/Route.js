@@ -1,79 +1,97 @@
-import { Switch, Route, Redirect } from "react-router-dom"
-import { connect } from "react-redux"
-import Login from "../Login/Login"
-import Logout from "../Logout/Logout"
-import { ROUTES } from "../../utils/constants"
-import Home from "../Home/Home"
+import { Switch, Route, Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import Login from "../Login/Login";
+import Logout from "../Logout/Logout";
+import { ROUTES } from "../../utils/constants";
+import Home from "../Home/Home";
 
-import Trips from "../Vehicles/Trips/Trips"
-import AddTrips from "../Vehicles/Trips/AddTrips"
-import EditTrips from "../Vehicles/Trips/EditTrips"
-import ViewTrip from "../Vehicles/Trips/ViewTrip"
-import TripsByVehicle from "../Vehicles/Trips/TripsByVehicle"
+// TRIPS
+import Trips from "../Vehicles/Trips/Trips";
+import AddTrips from "../Vehicles/Trips/AddTrips";
+import EditTrips from "../Vehicles/Trips/EditTrips";
+import ViewTrip from "../Vehicles/Trips/ViewTrip";
+import TripsByVehicle from "../Vehicles/Trips/TripsByVehicle";
 
-import Vouchers from "../Vehicles/Vouchers/Vouchers"
-import AddVouchers from "../Vehicles/Vouchers/AddVouchers"
-import EditVouchers from "../Vehicles/Vouchers/EditVouchers"
-import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher"
+// VOUCHERS
+import Vouchers from "../Vehicles/Vouchers/Vouchers";
+import AddVouchers from "../Vehicles/Vouchers/AddVouchers";
+import EditVouchers from "../Vehicles/Vouchers/EditVouchers";
+import ViewVoucher from "../Vehicles/Vouchers/ViewVoucher";
 
-import Diesels from "../Diesels/PumpDiesels/Diesels"
-import AddDiesels from "../Diesels/PumpDiesels/AddDiesels"
-import EditDiesels from "../Diesels/PumpDiesels/EditDiesels"
-import ViewDieselsByPump from "../Diesels/PumpDiesels/ViewDieselsByPump"
-import ViewDieselsByVehicle from "../Diesels/PumpDiesels/ViewDieselsByVehicle"
+// DIESELS
+import Diesels from "../Diesels/PumpDiesels/Diesels";
+import AddDiesels from "../Diesels/PumpDiesels/AddDiesels";
+import EditDiesels from "../Diesels/PumpDiesels/EditDiesels";
+import ViewDieselsByPump from "../Diesels/PumpDiesels/ViewDieselsByPump";
+import ViewDieselsByVehicle from "../Diesels/PumpDiesels/ViewDieselsByVehicle";
 
-import VehicleOwner from "../Diesels/VehicleOwner/VehicleOwner"
-import AddVehicleOwner from "../Diesels/VehicleOwner/AddVehicleOwner"
-import EditVehicleOwner from "../Diesels/VehicleOwner/EditVehicleOwner"
+// VEHICLE OWNER
+import VehicleOwner from "../Diesels/VehicleOwner/VehicleOwner";
+import AddVehicleOwner from "../Diesels/VehicleOwner/AddVehicleOwner";
+import EditVehicleOwner from "../Diesels/VehicleOwner/EditVehicleOwner";
 
-import Documents from "../Vehicles/Documents/Documents"
-import AddDocument from "../Vehicles/Documents/AddDocument"
-import ViewDocument from "../Vehicles/Documents/ViewDocument"
-import EditDocument from "../Vehicles/Documents/EditDocument"
+// DOCMENTS
+import Documents from "../Vehicles/Documents/Documents";
+import AddDocument from "../Vehicles/Documents/AddDocument";
+import ViewDocument from "../Vehicles/Documents/ViewDocument";
+import EditDocument from "../Vehicles/Documents/EditDocument";
 
-import OfficeExpense from "../Expenses/Office/Office"
-import AddOfficeExpense from "../Expenses/Office/AddOffice"
-import EditOfficeExpense from "../Expenses/Office/EditOffice"
+// OFFICE EXPENSE
+import OfficeExpense from "../Expenses/Office/Office";
+import AddOfficeExpense from "../Expenses/Office/AddOffice";
+import EditOfficeExpense from "../Expenses/Office/EditOffice";
 
-import VehiclesExpense from "../Expenses/Vehicles/Vehicles"
-import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles"
-import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles"
+// VEHICLE EXPENSE
+import VehiclesExpense from "../Expenses/Vehicles/Vehicles";
+import AddVehiclesExpense from "../Expenses/Vehicles/AddVehicles";
+import EditVehiclesExpense from "../Expenses/Vehicles/EditVehicles";
 
-import Logistic from "../Store/Logistic/Logistic"
-import AddLogistic from "../Store/Logistic/AddLogistic"
-import EditLogistic from "../Store/Logistic/EditLogistic"
+// LOGISTIC
+import Logistic from "../Store/Logistic/Logistic";
+import AddLogistic from "../Store/Logistic/AddLogistic";
+import EditLogistic from "../Store/Logistic/EditLogistic";
 
-import Product from "../Store/Product/Product"
-import AddProduct from "../Store/Product/AddProduct"
-import EditProduct from "../Store/Product/EditProduct"
-import ViewProduct from "../Store/Product/ViewProduct"
+// PRODUCT
+import Product from "../Store/Product/Product";
+import AddProduct from "../Store/Product/AddProduct";
+import EditProduct from "../Store/Product/EditProduct";
+import ViewProduct from "../Store/Product/ViewProduct";
 
-import Bills from "../Store/HardwareShopBills/Bills"
-import AddBill from "../Store/HardwareShopBills/AddBill"
-import EditBill from "../Store/HardwareShopBills/EditBill"
-import ViewShopBills from "../Store/HardwareShopBills/ViewShopBills"
-import ViewVehicleBills from "../Store/HardwareShopBills/ViewVehicleBills"
+// BILLS
+import Bills from "../Store/HardwareShopBills/Bills";
+import AddBill from "../Store/HardwareShopBills/AddBill";
+import EditBill from "../Store/HardwareShopBills/EditBill";
+import ViewShopBills from "../Store/HardwareShopBills/ViewShopBills";
+import ViewVehicleBills from "../Store/HardwareShopBills/ViewVehicleBills";
 
-import Configuration from "../Configuration/Configuration"
+// CONFIGUTAION
+import Configuration from "../Configuration/Configuration";
 
-import Receipt from "../Receipt/Receipt"
-import AddReceipt from "../Receipt/AddReceipt"
-import EditReceipt from "../Receipt/EditReceipt"
+// RECEIPT
+import Receipt from "../Receipt/Receipt";
+import AddReceipt from "../Receipt/AddReceipt";
+import EditReceipt from "../Receipt/EditReceipt";
 
-import Reports from "../Reports/Reports"
-import SiteReport from "../Reports/SiteReport"
-import AllSiteReport from "../Reports/AllSite"
+// REPORTS
+import Reports from "../Reports/Reports";
+import SiteReport from "../Reports/SiteReport";
+import AllSiteReport from "../Reports/AllSite";
+
+// FLEETS
+import Fleet from "../Fleet/Fleet";
+import AddFleet from "../Fleet/AddFleet";
+import EditFleet from "../Fleet/EditFleet";
 
 const Routes = (props) => {
-  const loggedIn = !props.user.loading && props.user.loggedIn
+  const loggedIn = !props.user.loading && props.user.loggedIn;
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
       <Route {...rest}>
         {loggedIn ? children : <Redirect to={ROUTES.LOGIN} />}
       </Route>
-    )
-  }
+    );
+  };
 
   const privateRoutes = [
     {
@@ -159,6 +177,20 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_VEHICLE_OWNER,
       component: <EditVehicleOwner />,
+    },
+
+    //FLEETS
+    {
+      path: ROUTES.FLEETS,
+      component: <Fleet />,
+    },
+    {
+      path: ROUTES.ADD_FLEETS,
+      component: <AddFleet />,
+    },
+    {
+      path: ROUTES.EDIT_FLEETS,
+      component: <EditFleet />,
     },
 
     // DOCUMENTS
@@ -298,7 +330,7 @@ const Routes = (props) => {
       path: ROUTES.VIEW_ALL_SITE_REPORT,
       component: <AllSiteReport />,
     },
-  ]
+  ];
 
   return (
     <Switch>
@@ -317,19 +349,19 @@ const Routes = (props) => {
           <PrivateRoute exact path={rout.path} key={rout.path}>
             {rout.noShow ? <Redirect to={ROUTES.HOME} /> : rout.component}
           </PrivateRoute>
-        )
+        );
       })}
       <Route>
         <Redirect to={ROUTES.HOME} />
       </Route>
     </Switch>
-  )
-}
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Routes)
+export default connect(mapStateToProps)(Routes);

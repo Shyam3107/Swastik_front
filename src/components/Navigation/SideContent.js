@@ -1,25 +1,25 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { connect } from "react-redux"
-import "./styles.scss"
-import "./bootstap.scss"
-import { Menu, MenuItem, SidebarContent, SubMenu } from "react-pro-sidebar"
-import { withRouter } from "react-router"
-import DirectionsBusIcon from "@mui/icons-material/DirectionsBus"
-import HomeIcon from "@mui/icons-material/Home"
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet"
-import StoreMallDirectorySharpIcon from "@mui/icons-material/StoreMallDirectorySharp"
-import BusinessIcon from "@mui/icons-material/Business"
-import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded"
-import { BiTrip } from "react-icons/bi"
-import ReceiptIcon from "@mui/icons-material/Receipt"
-import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp"
-import PaymentsIcon from "@mui/icons-material/Payments"
-import InventorySharpIcon from "@mui/icons-material/InventorySharp"
-import LocalGasStationIcon from "@mui/icons-material/LocalGasStation"
-import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp"
+import React from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import "./styles.scss";
+import "./bootstap.scss";
+import { Menu, MenuItem, SidebarContent, SubMenu } from "react-pro-sidebar";
+import { withRouter } from "react-router";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import HomeIcon from "@mui/icons-material/Home";
+import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
+import StoreMallDirectorySharpIcon from "@mui/icons-material/StoreMallDirectorySharp";
+import BusinessIcon from "@mui/icons-material/Business";
+import ArticleRoundedIcon from "@mui/icons-material/ArticleRounded";
+import { BiTrip } from "react-icons/bi";
+import ReceiptIcon from "@mui/icons-material/Receipt";
+import AssessmentSharpIcon from "@mui/icons-material/AssessmentSharp";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import InventorySharpIcon from "@mui/icons-material/InventorySharp";
+import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
+import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
 
-import { ROUTES } from "../../utils/constants"
+import { ROUTES } from "../../utils/constants";
 
 const SideContent = (props) => {
   const menuItems = [
@@ -71,6 +71,11 @@ const SideContent = (props) => {
       ],
     },
     {
+      icon: <LocalGasStationIcon />,
+      title: "Fleets",
+      link: ROUTES.FLEETS,
+    },
+    {
       icon: <AccountBalanceWalletIcon />,
       title: "Expenses",
       subMenu: [
@@ -112,7 +117,7 @@ const SideContent = (props) => {
       title: "Reports",
       link: ROUTES.REPORTS,
     },
-  ]
+  ];
 
   return (
     <SidebarContent>
@@ -135,10 +140,10 @@ const SideContent = (props) => {
                     >
                       <Link to={sub.link}>{sub.title}</Link>
                     </MenuItem>
-                  )
+                  );
                 })}
               </SubMenu>
-            )
+            );
           } else
             return (
               <MenuItem
@@ -149,11 +154,11 @@ const SideContent = (props) => {
               >
                 <Link to={item.link}>{item.title}</Link>
               </MenuItem>
-            )
+            );
         })}
       </Menu>
     </SidebarContent>
-  )
-}
+  );
+};
 
-export default withRouter(connect(null)(SideContent))
+export default withRouter(connect(null)(SideContent));

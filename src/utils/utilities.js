@@ -1,13 +1,13 @@
 export const user = () => {
-  return JSON.parse(sessionStorage.getItem("user"))
-}
+  return JSON.parse(sessionStorage.getItem("user"));
+};
 
 export const operations = {
   READ: "READ",
   CREATE: "CREATE",
   EDIT: "UPDATE",
   DELETE: "DELETE",
-}
+};
 
 export const access = {
   DOCUMENTS: "DOCUMENTS",
@@ -22,28 +22,29 @@ export const access = {
   PRODUCTS: "PRODUCTS",
   LOGISTICS: "LOGISTICS",
   STORE_BILLS: "STORE_BILLS",
-}
+  FLEETS: "FLEETS",
+};
 
 export const checkBoxCondition = (row) => {
   return (
     row?.addedBy?._id === user()?._id ||
     row?.addedBy === user()?.location ||
     isAdmin()
-  )
-}
+  );
+};
 
 export const isAdmin = () => {
-  return user()?._id === user()?.companyAdminId._id
-}
+  return user()?._id === user()?.companyAdminId._id;
+};
 
 export const isOperationAllowed = (acc, operation = false, data = false) => {
-  if (isAdmin()) return true
-  let isCreator = true
-  let accessGiven = user()?.access.indexOf(acc) !== -1
-  let operationGiven = user()?.operations.indexOf(operation) !== -1
+  if (isAdmin()) return true;
+  let isCreator = true;
+  let accessGiven = user()?.access.indexOf(acc) !== -1;
+  let operationGiven = user()?.operations.indexOf(operation) !== -1;
 
   if (!operation) {
-    return accessGiven || acc === access.DOCUMENTS
+    return accessGiven || acc === access.DOCUMENTS;
   }
 
   // Only creator can edit and delete
@@ -51,14 +52,14 @@ export const isOperationAllowed = (acc, operation = false, data = false) => {
     data &&
     (operation === operations.EDIT || operation === operations.DELETE)
   ) {
-    isCreator = user()._id === data?.addedBy?._id
+    isCreator = user()._id === data?.addedBy?._id;
   }
-  if (acc === access.DOCUMENTS && operation === operations.READ) return true
+  if (acc === access.DOCUMENTS && operation === operations.READ) return true;
 
-  return accessGiven && operationGiven && isCreator
-}
+  return accessGiven && operationGiven && isCreator;
+};
 
 // Return an object with id, label and value
 export const getLabelIdValue = (label = "", id = "", value = null) => {
-  return { label, id, value }
-}
+  return { label, id, value };
+};

@@ -1,10 +1,10 @@
-import { access, operations } from "../../utils/utilities"
+import { access, operations } from "../../utils/utilities";
 
 export const initialForm = {
   userName: "",
   password: "",
   phone: "",
-  phone2:"",
+  phone2: "",
   companyName: "",
   tptCode: "",
   documentsLink: "",
@@ -13,7 +13,7 @@ export const initialForm = {
   showTrips: "ALL",
   consignor: "",
   branch: "",
-}
+};
 
 export const accessOptions = [
   { label: "Trips", id: access.TRIPS },
@@ -26,16 +26,17 @@ export const accessOptions = [
   { label: "Products", id: access.PRODUCTS },
   { label: "Logistics", id: access.LOGISTICS },
   { label: "Store Bills", id: access.STORE_BILLS },
-]
+  { label: "Fleets", id: access.FLEETS },
+];
 
 export const operationsOptions = [
   { label: "Read", id: operations.READ },
   { label: "Create", id: operations.CREATE },
   { label: "Update", id: operations.EDIT },
   { label: "Delete", id: operations.DELETE },
-]
+];
 
 export const showTripsOptions = [
   { label: "All", value: "ALL" },
   { label: "Self", value: "SELF" },
-]
+];
