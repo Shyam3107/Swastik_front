@@ -11,9 +11,9 @@ const env = process.env.REACT_APP_ENV;
 let backendURL;
 
 //backendURL = "https://swastik-backend.onrender.com";
-//backendURL = "https://swastik-back-new.onrender.com";
+backendURL = "https://swastik-back-new.onrender.com";
 
-backendURL = "http://localhost:9001";
+//backendURL = "http://localhost:9001";
 //let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
