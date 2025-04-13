@@ -7,6 +7,7 @@ import {
   editExpense,
 } from "../../../containers/VehicleExpense/action";
 import { getDrivers } from "../../../containers/Drivers/action";
+import { getFleet } from "../../../containers/Fleet/action";
 import { ROUTES } from "../../../utils/constants";
 
 const initialExpense = {
@@ -21,10 +22,11 @@ const initialExpense = {
 
 const Vehicles = (props) => {
   const [expense, setExpense] = useState(initialExpense);
-  const { initialFields, getDrivers } = props;
+  const { initialFields, getDrivers, getFleet } = props;
   const history = props.history;
   const { loading } = props.vehiclesExpense;
   const drivers = props.drivers.drivers;
+  const fleets = props.fleets.fleets;
 
   useEffect(() => {
     if (initialFields) setExpense(initialFields);
@@ -32,7 +34,8 @@ const Vehicles = (props) => {
 
   useEffect(() => {
     getDrivers();
-  }, [getDrivers]);
+    getFleet();
+  }, [getDrivers, getFleet]);
 
   const inputFields = [
     {
@@ -47,7 +50,7 @@ const Vehicles = (props) => {
       label: "Vehicle No.",
       type: "customSelect",
       handleChange: (val) => handleVehicleNoChange(val),
-      options: drivers.map((d) => d?.vehicleNo),
+      options: fleets?.map((d) => d?.vehicleNo),
       required: true,
     },
     { id: "driverName", label: "Driver Name", required: true },
@@ -125,9 +128,12 @@ const mapStateToProps = (state) => {
   return {
     vehiclesExpense: state.vehiclesExpense,
     drivers: state.drivers,
+    fleets: state.fleets,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { addExpense, editExpense, getDrivers })(Vehicles)
+  connect(mapStateToProps, { addExpense, editExpense, getDrivers, getFleet })(
+    Vehicles
+  )
 );

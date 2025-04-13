@@ -121,7 +121,10 @@ export const filterData = (data, search) => {
         return includesInArray([val?.fitnessStatus], EXPIRED);
 
       case "national permit expired":
-        return includesInArray([val?.nationalPermitStatus], EXPIRED);
+        return (
+          includesInArray([val?.nationalPermitStatus], EXPIRED) &&
+          includesInArray([val?.isNationalPermit], "YES")
+        );
 
       // For Active
       case "tax active":

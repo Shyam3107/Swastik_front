@@ -2,7 +2,7 @@ import * as actionTypes from "./actionTypes";
 
 const initialState = {
   loading: false,
-  fleets: null,
+  fleets: [],
   error: null,
   downloadLoading: false,
 };
