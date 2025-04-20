@@ -33,9 +33,11 @@ const useValidate = () => {
             fieldValue?.includes("?") ||
             fieldValue?.includes("/") ||
             fieldValue?.includes("=") ||
-            fieldValue?.includes("#")
+            fieldValue?.includes("#") ||
+            fieldValue?.includes("%") ||
+            fieldValue?.includes("&")
           )
-            errMssg = mssg || "?,/,=,# characters are not alowed";
+            errMssg = mssg || "?,/,=,#,%,& characters are not allowed";
         }
       });
       if (errMssg) newError[fieldId] = errMssg;
