@@ -1,13 +1,13 @@
-import * as actionTypes from "./actionTypes"
-import { API, makeRequest } from "../../APIs/APIs"
-import convertCSVToJson from "../../utils/convertCSVtoJSON"
+import * as actionTypes from "./actionTypes";
+import { API, makeRequest } from "../../APIs/APIs";
+import convertCSVToJson from "../../utils/convertCSVtoJSON";
 
 export const getFleet =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.GET_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "get",
@@ -17,21 +17,45 @@ export const getFleet =
         dispatch({
           type: actionTypes.GET_FLEET_SUCCESS,
           payload: data,
-        })
+        });
       },
       errorActionType: actionTypes.GET_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    makeRequest(options)
-  }
+    makeRequest(options);
+  };
+
+export const getFleetListForTrips =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_FLEET_PENDING,
+    });
+
+    const options = {
+      method: "get",
+      url: API.GET_FLEET_LIST_FOR_TRIPS,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.GET_FLEET_SUCCESS,
+          payload: data,
+        });
+      },
+      errorActionType: actionTypes.GET_FLEET_FAILURE,
+      dispatch,
+    };
+
+    makeRequest(options);
+  };
 
 export const addFleet =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.ADD_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "post",
@@ -40,22 +64,22 @@ export const addFleet =
       callback: (data) => {
         dispatch({
           type: actionTypes.ADD_FLEET_SUCCESS,
-        })
-        cb()
+        });
+        cb();
       },
       errorActionType: actionTypes.ADD_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    makeRequest(options)
-  }
+    makeRequest(options);
+  };
 
 export const uploadFleet =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.UPLOAD_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "post",
@@ -64,22 +88,22 @@ export const uploadFleet =
       callback: (data) => {
         dispatch({
           type: actionTypes.UPLOAD_FLEET_SUCCESS,
-        })
-        cb()
+        });
+        cb();
       },
       errorActionType: actionTypes.UPLOAD_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    convertCSVToJson(payload, options)
-  }
+    convertCSVToJson(payload, options);
+  };
 
 export const editFleet =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.EDIT_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "put",
@@ -88,22 +112,22 @@ export const editFleet =
       callback: (data) => {
         dispatch({
           type: actionTypes.EDIT_FLEET_SUCCESS,
-        })
-        cb()
+        });
+        cb();
       },
       errorActionType: actionTypes.EDIT_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    makeRequest(options)
-  }
+    makeRequest(options);
+  };
 
 export const deleteFleet =
   (payload, cb = () => {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DELETE_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "delete",
@@ -112,22 +136,22 @@ export const deleteFleet =
       callback: (data) => {
         dispatch({
           type: actionTypes.DELETE_FLEET_SUCCESS,
-        })
-        cb()
+        });
+        cb();
       },
       errorActionType: actionTypes.DELETE_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    makeRequest(options)
-  }
+    makeRequest(options);
+  };
 
 export const downloadFleet =
   (params = {}) =>
   (dispatch) => {
     dispatch({
       type: actionTypes.DOWNLOAD_FLEET_PENDING,
-    })
+    });
 
     const options = {
       method: "file",
@@ -136,11 +160,11 @@ export const downloadFleet =
       callback: () => {
         dispatch({
           type: actionTypes.DOWNLOAD_FLEET_SUCCESS,
-        })
+        });
       },
       errorActionType: actionTypes.DOWNLOAD_FLEET_FAILURE,
       dispatch,
-    }
+    };
 
-    makeRequest(options)
-  }
+    makeRequest(options);
+  };

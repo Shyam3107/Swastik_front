@@ -34,7 +34,6 @@ export const hostRoutes = {
   DIESELS: "/diesels/pumpDiesel",
   VEHICLES_OWNER: "/diesels/vehiceOwner",
   OFFICE_EXPENSE: "/expenses/office",
-  DRIVER_EXPENSE: "/expenses/driver",
   VEHICLES_EXPENSE: "/expenses/vehicles",
   RECEIPT: "/receipt",
   PRODUCTS: "/stores/products",
@@ -42,36 +41,12 @@ export const hostRoutes = {
   HARDWARE_SHOP_BILL: "/store/hardwareShopBill",
   REPORTS: "/reports",
   FLEETS: "/fleets",
+  DRIVERS: "/drivers",
 };
 
 export const ROUTES = {
-  // LOGIN
-  LOGIN: "/login",
-
-  // LOGOUT
-  LOGOUT: "/logout",
-
-  // HOME
-  HOME: "/home",
-
-  // TRIPS
-  TRIPS: hostRoutes.TRIPS,
-  VIEW_TRIP: hostRoutes.TRIPS + "/:diNo",
-  VIEW_TRIP_BY_VEHICLE: hostRoutes.TRIPS + "/vehicle/:vehicleNo",
-  ADD_TRIP: hostRoutes.TRIPS + "/add",
-  EDIT_TRIP: hostRoutes.TRIPS + "/:diNo/edit",
-
-  // VOUCHERS
-  VOUCHERS: hostRoutes.VOUCHERS,
-  VIEW_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId",
-  ADD_VOUCHER: hostRoutes.VOUCHERS + "/add",
-  EDIT_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId/edit",
-
-  // DOCUMENTS
-  DOCUMENTS: hostRoutes.DOCUMENTS,
-  VIEW_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo",
-  EDIT_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo/edit",
-  ADD_DOCUMENT: hostRoutes.DOCUMENTS + "/add",
+  //CONFIGURATION
+  CONFIGURATION: "/configuration",
 
   // DIESELS
   DIESELS: hostRoutes.DIESELS,
@@ -80,46 +55,22 @@ export const ROUTES = {
   VIEW_DIESEL_BY_PUMP: hostRoutes.DIESELS + "/pump/:pumpName",
   VIEW_DIESEL_BY_VEHICLE: hostRoutes.DIESELS + "/vehicle/:vehicleNo",
 
+  // DOCUMENTS
+  DOCUMENTS: hostRoutes.DOCUMENTS,
+  VIEW_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo",
+  EDIT_DOCUMENT: hostRoutes.DOCUMENTS + "/:vehicleNo/edit",
+  ADD_DOCUMENT: hostRoutes.DOCUMENTS + "/add",
+
+  // DRIVERS
+  DRIVERS: hostRoutes.DRIVERS,
+  ADD_DRIVERS: hostRoutes.DRIVERS + "/add",
+  EDIT_DRIVERS: hostRoutes.DRIVERS + "/:driverId/edit",
+  VIEW_DRIVERS: hostRoutes.DRIVERS + "/:driverId",
+
   // FLEETS
   FLEETS: hostRoutes.FLEETS,
   ADD_FLEETS: hostRoutes.FLEETS + "/add",
   EDIT_FLEETS: hostRoutes.FLEETS + "/:vehicleNo/edit",
-
-  // VEHICLE OWNER
-  VEHICLES_OWNER: hostRoutes.VEHICLES_OWNER,
-  ADD_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/add",
-  EDIT_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/:vehicleNo/edit",
-
-  // OFFICE EXPENSE
-  OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE,
-  EDIT_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/:expenseId/edit",
-  ADD_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/add",
-
-  // DRIVER EXPENSE
-  DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE,
-  EDIT_DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE + "/:expenseId/edit",
-  ADD_DRIVER_EXPENSE: hostRoutes.DRIVER_EXPENSE + "/add",
-
-  // VEHICLE EXPENSE
-  VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE,
-  EDIT_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/:expenseId/edit",
-  ADD_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/add",
-
-  // RECEIPT
-  RECEIPT: hostRoutes.RECEIPT,
-  EDIT_RECEIPT: hostRoutes.RECEIPT + "/:receiptId/edit",
-  ADD_RECEIPT: hostRoutes.RECEIPT + "/add",
-
-  // PRODUCT
-  PRODUCT: hostRoutes.PRODUCTS,
-  EDIT_PRODUCT: hostRoutes.PRODUCTS + "/:productId/edit",
-  ADD_PRODUCT: hostRoutes.PRODUCTS + "/add",
-  VIEW_PRODUCT: hostRoutes.PRODUCTS + "/:productId/",
-
-  // LOGISTIC
-  LOGISTIC: hostRoutes.LOGISTICS,
-  EDIT_LOGISTIC: hostRoutes.LOGISTICS + "/:logisticId/edit",
-  ADD_LOGISTIC: hostRoutes.LOGISTICS + "/add",
 
   // HARDWARE SHOPS BILLS
   HARDWARE_SHOP_BILL: hostRoutes.HARDWARE_SHOP_BILL,
@@ -130,13 +81,63 @@ export const ROUTES = {
     hostRoutes.HARDWARE_SHOP_BILL + "/vehicle/:vehicleNo",
   ADD_HARDWARE_SHOP_BILL: hostRoutes.HARDWARE_SHOP_BILL + "/add",
 
-  //CONFIGURATION
-  CONFIGURATION: "/configuration",
+  // HOME
+  HOME: "/home",
+
+  // LOGIN
+  LOGIN: "/login",
+
+  // LOGISTIC
+  LOGISTIC: hostRoutes.LOGISTICS,
+  EDIT_LOGISTIC: hostRoutes.LOGISTICS + "/:logisticId/edit",
+  ADD_LOGISTIC: hostRoutes.LOGISTICS + "/add",
+
+  // LOGOUT
+  LOGOUT: "/logout",
+
+  // PRODUCT
+  PRODUCT: hostRoutes.PRODUCTS,
+  EDIT_PRODUCT: hostRoutes.PRODUCTS + "/:productId/edit",
+  ADD_PRODUCT: hostRoutes.PRODUCTS + "/add",
+  VIEW_PRODUCT: hostRoutes.PRODUCTS + "/:productId/",
+
+  // OFFICE EXPENSE
+  OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE,
+  EDIT_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/:expenseId/edit",
+  ADD_OFFICE_EXPENSE: hostRoutes.OFFICE_EXPENSE + "/add",
+
+  // RECEIPT
+  RECEIPT: hostRoutes.RECEIPT,
+  EDIT_RECEIPT: hostRoutes.RECEIPT + "/:receiptId/edit",
+  ADD_RECEIPT: hostRoutes.RECEIPT + "/add",
 
   // REPORTS
   REPORTS: "/reports",
   VIEW_OWN_REPORT: hostRoutes.REPORTS + "/site/:siteId",
   VIEW_ALL_SITE_REPORT: hostRoutes.REPORTS + "/allSites",
+
+  // TRIPS
+  TRIPS: hostRoutes.TRIPS,
+  VIEW_TRIP: hostRoutes.TRIPS + "/:diNo",
+  VIEW_TRIP_BY_VEHICLE: hostRoutes.TRIPS + "/vehicle/:vehicleNo",
+  ADD_TRIP: hostRoutes.TRIPS + "/add",
+  EDIT_TRIP: hostRoutes.TRIPS + "/:diNo/edit",
+
+  // VEHICLE EXPENSE
+  VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE,
+  EDIT_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/:expenseId/edit",
+  ADD_VEHICLES_EXPENSE: hostRoutes.VEHICLES_EXPENSE + "/add",
+
+  // VEHICLE OWNER
+  VEHICLES_OWNER: hostRoutes.VEHICLES_OWNER,
+  ADD_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/add",
+  EDIT_VEHICLE_OWNER: hostRoutes.VEHICLES_OWNER + "/:vehicleNo/edit",
+
+  // VOUCHERS
+  VOUCHERS: hostRoutes.VOUCHERS,
+  VIEW_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId",
+  ADD_VOUCHER: hostRoutes.VOUCHERS + "/add",
+  EDIT_VOUCHER: hostRoutes.VOUCHERS + "/:voucherId/edit",
 };
 
 export const formatDate = (date, time = false) => {

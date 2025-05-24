@@ -6,7 +6,6 @@ import {
   addExpense,
   editExpense,
 } from "../../../containers/VehicleExpense/action";
-import { getDrivers } from "../../../containers/Drivers/action";
 import { getFleet } from "../../../containers/Fleet/action";
 import { ROUTES } from "../../../utils/constants";
 
@@ -22,10 +21,9 @@ const initialExpense = {
 
 const Vehicles = (props) => {
   const [expense, setExpense] = useState(initialExpense);
-  const { initialFields, getDrivers, getFleet } = props;
+  const { initialFields, getFleet } = props;
   const history = props.history;
   const { loading } = props.vehiclesExpense;
-  const drivers = props.drivers.drivers;
   const fleets = props.fleets.fleets;
 
   useEffect(() => {
@@ -33,9 +31,8 @@ const Vehicles = (props) => {
   }, [initialFields]);
 
   useEffect(() => {
-    getDrivers();
     getFleet();
-  }, [getDrivers, getFleet]);
+  }, [getFleet]);
 
   const inputFields = [
     {
@@ -79,17 +76,18 @@ const Vehicles = (props) => {
   };
 
   const handleVehicleNoChange = (val) => {
-    let driverName = expense.driverName;
-    let driverPhone = expense.driverPhone ?? "9999999999";
     val = val.toUpperCase();
-    for (let i = 0; i < drivers.length; i++) {
-      if (drivers[i].vehicleNo === val) {
-        driverName = drivers[i].driverName;
-        driverPhone = drivers[i].driverPhone;
+    for (let i = 0; i < fleets.length; i++) {
+      if (fleets[i].vehicleNo === val) {
+        setExpense({
+          ...expense,
+          vehicleNo: val,
+          driverName: fleets[i].driverName,
+          driverPhone: fleets[i].driverPhone,
+        });
         break;
       }
     }
-    setExpense({ ...expense, vehicleNo: val, driverName, driverPhone });
   };
 
   const handleCancel = () => {
@@ -127,13 +125,10 @@ const Vehicles = (props) => {
 const mapStateToProps = (state) => {
   return {
     vehiclesExpense: state.vehiclesExpense,
-    drivers: state.drivers,
     fleets: state.fleets,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { addExpense, editExpense, getDrivers, getFleet })(
-    Vehicles
-  )
+  connect(mapStateToProps, { addExpense, editExpense, getFleet })(Vehicles)
 );

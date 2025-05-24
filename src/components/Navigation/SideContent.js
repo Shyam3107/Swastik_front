@@ -18,6 +18,8 @@ import PaymentsIcon from "@mui/icons-material/Payments";
 import InventorySharpIcon from "@mui/icons-material/InventorySharp";
 import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
 import ShoppingCartSharpIcon from "@mui/icons-material/ShoppingCartSharp";
+import PersonIcon from '@mui/icons-material/Person';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 import { ROUTES } from "../../utils/constants";
 
@@ -71,9 +73,14 @@ const SideContent = (props) => {
       ],
     },
     {
-      icon: <LocalGasStationIcon />,
+      icon: <LocalShippingIcon />,
       title: "Fleets",
       link: ROUTES.FLEETS,
+    },
+    {
+      icon: <PersonIcon />,
+      title: "Drivers",
+      link: ROUTES.DRIVERS,
     },
     {
       icon: <AccountBalanceWalletIcon />,

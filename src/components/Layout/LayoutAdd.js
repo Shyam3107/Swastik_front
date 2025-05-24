@@ -96,6 +96,7 @@ const LayoutAdd = ({
                   error={Boolean(error[item.id])}
                   onBlur={handleInputChange}
                   disabled={item.disabled ?? false}
+                  onWheel={(e) => e.target.blur()}
                 />
               )}
               {item.type === InputTypes.DATE && (
@@ -104,6 +105,8 @@ const LayoutAdd = ({
                   id={item.id}
                   setSelectedDate={handleInputChange}
                   maxDate={item.maxDate}
+                  disabled={item.disabled}
+                  minDate={item.minDate}
                 />
               )}
               {item.type === InputTypes.SELECT && (
@@ -112,6 +115,7 @@ const LayoutAdd = ({
                   value={item.value ? item.value : data[item.id]}
                   handleChange={handleInputChange}
                   menuItems={item.menuItems}
+                  disabled={item.disabled}
                 />
               )}
               {item.type === InputTypes.CUSTOM_SELECT && (

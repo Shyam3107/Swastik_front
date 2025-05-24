@@ -8,8 +8,10 @@ const CustomDatePicker = ({
   setSelectedDate,
   id,
   maxDate,
+  minDate,
   label,
   style = {},
+  disabled = false,
 }) => {
   const handleDateChange = (date) => {
     if (id === "To") {
@@ -29,8 +31,10 @@ const CustomDatePicker = ({
         format="dd/MM/yyyy"
         style={{ width: "100%", margin: "0 5px", ...style }}
         maxDate={maxDate}
+        minDate={minDate}
         name={id}
         label={label}
+        disabled={disabled}
       />
     </MuiPickersUtilsProvider>
   )

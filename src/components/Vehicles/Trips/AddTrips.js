@@ -7,6 +7,7 @@ import { addTrips, editTrips } from "../../../containers/Trips/action";
 import { getDrivers } from "../../../containers/Drivers/action";
 import { VIEW_URL } from "./constants";
 import { user } from "../../../utils/utilities";
+import { getFleetListForTrips } from "../../../containers/Fleet/action";
 
 const initialTrip = {
   diNo: "",
@@ -37,18 +38,18 @@ const initialTrip = {
 
 const AddTrips = (props) => {
   const [trip, setTrip] = useState(initialTrip);
-  const { initialFields, getDrivers } = props;
+  const { initialFields, getFleetListForTrips } = props;
   const history = props.history;
   const { loading } = props.trips;
-  const drivers = props.drivers.drivers;
+  let { fleets } = props.fleets;
 
   useEffect(() => {
     if (initialFields) setTrip(initialFields);
   }, [initialFields]);
 
   useEffect(() => {
-    getDrivers();
-  }, [getDrivers]);
+    getFleetListForTrips();
+  }, [getFleetListForTrips]);
 
   const inputFields = [
     {
@@ -88,7 +89,7 @@ const AddTrips = (props) => {
       label: "Vehicle No.",
       type: "customSelect",
       handleChange: (val) => handleVehicleNoChange(val),
-      options: drivers.map((d) => d?.vehicleNo),
+      options: fleets.map((d) => (d ? d.vehicleNo : "None")),
       required: true,
     },
     {
@@ -161,17 +162,18 @@ const AddTrips = (props) => {
   };
 
   const handleVehicleNoChange = (val) => {
-    let driverName = trip.driverName;
-    let driverPhone = trip.driverPhone;
     val = val.toUpperCase();
-    for (let i = 0; i < drivers.length; i++) {
-      if (drivers[i].vehicleNo === val) {
-        driverName = drivers[i].driverName;
-        driverPhone = drivers[i].driverPhone;
+    for (let i = 0; i < fleets.length; i++) {
+      if (fleets[i].vehicleNo === val) {
+        setTrip({
+          ...trip,
+          vehicleNo: val,
+          driverName: fleets[i].driverName,
+          driverPhone: fleets[i].driverPhone,
+        });
         break;
       }
     }
-    setTrip({ ...trip, vehicleNo: val, driverName, driverPhone });
   };
 
   const handleCancel = () => {
@@ -216,10 +218,12 @@ const AddTrips = (props) => {
 const mapStateToProps = (state) => {
   return {
     trips: state.trips,
-    drivers: state.drivers,
+    fleets: state.fleets,
   };
 };
 
 export default withRouter(
-  connect(mapStateToProps, { addTrips, editTrips, getDrivers })(AddTrips)
+  connect(mapStateToProps, { addTrips, editTrips, getFleetListForTrips })(
+    AddTrips
+  )
 );

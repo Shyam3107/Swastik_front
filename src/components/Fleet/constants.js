@@ -1,8 +1,22 @@
 import { includesInArray, hostRoutes } from "../../utils/constants";
 
-export const header = ["Vehicle No.", "Owner", "Owner Name", "Added By"];
+export const header = [
+  "Vehicle No.",
+  "Owner",
+  "Owner Name",
+  "Remarks",
+  "Driver-DL No",
+  "Driver Joining Date",
+];
 
-export const headerKey = ["vehicleNo", "owner", "ownerName", "addedBy"];
+export const headerKey = [
+  "vehicleNo",
+  "owner",
+  "ownerName",
+  "remarks",
+  "driver",
+  "driverJoiningDate",
+];
 
 export const sampleData = [
   ["Vehicle No.", "Owner", "Owner Name"],

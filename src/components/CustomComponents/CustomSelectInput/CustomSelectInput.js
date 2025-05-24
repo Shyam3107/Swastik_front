@@ -1,7 +1,14 @@
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const CustomSelectInput = ({ id, value, handleChange, menuItems, style }) => {
+const CustomSelectInput = ({
+  id,
+  value,
+  handleChange,
+  menuItems,
+  style,
+  disabled = false,
+}) => {
   return (
     <Select
       id={id}
@@ -10,6 +17,7 @@ const CustomSelectInput = ({ id, value, handleChange, menuItems, style }) => {
       variant="standard"
       style={{ width: "100%", ...style }}
       name={id}
+      disabled={disabled}
     >
       {menuItems.map((item) => {
         return (

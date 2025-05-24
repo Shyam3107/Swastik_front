@@ -11,9 +11,9 @@ const env = process.env.REACT_APP_ENV;
 let backendURL;
 
 //backendURL = "https://swastik-backend.onrender.com";
-backendURL = "https://swastik-back-new.onrender.com";
+//backendURL = "https://swastik-back-new.onrender.com";
 
-//backendURL = "http://localhost:9001";
+backendURL = "http://localhost:9001";
 //let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
@@ -61,6 +61,11 @@ export const API = {
 
   //DRIVERS
   GET_DRIVERS: `${modules.drivers}/getDrivers`,
+  ADD_DRIVER: `${modules.drivers}/addDriver`,
+  EDIT_DRIVER: `${modules.drivers}/editDriver`,
+  UPLOAD_DRIVERS: `${modules.drivers}/uploadDrivers`,
+  DOWNLOAD_DRIVER: `${modules.drivers}/downloadDriver`,
+  DELETE_DRIVER: `${modules.drivers}/deleteDriver`,
 
   // VOUCHERS
   GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
@@ -130,6 +135,7 @@ export const API = {
   EDIT_FLEET: `${modules.fleets}/editFleet`,
   DELETE_FLEET: `${modules.fleets}/deleteFleet`,
   DOWNLOAD_FLEET: `${modules.fleets}/downloadFleet`,
+  GET_FLEET_LIST_FOR_TRIPS: `${modules.fleets}/getFleetListForTrips`,
 
   // RECEIPTS
   GET_RECEIPT: `${modules.receipts}/getReceipt`,

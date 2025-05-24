@@ -14,41 +14,39 @@ import {
   filterData,
 } from "./constants";
 import {
-  getFleet,
-  deleteFleet,
-  downloadFleet,
-  uploadFleet,
-} from "../../containers/Fleet/action";
+  getDrivers,
+  uploadDriver,
+  deleteDriver,
+  downloadDrivers,
+} from "../../containers/Drivers/action";
 import { access, isOperationAllowed, operations } from "../../utils/utilities";
 
-const Fleet = (props) => {
-  let { getFleet } = props;
+const Drivers = (props) => {
+  let { getDrivers } = props;
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState([]);
-  let { loading, fleets, downloadLoading } = props.fleets;
-
+  let { loading, drivers, downloadLoading } = props.drivers;
   const history = props.history;
 
   useEffect(() => {
-    getFleet();
-  }, [getFleet]);
+    getDrivers();
+  }, [getDrivers]);
 
   const handleDeleteAgree = () => {
     const cb = () => {
-      getFleet();
+      getDrivers();
       setSelected([]);
     };
-    props.deleteFleet(selected, cb);
+    props.deleteDriver(selected, cb);
   };
 
   const handleAddButton = () => {
-    history.push(ROUTES.ADD_FLEETS);
+    history.push(ROUTES.ADD_DRIVERS);
   };
 
   const handleEditButton = () => {
     const id = selected[0];
-    const searchId = fleets?.filter((val) => val._id === id);
-    history.push(EDIT_URL(searchId.vehicleNo));
+    history.push(EDIT_URL(id));
   };
 
   const handleDownload = () => {
@@ -57,12 +55,12 @@ const Fleet = (props) => {
 
   const handleFileSubmit = (file) => {
     const cb = () => {
-      getFleet();
+      getDrivers();
     };
-    props.uploadFleet(file, cb);
+    props.uploadDriver(file, cb);
   };
 
-  fleets = filterData(fleets, search);
+  drivers = filterData(drivers, search);
 
   const tableRow = header.map((headCell) => (
     <TableCell style={{ fontWeight: "600" }} key={headCell}>
@@ -86,10 +84,10 @@ const Fleet = (props) => {
 
   return (
     <Layout
-      title="Fleets"
-      mssgTitle="Fleets"
-      sampleName="Fleet Sample"
-      data={fleets}
+      title="Drivers"
+      mssgTitle="Drivers"
+      sampleName="Driver Sample"
+      data={drivers}
       sampleData={sampleData}
       loading={loading}
       search={search}
@@ -100,17 +98,18 @@ const Fleet = (props) => {
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
       handleFileSubmit={
-        isOperationAllowed(access.FLEETS, operations.CREATE) && handleFileSubmit
+        isOperationAllowed(access.DRIVERS, operations.CREATE) &&
+        handleFileSubmit
       }
       handleDownload={handleDownload}
       handleAddButton={
-        isOperationAllowed(access.FLEETS, operations.CREATE) && handleAddButton
+        isOperationAllowed(access.DRIVERS, operations.CREATE) && handleAddButton
       }
       handleEditButton={
-        isOperationAllowed(access.FLEETS, operations.EDIT) && handleEditButton
+        isOperationAllowed(access.DRIVERS, operations.EDIT) && handleEditButton
       }
       handleDeleteAgree={
-        isOperationAllowed(access.FLEETS, operations.DELETE) &&
+        isOperationAllowed(access.DRIVERS, operations.DELETE) &&
         handleDeleteAgree
       }
     />
@@ -119,15 +118,15 @@ const Fleet = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    fleets: state.fleets,
+    drivers: state.drivers,
   };
 };
 
 export default withRouter(
   connect(mapStateToProps, {
-    getFleet,
-    deleteFleet,
-    downloadFleet,
-    uploadFleet,
-  })(Fleet)
+    getDrivers,
+    deleteDriver,
+    downloadDrivers,
+    uploadDriver,
+  })(Drivers)
 );

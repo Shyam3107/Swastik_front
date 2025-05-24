@@ -23,6 +23,7 @@ export const access = {
   LOGISTICS: "LOGISTICS",
   STORE_BILLS: "STORE_BILLS",
   FLEETS: "FLEETS",
+  DRIVERS: "DRIVERS",
 };
 
 export const checkBoxCondition = (row) => {

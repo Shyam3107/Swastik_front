@@ -36,6 +36,12 @@ import AddDocument from "../Vehicles/Documents/AddDocument";
 import ViewDocument from "../Vehicles/Documents/ViewDocument";
 import EditDocument from "../Vehicles/Documents/EditDocument";
 
+// DRIVERS
+import Drivers from "../Drivers/Drivers";
+import AddDriver from "../Drivers/AddDriver";
+import EditDriver from "../Drivers/EditDriver";
+import ViewDriver from "../Drivers/ViewDriver";
+
 // OFFICE EXPENSE
 import OfficeExpense from "../Expenses/Office/Office";
 import AddOfficeExpense from "../Expenses/Office/AddOffice";
@@ -209,6 +215,24 @@ const Routes = (props) => {
     {
       path: ROUTES.EDIT_DOCUMENT,
       component: <EditDocument />,
+    },
+
+    // DRIVERS
+    {
+      path: ROUTES.DRIVERS,
+      component:<Drivers />,
+    },
+    {
+      path: ROUTES.ADD_DRIVERS,
+      component: <AddDriver />,
+    },
+    {
+      path: ROUTES.EDIT_DRIVERS,
+      component: <EditDriver />,
+    },
+    {
+      path: ROUTES.VIEW_DRIVERS,
+      component: <ViewDriver />,
     },
 
     // OFFICE EXPENSE
