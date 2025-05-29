@@ -38,6 +38,10 @@ const useValidate = () => {
             fieldValue?.includes("&")
           )
             errMssg = mssg || "?,/,=,#,%,& characters are not allowed";
+        } else if (type === "ALPHANUMERIC") {
+          const regex = /^[a-zA-Z0-9]+$/;
+          if (!regex.test(fieldValue?.trim()))
+            errMssg = mssg || "Only Alphanumeric characters are allowed";
         }
       });
       if (errMssg) newError[fieldId] = errMssg;

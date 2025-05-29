@@ -1,19 +1,19 @@
-import React from "react"
-import { connect } from "react-redux"
-import Typography from "@mui/material/Typography"
-import Grid from "@mui/material/Grid"
-import TextField from "@mui/material/TextField"
-import Button from "@mui/material/Button"
-import FormHelperText from "@mui/material/FormHelperText"
+import React from "react";
+import { connect } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import FormHelperText from "@mui/material/FormHelperText";
 
-import { InputTypes } from "../../utils/constants"
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
-import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePicker"
-import CustomSelectInput from "../CustomComponents/CustomSelectInput/CustomSelectInput"
-import useValidate from "../CustomComponents/CustomHooks/useValidate"
-import CustomSwitch from "../CustomComponents/CustomSwitch/CustomSwitch"
-import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete"
-import CustomAutoCompleteSelect from "../CustomComponents/CustomAutoCompleteSelect/CustomAutoCompleteSelect"
+import { InputTypes } from "../../utils/constants";
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
+import CustomDatePicker from "../CustomComponents/CustomDatePicker/CustomDatePicker";
+import CustomSelectInput from "../CustomComponents/CustomSelectInput/CustomSelectInput";
+import useValidate from "../CustomComponents/CustomHooks/useValidate";
+import CustomSwitch from "../CustomComponents/CustomSwitch/CustomSwitch";
+import CustomAutoComplete from "../CustomComponents/CustomAutoComplete/CustomAutoComplete";
+import CustomAutoCompleteSelect from "../CustomComponents/CustomAutoCompleteSelect/CustomAutoCompleteSelect";
 
 const LayoutAdd = ({
   loading,
@@ -28,11 +28,11 @@ const LayoutAdd = ({
   button4thName,
   data,
 }) => {
-  const [error, handleValidate] = useValidate()
+  const [error, handleValidate] = useValidate();
 
-  let submitButtonDisable = false
+  let submitButtonDisable = false;
 
-  if (loading) return <CustomLoader style={{ height: "80%" }} />
+  if (loading) return <CustomLoader style={{ height: "80%" }} />;
 
   return (
     <React.Fragment>
@@ -57,26 +57,28 @@ const LayoutAdd = ({
       </span>
       <Grid container style={{ padding: "20px", width: "100%" }} spacing={4}>
         {inputFields.map((item) => {
-          const isTypeTextNumber = item.type ? item.type === InputTypes.NUMBER : true
+          const isTypeTextNumber = item.type
+            ? item.type === InputTypes.NUMBER
+            : true;
 
           if (item.required && !(item.value || data[item.id]))
-            submitButtonDisable = true
+            submitButtonDisable = true;
 
           const handleInputChange = (event) => {
             // If handle change define in item then use it else use custom one
-            if (item.handleChange) item.handleChange(event)
-            else handleValueChange(event)
+            if (item.handleChange) item.handleChange(event);
+            else handleValueChange(event);
 
             if (item.type === InputTypes.CUSTOM_SELECT)
-              event = { target: { name: item.id, value: event } }
+              event = { target: { name: item.id, value: event } };
 
             if (item.required)
               handleValidate(
                 event.target.name,
                 event.target.value,
                 item.customValidate
-              )
-          }
+              );
+          };
 
           return (
             <Grid item xs={12} sm={5} md={4} lg={3} key={item.label}>
@@ -132,20 +134,22 @@ const LayoutAdd = ({
                   options={item.options}
                   id={item.id}
                   handleChange={handleInputChange}
+                  disabled={item.disabled}
                   value={item.value ? item.value : data[item.id]}
                 />
               )}
-              {item.type === InputTypes.SWITCH &&
+              {item.type === InputTypes.SWITCH && (
                 <CustomSwitch
                   id={item.id}
                   handleChange={handleInputChange}
                   value={item.value ? item.value : data[item.id]}
-                />}
+                />
+              )}
               <FormHelperText error={Boolean(error[item.id])}>
                 {error[item.id]}
               </FormHelperText>
             </Grid>
-          )
+          );
         })}
       </Grid>
       <Grid
@@ -174,21 +178,27 @@ const LayoutAdd = ({
             Submit
           </Button>
         </Grid>
-        {/* Optional 4th Button */
-          button4thName && <Grid item sm={3} md={3} lg={1}>
-            <Button
-              variant="contained"
-              disabled={
-                submitButtonDisable || loading || Object.keys(error).length !== 0
-              }
-              onClick={handle4thButton}
-            >
-              {button4thName}
-            </Button>
-          </Grid>}
+        {
+          /* Optional 4th Button */
+          button4thName && (
+            <Grid item sm={3} md={3} lg={1}>
+              <Button
+                variant="contained"
+                disabled={
+                  submitButtonDisable ||
+                  loading ||
+                  Object.keys(error).length !== 0
+                }
+                onClick={handle4thButton}
+              >
+                {button4thName}
+              </Button>
+            </Grid>
+          )
+        }
       </Grid>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default connect(null, null)(LayoutAdd)
+export default connect(null, null)(LayoutAdd);

@@ -1,5 +1,5 @@
-import TextField from "@mui/material/TextField"
-import Autocomplete from "@mui/material/Autocomplete"
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
 
 // This is to select value from options only
 const CustomAutoCompleteSelect = ({
@@ -10,8 +10,8 @@ const CustomAutoCompleteSelect = ({
   style = {},
 }) => {
   const handleFieldChange = (e, val) => {
-    handleChange({ target: { name: id, value: val?.id } })
-  }
+    handleChange({ target: { name: id, value: val?.id } });
+  };
 
   return (
     <Autocomplete
@@ -26,7 +26,7 @@ const CustomAutoCompleteSelect = ({
         option?.label === val?.label && option?.id === val?.id
       }
     />
-  )
-}
+  );
+};
 
-export default CustomAutoCompleteSelect
+export default CustomAutoCompleteSelect;

@@ -4,7 +4,7 @@ import { withRouter } from "react-router";
 import LayoutAdd from "../Layout/LayoutAdd";
 import { addFleet, editFleet } from "../../containers/Fleet/action";
 import { getDrivers } from "../../containers/Drivers/action";
-import { ROUTES } from "../../utils/constants";
+import { ROUTES, InputTypes } from "../../utils/constants";
 import moment from "moment";
 
 const initialFleet = {
@@ -59,11 +59,11 @@ const Fleet = (props) => {
     {
       id: "driver",
       label: "Driver",
-      type: "select",
-      menuItems: [
-        { label: "None", value: null },
+      type: InputTypes.SELECT_AUTO_COMPLETE,
+      options: [
+        { label: "None", id: null },
         ...(drivers ?? []).map((val) => {
-          return { label: val.name + " - " + val.dlNo, value: val._id };
+          return { label: val.name + " - " + val.dlNo, id: val._id };
         }),
       ],
       handleChange: (val) => handleDriverChange(val),
@@ -94,7 +94,7 @@ const Fleet = (props) => {
 
   const handleDriverChange = (val) => {
     val = val.target.value;
-    if (val === "None") {
+    if (val === null) {
       setFields({
         ...fields,
         dlValidity: new Date().toISOString(),

@@ -4,7 +4,6 @@ import { withRouter } from "react-router";
 import LayoutAdd from "../../Layout/LayoutAdd";
 import { ROUTES, pumpNames } from "../../../utils/constants";
 import { addTrips, editTrips } from "../../../containers/Trips/action";
-import { getDrivers } from "../../../containers/Drivers/action";
 import { VIEW_URL } from "./constants";
 import { user } from "../../../utils/utilities";
 import { getFleetListForTrips } from "../../../containers/Fleet/action";

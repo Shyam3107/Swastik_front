@@ -144,3 +144,27 @@ export const downloadDrivers =
 
     makeRequest(options);
   };
+
+export const getGuarantors =
+  (params = {}) =>
+  (dispatch) => {
+    dispatch({
+      type: actionTypes.GET_GUARANTORS_PENDING,
+    });
+
+    const options = {
+      method: "get",
+      url: API.GET_DRIVERS,
+      params: params,
+      callback: (data) => {
+        dispatch({
+          type: actionTypes.GET_GUARANTORS_SUCCESS,
+          payload: data,
+        });
+      },
+      errorActionType: actionTypes.GET_GUARANTORS_FAILURE,
+      dispatch,
+    };
+
+    makeRequest(options);
+  };

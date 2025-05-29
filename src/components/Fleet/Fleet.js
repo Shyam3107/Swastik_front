@@ -48,7 +48,7 @@ const Fleet = (props) => {
   const handleEditButton = () => {
     const id = selected[0];
     const searchId = fleets?.filter((val) => val._id === id);
-    history.push(EDIT_URL(searchId.vehicleNo));
+    history.push(EDIT_URL(searchId[0].vehicleNo));
   };
 
   const handleDownload = () => {
