@@ -40,7 +40,7 @@ const AddTrips = (props) => {
   const { initialFields, getFleetListForTrips } = props;
   const history = props.history;
   const { loading } = props.trips;
-  let { fleets } = props.fleets;
+  let { fleetsTrips } = props.fleets;
 
   useEffect(() => {
     if (initialFields) setTrip(initialFields);
@@ -88,7 +88,7 @@ const AddTrips = (props) => {
       label: "Vehicle No.",
       type: "customSelect",
       handleChange: (val) => handleVehicleNoChange(val),
-      options: fleets.map((d) => (d ? d.vehicleNo : "None")),
+      options: (fleetsTrips ?? []).map((d) => (d ? d.vehicleNo : "None")),
       required: true,
     },
     {
@@ -162,13 +162,13 @@ const AddTrips = (props) => {
 
   const handleVehicleNoChange = (val) => {
     val = val.toUpperCase();
-    for (let i = 0; i < fleets.length; i++) {
-      if (fleets[i].vehicleNo === val) {
+    for (let i = 0; i < fleetsTrips.length; i++) {
+      if (fleetsTrips[i].vehicleNo === val) {
         setTrip({
           ...trip,
           vehicleNo: val,
-          driverName: fleets[i].driverName,
-          driverPhone: fleets[i].driverPhone,
+          driverName: fleetsTrips[i].driverName,
+          driverPhone: fleetsTrips[i].driverPhone,
         });
         break;
       }

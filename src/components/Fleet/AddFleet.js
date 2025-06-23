@@ -34,6 +34,28 @@ const Fleet = (props) => {
     getDrivers();
   }, [getDrivers]);
 
+  useEffect(() => {
+    if (drivers && Array.isArray(drivers)) {
+      drivers.forEach((driver) => {
+        if (driver._id === fields.driver) {
+          const dlValidity = moment(
+            driver.dlValidity,
+            "DD-MM-YYYY"
+          ).toISOString();
+          setFields((v) => {
+            return {
+              ...v,
+              dlValidity,
+              defaulter: driver.defaulter,
+              driverRemarks: driver.remarks,
+            };
+          });
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [drivers]);
+
   const inputFields = [
     { id: "vehicleNo", label: "Vehicle No.", required: true },
     {
@@ -63,7 +85,10 @@ const Fleet = (props) => {
       options: [
         { label: "None", id: null },
         ...(drivers ?? []).map((val) => {
-          return { label: val.name + " - " + val.dlNo, id: val._id };
+          return {
+            label: val.name + " - " + val.dlNo + " - " + val.driverPhone,
+            id: val._id,
+          };
         }),
       ],
       handleChange: (val) => handleDriverChange(val),

@@ -14,10 +14,15 @@ const PrintTrip = (props) => {
   let consignor = trips.addedBy?.consignor;
   let branch = trips.addedBy?.branch;
 
-  const companyName =
-    user?.companyName ??
-    user?.companyAdminId?.companyName ??
-    "SWASTIK MINERALS";
+  let companyName = trips?.addedBy?.companyName;
+
+  if (!companyName || companyName.length === 0) companyName = user?.companyName;
+
+  if (!companyName || companyName.length === 0)
+    companyName = user?.companyAdminId?.companyName;
+
+  if (!companyName || companyName.length === 0)
+    companyName = "SWASTIK MINERALS";
 
   if (!trips?.diesel) {
     trips.diesel = 0;
@@ -77,7 +82,7 @@ const PrintTrip = (props) => {
           className={styles.border}
           style={{ padding: "10px", width: "50%" }}
         >
-          <h4>Consignor : {consignor ? consignor + " LTD." : ""}</h4>
+          <h4>Consignor : {consignor ? consignor : ""}</h4>
           <h4>From : {branch ? branch : ""}</h4>
         </Grid>
         <Grid

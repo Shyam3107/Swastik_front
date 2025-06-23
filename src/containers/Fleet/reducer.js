@@ -5,6 +5,7 @@ const initialState = {
   fleets: [],
   error: null,
   downloadLoading: false,
+  fleetsTrips: [],
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -18,6 +19,17 @@ export default function reducer(state = initialState, action = {}) {
         fleets: action.payload.data,
       };
     case actionTypes.GET_FLEET_FAILURE:
+      return { ...initialState, error: action.payload };
+
+    // GET CASES
+    case actionTypes.GET_FLEET_FOR_TRIPS_PENDING:
+      return { ...initialState, loading: true };
+    case actionTypes.GET_FLEET_FOR_TRIPS_SUCCESS:
+      return {
+        ...initialState,
+        fleetsTrips: action.payload.data,
+      };
+    case actionTypes.GET_FLEET_FOR_TRIPS_FAILURE:
       return { ...initialState, error: action.payload };
 
     // ADD CASES

@@ -157,9 +157,27 @@ export const sampleData = [
 ];
 
 export const sampleData2 = [
-  ["DI No.", "Date", "Vehicle No.", "Quantity", "Billing Rate", "Rate"],
-  ["67282892822", formatDateInDDMMYYY(), "CG04PD1281", 35, 1400, 1450],
-  ["672824520001", formatDateInDDMMYYY(), "CG04NH9534", 31, 818, 858],
+  [
+    "DI No.",
+    "Date",
+    "Vehicle No.",
+    "Quantity",
+    "Billing Rate",
+    "Rate",
+    "Shortage",
+    "Shortage Amount",
+  ],
+  [
+    "67282892822",
+    formatDateInDDMMYYY(),
+    "CG04PD1281",
+    35,
+    1450,
+    1400,
+    160,
+    1500,
+  ],
+  ["672824520001", formatDateInDDMMYYY(), "CG04NH9534", 31, 898, 858],
 ];
 
 export const filterData = (data, search) => {

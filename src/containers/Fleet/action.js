@@ -30,7 +30,7 @@ export const getFleetListForTrips =
   (params = {}) =>
   (dispatch) => {
     dispatch({
-      type: actionTypes.GET_FLEET_PENDING,
+      type: actionTypes.GET_FLEET_FOR_TRIPS_PENDING,
     });
 
     const options = {
@@ -39,11 +39,11 @@ export const getFleetListForTrips =
       params: params,
       callback: (data) => {
         dispatch({
-          type: actionTypes.GET_FLEET_SUCCESS,
+          type: actionTypes.GET_FLEET_FOR_TRIPS_SUCCESS,
           payload: data,
         });
       },
-      errorActionType: actionTypes.GET_FLEET_FAILURE,
+      errorActionType: actionTypes.GET_FLEET_FOR_TRIPS_FAILURE,
       dispatch,
     };
 
