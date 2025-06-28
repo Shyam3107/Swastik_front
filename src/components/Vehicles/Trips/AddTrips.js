@@ -170,9 +170,13 @@ const AddTrips = (props) => {
           driverName: fleetsTrips[i].driverName,
           driverPhone: fleetsTrips[i].driverPhone,
         });
-        break;
+        return;
       }
     }
+    setTrip({
+      ...trip,
+      vehicleNo: val,
+    });
   };
 
   const handleCancel = () => {
