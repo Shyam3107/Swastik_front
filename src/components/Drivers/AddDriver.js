@@ -46,7 +46,7 @@ const Driver = (props) => {
       required: true,
       customValidate: [{ type: "PHONE" }],
     },
-    { id: "aadharCardNo", label: "Aadhar Card No.", required: true },
+    { id: "aadharCardNo", label: "Aadhar Card No." },
     {
       id: "aadharCardDOB",
       label: "Aadhar Card DOB",
@@ -75,10 +75,9 @@ const Driver = (props) => {
     {
       id: "homePhone",
       label: "Home Phone",
-      required: true,
-      customValidate: [{ type: "PHONE" }],
+      //customValidate: [{ type: "PHONE" }],
     },
-    { id: "relation", label: "Relation", required: true },
+    { id: "relation", label: "Relation" },
     {
       id: "guarantor",
       label: "Guarantor",

@@ -28,7 +28,7 @@ export const sampleData = [
     "01-01-2035",
     "8745698563",
     "Father",
-    "Ramesh Sharma",
+    "",
     "No remarks",
     "Yes",
     "No",
