@@ -5,7 +5,6 @@ import LayoutAdd from "../Layout/LayoutAdd";
 import { addDriver, editDriver } from "../../containers/Drivers/action";
 import { InputTypes, ROUTES } from "../../utils/constants";
 import { getGuarantors } from "../../containers/Drivers/action";
-import moment from "moment";
 
 const initialDriver = {
   name: "",

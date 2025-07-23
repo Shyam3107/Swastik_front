@@ -62,10 +62,7 @@ const PrintTrip = (props) => {
             <h3>Singhania Office, Kohka, Tilda</h3>
             <h3>Distt. Raipur (C.G)</h3>
           </Box>
-          <h3 style={{ marginTop: "15px" }}>
-            T.P.T Code:{" "}
-            {trips?.addedBy?.tptCode ?? user?.companyAdminId?.tptCode ?? ""}
-          </h3>
+          <h3 style={{ marginTop: "15px" }}>GST No.: 22AJKPS0565M1ZV</h3>
         </Grid>
       </Grid>
       <Grid container>
@@ -74,6 +71,12 @@ const PrintTrip = (props) => {
         </Grid>
         <Grid style={{ width: "25%" }}>
           <h4>LR No. : {trips.lrNo}</h4>
+        </Grid>
+        <Grid style={{ width: "25%" }}>
+          <h4>
+            T.P.T Code:{" "}
+            {trips?.addedBy?.tptCode ?? user?.companyAdminId?.tptCode ?? ""}
+          </h4>
         </Grid>
       </Grid>
       <Grid container>

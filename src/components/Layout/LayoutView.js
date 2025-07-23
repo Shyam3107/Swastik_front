@@ -1,13 +1,13 @@
-import React from "react"
-import { connect } from "react-redux"
-import Typography from "@mui/material/Typography"
-import Grid from "@mui/material/Grid"
-import Button from "@mui/material/Button"
-import Box from "@mui/material/Box"
+import React from "react";
+import { connect } from "react-redux";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
-import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader"
-import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons"
-import styles from "./styles.module.css"
+import CustomLoader from "../CustomComponents/CustomLoader/CustomLoader";
+import CustomCrudIcons from "../CustomComponents/CustomCrudIcons/CustomCrudIcons";
+import styles from "./styles.module.css";
 
 const LayoutView = ({
   loading,
@@ -30,9 +30,9 @@ const LayoutView = ({
   setSelectedTo,
   search,
   setSearch,
-  handleGo
+  handleGo,
 }) => {
-  if (loading) return <CustomLoader style={{ height: "80%" }} />
+  if (loading) return <CustomLoader style={{ height: "80%" }} />;
 
   return (
     <Box className={className}>
@@ -84,10 +84,14 @@ const LayoutView = ({
               key={item.label}
               className={styles.gridItem}
             >
-              <Typography variant="h6">{item.label}</Typography>
-              <Typography>{item.value ? item.value : data?.[item.id]}</Typography>
+              <Typography variant="h6">
+                <strong>{item.label}</strong>
+              </Typography>
+              <Typography>
+                {item.value ? item.value : data?.[item.id]}
+              </Typography>
             </Grid>
-          )
+          );
         })}
       </Grid>
       {children}
@@ -99,7 +103,7 @@ const LayoutView = ({
         )}
       </Grid>
     </Box>
-  )
-}
+  );
+};
 
-export default connect(null, null)(LayoutView)
+export default connect(null, null)(LayoutView);
