@@ -84,7 +84,10 @@ const Driver = (props) => {
       options: [
         { label: "None", id: null },
         ...(guarantors ?? []).map((val) => {
-          return { label: val.name + " - " + val.dlNo, id: val._id };
+          return {
+            label: val.name + " - " + val.dlNo + " - " + val.driverPhone,
+            id: val._id,
+          };
         }),
       ],
       handleChange: (val) => handleGuarantorChange(val),
