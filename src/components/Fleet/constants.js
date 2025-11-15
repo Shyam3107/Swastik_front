@@ -24,6 +24,15 @@ export const sampleData = [
   ["CG04MJ9741", "ATTACHED", "YADU"],
 ];
 
+export const sampleData2 = [
+  ["Vehicle No."],
+  ["4940"],
+  ["1280"],
+  ["0349"],
+  ["5390"],
+  ["9247"],
+];
+
 export const filterData = (data, search) => {
   if (!data || !Array.isArray(data)) data = [];
   return data.filter((val) => {
@@ -40,3 +49,4 @@ export const filterData = (data, search) => {
 };
 
 export const EDIT_URL = (id) => `${hostRoutes.FLEETS}/${id}/edit`;
+export const VIEW_HISTORY = (id) => `${hostRoutes.DRIVERS}/driverHistory/vehicle/${id}`;

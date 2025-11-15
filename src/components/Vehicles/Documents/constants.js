@@ -90,15 +90,6 @@ export const tableHeaderKey = [
   "isNationalPermit",
 ];
 
-export const sampleData2 = [
-  ["Vehicle No."],
-  ["4940"],
-  ["1280"],
-  ["0349"],
-  ["5390"],
-  ["9247"],
-];
-
 export const filterData = (data, search) => {
   if (!data || !Array.isArray(data)) data = [];
   return data.filter((val) => {

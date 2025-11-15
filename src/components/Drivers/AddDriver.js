@@ -97,6 +97,7 @@ const Driver = (props) => {
       id: "isDriving",
       label: "Is Driving",
       type: "select",
+      disabled:true,
       menuItems: [
         { label: "Yes", value: true },
         { label: "No", value: false },

@@ -42,6 +42,10 @@ import AddDriver from "../Drivers/AddDriver";
 import EditDriver from "../Drivers/EditDriver";
 import ViewDriver from "../Drivers/ViewDriver";
 
+// DRIVER HISTORY
+import DriverHistory from "../DriverHistory/DriverHistory";
+import DriverHistoryByDriver from "../DriverHistory/ViewDriverHistoryByDriver";
+
 // OFFICE EXPENSE
 import OfficeExpense from "../Expenses/Office/Office";
 import AddOfficeExpense from "../Expenses/Office/AddOffice";
@@ -220,7 +224,7 @@ const Routes = (props) => {
     // DRIVERS
     {
       path: ROUTES.DRIVERS,
-      component:<Drivers />,
+      component: <Drivers />,
     },
     {
       path: ROUTES.ADD_DRIVERS,
@@ -233,6 +237,20 @@ const Routes = (props) => {
     {
       path: ROUTES.VIEW_DRIVERS,
       component: <ViewDriver />,
+    },
+
+    // DRIVER HISTORY
+    {
+      path: ROUTES.DRIVER_HISTORY,
+      component: <DriverHistory />,
+    },
+    {
+      path: ROUTES.VIEW_DRIVER_HISTORY_BY_DRIVER,
+      component: <DriverHistoryByDriver />,
+    },
+    {
+      path: ROUTES.VIEW_DRIVER_HISTORY_BY_VEHICLE,
+      component: <DriverHistoryByDriver />,
     },
 
     // OFFICE EXPENSE

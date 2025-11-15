@@ -10,11 +10,9 @@ const env = process.env.REACT_APP_ENV;
 
 let backendURL;
 
-//backendURL = "https://swastik-backend.onrender.com";
 backendURL = "https://swastik-back-new.onrender.com";
 
 //backendURL = "http://localhost:9001";
-//let backendURL = "https://swastik-back.vercel.app"
 
 //if (env && env === "DEV") backendURL = "http://localhost:9000"
 
@@ -25,6 +23,7 @@ const modules = {
   home: "/home",
   trips: "/vehicles/trips",
   drivers: "/vehicles/drivers",
+  driverHistory: "/vehicles/driverHistory",
   documents: "/vehicles/documents",
   vouchers: "/vehicles/vouchers",
   diesels: "/diesels/pumpDiesel",
@@ -67,6 +66,13 @@ export const API = {
   DOWNLOAD_DRIVER: `${modules.drivers}/downloadDriver`,
   DELETE_DRIVER: `${modules.drivers}/deleteDriver`,
 
+  // DRIVER HISTORY
+  GET_DRIVER_HISTORY: `${modules.driverHistory}/getDriverHistory`,
+  ADD_DRIVER_HISTORY: `${modules.driverHistory}/addDriverHistory`,
+  EDIT_DRIVER_HISTORY: `${modules.driverHistory}/editDriverHistory`,
+  DELETE_DRIVER_HISTORY: `${modules.driverHistory}/deleteDriverHistory`,
+  DOWNLOAD_DRIVER_HISTORY: `${modules.driverHistory}/downloadDriverHistory`,
+
   // VOUCHERS
   GET_VOUCHERS: `${modules.vouchers}/getVouchers`,
   ADD_VOUCHERS: `${modules.vouchers}/addVouchers`,
@@ -83,7 +89,6 @@ export const API = {
   DELETE_DOCUMENTS: `${modules.documents}/deleteDocuments`,
   DOWNLOAD_DOCUMENTS: `${modules.documents}/downloadDocuments`,
   DOWNLOAD_MISSING_DOCUMENTS: `${modules.documents}/downloadMissingDocuments`,
-  COMPLETE_VEHICLE_NUMBER: `${modules.documents}/completeVehicleNum`,
 
   // DIESELS
   GET_DIESELS: `${modules.diesels}/getDiesels`,
@@ -136,6 +141,7 @@ export const API = {
   DELETE_FLEET: `${modules.fleets}/deleteFleet`,
   DOWNLOAD_FLEET: `${modules.fleets}/downloadFleet`,
   GET_FLEET_LIST_FOR_TRIPS: `${modules.fleets}/getFleetListForTrips`,
+  COMPLETE_VEHICLE_NUMBER: `${modules.fleets}/completeVehicleNum`,
 
   // RECEIPTS
   GET_RECEIPT: `${modules.receipts}/getReceipt`,
@@ -188,14 +194,14 @@ export const API = {
   DOWNLOAD_ALL_SITES_ROKAR: `${modules.reports}/downloadAllSitesRokar`,
 };
 
-export const handleError = (dispatch = () => {}, action = {}, err = {}) => {
+export const handleError = (dispatch = () => { }, action = {}, err = {}) => {
   dispatch(action);
   if (!navigator.onLine) return toastMessage("You Are Offline", warn);
   let errMssg = err.response
     ? err?.response?.data?.errors
     : err.message
-    ? err.message
-    : "Some Error Occured";
+      ? err.message
+      : "Some Error Occured";
 
   if (!errMssg) errMssg = "Some Error Occured";
   return toastMessage(errMssg, error);

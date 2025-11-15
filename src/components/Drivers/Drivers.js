@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import TableCell from "@mui/material/TableCell";
+import moment from "moment";
 
 import Layout from "../Layout/Layout";
 import { ROUTES } from "../../utils/constants";
@@ -72,11 +73,21 @@ const Drivers = (props) => {
     return headerKey.map((headVal) => {
       return (
         <TableCell key={headVal}>
-          {headVal === "vehicleNo" ? (
-            <Link to={EDIT_URL(row[headVal])}>{row[headVal]}</Link>
-          ) : (
-            row[headVal]
-          )}
+          {(() => {
+            switch (headVal) {
+              case "vehicleNo":
+                return <Link to={EDIT_URL(row[headVal])}>{row[headVal]}</Link>;
+              case "dlValidity":
+                const fontColor = moment(row[headVal], "DD-MM-YYYY").isBefore(
+                  moment()
+                )
+                  ? "red"
+                  : "inherit";
+                return <span style={{ color: fontColor }}>{row[headVal]}</span>;
+              default:
+                return row[headVal];
+            }
+          })()}
         </TableCell>
       );
     });

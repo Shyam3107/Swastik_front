@@ -67,6 +67,15 @@ export const ROUTES = {
   EDIT_DRIVERS: hostRoutes.DRIVERS + "/:driverId/edit",
   VIEW_DRIVERS: hostRoutes.DRIVERS + "/:driverId",
 
+  // DRIVER HISTORY
+  DRIVER_HISTORY: hostRoutes.DRIVERS + "/driverHistory",
+  VIEW_DRIVER_HISTORY_BY_DRIVER:
+    hostRoutes.DRIVERS + "/driverHistory/driver/:driverId",
+  VIEW_DRIVER_HISTORY_BY_VEHICLE:
+    hostRoutes.DRIVERS + "/driverHistory/vehicle/:vehicleId",
+  ADD_DRIVER_HISTORY: hostRoutes.DRIVERS + "/driverHistory/add",
+  EDIT_DRIVER_HISTORY: hostRoutes.DRIVERS + "/driverHistory/:historyId/edit",
+
   // FLEETS
   FLEETS: hostRoutes.FLEETS,
   ADD_FLEETS: hostRoutes.FLEETS + "/add",

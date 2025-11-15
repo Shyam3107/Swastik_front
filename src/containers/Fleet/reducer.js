@@ -72,6 +72,14 @@ export default function reducer(state = initialState, action = {}) {
     case actionTypes.DOWNLOAD_FLEET_FAILURE:
       return { ...state, downloadLoading: false };
 
+    // COMPLETING THE VEHICLE NUMBER
+    case actionTypes.COMPLETE_VEHICLE_NUMBER_PENDING:
+      return { ...state, loading: true };
+    case actionTypes.COMPLETE_VEHICLE_NUMBER_SUCCESS:
+      return { ...state, loading: false };
+    case actionTypes.COMPLETE_VEHICLE_NUMBER_FAILURE:
+      return { ...state, loading: false };
+
     default:
       return state;
   }

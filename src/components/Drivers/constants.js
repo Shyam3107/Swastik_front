@@ -1,4 +1,5 @@
 import { includesInArray, hostRoutes } from "../../utils/constants";
+import moment from "moment";
 
 export const header = [
   "Name",
@@ -54,10 +55,20 @@ export const headerKey = [
 export const filterData = (data, search) => {
   if (!data || !Array.isArray(data)) data = [];
   return data.filter((val) => {
-    return includesInArray(
-      [val.name, val.dlNo, val.aadharCardNo, val.driverPhone],
-      search
-    );
+    search = search?.toLowerCase();
+    switch (search) {
+      case "dl expired":
+        return includesInArray(
+          [moment(val?.dlValidity,"DD-MM-YYYY").isBefore(moment()).toString()],
+          "true"
+        );
+
+      default:
+        return includesInArray(
+          [val.name, val.dlNo, val.aadharCardNo, val.driverPhone],
+          search
+        );
+    }
   });
 };
 

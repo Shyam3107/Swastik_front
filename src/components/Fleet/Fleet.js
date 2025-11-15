@@ -12,12 +12,15 @@ import {
   sampleData,
   EDIT_URL,
   filterData,
+  VIEW_HISTORY,
+  sampleData2
 } from "./constants";
 import {
   getFleet,
   deleteFleet,
   downloadFleet,
   uploadFleet,
+  completeVehicleNum,
 } from "../../containers/Fleet/action";
 import { access, isOperationAllowed, operations } from "../../utils/utilities";
 
@@ -55,6 +58,10 @@ const Fleet = (props) => {
     props.downloadFleet();
   };
 
+  const handleFile2Submit = (file) => {
+    props.completeVehicleNum(file, () => { });
+  };
+
   const handleFileSubmit = (file) => {
     const cb = () => {
       getFleet();
@@ -75,7 +82,7 @@ const Fleet = (props) => {
       return (
         <TableCell key={headVal}>
           {headVal === "vehicleNo" ? (
-            <Link to={EDIT_URL(row[headVal])}>{row[headVal]}</Link>
+            <Link to={VIEW_HISTORY(row._id)}>{row[headVal]}</Link>
           ) : (
             row[headVal]
           )}
@@ -99,6 +106,9 @@ const Fleet = (props) => {
       tableRow={tableRow}
       tableBodyFunc={tableBodyFunc}
       downloadLoading={downloadLoading}
+      upload2ToolTip="Complete the Vehicle No."
+      handleFile2Submit={handleFile2Submit}
+      sampleData2={sampleData2}
       handleFileSubmit={
         isOperationAllowed(access.FLEETS, operations.CREATE) && handleFileSubmit
       }
@@ -129,5 +139,6 @@ export default withRouter(
     deleteFleet,
     downloadFleet,
     uploadFleet,
+    completeVehicleNum,
   })(Fleet)
 );

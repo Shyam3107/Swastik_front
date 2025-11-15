@@ -10,13 +10,11 @@ import {
   uploadDocuments,
   downloadDocuments,
   downloadMissingDocuments,
-  completeVehicleNum,
 } from "../../../containers/Documents/action";
 import Layout from "../../Layout/Layout";
 import { ROUTES, validateUrlValid } from "../../../utils/constants";
 import {
   sampleData,
-  sampleData2,
   EXPIRED,
   ACTIVE,
   EDIT_URL,
@@ -54,10 +52,6 @@ const Documents = (props) => {
 
   const handleDownload2 = () => {
     props.downloadMissingDocuments();
-  };
-
-  const handleFile2Submit = (file) => {
-    props.completeVehicleNum(file, () => {});
   };
 
   const handleDeleteAgree = () => {
@@ -203,9 +197,6 @@ const Documents = (props) => {
         handleDownload2={isAdmin() && handleDownload2}
         download2ToolTip="Download Missing Docs"
         sampleName2="Vehicle Number Sample"
-        upload2ToolTip="Complete the Vehicle No."
-        handleFile2Submit={isAdmin() && handleFile2Submit}
-        sampleData2={sampleData2}
       />
       {validateUrlValid(documentsLink) && (
         <p style={{ marginLeft: "10px" }}>
@@ -233,7 +224,6 @@ export default React.memo(
       uploadDocuments,
       downloadDocuments,
       downloadMissingDocuments,
-      completeVehicleNum,
     })(Documents)
   )
 );

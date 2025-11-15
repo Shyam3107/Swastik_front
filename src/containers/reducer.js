@@ -15,6 +15,7 @@ import vehicleOwnerReducer from "./VehicleOwner/reducer";
 import hardwareShopBillsReducer from "./HardwareShopBills/reducer";
 import driverReducer from "./Drivers/reducer";
 import fleetReducer from "./Fleet/reducer";
+import driverHistoryReducer from "./DriverHistory/reducer";
 
 const rootReducer = {
   user: loginReducer,
@@ -34,6 +35,7 @@ const rootReducer = {
   vehicleOwner: vehicleOwnerReducer,
   hardwareShopBills: hardwareShopBillsReducer,
   fleets: fleetReducer,
+  driverHistory: driverHistoryReducer,
 };
 
 export default rootReducer;
