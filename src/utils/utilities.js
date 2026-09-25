@@ -24,6 +24,7 @@ export const access = {
   STORE_BILLS: "STORE_BILLS",
   FLEETS: "FLEETS",
   DRIVERS: "DRIVERS",
+  RATES: "RATES",
 };
 
 export const checkBoxCondition = (row) => {

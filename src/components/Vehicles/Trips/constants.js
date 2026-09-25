@@ -166,6 +166,8 @@ export const sampleData2 = [
     "Rate",
     "Shortage",
     "Shortage Amount",
+    "E-way Bill No.",
+    "E-way Bill Expiry",
   ],
   [
     "67282892822",
@@ -176,8 +178,21 @@ export const sampleData2 = [
     1400,
     160,
     1500,
+    "EWB1234567890",
+    formatDateInDDMMYYY(),
   ],
-  ["672824520001", formatDateInDDMMYYY(), "CG04NH9534", 31, 898, 858],
+  [
+    "672824520001",
+    formatDateInDDMMYYY(),
+    "CG04NH9534",
+    31,
+    898,
+    858,
+    0,
+    0,
+    "EWB1234567891",
+    formatDateInDDMMYYY(),
+  ],
 ];
 
 export const filterData = (data, search) => {
@@ -199,7 +214,7 @@ export const filterData = (data, search) => {
         val?.addedBy ?? "",
         val?.remarks ?? "",
       ],
-      search
+      search,
     );
   });
 };

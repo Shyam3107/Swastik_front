@@ -28,6 +28,7 @@ export const accessOptions = [
   { label: "Store Bills", id: access.STORE_BILLS },
   { label: "Fleets", id: access.FLEETS },
   { label: "Drivers", id: access.DRIVERS },
+  { label: "Rates", id: access.RATES },
 ];
 
 export const operationsOptions = [

@@ -28,7 +28,6 @@ import {
   access,
   operations,
   checkBoxCondition,
-  isAdmin,
 } from "../../../utils/utilities"
 
 const Trips = (props) => {
@@ -113,7 +112,7 @@ const Trips = (props) => {
         isOperationAllowed(access.TRIPS, operations.CREATE) && handleFileSubmit
       }
       handleFile2Submit={
-        isAdmin() && handleFile2Submit
+        isOperationAllowed(access.RATES, operations.CREATE) && handleFile2Submit
       }
       handleGo={handleGo}
       search={search}
