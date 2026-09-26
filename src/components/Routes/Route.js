@@ -45,6 +45,7 @@ import ViewDriver from "../Drivers/ViewDriver";
 // DRIVER HISTORY
 import DriverHistory from "../DriverHistory/DriverHistory";
 import DriverHistoryByDriver from "../DriverHistory/ViewDriverHistoryByDriver";
+import DriverHistoryByVehicle from "../DriverHistory/ViewDriverHistoryByVehicle";
 
 // OFFICE EXPENSE
 import OfficeExpense from "../Expenses/Office/Office";
@@ -250,7 +251,7 @@ const Routes = (props) => {
     },
     {
       path: ROUTES.VIEW_DRIVER_HISTORY_BY_VEHICLE,
-      component: <DriverHistoryByDriver />,
+      component: <DriverHistoryByVehicle />,
     },
 
     // OFFICE EXPENSE

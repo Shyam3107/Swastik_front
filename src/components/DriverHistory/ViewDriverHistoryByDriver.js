@@ -42,7 +42,7 @@ const Comp = (props) => {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleBack = () => {
-    history.push(ROUTES.DRIVER_HISTORY);
+    history.push(ROUTES.FLEETS);
   };
 
   //   const handleAddButton = () => {
